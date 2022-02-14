@@ -2,7 +2,7 @@
 
 # Tomba Club Mediawiki Skin
 
-A Mediawiki skin made for the Tomba Club wiki (v2). This skin is purely a set of CSS changes to the existing Vector skin.
+A Mediawiki skin made for the Tomba Club wiki (v2). This skin is purely a set of CSS changes (done in SCSS) to the existing Vector skin.
 
 ## Example
 
@@ -32,6 +32,8 @@ $wgFooterIcons['poweredby']['mediawiki'] = [
   'alt' => "Powered by Animal Dash",
 ];
 ```
+
+Building the CSS requires [SassC 1.43.1](https://sass-lang.com/install) (although probably most other recent versions will work).
 
 ### Required hack
 
