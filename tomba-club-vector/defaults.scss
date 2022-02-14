@@ -1,0 +1,117 @@
+@charset "utf-8";
+
+// Primary font used in copy
+$font-regular: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-size-regular: 0.9rem;
+// Primary header font
+$font-header: "Roboto", sans-serif !default;
+//$font-header: "Linux Libertine", "Georgia", "Times", serif !default;
+// Font used for monospaced elements, such as <code>, <pre>, etc
+$font-mono: "Menlo", "Andale Mono", "Ubuntu Mono", monospace !default;
+$font-mono-size: 94%;
+
+// Theme style settings
+$border-radius-s: 2px !default;
+$border-radius-m: 3px !default;
+$border-radius-l: 6px !default;
+$border-radius-xl: 12px !default;
+
+// Swatches
+$color-green-haze: #00a94b;
+$color-salem: #00873c;
+$color-tomba-pink: #ef84b1;
+$color-tomba-pink-2: #e776a9;
+$color-deep-blush: #e453a7;
+$color-cobalt: #0043c3;
+$color-midnight-blue: #002162;
+$color-dandelion: #ffdb41;
+
+$color-radical-red: #ff3855;
+$color-bright-sun: #ffcc3c;
+$color-malachite: #00c02f;
+
+// Layout colors
+$color-dark-transparent: rgba(0, 0, 0, 0.25);
+$color-dark-transparent-hover: rgba(0, 0, 0, 0.35);
+
+// Functional swatches
+$color-visited: #7900c3;
+$color-nonexistent: #c30000;
+$color-external-visited: #008b6c;
+$color-error: $color-radical-red;
+$color-warning: $color-bright-sun;
+$color-success: $color-malachite;
+$color-neutral: #d7d1d1;
+
+$color-white: #fff;
+$color-light-gray-1: #f2efef;
+$color-light-gray-2: mix(#000, $color-light-gray-1, 10%);
+$color-light-gray-3: mix(#000, $color-light-gray-1, 15%);
+$color-light-gray-4: mix(#000, $color-light-gray-1, 20%);
+$color-light-gray-5: mix(#000, $color-light-gray-1, 25%);
+$color-light-gray-6: mix(#000, $color-light-gray-1, 30%);
+$color-light-gray-7: mix(#000, $color-light-gray-1, 35%);
+$color-light-gray-8: mix(#000, $color-light-gray-1, 40%);
+$color-gray-1: mix(#000, $color-light-gray-1, 75%);
+$color-dark-gray: #313030;
+
+// Layout settings and sizes
+$color-body: $color-dark-gray;
+$color-outer-bg-top: $color-tomba-pink-2;
+$color-outer-bg-bottom: #8c2550;
+$color-outer-bg: mix($color-outer-bg-bottom, $color-outer-bg-top, 0%) linear-gradient(0deg, mix($color-outer-bg-bottom, $color-outer-bg-top, 100%) 0%, $color-outer-bg-top 100%) repeat-x;
+$color-inner-bg: $color-light-gray-1;
+$color-content-bg: $color-white;
+
+// The top nav layout is divided into three sections:
+//
+//     - the logo section
+//     - the main nav section - 'main article', 'talk', etc.
+//     - the sub nav section - 'edit', 'edit source', etc.
+//
+// The content section can be offset from the left side of the screen,
+// in which case the background color can be seen on the left side.
+//
+$layout-height-nav-logo: 3em;
+$layout-height-nav-main: 2.1em;
+$layout-height-nav-sub: 2.8em;
+$layout-height-nav: $layout-height-nav-logo + $layout-height-nav-main + $layout-height-nav-sub;
+$layout-inset-content: 1.5em;
+$layout-padding-h-content: 1em;
+$layout-padding-v-content: 1em;
+$layout-padding-h-box: 1.5em;
+$layout-padding-v-box: 1em;
+$layout-rounding-content: $border-radius-l;
+$layout-rounding-nav-main: $border-radius-m;
+$layout-rounding-nav-sub: $border-radius-l;
+$layout-rounding-nav-personal: $border-radius-l;
+$layout-font-size-nav-sub: 0.9em;
+$layout-width-nav-hamburger: 0em; // menu on the left side of the main nav buttons
+$layout-width-nav-panel: 14em;
+
+// The amount that the nav panel and main content section is offset from
+// the side of the viewport. When setting it to 0, make sure it's set to
+// '0em' specifically to make sure the calculation doesn't NaN.
+$layout-left-inset-content: 0.8em;
+$layout-right-inset-content: 0.8em;
+
+// Whether to add a Tomba image in the left sidebar.
+$layout-has-tomba-image: true;
+
+// The amount that the layout will move down to accommodate the logo in responsive mode.
+$layout-responsive-offset-y: 30px;
+// Whether to move the left bar down below.
+$layout-move-left-bar-on-responsive: true;
+// Whether to move the user bar to the top.
+$layout-move-personal-bar-on-responsive: true;
+// Whether to remove the icons in the subnav.
+$layout-remove-subnav-icons: true;
+
+// Minimum layout width. If the layout gets shorter than this, the site will need to be scaled on the user's device.
+$layout-minimum-width: 490px;
+
+// Spacing for the left nav.
+$layout-side-nav-padding-left: 1.4em;
+$layout-side-nav-header-offset-left: 0.65em;
+$layout-side-nav-padding-right: 2.0em;
+$layout-side-nav-header-offset-right: 0.5em;

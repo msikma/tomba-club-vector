@@ -1,0 +1,699 @@
+@charset "utf-8";
+@use 'sass:math';
+
+// The nav items that have an icon (see icons.scss)
+$nav-sub-icon-links: (
+  'ca-ve-edit': ('pencil', 'left'),
+  'ca-edit': ('file-code', 'left'),
+  'ca-view': ('book', 'left'),
+  'ca-history': ('history', 'left'),
+  'ca-unwatch': ('star-fill', 'left'),
+  'ca-watch': ('star', 'left'),
+);
+$nav-main-icon-links: (
+  'ca-talk': ('comment-discussion', 'left'),
+);
+$nav-panel-icon-links: (
+  'n-mainpage-description': ('home', 'left'),
+  'n-Edit-guide': ('file-badge', 'left'),
+  'n-recentchanges': ('broadcast', 'left'),
+  'n-randompage': ('rocket', 'left'),
+  'n-Tomba-Club-Discord': ('discord', 'left'),
+  't-whatlinkshere': ('git-merge', 'left'),
+  't-recentchangeslinked': ('cross-reference', 'left'),
+  't-print': ('print', 'left'),
+  't-upload': ('image', 'left'),
+  't-permalink': ('diff-renamed', 'left'),
+  't-specialpages': ('hash', 'left'),
+  't-info': ('info', 'left'),
+  'feedlinks': ('rss', 'left'),
+);
+$nav-other-icon-links: (
+  'p-cactions-label': ('chevron-down', 'right'),
+);
+
+// Whether the main content section is offset from the side of the viewport.
+$layout-content-is-offset-left: $layout-left-inset-content > 0em;
+$layout-content-is-offset-right: $layout-right-inset-content > 0em;
+
+// Layout settings for the nav.
+$nav-item-padding: 0.75em;
+$icon-width: 1em;
+$icon-spacing: 0.35em;
+$highlight-padding: 0.5em;
+
+html, body {
+  height: inherit;
+  min-height: 100%;
+}
+
+body {
+  background: $color-outer-bg;
+  background-size: 100% 500px;
+  background-position: bottom;
+  min-width: $layout-minimum-width;
+}
+
+@mixin white-text {
+  color: white;
+  li {
+    color: white;
+  }
+  a {
+    color: $color-dandelion;
+  }
+  a.new {
+    opacity: 0.6;
+  }
+}
+
+@mixin subnav-item {
+  color: $color-cobalt;
+  width: inherit;
+  height: #{math.div($layout-height-nav-sub, $layout-font-size-nav-sub)}em;
+  padding: 0 $nav-item-padding;
+  line-height: #{math.div($layout-height-nav-sub, $layout-font-size-nav-sub)}em;
+  font-size: $layout-font-size-nav-sub;
+  position: relative;
+
+  &::before {
+    width: #{math.div($icon-width, $layout-font-size-nav-sub)}em;
+    background-size: contain;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+  }
+
+  &::after {
+    content: '';
+    width: auto;
+    display: block;
+    position: absolute;
+    inset: $highlight-padding (math.div($highlight-padding, 2));
+    border-radius: $border-radius-m;
+    background-image: none;
+    opacity: 1;
+  }
+
+  &:hover::after {
+    background: rgba($color-cobalt, 0.1);
+  }
+}
+
+// Main content body
+#content.mw-body {
+  padding-left: $layout-width-nav-panel + $layout-padding-h-content;
+  padding-right: $layout-padding-h-content;
+  padding-top: $layout-padding-v-content + $layout-inset-content;
+  padding-bottom: $layout-padding-v-content;
+  position: relative;
+  z-index: 0;
+  border: 0;
+  background: $color-inner-bg;
+  margin: 0 $layout-right-inset-content 0 $layout-left-inset-content;
+  border-bottom: 3px solid mix(#333, $color-outer-bg-bottom, 35%);
+  min-height: 34em;
+
+  @if $layout-has-tomba-image {
+    background-image: url('./images/tomba-running-bg.png');
+    background-repeat: no-repeat;
+    background-size: 389px 387px;
+    background-position: -9em 23em;
+  }
+  @if $layout-content-is-offset-left {
+    border-bottom-left-radius: $layout-rounding-content;
+  }
+  @if $layout-content-is-offset-right {
+    border-bottom-right-radius: $layout-rounding-content;
+  }
+
+  &::before {
+    width: calc(100% - #{$layout-width-nav-panel});
+    height: calc(100% - #{$layout-inset-content});
+    left: $layout-width-nav-panel;
+    top: $layout-inset-content;
+  
+    pointer-events: none;
+    position: absolute;
+    border-top-left-radius: $layout-rounding-content;
+    @if $layout-content-is-offset-right {
+      border-bottom-right-radius: $layout-rounding-content;
+    }
+    display: block;
+    content: '';
+    background: $color-content-bg;
+    z-index: -1;
+  }
+}
+
+// Top navigation
+#mw-page-base, #mw-head-base {
+  height: $layout-height-nav;
+  background: transparent;
+}
+#mw-head-base {
+  // For some reason, Chrome wants an extra pixel here.
+  // I don't know why. I don't care.
+  margin-top: calc(($layout-height-nav * -1) - 1px);
+}
+#mw-navigation {
+  a {
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+  }
+  // Article top menu, containing e.g. 'edit', 'edit source', 'view history'.
+  #mw-head {
+    background: radial-gradient(circle, rgba($color-light-gray-1, 0.4) 0%, rgba($color-light-gray-1, 0) 100%);
+    min-width: $layout-minimum-width;
+    left: 0;
+    right: 0;
+
+    .vector-menu-tabs {
+      background: none;
+      padding: 0;
+
+      li {
+        background: none;
+
+        a {
+          padding: 0;
+          background: none;
+        }
+      }
+    }
+    // User account settings navigation
+    #p-personal {
+      position: absolute;
+      top: 0;
+      right: $layout-right-inset-content;
+
+      .vector-menu-content-list {
+        background: $color-dark-transparent;
+        transition: background-color 150ms;
+        padding: 0;
+        border-radius: 0 0 $layout-rounding-nav-personal $layout-rounding-nav-personal;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+        border-top: none;
+
+        li {
+          padding: 0 !important;
+          margin: 0 !important;
+        }
+        li#pt-anonuserpage, a {
+          padding: 0.65em 0.35em !important;
+          margin: 0 !important;
+          display: inline-block;
+          color: white;
+          opacity: 0.7;
+          &:hover {
+            opacity: 1;;
+          }
+        }
+        li:first-child a {
+          padding-left: 1em !important;
+        }
+        li:last-child a {
+          padding-right: 1em !important;
+        }
+        li#pt-userpage a {
+          font-weight: bold;
+        }
+        li#pt-userpage a, li#pt-mytalk a {
+          color: white;
+          opacity: 1;
+        }
+        li#pt-anonuserpage, li#pt-userpage a {
+          padding-left: 0.65em + 1.5em !important;
+          position: relative;
+          background-image: none;
+        }
+        li#pt-anonuserpage::before, li#pt-userpage a::before {
+          content: '';
+          display: block;
+          background-image: url('./images/user-avatar.svg');
+          padding: 0;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 1.15em 1.15em;
+          position: absolute;
+          top: calc(50% - 0.6em);
+          left: 0.65em;
+          width: 1.15em;
+          height: 1.15em;
+        }
+        li#pt-anonuserpage:hover, li#pt-userpage a:hover, li#pt-mytalk a:hover {
+          color: $color-dandelion;
+        }
+        li#pt-anonuserpage:hover::before, li#pt-userpage a:hover::before {
+          filter: invert(78%) sepia(65%) saturate(445%) hue-rotate(357deg) brightness(359%) contrast(105%);
+        }
+        li#pt-mytalk:after {
+          content: '';
+          display: inline-block;
+          width: 1px;
+          height: 1em;
+          border-right: 1px solid rgba(255, 255, 255, 0.7);
+          vertical-align: bottom;
+          padding: 0 0 0 0.5em;
+          margin-right: 0.5em;
+
+          //new
+          top: -0.075em;
+          position: relative;
+          padding: 0.50em 0.25em !important;
+          vertical-align: middle;
+          height: 0;
+        }
+      }
+
+      .vector-menu-content:hover {
+        .vector-menu-content-list {
+          background: rgba(0, 0, 0, 0.35);
+        }
+      }
+    }
+    // Main nav section
+    #left-navigation {
+      float: none;
+      display: block;
+      position: relative;
+      margin: $layout-height-nav-logo calc(#{$layout-right-inset-content} + #{$layout-rounding-nav-sub}) 0 calc(#{$layout-width-nav-hamburger + $layout-left-inset-content} + #{$layout-rounding-nav-sub});
+      height: $layout-height-nav-main;
+
+      .vector-menu {
+        // For some reason, Safari wants an extra 0.1px here.
+        // Don't ask me why.
+        position: relative;
+        top: 0.1px;
+        height: $layout-height-nav-main;
+
+        li {
+          a {
+            padding: 0 1em;
+            font-size: inherit;
+            height: auto;
+            line-height: calc($layout-height-nav-main - 4px);
+            margin-left: 0.25em;
+            border-top-left-radius: $layout-rounding-nav-main;
+            border-top-right-radius: $layout-rounding-nav-main;
+            background: $color-dark-transparent;
+            color: white;
+            padding-top: 2px;
+            padding-bottom: 2px;
+
+            &:hover, &:focus {
+              background: $color-dark-transparent-hover;
+            }
+          }
+          &.selected a {
+            background: $color-content-bg;
+            color: $color-body;
+            border-top: 2px solid $color-dandelion;
+            padding-top: 0;
+          }
+          &:first-child a {
+            margin-left: 0;
+          }
+        }
+      }
+
+      #p-namespaces {
+        li {
+          a::before {
+            width: #{math.div($icon-width, $layout-font-size-nav-sub)}em;
+            background-size: contain;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            background-repeat: no-repeat;
+            background-position: 0 50%;
+          }
+          // All the main nav links with an icon.
+          @each $cls, $icon-settings in $nav-main-icon-links {
+            &##{$cls} {
+              $icon: nth($icon-settings, 1);
+              $direction: nth($icon-settings, 2);
+              a {
+                padding-#{$direction}: #{$nav-item-padding + (math.div($icon-width + $icon-spacing, $layout-font-size-nav-sub))};
+                &::before {
+                  content: '';
+                  #{$direction}: math.div($nav-item-padding + math.div($icon-width + $icon-spacing, $layout-font-size-nav-sub) - math.div($icon-width, 2), 2);
+                  background-image: make-icon-url($icon, $color-white);
+                }
+              }
+              &.selected a {
+                color: $color-green-haze;
+                
+                &::after {
+                  background: rgba($color-green-haze, 0.1);
+                }
+                &::before {
+                  background-image: make-icon-url($icon, $color-green-haze);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Sub nav section
+    #right-navigation {
+      float: none;
+      margin: 0 $layout-right-inset-content 0 $layout-left-inset-content;
+      height: $layout-height-nav-sub;
+      background: $color-content-bg;
+      box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.1);
+      position: relative;
+
+      #p-search, #p-cactions, #p-views {
+        height: $layout-height-nav-sub;
+        margin: 0;
+      }
+
+      #p-search {
+        float: right;
+        margin-right: calc((#{$nav-item-padding} / 2) - 1px);
+
+        #searchform {
+          margin: 0;
+          height: $layout-height-nav-sub;
+          display: flex;
+          align-items: center;
+
+          #simpleSearch {
+            height: auto;
+
+            #searchInput {
+              font-size: $layout-font-size-nav-sub;
+              padding: 0;
+              color: $color-gray-1;
+              height: calc(#{math.div($layout-height-nav-sub - $nav-item-padding, $layout-font-size-nav-sub)}em + 2px);
+              padding: 0 0.75em;
+              border: 1px solid transparent;
+              border-radius: $layout-rounding-content - 1px;
+              box-shadow: inset 0 0 0 2px $color-light-gray-2;
+              transition: border-color 150ms, box-shadow 150ms, color 150ms;
+              background-color: white;
+
+              &:focus {
+                box-shadow: inset 0 0 0 2px $color-cobalt;
+                color: $color-cobalt;
+
+                &::placeholder {
+                  color: $color-cobalt;
+                }
+              }
+            }
+
+            &:hover {
+              #searchInput {
+                box-shadow: inset 0 0 0 2px $color-cobalt;
+              }
+              #mw-searchButton {
+                filter: invert(12%) sepia(71%) saturate(2932%) hue-rotate(209deg) brightness(79%) contrast(110%);
+              }
+            }
+
+            #mw-searchButton {
+              position: absolute;
+              top: 1px;
+              bottom: 0;
+              right: 1px;
+              width: #{math.div($layout-height-nav-sub - $nav-item-padding, $layout-font-size-nav-sub)}em;
+              min-width: 0;
+              height: #{math.div($layout-height-nav-sub - $nav-item-padding, $layout-font-size-nav-sub)}em;
+              border: none;
+              padding: 0;
+              margin: 0;
+              font-size: $layout-font-size-nav-sub;
+              text-indent: -99999px;
+              white-space: nowrap;
+              overflow: hidden;
+              background: make-icon-url('search', $color-gray-1) no-repeat 50% 50%;
+              background-size: #{math.div($icon-width, $layout-font-size-nav-sub)}em;
+            }
+
+            #searchButton {
+              display: none;
+            }
+          }
+        }
+      }
+
+      #p-views {
+        li {
+          // All the subnav links with an icon.
+          @each $cls, $icon-settings in $nav-sub-icon-links {
+            &##{$cls} {
+              $icon: nth($icon-settings, 1);
+              $direction: nth($icon-settings, 2);
+              a {
+                padding-#{$direction}: #{$nav-item-padding + (math.div($icon-width + $icon-spacing, $layout-font-size-nav-sub))};
+                &::before {
+                  content: '';
+                  #{$direction}: math.div($nav-item-padding + math.div($icon-width + $icon-spacing, $layout-font-size-nav-sub) - math.div($icon-width, 2), 2);
+                  background-image: make-icon-url($icon, $color-cobalt);
+                }
+              }
+              &.selected a {
+                color: $color-green-haze;
+                
+                &::after {
+                  background: rgba($color-green-haze, 0.1);
+                }
+                &::before {
+                  background-image: make-icon-url($icon, $color-green-haze);
+                }
+              }
+            }
+          }
+
+          a {
+            @include subnav-item;
+          }
+
+          &:first-child a {
+            margin-left: ($nav-item-padding) - $highlight-padding;
+          }
+        }
+
+        // Some small optimizations for the icons.
+        li#ca-view a::before {
+          width: 1.2em;
+          top: -0.05em;
+        }
+        li#ca-ve-edit a::before {
+          top: -0.05em;
+        }
+      }
+
+      #p-cactions {
+        $icon-settings: map-get($nav-other-icon-links, 'p-cactions-label');
+        $icon: nth($icon-settings, 1);
+        $direction: nth($icon-settings, 2);
+        
+        #p-cactions-label {
+          @include subnav-item;
+          background: none;
+          margin: 0;
+          padding-#{$direction}: #{$nav-item-padding + (math.div($icon-width + $icon-spacing, $layout-font-size-nav-sub))};
+
+          &::before {
+            content: '';
+            #{$direction}: $icon-width;
+            background-image: make-icon-url($icon, $color-cobalt);
+          }
+        }
+
+        &:hover #p-cactions-label::after {
+          background: rgba($color-cobalt, 0.1);
+        }
+        .vector-menu-checkbox:checked ~ #p-cactions-label {
+          &::before {
+          }
+        }
+        .vector-menu-content {
+          position: absolute;
+          min-width: 8em;
+          top: $layout-height-nav-sub;
+          left: 0;
+          right: inherit;
+          margin: -2px 0 0 calc(-0.2em - 2px);
+          padding: 0;
+          border: none;
+          box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+          border-radius: 4px;
+          overflow: hidden;
+
+          li a {
+            padding: ($highlight-padding + 0.2em) ($nav-item-padding + 0.4em);
+            font-size: $layout-font-size-nav-sub;
+
+            &:hover {
+              background: rgba($color-cobalt, 0.1);
+            }
+          }
+        }
+      }
+
+      @if $layout-content-is-offset-left {
+        border-top-left-radius: $layout-rounding-nav-sub;
+      }
+      @if $layout-content-is-offset-right {
+        border-top-right-radius: $layout-rounding-nav-sub;
+      }
+    }
+  }
+
+  // Wiki side menu, containing e.g. 'main page', 'recent changes', 'random page'.
+  #mw-panel {
+    position: absolute;
+    top: $layout-height-nav-logo + $layout-height-nav-main + $layout-height-nav-sub + $layout-inset-content;
+    width: $layout-width-nav-panel;
+    padding-left: 0;
+    left: $layout-left-inset-content;
+
+    // Fixes to bring the logo to the top of the layout.
+    #p-logo {
+      position: absolute;
+      top: -($layout-height-nav-logo + $layout-height-nav-main + $layout-height-nav-sub + $layout-inset-content);
+      margin: 0.2em 0 0 0;
+      left: calc(50vw - 80px);
+    }
+
+    .mw-portlet {
+      padding: 0;
+      margin: 0;
+
+      &:not(:first-of-type) {
+        padding-top: 1em;
+      }
+
+      .vector-menu-heading {
+        display: block;
+        background: none;
+        padding: 0 ($layout-side-nav-padding-right - $layout-side-nav-header-offset-right) 0 ($layout-side-nav-padding-left - $layout-side-nav-header-offset-left);
+        font-weight: normal;
+        text-transform: none;
+        margin: 0 0 0.4em;
+        font-size: 1em;
+        color: #fff;
+
+        span {
+          border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+          display: block;
+          border-radius: $layout-rounding-nav-main;
+          transition: background 150ms, color 150ms;
+          background: $color-green-haze;
+          padding: calc(0.25em + 1px) $layout-side-nav-header-offset-right 0.25em $layout-side-nav-header-offset-left;
+        }
+      }
+      .vector-menu-content {
+        padding: 0;
+        margin: 0;
+
+        .vector-menu-content-list {
+          padding: 0;
+          
+          li {
+            padding: 0;
+            font-size: 1em;
+
+            a {
+              color: $color-dark-gray;
+              display: block;
+              padding: 0.25em $layout-side-nav-padding-right 0.25em $layout-side-nav-padding-left;
+              position: relative;
+              background-image: none;
+
+              &::before {
+                width: #{math.div($icon-width, 1.1em)}em;
+                background-size: contain;
+                position: absolute;
+                top: 0;
+                left: $layout-side-nav-padding-left;
+                bottom: 0;
+                background-repeat: no-repeat;
+                background-position: 0 50%;
+              }
+              &:hover {
+                color: $color-cobalt;
+                text-decoration: underline;
+              }
+            }
+
+            &.active-link {
+              a {
+                color: $color-salem;
+              }
+            }
+
+            // All the portlet links with an icon.
+            @each $cls, $icon-settings in $nav-panel-icon-links {
+              &##{$cls} {
+                $icon: nth($icon-settings, 1);
+                $direction: nth($icon-settings, 2);
+                a {
+                  padding-#{$direction}: #{(math.div($icon-width, 1.1em)) + $layout-side-nav-padding-left + 0.3em};
+                  &::before {
+                    content: '';
+                    background-image: make-icon-url($icon, $color-dark-gray);
+                  }
+                  &:hover::before {
+                    background-image: make-icon-url($icon, $color-cobalt);
+                  }
+                }
+              }
+              &.active-link##{$cls} {
+                $icon: nth($icon-settings, 1);
+                a {
+                  &::before {
+                    background-image: make-icon-url($icon, $color-salem);
+                  }
+                }
+              }
+            }
+
+            // Slight adjustments.
+            &#t-upload a::before {
+              margin-left: 0.03em;
+            }
+          }
+        }
+      }
+      &:hover .vector-menu-heading {
+        span {
+          background: $color-dandelion;
+          color: rgba(0, 0, 0, 0.65);
+        }
+      }
+    }
+  }
+}
+
+// Copyright section and other links
+#footer {
+  @include white-text;
+  margin-left: $layout-left-inset-content + $layout-width-nav-panel;
+  margin-right: $layout-right-inset-content;
+  padding: math.div($layout-padding-v-content, 2) $layout-padding-h-content ($layout-padding-v-content * 2);
+  position: relative;
+
+  ul {
+    li {
+      line-height: 1.6;
+      padding: 0 0 0.25em 0;
+    }
+  }
+
+  #footer-icons {
+    position: absolute;
+    top: math.div($layout-padding-v-content, 2);
+    right: 0;
+  }
+}

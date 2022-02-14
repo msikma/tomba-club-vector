@@ -1,0 +1,76 @@
+@charset "utf-8";
+
+body.mediawiki {
+  font-family: $font-regular;
+  font-size: $font-size-regular;
+}
+
+// Ensures a consistent font size for the main body copy.
+#content {
+  h1, h2 {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  .firstHeading {
+    font-family: $font-header;
+    font-weight: 500;
+    border-width: 2px;
+  }
+  .mw-body-content {
+    font-size: inherit;
+    line-height: 1.6;
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: $font-header;
+    }
+    
+    .toc {
+      #mw-toc-heading {
+        font-family: $font-regular;
+        border: none;
+      }
+    }
+  }
+}
+
+// Make sure all monospace containers are consistent.
+pre, code, .mw-code {
+  font-family: $font-mono;
+  font-size: $font-mono-size;
+  border: none;
+  line-height: 1.6;
+}
+code {
+  background-color: transparent;
+}
+
+// Fixes to display the Tomba logo correctly.
+#p-logo {
+  width: 160px;
+  height: 67px;
+
+  a.mw-wiki-logo {
+    background-size: contain;
+    width: 160px;
+    height: 67px;
+  }
+}
+
+body,
+.mw-parser-output {
+  a {
+    color: $color-cobalt;
+  }
+  a.new {
+    color: $color-nonexistent;
+  }
+  a:visited {
+    color: $color-visited;
+  }
+  a.external {
+    color: $color-green-haze;
+    background-image: make-icon-url('external', $color-green-haze);
+  }
+  a.external:visited {
+    color: $color-external-visited;
+  }
+}

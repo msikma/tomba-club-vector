@@ -1,0 +1,180 @@
+@charset "utf-8";
+@use 'sass:math';
+
+// Color of the indicator links.
+$color-mw-indicators: $color-cobalt;
+
+// Colors of the contentSub message boxes.
+$color-cs-messagebox: $color-neutral;
+$color-cs-errorbox: $color-error;
+$color-cs-warningbox: $color-warning;
+$color-cs-successbox: $color-success;
+
+// Standard Wikitable with rounding.
+table.wikitable {
+  @include table-universal();
+  @include table-rounded('m');
+
+  border: none;
+}
+
+// The notification area that appears underneath the page title.
+#contentSub, #contentSub2 {
+  font-size: 0.77rem;
+  margin: 0.5em 0;
+  line-height: 1.6;
+  
+  .messagebox, .errorbox, .warningbox, .successbox {
+    padding: $layout-padding-v-box $layout-padding-h-box;
+    border-radius: $border-radius-m;
+    border-bottom-width: 1px;
+    border-top-width: 4px;
+    border-bottom-left-radius: calc($border-radius-m + 1px);
+    border-bottom-right-radius: calc($border-radius-m + 1px);
+  }
+
+  .messagebox {
+    border-color: mix(#fff, $color-cs-messagebox, 0%);
+    background-color: mix(#fff, $color-cs-messagebox, 80%);
+    border-top-width: 1px;
+  }
+
+  .errorbox {
+    border-color: mix(#fff, $color-cs-errorbox, 60%);
+    background-color: mix(#fff, $color-cs-errorbox, 90%);
+    border-top-color: $color-cs-errorbox;
+  }
+
+  .warningbox {
+    border-color: mix(#fff, $color-cs-warningbox, 60%);
+    background-color: mix(#fff, $color-cs-warningbox, 90%);
+    border-top-color: $color-cs-warningbox;
+  }
+
+  .successbox {
+    border-color: mix(#fff, $color-cs-successbox, 60%);
+    background-color: mix(#fff, $color-cs-successbox, 90%);
+    border-top-color: $color-cs-successbox;
+  }
+}
+
+// Search suggestions. These show up when you type something in the search box.
+.suggestions {
+  font-size: $layout-font-size-nav-sub !important;
+  border: 2px solid $color-light-gray-2 !important;
+  border-radius: $layout-rounding-content - 1px;
+  margin-top: 1px !important;
+  margin-right: 1px !important;
+  min-width: 24em;
+
+  .suggestions-results {
+    border: none;
+    border-bottom: 1px solid $color-light-gray-2;
+
+    .mw-searchSuggest-link {
+      padding: 0;
+    }
+
+    .suggestions-result {
+      padding: 0.25em 0.75em;
+
+      &.suggestions-result-current {
+        background: $color-cobalt;
+      }
+    }
+  }
+  .mw-searchSuggest-link {
+    padding: 0.25em 0.75em;
+    display: block;
+
+    .suggestions-special {
+      border: none;
+      margin: 0;
+      padding: 0;
+
+      .special-label {
+        color: $color-light-gray-8;
+
+        &::after {
+          content: ':';
+        }
+      }
+      .special-query {
+        padding: 0.25em 0 0;
+      }
+    }
+  }
+}
+
+// The action notifications. These show up e.g. when you watch/unwatch a page.
+#mw-notification-area {
+  padding: 1.8em 2em;
+  width: 35em;
+
+  #mw-watchlink-notification {
+    border-radius: 10px;
+    padding: 0.75em 1.1em 0.75em calc(1.1em + 1em + 32px);
+    background-image: url('./images/chara.png');
+    background-repeat: no-repeat;
+    background-position: (1.1em) center;
+    background-size: 32px 35px;
+    background-color: $color-dandelion;
+    border: 6px solid $color-dandelion;
+    box-shadow: 0px 2px 0px mix(#000, $color-dandelion, 20%);
+  }
+}
+
+// The indicators used on e.g. the "page information" page.
+// These appear on the right side of the page title.
+.mw-indicators {
+  #mw-indicator-mw-helplink a {
+    background: none;
+    display: inline-block;
+    color: $color-mw-indicators;
+
+    width: inherit;
+    height: #{math.div($layout-height-nav-sub, $layout-font-size-nav-sub)}em;
+    line-height: #{math.div($layout-height-nav-sub, $layout-font-size-nav-sub)}em;
+
+    font-size: $layout-font-size-nav-sub;
+    position: relative;
+    padding: 0 $nav-item-padding;
+    padding-left: #{$nav-item-padding + (math.div($icon-width + $icon-spacing, $layout-font-size-nav-sub))};
+
+    top: -(math.div($highlight-padding, 2));
+    left: math.div($highlight-padding, 2);
+
+    &::before {
+      background-image: make-icon-url('question', $color-mw-indicators);
+      background-position: 0 50%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      content: '';
+      height: auto;
+      left: math.div($nav-item-padding + math.div($icon-width + $icon-spacing, $layout-font-size-nav-sub) - math.div($icon-width, 2), 2);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: #{math.div($icon-width, $layout-font-size-nav-sub)}em;
+    }
+
+    &::after {
+      content: '';
+      width: auto;
+      display: block;
+      position: absolute;
+      inset: $highlight-padding (math.div($highlight-padding, 2));
+      border-radius: $border-radius-m;
+      background-image: none;
+      opacity: 1;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  
+    &:hover::after {
+      background: rgba($color-mw-indicators, 0.1);
+    }
+  }
+}
