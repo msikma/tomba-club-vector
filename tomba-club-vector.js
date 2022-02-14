@@ -1,7 +1,7 @@
 /**
  * Highlights the currently active sidebar link.
  */
- function highlightSidenavLink() {
+function highlightSidenavLink() {
   // The currently active location.
   const url = new URL(window.location)
   const urlFull = url.href
