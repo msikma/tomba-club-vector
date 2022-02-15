@@ -1,0 +1,121 @@
+/*!
+ * Modifications to the Mediawiki Vector theme for Tomba Club.
+ * <https://tomba.club/wiki/>
+ *
+ * Only modify the .scss files, not the .css file.
+ */
+pre, code, .mw-code {
+  font-family: "Menlo", "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 94%;
+  border: none;
+  line-height: 1.6;
+}
+
+code {
+  background-color: transparent;
+}
+
+#p-logo {
+  height: 70px;
+}
+#p-logo a.mw-wiki-logo {
+  background-size: contain;
+  height: 100px;
+}
+
+table.wikitable {
+  border-collapse: separate;
+  border-spacing: 0;
+  background: transparent;
+  border: none;
+}
+table.wikitable thead tr th, table.wikitable thead tr td, table.wikitable tbody tr th, table.wikitable tbody tr td, table.wikitable tfoot tr th, table.wikitable tfoot tr td {
+  line-height: 1.5;
+  padding: 0.45em 0.5em 0.35em;
+  border-style: solid;
+  border-width: 0;
+  border-left-width: 1px;
+  border-top-width: 1px;
+}
+table.wikitable thead tr th, table.wikitable tbody tr th, table.wikitable tfoot tr th {
+  font-weight: 700;
+}
+table.wikitable thead tr td, table.wikitable tbody tr td, table.wikitable tfoot tr td {
+  background: #f8f9fa;
+}
+table.wikitable thead tr th:last-child, table.wikitable thead tr td:last-child, table.wikitable tbody tr th:last-child, table.wikitable tbody tr td:last-child, table.wikitable tfoot tr th:last-child, table.wikitable tfoot tr td:last-child {
+  border-right-width: 1px;
+}
+table.wikitable thead:last-child tr:nth-last-child(2) td[rowspan="2"], table.wikitable thead:last-child tr:nth-last-child(2) th[rowspan="2"], table.wikitable tbody:last-child tr:nth-last-child(2) td[rowspan="2"], table.wikitable tbody:last-child tr:nth-last-child(2) th[rowspan="2"], table.wikitable tfoot:last-child tr:nth-last-child(2) td[rowspan="2"], table.wikitable tfoot:last-child tr:nth-last-child(2) th[rowspan="2"] {
+  border-bottom-width: 1px;
+}
+table.wikitable thead:last-child tr:nth-last-child(3) td[rowspan="3"], table.wikitable thead:last-child tr:nth-last-child(3) th[rowspan="3"], table.wikitable tbody:last-child tr:nth-last-child(3) td[rowspan="3"], table.wikitable tbody:last-child tr:nth-last-child(3) th[rowspan="3"], table.wikitable tfoot:last-child tr:nth-last-child(3) td[rowspan="3"], table.wikitable tfoot:last-child tr:nth-last-child(3) th[rowspan="3"] {
+  border-bottom-width: 1px;
+}
+table.wikitable thead:last-child tr:nth-last-child(4) td[rowspan="4"], table.wikitable thead:last-child tr:nth-last-child(4) th[rowspan="4"], table.wikitable tbody:last-child tr:nth-last-child(4) td[rowspan="4"], table.wikitable tbody:last-child tr:nth-last-child(4) th[rowspan="4"], table.wikitable tfoot:last-child tr:nth-last-child(4) td[rowspan="4"], table.wikitable tfoot:last-child tr:nth-last-child(4) th[rowspan="4"] {
+  border-bottom-width: 1px;
+}
+table.wikitable thead:last-child tr:nth-last-child(5) td[rowspan="5"], table.wikitable thead:last-child tr:nth-last-child(5) th[rowspan="5"], table.wikitable tbody:last-child tr:nth-last-child(5) td[rowspan="5"], table.wikitable tbody:last-child tr:nth-last-child(5) th[rowspan="5"], table.wikitable tfoot:last-child tr:nth-last-child(5) td[rowspan="5"], table.wikitable tfoot:last-child tr:nth-last-child(5) th[rowspan="5"] {
+  border-bottom-width: 1px;
+}
+table.wikitable thead:last-child tr:last-child th, table.wikitable thead:last-child tr:last-child td, table.wikitable tbody:last-child tr:last-child th, table.wikitable tbody:last-child tr:last-child td, table.wikitable tfoot:last-child tr:last-child th, table.wikitable tfoot:last-child tr:last-child td {
+  border-bottom-width: 1px;
+}
+table.wikitable thead:first-child tr:first-child th:first-child, table.wikitable thead:first-child tr:first-child td:first-child, table.wikitable tbody:first-child tr:first-child th:first-child, table.wikitable tbody:first-child tr:first-child td:first-child, table.wikitable tfoot:first-child tr:first-child th:first-child, table.wikitable tfoot:first-child tr:first-child td:first-child,
+table.wikitable caption + thead tr:first-child th:first-child,
+table.wikitable caption + thead tr:first-child td:first-child, table.wikitable caption + tbody tr:first-child th:first-child, table.wikitable caption + tbody tr:first-child td:first-child, table.wikitable caption + tfoot tr:first-child th:first-child, table.wikitable caption + tfoot tr:first-child td:first-child,
+table.wikitable colgroup + thead tr:first-child th:first-child,
+table.wikitable colgroup + thead tr:first-child td:first-child, table.wikitable colgroup + tbody tr:first-child th:first-child, table.wikitable colgroup + tbody tr:first-child td:first-child, table.wikitable colgroup + tfoot tr:first-child th:first-child, table.wikitable colgroup + tfoot tr:first-child td:first-child {
+  border-radius: 0;
+  border-top-left-radius: 3px;
+}
+table.wikitable thead:first-child tr:first-child th:last-child, table.wikitable thead:first-child tr:first-child td:last-child, table.wikitable tbody:first-child tr:first-child th:last-child, table.wikitable tbody:first-child tr:first-child td:last-child, table.wikitable tfoot:first-child tr:first-child th:last-child, table.wikitable tfoot:first-child tr:first-child td:last-child,
+table.wikitable caption + thead tr:first-child th:last-child,
+table.wikitable caption + thead tr:first-child td:last-child, table.wikitable caption + tbody tr:first-child th:last-child, table.wikitable caption + tbody tr:first-child td:last-child, table.wikitable caption + tfoot tr:first-child th:last-child, table.wikitable caption + tfoot tr:first-child td:last-child,
+table.wikitable colgroup + thead tr:first-child th:last-child,
+table.wikitable colgroup + thead tr:first-child td:last-child, table.wikitable colgroup + tbody tr:first-child th:last-child, table.wikitable colgroup + tbody tr:first-child td:last-child, table.wikitable colgroup + tfoot tr:first-child th:last-child, table.wikitable colgroup + tfoot tr:first-child td:last-child {
+  border-radius: 0;
+  border-top-right-radius: 3px;
+}
+table.wikitable thead:last-child tr:last-child th:first-child, table.wikitable thead:last-child tr:last-child td:first-child, table.wikitable tbody:last-child tr:last-child th:first-child, table.wikitable tbody:last-child tr:last-child td:first-child, table.wikitable tfoot:last-child tr:last-child th:first-child, table.wikitable tfoot:last-child tr:last-child td:first-child {
+  border-radius: 0;
+  border-bottom-left-radius: 3px;
+}
+table.wikitable thead:last-child tr:last-child th:last-child, table.wikitable thead:last-child tr:last-child td:last-child, table.wikitable tbody:last-child tr:last-child th:last-child, table.wikitable tbody:last-child tr:last-child td:last-child, table.wikitable tfoot:last-child tr:last-child th:last-child, table.wikitable tfoot:last-child tr:last-child td:last-child {
+  border-radius: 0;
+  border-bottom-right-radius: 3px;
+}
+table.wikitable thead:last-child tr:nth-last-child(2) th:first-child[rowspan="2"], table.wikitable thead:last-child tr:nth-last-child(2) td:first-child[rowspan="2"], table.wikitable tbody:last-child tr:nth-last-child(2) th:first-child[rowspan="2"], table.wikitable tbody:last-child tr:nth-last-child(2) td:first-child[rowspan="2"], table.wikitable tfoot:last-child tr:nth-last-child(2) th:first-child[rowspan="2"], table.wikitable tfoot:last-child tr:nth-last-child(2) td:first-child[rowspan="2"] {
+  border-radius: 0;
+  border-bottom-left-radius: 3px;
+}
+table.wikitable thead:last-child tr:nth-last-child(2) th:last-child[rowspan="2"], table.wikitable thead:last-child tr:nth-last-child(2) td:last-child[rowspan="2"], table.wikitable tbody:last-child tr:nth-last-child(2) th:last-child[rowspan="2"], table.wikitable tbody:last-child tr:nth-last-child(2) td:last-child[rowspan="2"], table.wikitable tfoot:last-child tr:nth-last-child(2) th:last-child[rowspan="2"], table.wikitable tfoot:last-child tr:nth-last-child(2) td:last-child[rowspan="2"] {
+  border-radius: 0;
+  border-bottom-right-radius: 3px;
+}
+table.wikitable thead:last-child tr:nth-last-child(3) th:first-child[rowspan="3"], table.wikitable thead:last-child tr:nth-last-child(3) td:first-child[rowspan="3"], table.wikitable tbody:last-child tr:nth-last-child(3) th:first-child[rowspan="3"], table.wikitable tbody:last-child tr:nth-last-child(3) td:first-child[rowspan="3"], table.wikitable tfoot:last-child tr:nth-last-child(3) th:first-child[rowspan="3"], table.wikitable tfoot:last-child tr:nth-last-child(3) td:first-child[rowspan="3"] {
+  border-radius: 0;
+  border-bottom-left-radius: 3px;
+}
+table.wikitable thead:last-child tr:nth-last-child(3) th:last-child[rowspan="3"], table.wikitable thead:last-child tr:nth-last-child(3) td:last-child[rowspan="3"], table.wikitable tbody:last-child tr:nth-last-child(3) th:last-child[rowspan="3"], table.wikitable tbody:last-child tr:nth-last-child(3) td:last-child[rowspan="3"], table.wikitable tfoot:last-child tr:nth-last-child(3) th:last-child[rowspan="3"], table.wikitable tfoot:last-child tr:nth-last-child(3) td:last-child[rowspan="3"] {
+  border-radius: 0;
+  border-bottom-right-radius: 3px;
+}
+table.wikitable thead:last-child tr:nth-last-child(4) th:first-child[rowspan="4"], table.wikitable thead:last-child tr:nth-last-child(4) td:first-child[rowspan="4"], table.wikitable tbody:last-child tr:nth-last-child(4) th:first-child[rowspan="4"], table.wikitable tbody:last-child tr:nth-last-child(4) td:first-child[rowspan="4"], table.wikitable tfoot:last-child tr:nth-last-child(4) th:first-child[rowspan="4"], table.wikitable tfoot:last-child tr:nth-last-child(4) td:first-child[rowspan="4"] {
+  border-radius: 0;
+  border-bottom-left-radius: 3px;
+}
+table.wikitable thead:last-child tr:nth-last-child(4) th:last-child[rowspan="4"], table.wikitable thead:last-child tr:nth-last-child(4) td:last-child[rowspan="4"], table.wikitable tbody:last-child tr:nth-last-child(4) th:last-child[rowspan="4"], table.wikitable tbody:last-child tr:nth-last-child(4) td:last-child[rowspan="4"], table.wikitable tfoot:last-child tr:nth-last-child(4) th:last-child[rowspan="4"], table.wikitable tfoot:last-child tr:nth-last-child(4) td:last-child[rowspan="4"] {
+  border-radius: 0;
+  border-bottom-right-radius: 3px;
+}
+table.wikitable thead:last-child tr:nth-last-child(5) th:first-child[rowspan="5"], table.wikitable thead:last-child tr:nth-last-child(5) td:first-child[rowspan="5"], table.wikitable tbody:last-child tr:nth-last-child(5) th:first-child[rowspan="5"], table.wikitable tbody:last-child tr:nth-last-child(5) td:first-child[rowspan="5"], table.wikitable tfoot:last-child tr:nth-last-child(5) th:first-child[rowspan="5"], table.wikitable tfoot:last-child tr:nth-last-child(5) td:first-child[rowspan="5"] {
+  border-radius: 0;
+  border-bottom-left-radius: 3px;
+}
+table.wikitable thead:last-child tr:nth-last-child(5) th:last-child[rowspan="5"], table.wikitable thead:last-child tr:nth-last-child(5) td:last-child[rowspan="5"], table.wikitable tbody:last-child tr:nth-last-child(5) th:last-child[rowspan="5"], table.wikitable tbody:last-child tr:nth-last-child(5) td:last-child[rowspan="5"], table.wikitable tfoot:last-child tr:nth-last-child(5) th:last-child[rowspan="5"], table.wikitable tfoot:last-child tr:nth-last-child(5) td:last-child[rowspan="5"] {
+  border-radius: 0;
+  border-bottom-right-radius: 3px;
+}
+
+/*# sourceMappingURL=tomba-club-vector.css.map */
