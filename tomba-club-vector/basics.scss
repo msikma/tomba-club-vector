@@ -14,6 +14,18 @@ body.mediawiki {
     font-family: $font-header;
     font-weight: 500;
     border-width: 2px;
+
+    // A custom extension for splitting up the namespace and title,
+    // e.g. "Tomba Club:Edit guide" has namespace "Tomba Club", delimiter ":" and title "Edit guide".
+    #page_ns {
+    }
+    #page_delimiter {
+      &::after {
+        content: ' ';
+      }
+    }
+    #page_title {
+    }
   }
   .mw-body-content {
     font-size: inherit;
@@ -38,6 +50,7 @@ pre, code, .mw-code {
   font-size: $font-mono-size;
   border: none;
   line-height: 1.6;
+  background-color: mix(#fff, $color-light-gray-1, 30%);
 }
 code {
   background-color: transparent;

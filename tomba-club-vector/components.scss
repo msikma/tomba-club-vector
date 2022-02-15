@@ -16,21 +16,82 @@ table.wikitable {
   @include table-rounded('m');
 
   border: none;
+
+  tbody, thead, tfoot {
+    tr {
+      th, td {
+        border-color: $color-light-gray-5;
+      }
+      th {
+        background-color: mix(#000, $color-light-gray-1, 2%);
+      }
+      td {
+        background-color: mix(#fff, $color-light-gray-1, 80%);
+      }
+    }
+  }
+}
+
+// The table of contents on most pages.
+#toc {
+  border-radius: $border-radius-m;
+  border-color: $color-light-gray-5;
+  background-color: mix(#fff, $color-light-gray-1, 80%);
+  padding: 0.55em 0.75em;
+
+  > ul {
+    margin: 0;
+  }
+
+  li > ul {
+    margin: 0 0 0 1.5em;
+  }
+
+  li a {
+    text-decoration: none;
+    display: flex;
+
+    .tocnumber {
+      padding: 0;
+      padding-right: 0.5em;
+      display: inline-block;
+      text-align: left;
+    }
+    &:hover .toctext {
+      text-decoration: underline;
+    }
+  }
+
+  li.toclevel-1 .tocnumber {
+    min-width: 1ch;
+  }
+  li.toclevel-2 .tocnumber {
+    min-width: 2ch + 0.5ch;
+  }
+  li.toclevel-3 .tocnumber {
+    min-width: 3ch + 1ch;
+  }
 }
 
 // The notification area that appears underneath the page title.
 #contentSub, #contentSub2 {
-  font-size: 0.77rem;
   margin: 0.5em 0;
-  line-height: 1.6;
-  
+}
+
+#contentSub, #contentSub2, #mw-content-text {
   .messagebox, .errorbox, .warningbox, .successbox {
+    font-size: 0.77rem;
+    line-height: 1.6;
     padding: $layout-padding-v-box $layout-padding-h-box;
     border-radius: $border-radius-m;
     border-bottom-width: 1px;
     border-top-width: 4px;
     border-bottom-left-radius: calc($border-radius-m + 1px);
     border-bottom-right-radius: calc($border-radius-m + 1px);
+
+    p:first-child {
+      margin-top: 0;
+    }
   }
 
   .messagebox {
@@ -84,13 +145,17 @@ table.wikitable {
     }
   }
   .mw-searchSuggest-link {
-    padding: 0.25em 0.75em;
     display: block;
 
     .suggestions-special {
       border: none;
       margin: 0;
       padding: 0;
+      padding: 0.25em 0.75em;
+
+      &.suggestions-result-current {
+        background: $color-cobalt;
+      }
 
       .special-label {
         color: $color-light-gray-8;
@@ -98,6 +163,9 @@ table.wikitable {
         &::after {
           content: ':';
         }
+      }
+      &.suggestions-result-current .special-label {
+        color: white;
       }
       .special-query {
         padding: 0.25em 0 0;

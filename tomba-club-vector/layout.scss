@@ -5,6 +5,7 @@
 $nav-sub-icon-links: (
   'ca-ve-edit': ('pencil', 'left'),
   'ca-edit': ('file-code', 'left'),
+  'ca-viewsource': ('file-code', 'left'),
   'ca-view': ('book', 'left'),
   'ca-history': ('history', 'left'),
   'ca-unwatch': ('star-fill', 'left'),
@@ -410,20 +411,26 @@ body {
               }
             }
 
+            #mw-searchButton {
+              display: none;
+            }
+
             &:hover {
               #searchInput {
                 box-shadow: inset 0 0 0 2px $color-cobalt;
               }
-              #mw-searchButton {
-                filter: invert(12%) sepia(71%) saturate(2932%) hue-rotate(209deg) brightness(79%) contrast(110%);
+              #searchButton {
+                // See: <https://codepen.io/sosuke/pen/Pjoqqp>
+                filter: invert(16%) sepia(100%) saturate(7466%) hue-rotate(215deg) brightness(86%) contrast(105%);
               }
             }
 
-            #mw-searchButton {
+            #searchButton {
               position: absolute;
               top: 1px;
               bottom: 0;
               right: 1px;
+              opacity: 1;
               width: #{math.div($layout-height-nav-sub - $nav-item-padding, $layout-font-size-nav-sub)}em;
               min-width: 0;
               height: #{math.div($layout-height-nav-sub - $nav-item-padding, $layout-font-size-nav-sub)}em;
@@ -436,10 +443,6 @@ body {
               overflow: hidden;
               background: make-icon-url('search', $color-gray-1) no-repeat 50% 50%;
               background-size: #{math.div($icon-width, $layout-font-size-nav-sub)}em;
-            }
-
-            #searchButton {
-              display: none;
             }
           }
         }
