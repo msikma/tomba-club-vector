@@ -1,3 +1,6 @@
+// Tomba Club Vector Skin v2 <https://github.com/msikma/tomba-club-vector/>
+// MIT License
+
 /**
  * Highlights the currently active sidebar link.
  */
@@ -38,9 +41,30 @@ function ensureNonEmptyNav() {
   if (items.length === 0) {
     nav.innerHTML = emptyItem
   }
-  
-  // Ensure the portlet is visible.
   navContainer.classList.remove('emptyPortlet')
+}
+
+/**
+ * Causes the hamburger menu to be usable on mobile.
+ */
+function decorateHamburgerMenu() {
+  const hamContainer = document.querySelector('#p-views-label > span')
+  const rightNavigation = document.querySelector('#right-navigation')
+  
+  const boxClosed = rightNavigation.getBoundingClientRect()
+  rightNavigation.style.height = 'auto'
+  const boxOpen = rightNavigation.getBoundingClientRect()
+  rightNavigation.style.height = `${boxClosed.height}px`
+
+  const state = {
+    isOpen: false
+  }
+
+  hamContainer.addEventListener('click', ev => {
+    ev.preventDefault()
+    state.isOpen = !state.isOpen
+    rightNavigation.style.height = `${(state.isOpen ? boxOpen : boxClosed).height}px`
+  })
 }
 
 /**
@@ -51,6 +75,7 @@ function ensureNonEmptyNav() {
 function main() {
   highlightSidenavLink()
   ensureNonEmptyNav()
+  decorateHamburgerMenu()
 }
 
 main()

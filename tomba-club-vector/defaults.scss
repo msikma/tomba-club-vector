@@ -18,7 +18,7 @@ $border-radius-xl: 12px !default;
 
 // Swatches
 $color-green-haze: #00a94b;
-$color-salem: #00873c;
+$color-salem: #008634;
 $color-tomba-pink: #ef84b1;
 $color-tomba-pink-2: #e776a9;
 $color-deep-blush: #e453a7;
@@ -37,7 +37,7 @@ $color-dark-transparent-hover: rgba(0, 0, 0, 0.35);
 // Functional swatches
 $color-visited: #7900c3;
 $color-nonexistent: #c30000;
-$color-external-visited: #008b6c;
+$color-external-visited: $color-salem;
 $color-error: $color-radical-red;
 $color-warning: $color-bright-sun;
 $color-success: $color-malachite;
@@ -102,13 +102,15 @@ $layout-has-tomba-image: true;
 $layout-responsive-offset-y: 30px;
 // Whether to move the left bar down below.
 $layout-move-left-bar-on-responsive: true;
+// Whether to remove the icons from the left bar.
+$layout-remove-left-bar-icons: true;
 // Whether to move the user bar to the top.
 $layout-move-personal-bar-on-responsive: true;
 // Whether to remove the icons in the subnav.
-$layout-remove-subnav-icons: true;
+$layout-remove-subnav-icons: false;
 
 // Minimum layout width. If the layout gets shorter than this, the site will need to be scaled on the user's device.
-$layout-minimum-width: 490px;
+$layout-minimum-width: 360px;
 
 // Spacing for the left nav.
 $layout-side-nav-padding-left: 1.4em;

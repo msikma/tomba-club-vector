@@ -31,6 +31,40 @@ table.wikitable {
     }
   }
 }
+.mw-parser-output {
+  table.wikitable {
+    // Make the external links a bit darker.
+    a.external {
+      color: $color-salem;
+      background-image: make-icon-url('external', $color-salem);
+    }
+    a.external:visited {
+      color: $color-external-visited;
+    }
+  }
+}
+
+// Submit buttons in some special pages (e.g. the image upload page).
+#content .mw-htmlform-submit-buttons {
+  margin-top: 1em;
+}
+
+// A redirect indicator.
+#content {
+  #redirectsub {
+    font-size: 1.3em;
+    padding-top: 1.3em;
+    display: block;
+    margin-bottom: -0.5em;
+    color: black;
+  }
+  .redirectMsg {
+    .redirectText a {
+      position: relative;
+      top: 0.15em;
+    }
+  }
+}
 
 // The table of contents on most pages.
 #toc {

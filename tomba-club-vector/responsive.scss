@@ -1,3 +1,6 @@
+@charset "utf-8";
+@use 'sass:math';
+
 @media only screen and (max-width: 950px) and (min-width: 801px) {
   #mw-navigation #mw-panel #p-logo {
     left: calc(40vw - 80px);
@@ -18,6 +21,7 @@
         left: 0;
         width: calc(100vw - $layout-left-inset-content - $layout-left-inset-content);
         min-width: $layout-minimum-width;
+        
 
         a.mw-wiki-logo {
           margin: auto;
@@ -30,6 +34,68 @@
       #left-navigation, #right-navigation {
         top: $layout-responsive-offset-y;
         position: relative;
+      }
+      #right-navigation {
+        height: 2.8em;
+        overflow: hidden;
+        transition: height 150ms;
+
+        #p-cactions {
+          display: none;
+        }
+
+        #p-views {
+          height: auto;
+
+          #p-views-label {
+            display: block;
+            padding: 0;
+            margin: 0;
+
+            > span {
+              @include subnav-item;
+              width: #{math.div($icon-width, $layout-font-size-nav-sub)}em;
+              text-indent: -9999px;
+              position: absolute;
+              font-size: 3.6vw;
+              font-weight: normal;
+              background-image: make-icon-url('three-bars', $color-cobalt);
+              background-repeat: no-repeat;
+              background-position: center;
+              top: 0;
+              right: 0;
+              cursor: pointer;
+            }
+            &::before {
+              font-size: 3.6vw;
+              content: '';
+              width: auto;
+              display: block;
+              position: absolute;
+              inset: 0.5em 0.25em;
+              border-radius: 3px;
+              background-image: none;
+              opacity: 1;
+            }
+          }
+
+          .vector-menu-content {
+            .vector-menu-content-list {
+              li {
+                display: block;
+                float: none;
+
+                a {
+                  margin-top: -0.5em;
+                  margin-left: ($nav-item-padding) - $highlight-padding;
+                }
+                &:first-child a {
+                  margin-top: 0;
+                }
+              }
+            }
+          }
+        }
       }
       #p-personal {
         top: calc(($layout-height-nav-main + 1em) + $layout-responsive-offset-y);
@@ -84,10 +150,46 @@
     }
   }
 
+  @if ($layout-remove-left-bar-icons) {
+    #mw-navigation #mw-panel .mw-portlet .vector-menu-content .vector-menu-content-list li {
+      a {
+        padding-left: $layout-side-nav-header-offset-left !important;
+        padding-right: $layout-side-nav-header-offset-right !important;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+
   // Move the left bar away down below.
   @if ($layout-move-left-bar-on-responsive) {
     #mw-navigation {
       #mw-head {
+        #p-personal {
+          .vector-menu-content {
+            .vector-menu-content-list {
+              display: block;
+              text-align: center;
+              a {
+                padding-top: 0.1em !important;
+                padding-bottom: 0.2em !important;
+              }
+            }
+            li {
+              display: inline-block !important;
+              float: none;
+            }
+            #pt-userpage a {
+              text-indent: -9999px;
+            }
+            #pt-mytalk::after {
+            }
+            #pt-preferences {
+            }
+          }
+        }
         #right-navigation {
           #p-search {
             position: absolute;
@@ -133,14 +235,15 @@
         display: flex;
         width: calc(100% - $layout-left-inset-content - $layout-left-inset-content);
         gap: 2em;
+        flex-direction: column;
 
         #p-logo {
           top: 0;
-          left: $layout-left-inset-content;
+          left: 0;
         }
         .mw-portlet {
           padding-top: 0 !important;
-          flex: 1 0 15em;
+          flex: 1 0 100%;
 
           .vector-menu-heading {
             padding-left: 0;
