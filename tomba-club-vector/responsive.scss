@@ -234,9 +234,12 @@
         margin-left: $layout-left-inset-content;
         display: flex;
         width: calc(100% - $layout-left-inset-content - $layout-left-inset-content);
-        gap: 2em;
+        gap: 0;
         flex-direction: column;
 
+        #p-navigation {
+          margin-bottom: 2em;
+        }
         #p-logo {
           top: 0;
           left: 0;
@@ -256,12 +259,17 @@
             }
           }
           
-          .vector-menu-content .vector-menu-content-list li a {
-            color: white;
-            padding-left: $layout-side-nav-header-offset-left;
-
-            &:hover {
+          .vector-menu-content .vector-menu-content-list li {
+            a {
               color: white;
+              padding-left: $layout-side-nav-header-offset-left;
+  
+              &:hover {
+                color: white;
+              }
+            }
+            &.active-link a {
+              color: $color-dandelion;
             }
           }
         }
