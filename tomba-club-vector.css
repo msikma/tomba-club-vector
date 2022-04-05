@@ -59,6 +59,11 @@ fieldset legend {
   height: 67px;
 }
 
+.pixel-art {
+  image-rendering: pixelated;
+  image-rendering: -webkit-optimize-contrast;
+}
+
 body a,
 .mw-parser-output a {
   color: #0043c3;
@@ -876,6 +881,27 @@ body {
   right: 0;
 }
 
+.tc-pre-header-tags {
+  display: block;
+  margin: 0 0 1.5em;
+}
+.tc-pre-header-tags .tc-tag {
+  display: inline-block;
+  background-color: gray;
+  color: white;
+  padding: 0.5em 0.8em 0.5em;
+  border-radius: 3px;
+  font-size: 0.8em;
+  padding-bottom: calc(0.5em + 1px);
+  box-shadow: inset 0px -2px rgba(0, 0, 0, 0.3);
+}
+.tc-pre-header-tags .tc-tag.type-a {
+  background-color: #313131;
+}
+.tc-pre-header-tags .tc-tag.type-b {
+  background-color: #eb5757;
+}
+
 table.wikitable {
   border-collapse: separate;
   border-spacing: 0;
@@ -1181,6 +1207,61 @@ table.wikitable tbody tr td, table.wikitable thead tr td, table.wikitable tfoot 
 }
 .mw-indicators #mw-indicator-mw-helplink a:hover::after {
   background: rgba(0, 67, 195, 0.1);
+}
+
+body.landing {
+  background: #f2efef;
+  margin: 0;
+}
+body.landing .nav {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+body.landing .nav .button {
+  background: white;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 1em 0.5em;
+  font-size: 1.4em;
+  border: 3px solid #cecbcb;
+  border-radius: 8px;
+  box-shadow: 0px 5px 0 #cecbcb;
+  flex-basis: 10em;
+}
+body.landing .nav .main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body.landing .nav .main-nav .button {
+  font-size: 1.8em;
+}
+body.landing .nav .sub-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+body.landing .top-nav {
+  background: #ef84b1;
+  padding: 0 0;
+}
+body.landing .top-nav .logo {
+  margin: auto;
+  position: relative;
+  top: 1em;
+  background: url("./images/logo-tomba.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 160px;
+  height: 67px;
 }
 
 @media only screen and (max-width: 950px) and (min-width: 801px) {
