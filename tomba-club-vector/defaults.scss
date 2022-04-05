@@ -108,6 +108,8 @@ $layout-remove-left-bar-icons: true;
 $layout-move-personal-bar-on-responsive: true;
 // Whether to remove the icons in the subnav.
 $layout-remove-subnav-icons: false;
+// Whether pre-header tags have a shadow.
+$layout-pre-header-has-shadow: true;
 
 // Minimum layout width. If the layout gets shorter than this, the site will need to be scaled on the user's device.
 $layout-minimum-width: 360px;
