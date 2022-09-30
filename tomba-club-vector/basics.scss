@@ -97,6 +97,9 @@ body,
   a.external {
     color: $color-green-haze;
     background-image: make-icon-url('external', $color-green-haze);
+    background-position: center right;
+    background-repeat: no-repeat;
+    padding-right: 13px;
   }
   a.external:visited {
     color: $color-external-visited;
