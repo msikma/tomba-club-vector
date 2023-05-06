@@ -97,6 +97,7 @@ body {
     border-radius: $border-radius-m;
     background-image: none;
     opacity: 1;
+    height: auto;
   }
 
   &:hover::after {
