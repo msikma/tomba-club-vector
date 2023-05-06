@@ -61,7 +61,6 @@ fieldset legend {
 
 .pixel-art {
   image-rendering: pixelated;
-  image-rendering: -webkit-optimize-contrast;
 }
 
 body a,
@@ -80,6 +79,9 @@ body a.external,
 .mw-parser-output a.external {
   color: #00a94b;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%2300A94B" width="12" height="12"><path d="M5.8,1L4.2,2.5l1.3,1.3L2.7,6.7l2.7,2.7l2.7-2.7l1.3,1.3L11,6.4V1H5.8z M8.2,5.1L5.3,8L4.1,6.7L7,3.8L5.1,2L10,2l0,4.9L8.2,5.1z"/><polygon points="7,6.3 7,10 2,10 2,5 5.8,5 6.8,4 1,4 1,11 8,11 8,5.3"/></svg>');
+  background-position: center right;
+  background-repeat: no-repeat;
+  padding-right: 13px;
 }
 body a.external:visited,
 .mw-parser-output a.external:visited {
@@ -528,6 +530,7 @@ body {
   border-radius: 3px;
   background-image: none;
   opacity: 1;
+  height: auto;
 }
 #mw-navigation #mw-head #right-navigation #p-views li a:hover::after {
   background: rgba(0, 67, 195, 0.1);
@@ -573,6 +576,7 @@ body {
   border-radius: 3px;
   background-image: none;
   opacity: 1;
+  height: auto;
 }
 #mw-navigation #mw-head #right-navigation #p-cactions #p-cactions-label:hover::after {
   background: rgba(0, 67, 195, 0.1);
@@ -1348,6 +1352,7 @@ body.landing .top-nav .logo {
     border-radius: 3px;
     background-image: none;
     opacity: 1;
+    height: auto;
   }
   #mw-navigation #mw-head #right-navigation #p-views #p-views-label > span:hover::after {
     background: rgba(0, 67, 195, 0.1);
