@@ -80,6 +80,7 @@ body a.external,
 .mw-parser-output a.external {
   color: #00a94b;
   padding-right: 0;
+  background: none;
 }
 body a.external::after,
 .mw-parser-output a.external::after {
@@ -146,6 +147,9 @@ body {
   content: "";
   background: #fff;
   z-index: -1;
+}
+#content.mw-body .vector-body {
+  font-size: inherit;
 }
 
 #mw-page-base, #mw-head-base {
