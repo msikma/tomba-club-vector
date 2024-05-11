@@ -97,6 +97,7 @@ body,
   a.external {
     color: $color-green-haze;
     padding-right: 0;
+    background: none;
   }
   a.external::after {
     content: '\00a0';

@@ -149,6 +149,10 @@ body {
     background: $color-content-bg;
     z-index: -1;
   }
+
+  .vector-body {
+    font-size: inherit;
+  }
 }
 
 // Top navigation
