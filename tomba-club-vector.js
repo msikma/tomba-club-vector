@@ -45,7 +45,7 @@ function ensureNonEmptyNav() {
 }
 
 /**
- * Causes the hamburger menu to be usable on mobile.
+ * Allows the hamburger menu to be usable on mobile.
  */
 function decorateHamburgerMenu() {
   const hamContainer = document.querySelector('#p-views-label > span')

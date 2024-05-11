@@ -62,11 +62,16 @@ table.wikitable {
   table.wikitable {
     // Make the external links a bit darker.
     a.external {
-      color: $color-salem;
-      background-image: make-icon-url('external', $color-salem);
+      color: $color-external-visited;
+    }
+    a.external::after {
+      background-color: $color-external-visited;
     }
     a.external:visited {
       color: $color-external-visited;
+    }
+    a.external:visited::after {
+      background-color: $color-external-visited;
     }
   }
 }

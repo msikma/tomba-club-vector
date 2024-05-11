@@ -96,12 +96,23 @@ body,
   }
   a.external {
     color: $color-green-haze;
-    background-image: make-icon-url('external', $color-green-haze);
-    background-position: center right;
-    background-repeat: no-repeat;
-    padding-right: 13px;
+    padding-right: 0;
+  }
+  a.external::after {
+    content: '\00a0';
+    width: calc(0.83333333333em + 1px);
+    display: inline-block;
+    background-color: $color-green-haze;
+    mask-size: 0.83333333333em 0.83333333333em;
+    mask-repeat: no-repeat;
+    mask-position: center right;
+    mask-image: make-icon-url('external', $color-green-haze);
   }
   a.external:visited {
     color: $color-external-visited;
+    background-color: $color-external-visited;
+  }
+  a.external:visited::after {
+    background-color: $color-external-visited;
   }
 }

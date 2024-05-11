@@ -646,19 +646,22 @@ body {
                 a {
                   padding-#{$direction}: #{(math.div($icon-width, 1.1em)) + $layout-side-nav-padding-left + 0.3em};
                   &::before {
-                    content: '';
-                    background-image: make-icon-url($icon, $color-dark-gray);
+                    content: '\00a0';
+                    background-color: $color-dark-gray;
+                    mask-size: contain;
+                    mask-repeat: no-repeat;
+                    mask-position: 0 50%;
+                    mask-image: make-icon-url($icon, $color-dark-gray);
                   }
                   &:hover::before {
-                    background-image: make-icon-url($icon, $color-cobalt);
+                    background-color: $color-cobalt;
                   }
                 }
               }
               &.active-link##{$cls} {
-                $icon: nth($icon-settings, 1);
                 a {
                   &::before {
-                    background-image: make-icon-url($icon, $color-salem);
+                    background-color: $color-salem;
                   }
                 }
               }
