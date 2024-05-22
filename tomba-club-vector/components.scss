@@ -50,6 +50,37 @@ $color-cs-successbox: $color-success;
   padding: 0.45em 0.5em 0.35em;
 }
 
+// Metadata for images and other uploads.
+.mw_metadata {
+  @include table-universal();
+  
+  margin: 0;
+  font-size: 1em;
+  
+  th {
+    text-align: left;
+  }
+
+  // Normally this is collapsible, but we want it to always be expanded.
+  &.collapsed {
+    .mw-metadata-collapsible {
+      display: inherit !important;
+    }
+    .mw-metadata-show-hide-extended {
+      display: none !important;
+    }
+
+    // Compensate for the show-hide node.
+    &:has(.mw-metadata-show-hide-extended) tbody:last-child {
+      tr:nth-last-child(2) {
+        th, td {
+          border-bottom-width: 1px;
+        }
+      }
+    }
+  }
+}
+
 // Standard Wikitable with rounding.
 table.wikitable {
   @include table-universal();
