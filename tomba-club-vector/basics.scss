@@ -65,6 +65,11 @@ fieldset {
     font-weight: bold;
   }
 }
+dfn[title] {
+  font-style: normal;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
 
 // Fixes to display the Tomba logo correctly.
 #p-logo {
