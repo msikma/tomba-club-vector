@@ -53,12 +53,22 @@ $color-cs-successbox: $color-success;
 // Metadata for images and other uploads.
 .mw_metadata {
   @include table-universal();
+
+  $amount: 'm';
   
+  width: auto;
   margin: 0;
   font-size: 1em;
 
   th {
     text-align: left;
+    background-color: mix(#000, $color-light-gray-1, 2%);
+  }
+  td {
+    background-color: mix(#fff, $color-light-gray-1, 80%);
+  }
+  th, td {
+    border-color: $color-light-gray-5;
   }
 
   // Normally this is collapsible, but we want it to always be expanded.
@@ -77,6 +87,23 @@ $color-cs-successbox: $color-success;
           border-bottom-width: 1px;
         }
       }
+    }
+  }
+
+  tr:first-child {
+    th:first-child, td:first-child {
+      @include border-radius($amount, ('tl'));
+    }
+    th:last-child, td:last-child {
+      @include border-radius($amount, ('tr'));
+    }
+  }
+  tr:nth-last-child(2) {
+    th:first-child, td:first-child {
+      @include border-radius($amount, ('bl'));
+    }
+    th:last-child, td:last-child {
+      @include border-radius($amount, ('br'));
     }
   }
 }
