@@ -362,3 +362,19 @@ table.wikitable {
     }
   }
 }
+
+// Some special tables used in specific places.
+#sv-skin, #sv-ext {
+  .mw-version-ext {
+    td:first-child {
+      white-space: nowrap;
+    }
+  }
+}
+#sv-libraries {
+  tr[id^="mw-version-library"] {
+    td:first-child {
+      white-space: nowrap;
+    }
+  }
+}
