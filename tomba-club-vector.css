@@ -1126,6 +1126,7 @@ body {
   border-collapse: separate;
   border-spacing: 0;
   background: transparent;
+  width: auto;
   margin: 0;
   font-size: 1em;
 }
@@ -1163,6 +1164,13 @@ body {
 }
 .mw_metadata th {
   text-align: left;
+  background-color: #edeaea;
+}
+.mw_metadata td {
+  background-color: #fcfcfc;
+}
+.mw_metadata th, .mw_metadata td {
+  border-color: #b6b3b3;
 }
 .mw_metadata.collapsed .mw-metadata-collapsible {
   display: inherit !important;
@@ -1172,6 +1180,22 @@ body {
 }
 .mw_metadata.collapsed:has(.mw-metadata-show-hide-extended) tbody:last-child tr:nth-last-child(2) th, .mw_metadata.collapsed:has(.mw-metadata-show-hide-extended) tbody:last-child tr:nth-last-child(2) td {
   border-bottom-width: 1px;
+}
+.mw_metadata tr:first-child th:first-child, .mw_metadata tr:first-child td:first-child {
+  border-radius: 0;
+  border-top-left-radius: 3px;
+}
+.mw_metadata tr:first-child th:last-child, .mw_metadata tr:first-child td:last-child {
+  border-radius: 0;
+  border-top-right-radius: 3px;
+}
+.mw_metadata tr:nth-last-child(2) th:first-child, .mw_metadata tr:nth-last-child(2) td:first-child {
+  border-radius: 0;
+  border-bottom-left-radius: 3px;
+}
+.mw_metadata tr:nth-last-child(2) th:last-child, .mw_metadata tr:nth-last-child(2) td:last-child {
+  border-radius: 0;
+  border-bottom-right-radius: 3px;
 }
 
 table.wikitable {
