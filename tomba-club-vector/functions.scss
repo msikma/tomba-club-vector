@@ -137,3 +137,27 @@
     }
   }
 }
+
+// Returns a tag color by color name and variant
+@function get-tag-color($color-name, $variant) {
+  @return map-get(map-get($color-tag-sets, $color-name), $variant);
+}
+
+// Returns a tag color by index (zero indexed)
+@function get-tag-color-set-by-idx($idx) {
+  $color-names: map-keys($color-tag-sets);
+  $color-name: nth($color-names, $idx + 1);
+  @return map-get($color-tag-sets, $color-name);
+}
+
+// Mixin for a tag
+@mixin block-tag() {
+  display: inline-block;
+  padding: 0.5em 0.8em 0.5em;
+  border-radius: $border-radius-m;
+
+  @if ($layout-pre-header-has-shadow) {
+    padding-bottom: calc(0.5em + 1px);
+    box-shadow: inset 0px -2px rgba(0, 0, 0, 0.3);
+  }
+}

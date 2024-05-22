@@ -12,29 +12,42 @@ $color-cs-successbox: $color-success;
 
 // The tags that appear before the main article title.
 // Note: these are only used on the Tomba Wiki, not on standard Mediawiki sites.
+// Note: not implemented yet.
 .tc-pre-header-tags {
   display: block;
   margin: 0 0 1.5em;
 
   .tc-tag {
-    display: inline-block;
+    @include block-tag();
     background-color: gray;
     color: white;
-    padding: 0.5em 0.8em 0.5em;
-    border-radius: $border-radius-m;
-    font-size: 0.8em;
 
-    @if ($layout-pre-header-has-shadow) {
-      padding-bottom: calc(0.5em + 1px);
-      box-shadow: inset 0px -2px rgba(0, 0, 0, 0.3);
-    }
-    &.type-a {
-      background-color: rgb(49, 49, 49);
-    }
-    &.type-b {
-      background-color: #eb5757;
+    // Add styles for all the color sets.
+    @each $color-name, $color-variants in $color-tag-sets {
+      $index: index(map-keys($color-tag-sets), $color-name) - 1;
+
+      &.color-n-#{$index} {
+        &.dark {
+          background-color: map-get($color-variants, dark);
+        }
+        &.medium {
+          background-color: map-get($color-variants, medium);
+        }
+        &.light {
+          background-color: map-get($color-variants, light);
+        }
+      }
     }
   }
+}
+
+// Category links at the bottom of the page.
+.catlinks {
+  @include border-radius('m');
+  background-color: $color-light-gray-0;
+  border: 1px solid $color-light-gray-5;
+  margin: 2em 0 0 0;
+  padding: 0.45em 0.5em 0.35em;
 }
 
 // Standard Wikitable with rounding.
