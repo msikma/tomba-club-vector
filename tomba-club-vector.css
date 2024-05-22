@@ -343,7 +343,7 @@ body {
 }
 #mw-navigation #mw-head #right-navigation #p-search {
   float: right;
-  margin-right: calc((0.75em / 2) - 1px);
+  margin-right: calc(0.75em / 2 - 1px);
 }
 #mw-navigation #mw-head #right-navigation #p-search #searchform {
   margin: 0;
@@ -961,19 +961,159 @@ body {
 }
 .tc-pre-header-tags .tc-tag {
   display: inline-block;
-  background-color: gray;
-  color: white;
   padding: 0.5em 0.8em 0.5em;
   border-radius: 3px;
-  font-size: 0.8em;
   padding-bottom: calc(0.5em + 1px);
   box-shadow: inset 0px -2px rgba(0, 0, 0, 0.3);
+  background-color: gray;
+  color: white;
 }
-.tc-pre-header-tags .tc-tag.type-a {
-  background-color: rgb(49, 49, 49);
+.tc-pre-header-tags .tc-tag.color-n-0.dark {
+  background-color: #555252;
 }
-.tc-pre-header-tags .tc-tag.type-b {
-  background-color: #eb5757;
+.tc-pre-header-tags .tc-tag.color-n-0.medium {
+  background-color: #999696;
+}
+.tc-pre-header-tags .tc-tag.color-n-0.light {
+  background-color: #f3f0f0;
+}
+.tc-pre-header-tags .tc-tag.color-n-1.dark {
+  background-color: #6d110d;
+}
+.tc-pre-header-tags .tc-tag.color-n-1.medium {
+  background-color: #df4341;
+}
+.tc-pre-header-tags .tc-tag.color-n-1.light {
+  background-color: #ffecee;
+}
+.tc-pre-header-tags .tc-tag.color-n-2.dark {
+  background-color: #693614;
+}
+.tc-pre-header-tags .tc-tag.color-n-2.medium {
+  background-color: #fd974d;
+}
+.tc-pre-header-tags .tc-tag.color-n-2.light {
+  background-color: #ffede6;
+}
+.tc-pre-header-tags .tc-tag.color-n-3.dark {
+  background-color: #725318;
+}
+.tc-pre-header-tags .tc-tag.color-n-3.medium {
+  background-color: #edc537;
+}
+.tc-pre-header-tags .tc-tag.color-n-3.light {
+  background-color: #fff1ce;
+}
+.tc-pre-header-tags .tc-tag.color-n-4.dark {
+  background-color: #005f0b;
+}
+.tc-pre-header-tags .tc-tag.color-n-4.medium {
+  background-color: #52d356;
+}
+.tc-pre-header-tags .tc-tag.color-n-4.light {
+  background-color: #dfffdc;
+}
+.tc-pre-header-tags .tc-tag.color-n-5.dark {
+  background-color: #00563a;
+}
+.tc-pre-header-tags .tc-tag.color-n-5.medium {
+  background-color: #29ca9a;
+}
+.tc-pre-header-tags .tc-tag.color-n-5.light {
+  background-color: #e0fbee;
+}
+.tc-pre-header-tags .tc-tag.color-n-6.dark {
+  background-color: #004d69;
+}
+.tc-pre-header-tags .tc-tag.color-n-6.medium {
+  background-color: #00c1de;
+}
+.tc-pre-header-tags .tc-tag.color-n-6.light {
+  background-color: #e1f7ff;
+}
+.tc-pre-header-tags .tc-tag.color-n-7.dark {
+  background-color: #003f73;
+}
+.tc-pre-header-tags .tc-tag.color-n-7.medium {
+  background-color: #25adea;
+}
+.tc-pre-header-tags .tc-tag.color-n-7.light {
+  background-color: #e4f6ff;
+}
+.tc-pre-header-tags .tc-tag.color-n-8.dark {
+  background-color: #00327c;
+}
+.tc-pre-header-tags .tc-tag.color-n-8.medium {
+  background-color: #1f85eb;
+}
+.tc-pre-header-tags .tc-tag.color-n-8.light {
+  background-color: #e7f6ff;
+}
+.tc-pre-header-tags .tc-tag.color-n-9.dark {
+  background-color: #431a6e;
+}
+.tc-pre-header-tags .tc-tag.color-n-9.medium {
+  background-color: #8d62e4;
+}
+.tc-pre-header-tags .tc-tag.color-n-9.light {
+  background-color: #f4f2ff;
+}
+.tc-pre-header-tags .tc-tag.color-n-10.dark {
+  background-color: #561054;
+}
+.tc-pre-header-tags .tc-tag.color-n-10.medium {
+  background-color: #ba4cbf;
+}
+.tc-pre-header-tags .tc-tag.color-n-10.light {
+  background-color: #feeaff;
+}
+.tc-pre-header-tags .tc-tag.color-n-11.dark {
+  background-color: #660c3d;
+}
+.tc-pre-header-tags .tc-tag.color-n-11.medium {
+  background-color: #f9569c;
+}
+.tc-pre-header-tags .tc-tag.color-n-11.light {
+  background-color: #ffecf4;
+}
+.tc-pre-header-tags .tc-tag.color-n-12.dark {
+  background-color: #35355d;
+}
+.tc-pre-header-tags .tc-tag.color-n-12.medium {
+  background-color: #8383ab;
+}
+.tc-pre-header-tags .tc-tag.color-n-12.light {
+  background-color: #f2f2ff;
+}
+.tc-pre-header-tags .tc-tag.color-n-13.dark {
+  background-color: #617218;
+}
+.tc-pre-header-tags .tc-tag.color-n-13.medium {
+  background-color: #a5d134;
+}
+.tc-pre-header-tags .tc-tag.color-n-13.light {
+  background-color: #f3ffce;
+}
+.tc-pre-header-tags .tc-tag.color-n-14.dark {
+  background-color: #7a3515;
+}
+.tc-pre-header-tags .tc-tag.color-n-14.medium {
+  background-color: #dc9777;
+}
+.tc-pre-header-tags .tc-tag.color-n-14.light {
+  background-color: #ffede5;
+}
+
+.catlinks {
+  border-radius: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  background-color: #f5f3f3;
+  border: 1px solid #b6b3b3;
+  margin: 2em 0 0 0;
+  padding: 0.45em 0.5em 0.35em;
 }
 
 table.wikitable {
