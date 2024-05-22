@@ -1116,6 +1116,58 @@ body {
   padding: 0.45em 0.5em 0.35em;
 }
 
+.mw_metadata {
+  border-collapse: separate;
+  border-spacing: 0;
+  background: transparent;
+  margin: 0;
+  font-size: 1em;
+}
+.mw_metadata thead tr th, .mw_metadata thead tr td, .mw_metadata tbody tr th, .mw_metadata tbody tr td, .mw_metadata tfoot tr th, .mw_metadata tfoot tr td {
+  line-height: 1.5;
+  padding: 0.45em 0.5em 0.35em;
+  border-style: solid;
+  border-width: 0;
+  border-left-width: 1px;
+  border-top-width: 1px;
+}
+.mw_metadata thead tr th, .mw_metadata tbody tr th, .mw_metadata tfoot tr th {
+  font-weight: 700;
+}
+.mw_metadata thead tr td, .mw_metadata tbody tr td, .mw_metadata tfoot tr td {
+  background: #f8f9fa;
+}
+.mw_metadata thead tr th:last-child, .mw_metadata thead tr td:last-child, .mw_metadata tbody tr th:last-child, .mw_metadata tbody tr td:last-child, .mw_metadata tfoot tr th:last-child, .mw_metadata tfoot tr td:last-child {
+  border-right-width: 1px;
+}
+.mw_metadata thead:last-child tr:nth-last-child(2) td[rowspan="2"], .mw_metadata thead:last-child tr:nth-last-child(2) th[rowspan="2"], .mw_metadata tbody:last-child tr:nth-last-child(2) td[rowspan="2"], .mw_metadata tbody:last-child tr:nth-last-child(2) th[rowspan="2"], .mw_metadata tfoot:last-child tr:nth-last-child(2) td[rowspan="2"], .mw_metadata tfoot:last-child tr:nth-last-child(2) th[rowspan="2"] {
+  border-bottom-width: 1px;
+}
+.mw_metadata thead:last-child tr:nth-last-child(3) td[rowspan="3"], .mw_metadata thead:last-child tr:nth-last-child(3) th[rowspan="3"], .mw_metadata tbody:last-child tr:nth-last-child(3) td[rowspan="3"], .mw_metadata tbody:last-child tr:nth-last-child(3) th[rowspan="3"], .mw_metadata tfoot:last-child tr:nth-last-child(3) td[rowspan="3"], .mw_metadata tfoot:last-child tr:nth-last-child(3) th[rowspan="3"] {
+  border-bottom-width: 1px;
+}
+.mw_metadata thead:last-child tr:nth-last-child(4) td[rowspan="4"], .mw_metadata thead:last-child tr:nth-last-child(4) th[rowspan="4"], .mw_metadata tbody:last-child tr:nth-last-child(4) td[rowspan="4"], .mw_metadata tbody:last-child tr:nth-last-child(4) th[rowspan="4"], .mw_metadata tfoot:last-child tr:nth-last-child(4) td[rowspan="4"], .mw_metadata tfoot:last-child tr:nth-last-child(4) th[rowspan="4"] {
+  border-bottom-width: 1px;
+}
+.mw_metadata thead:last-child tr:nth-last-child(5) td[rowspan="5"], .mw_metadata thead:last-child tr:nth-last-child(5) th[rowspan="5"], .mw_metadata tbody:last-child tr:nth-last-child(5) td[rowspan="5"], .mw_metadata tbody:last-child tr:nth-last-child(5) th[rowspan="5"], .mw_metadata tfoot:last-child tr:nth-last-child(5) td[rowspan="5"], .mw_metadata tfoot:last-child tr:nth-last-child(5) th[rowspan="5"] {
+  border-bottom-width: 1px;
+}
+.mw_metadata thead:last-child tr:last-child th, .mw_metadata thead:last-child tr:last-child td, .mw_metadata tbody:last-child tr:last-child th, .mw_metadata tbody:last-child tr:last-child td, .mw_metadata tfoot:last-child tr:last-child th, .mw_metadata tfoot:last-child tr:last-child td {
+  border-bottom-width: 1px;
+}
+.mw_metadata th {
+  text-align: left;
+}
+.mw_metadata.collapsed .mw-metadata-collapsible {
+  display: inherit !important;
+}
+.mw_metadata.collapsed .mw-metadata-show-hide-extended {
+  display: none !important;
+}
+.mw_metadata.collapsed:has(.mw-metadata-show-hide-extended) tbody:last-child tr:nth-last-child(2) th, .mw_metadata.collapsed:has(.mw-metadata-show-hide-extended) tbody:last-child tr:nth-last-child(2) td {
+  border-bottom-width: 1px;
+}
+
 table.wikitable {
   border-collapse: separate;
   border-spacing: 0;
