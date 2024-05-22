@@ -56,7 +56,7 @@ $color-cs-successbox: $color-success;
   
   margin: 0;
   font-size: 1em;
-  
+
   th {
     text-align: left;
   }
@@ -289,7 +289,7 @@ table.wikitable {
   padding: 1.8em 2em;
   width: 35em;
 
-  #mw-watchlink-notification {
+  > .mw-notification {
     border-radius: 10px;
     padding: 0.75em 1.1em 0.75em calc(1.1em + 1em + 32px);
     background-image: url('./images/chara.png');
@@ -299,6 +299,12 @@ table.wikitable {
     background-color: $color-dandelion;
     border: 6px solid $color-dandelion;
     box-shadow: 0px 2px 0px mix(#000, $color-dandelion, 20%);
+
+    &:hover {
+      background-color: $color-dandelion-2;
+      border-color: $color-dandelion-2;
+      box-shadow: 0px 2px 0px mix(#000, $color-dandelion-2, 20%);
+    }
   }
 }
 
