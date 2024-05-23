@@ -47,7 +47,23 @@ $color-cs-successbox: $color-success;
   background-color: $color-light-gray-0;
   border: 1px solid $color-light-gray-5;
   margin: 2em 0 0 0;
-  padding: 0.45em 0.5em 0.35em;
+  padding: 0.45em 0.5em 0.4em;
+}
+
+// Span icons are icons that get added to a piece of text.
+.tc-span-icon {
+  &::before {
+    content: '\00a0';
+    width: calc(0.83333333333em + 1px);
+    display: inline-block;
+    background-color: currentColor;
+    mask-size: 0.83333333333em 0.83333333333em;
+    mask-repeat: no-repeat;
+    mask-position: center left;
+  }
+  &.internet-archive::before {
+    mask-image: make-icon-url('internet-archive', $color-black);
+  }
 }
 
 // Metadata for images and other uploads.
