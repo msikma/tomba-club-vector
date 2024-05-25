@@ -121,4 +121,9 @@ body,
   a.external:visited::after {
     background-color: $color-external-visited;
   }
+  a.image img {
+    // Ensure inlined images don't exceed the page width.
+    max-width: 100%;
+    height: auto;
+  }
 }
