@@ -108,6 +108,11 @@ body a.external:visited::after,
 .mw-parser-output a.external:visited::after {
   background-color: #008634;
 }
+body a.image img,
+.mw-parser-output a.image img {
+  max-width: 100%;
+  height: auto;
+}
 
 html, body {
   height: inherit;
