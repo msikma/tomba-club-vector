@@ -692,9 +692,9 @@ body {
 // Copyright section and other links
 #footer {
   @include white-text;
-  margin-left: $layout-left-inset-content + $layout-width-nav-panel;
+  margin-left: 0;
   margin-right: $layout-right-inset-content;
-  padding: math.div($layout-padding-v-content, 2) $layout-padding-h-content ($layout-padding-v-content * 2);
+  padding: math.div($layout-padding-v-content, 2) $layout-padding-h-content ($layout-padding-v-content * 2) ($layout-padding-h-content + $layout-left-inset-content + $layout-width-nav-panel);
   position: relative;
 
   ul {
