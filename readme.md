@@ -56,7 +56,16 @@ function tombaWikiFooter($skin, $key, &$footerlinks) {
     return;
   }
   
+  $licenseUrl = 'https://creativecommons.org/licenses/by-nc-sa/4.0/';
+  $licenseImage = '/resources/design/tomba-club-vector-v2/images/cc-by-nc-sa.png';
+  
   $footerlinks['tc_version'] = Html::rawElement('span', ['class' => 'tc-version'], 'MediaWiki '.MW_VERSION);
+  $footerlinks['tc_copyright'] = '
+    <div class="tc-copyright">
+      <span class="license-text">Licensed under <a href="'.$licenseUrl.'">CC BY-NC-SA 4.0</a>.</span>
+      <span class="license-image"><a href="'.$licenseUrl.'"><img src="'.$licenseImage.'" width="62" height="15" /></a></span>
+    </div>
+  ';
 }
 
 $wgHooks['BeforePageDisplay'][] = 'tombaWikiCustomizations';

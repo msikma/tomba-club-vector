@@ -714,4 +714,32 @@ body {
   #footer-copyrightico {
     display: none;
   }
+  // This is our custom notice. Move it to the left column manually.
+  #footer-places-tc_copyright {
+    position: absolute;
+    top: math.div($layout-padding-v-content, 2) + 0.16em; // todo: not sure why this 0.15em is needed.
+    left: ($layout-side-nav-padding-left - $layout-side-nav-header-offset-left + $layout-left-inset-content);
+
+    .tc-copyright {
+      .license-text {
+        display: block;
+        padding-bottom: 0;
+
+        a {
+          color: $color-white;
+        }
+      }
+      .license-image {
+        display: block;
+        padding-top: 0.15em;
+
+        img {
+          width: 7em;
+          height: auto;
+          position: relative;
+          left: -0.05em;
+        }
+      }
+    }
+  }
 }
