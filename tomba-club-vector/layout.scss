@@ -696,6 +696,7 @@ body {
   margin-right: $layout-right-inset-content;
   padding: math.div($layout-padding-v-content, 2) $layout-padding-h-content ($layout-padding-v-content * 2) ($layout-padding-h-content + $layout-left-inset-content + $layout-width-nav-panel);
   position: relative;
+  min-height: 2.5em;
 
   ul {
     li {
@@ -712,6 +713,10 @@ body {
   // Remove the copyright notices since we've got our custom notice.
   #footer-info-copyright,
   #footer-copyrightico {
+    display: none;
+  }
+  // Hide our version since it's for debugging only.
+  #footer-places-tc_version {
     display: none;
   }
   // This is our custom notice. Move it to the left column manually.
