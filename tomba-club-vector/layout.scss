@@ -709,4 +709,9 @@ body {
     top: math.div($layout-padding-v-content, 2);
     right: 0;
   }
+  // Remove the copyright notices since we've got our custom notice.
+  #footer-info-copyright,
+  #footer-copyrightico {
+    display: none;
+  }
 }
