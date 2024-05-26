@@ -115,8 +115,9 @@ body {
   z-index: 0;
   border: 0;
   background: $color-inner-bg;
-  margin: 0 $layout-right-inset-content 0 $layout-left-inset-content;
-  border-bottom: 3px solid mix(#333, $color-outer-bg-bottom, 35%);
+  margin: 0 $layout-right-inset-content 3px $layout-left-inset-content;
+  border-bottom: 0;
+  box-shadow: 0 3px mix(#333, $color-outer-bg-bottom, 35%);
   min-height: 34em;
 
   @if $layout-has-tomba-image {
