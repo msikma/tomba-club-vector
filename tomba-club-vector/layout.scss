@@ -308,14 +308,14 @@ body {
             margin-left: 0.25em;
             border-top-left-radius: $layout-rounding-nav-main;
             border-top-right-radius: $layout-rounding-nav-main;
-            background: $color-dark-transparent;
+            background: linear-gradient(to bottom, $color-dark-transparent 0%, $color-dark-transparent 87%, $color-dark-transparent-shadow 100%);
             color: white;
             padding-top: 2px;
             // Extra spacing here to ensure there's no gap.
             padding-bottom: 3px;
 
             &:hover, &:focus {
-              background: $color-dark-transparent-hover;
+              background: linear-gradient(to bottom, $color-dark-transparent-hover 0%, $color-dark-transparent-hover 87%, $color-dark-transparent-hover-shadow 100%);
             }
           }
           &.selected a {
