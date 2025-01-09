@@ -10,7 +10,7 @@ The skin is activated through the use of a custom extension, which also adds var
 
 Here's what it looks like:
 
-<img align="center" src="resources/preview.png" alt="Tomba Club skin preview" width="1131">
+<img align="center" src="resources/preview.png" alt="Tomba Club skin preview" width="100%">
 
 ## Installation
 
