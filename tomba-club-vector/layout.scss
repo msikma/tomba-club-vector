@@ -19,7 +19,6 @@ $nav-panel-icon-links: (
   'n-Edit-guide': ('file-badge', 'left'),
   'n-recentchanges': ('broadcast', 'left'),
   'n-randompage': ('rocket', 'left'),
-  'n-Tomba-Club-Discord': ('discord', 'left'),
   't-whatlinkshere': ('git-merge', 'left'),
   't-recentchangeslinked': ('cross-reference', 'left'),
   't-print': ('print', 'left'),
@@ -28,6 +27,11 @@ $nav-panel-icon-links: (
   't-specialpages': ('hash', 'left'),
   't-info': ('info', 'left'),
   'feedlinks': ('rss', 'left'),
+
+  // Social media items.
+  'socmed_discord': ('discord', 'left'),
+  'socmed_youtube': ('youtube', 'left'),
+  'socmed_twitter': ('twitter', 'left'),
 );
 $nav-other-icon-links: (
   'p-cactions-label': ('chevron-down', 'right'),
