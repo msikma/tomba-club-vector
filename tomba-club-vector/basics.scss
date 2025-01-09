@@ -15,16 +15,14 @@ body.mediawiki {
     font-weight: 500;
     border-width: 2px;
 
-    // A custom extension for splitting up the namespace and title,
-    // e.g. "Tomba Club:Edit guide" has namespace "Tomba Club", delimiter ":" and title "Edit guide".
-    #page_ns {
+    .mw-page-title-namespace {
     }
-    #page_delimiter {
+    .mw-page-title-separator {
       &::after {
         content: ' ';
       }
     }
-    #page_title {
+    .mw-page-title-main {
     }
   }
   .mw-body-content {
