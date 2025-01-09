@@ -1,4 +1,4 @@
-// Tomba Club Vector Skin v2 <https://github.com/msikma/tomba-club-vector/>
+// Tomba Club Vector Skin <https://github.com/msikma/tomba-club-vector/>
 // MIT License
 
 /**
@@ -33,7 +33,7 @@ function ensureNonEmptyNav() {
   const url = new URL(window.location)
   
   // A 'read' link pointing to the current page.
-  const emptyItem = `<li id="ca-view" class="selected"><a href="${url.pathname + url.search}" data-jzz-gui-player="true">Read</a></li>`
+  const emptyItem = `<li id="ca-view" class="selected"><a href="${url.pathname + url.search}">Read</a></li>`
   
   const navContainer = document.querySelector('#p-views')
   const nav = navContainer.querySelector('.vector-menu-content .vector-menu-content-list')

@@ -1,0 +1,17 @@
+{
+  "name": "TombaClub",
+  "version": "1.0",
+  "author": "Dada78641",
+  "description": "Extension for Tomba Club specific addons",
+  "type": "parserhook",
+  "Hooks": {
+    "SkinBuildSidebar": "TombaClubHooks::onSkinBuildSidebar",
+    "SkinAddFooterLinks": "TombaClubHooks::onSkinAddFooterLinks",
+    "BeforePageDisplay": "TombaClubHooks::onBeforePageDisplay",
+    "SetupAfterCache": "TombaClubHooks::onSetupAfterCache"
+  },
+  "AutoloadClasses": {
+    "TombaClubHooks": "TombaClubHooks.php"
+  },
+  "manifest_version": 2
+}

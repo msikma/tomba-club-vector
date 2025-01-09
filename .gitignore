@@ -9,8 +9,8 @@ _todo.txt
 *.css.map
 *.sass.map
 *.scss.map
-tomba-club-vector.css
-tomba-club-vector.css.map
+tc-vector.css
+tc-vector.css.map
 
 # OS
 .DS_Store
