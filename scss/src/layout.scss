@@ -126,7 +126,7 @@ body {
   min-height: 34em;
 
   @if $layout-has-tomba-image {
-    background-image: url('./images/tomba-running-bg.png');
+    background-image: url('./assets/tomba-running-bg.png');
     background-repeat: no-repeat;
     background-size: 389px 387px;
     background-position: -9em 23em;
@@ -246,7 +246,7 @@ body {
         li#pt-anonuserpage::before, li#pt-userpage a::before {
           content: '';
           display: block;
-          background-image: url('./images/user-avatar.svg');
+          background-image: url('./assets/user-avatar.svg');
           padding: 0;
           background-position: center;
           background-repeat: no-repeat;
