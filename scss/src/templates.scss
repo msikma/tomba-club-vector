@@ -1,0 +1,58 @@
+@use "sass:color";
+@use "defaults";
+@use "functions";
+@use "icons";
+
+// Standard Wikitable with rounding.
+table.wikitable {
+  @include functions.table-universal();
+  @include functions.table-rounded('m');
+
+  border: none;
+
+  tbody, thead, tfoot {
+    tr {
+      th, td {
+        border-color: defaults.$color-light-gray-5;
+      }
+      th {
+        background-color: color.mix(#000, defaults.$color-light-gray-1, 2%);
+      }
+      td {
+        background-color: color.mix(#fff, defaults.$color-light-gray-1, 80%);
+      }
+    }
+  }
+
+  // Make the external links a bit darker.
+  a.external {
+    color: defaults.$color-external-visited;
+  }
+  a.external::after {
+    background-color: defaults.$color-external-visited;
+  }
+  a.external:visited {
+    color: defaults.$color-external-visited;
+  }
+  a.external:visited::after {
+    background-color: defaults.$color-external-visited;
+  }
+}
+
+
+// Span icons are icons that get added to a piece of text.
+// Used in, for example, the {{{IA}}} template.
+.tc-span-icon {
+  &::before {
+    content: '\00a0';
+    width: calc(0.83333333333em + 1px);
+    display: inline-block;
+    background-color: currentColor;
+    mask-size: 0.83333333333em 0.83333333333em;
+    mask-repeat: no-repeat;
+    mask-position: center left;
+  }
+  &.internet-archive::before {
+    mask-image: icons.make-icon-url('internet-archive', defaults.$color-black);
+  }
+}
