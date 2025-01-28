@@ -1,17 +1,19 @@
-@charset "utf-8";
+@use "sass:color";
+@use "defaults";
+@use "icons";
 
 body.mediawiki {
-  font-family: $font-regular;
-  font-size: $font-size-regular;
+  font-family: defaults.$font-regular;
+  font-size: defaults.$font-size-regular;
 }
 
 // Ensures a consistent font size for the main body copy.
 #content {
   h1, h2 {
-    border-bottom: 1px solid $color-light-gray-3;
+    border-bottom: 1px solid defaults.$color-light-gray-3;
   }
   .firstHeading {
-    font-family: $font-header;
+    font-family: defaults.$font-header;
     font-weight: 500;
     border-width: 2px;
 
@@ -30,12 +32,12 @@ body.mediawiki {
     line-height: 1.6;
 
     h1, h2, h3, h4, h5, h6 {
-      font-family: $font-header;
+      font-family: defaults.$font-header;
     }
     
     .toc {
       #mw-toc-heading {
-        font-family: $font-regular;
+        font-family: defaults.$font-regular;
         border: none;
       }
     }
@@ -44,22 +46,22 @@ body.mediawiki {
 
 // Make sure all monospace containers are consistent.
 pre, code, .mw-code {
-  font-family: $font-mono;
-  font-size: $font-mono-size;
+  font-family: defaults.$font-mono;
+  font-size: defaults.$font-mono-size;
   border: none;
   line-height: 1.6;
-  background-color: mix(#fff, $color-light-gray-1, 30%);
+  background-color: color.mix(#fff, defaults.$color-light-gray-1, 30%);
 }
 code {
   background-color: transparent;
 }
 fieldset {
   padding: 0 1em 1em;
-  border: 2px solid $color-light-gray-3;
-  border-radius: $border-radius-l;
+  border: 2px solid defaults.$color-light-gray-3;
+  border-radius: defaults.$border-radius-l;
 
   legend {
-    color: $color-dark-gray;
+    color: defaults.$color-dark-gray;
     font-weight: bold;
   }
 }
@@ -89,16 +91,16 @@ dfn[title] {
 body,
 .mw-parser-output {
   a {
-    color: $color-cobalt;
+    color: defaults.$color-cobalt;
   }
   a.new {
-    color: $color-nonexistent;
+    color: defaults.$color-nonexistent;
   }
   a:visited {
-    color: $color-visited;
+    color: defaults.$color-visited;
   }
   a.external {
-    color: $color-green-haze;
+    color: defaults.$color-green-haze;
     padding-right: 0;
     background: none;
   }
@@ -106,18 +108,18 @@ body,
     content: '\00a0';
     width: calc(0.83333333333em + 1px);
     display: inline-block;
-    background-color: $color-green-haze;
+    background-color: defaults.$color-green-haze;
     mask-size: 0.83333333333em 0.83333333333em;
     mask-repeat: no-repeat;
     mask-position: center right;
-    mask-image: make-icon-url('external', $color-green-haze);
+    mask-image: icons.make-icon-url('external', defaults.$color-green-haze);
   }
   a.external:visited {
-    color: $color-external-visited;
-    background-color: $color-external-visited;
+    color: defaults.$color-external-visited;
+    background-color: defaults.$color-external-visited;
   }
   a.external:visited::after {
-    background-color: $color-external-visited;
+    background-color: defaults.$color-external-visited;
   }
   a.image img {
     // Ensure inlined images don't exceed the page width.

@@ -1,5 +1,7 @@
+@use "defaults";
+
 body.landing {
-  background: $color-inner-bg;
+  background: defaults.$color-inner-bg;
   margin: 0;
 
   .nav {
@@ -18,9 +20,9 @@ body.landing {
       font-weight: bold;
       padding: 1em 0.5em;
       font-size: 1.4em;
-      border: 3px solid $color-light-gray-3;
+      border: 3px solid defaults.$color-light-gray-3;
       border-radius: 8px;
-      box-shadow: 0px 5px 0 $color-light-gray-3;
+      box-shadow: 0px 5px 0 defaults.$color-light-gray-3;
       flex-basis: 10em;
     }
     
@@ -43,7 +45,7 @@ body.landing {
   }
 
   .top-nav {
-    background: $color-tomba-pink;
+    background: defaults.$color-tomba-pink;
     padding: 0 0;
 
     .logo {

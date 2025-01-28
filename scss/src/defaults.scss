@@ -1,4 +1,4 @@
-@charset "utf-8";
+@use "sass:color";
 
 // Primary font used in copy
 $font-regular: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
@@ -25,7 +25,7 @@ $color-deep-blush: #e453a7;
 $color-cobalt: #0043c3;
 $color-midnight-blue: #002162;
 $color-dandelion: #ffdb41;
-$color-dandelion-2: mix($color-dandelion, #fff, 50%);
+$color-dandelion-2: color.mix($color-dandelion, #fff, 50%);
 
 $color-radical-red: #ff3855;
 $color-bright-sun: #ffcc3c;
@@ -48,15 +48,15 @@ $color-neutral: #d7d1d1;
 
 $color-white: #fff;
 $color-light-gray-1: #f2efef;
-$color-light-gray-2: mix(#000, $color-light-gray-1, 10%);
-$color-light-gray-3: mix(#000, $color-light-gray-1, 15%);
-$color-light-gray-4: mix(#000, $color-light-gray-1, 20%);
-$color-light-gray-5: mix(#000, $color-light-gray-1, 25%);
-$color-light-gray-6: mix(#000, $color-light-gray-1, 30%);
-$color-light-gray-7: mix(#000, $color-light-gray-1, 35%);
-$color-light-gray-8: mix(#000, $color-light-gray-1, 40%);
-$color-light-gray-0: mix(#fff, $color-light-gray-1, 25%);
-$color-gray-1: mix(#000, $color-light-gray-1, 75%);
+$color-light-gray-2: color.mix(#000, $color-light-gray-1, 10%);
+$color-light-gray-3: color.mix(#000, $color-light-gray-1, 15%);
+$color-light-gray-4: color.mix(#000, $color-light-gray-1, 20%);
+$color-light-gray-5: color.mix(#000, $color-light-gray-1, 25%);
+$color-light-gray-6: color.mix(#000, $color-light-gray-1, 30%);
+$color-light-gray-7: color.mix(#000, $color-light-gray-1, 35%);
+$color-light-gray-8: color.mix(#000, $color-light-gray-1, 40%);
+$color-light-gray-0: color.mix(#fff, $color-light-gray-1, 25%);
+$color-gray-1: color.mix(#000, $color-light-gray-1, 75%);
 $color-dark-gray: #313030;
 $color-black: #202122;
 
@@ -83,7 +83,7 @@ $color-tag-sets: (
 $color-body: $color-dark-gray;
 $color-outer-bg-top: $color-tomba-pink-2;
 $color-outer-bg-bottom: #8c2550;
-$color-outer-bg: mix($color-outer-bg-bottom, $color-outer-bg-top, 0%) linear-gradient(0deg, mix($color-outer-bg-bottom, $color-outer-bg-top, 100%) 0%, $color-outer-bg-top 100%) repeat-x;
+$color-outer-bg: color.mix($color-outer-bg-bottom, $color-outer-bg-top, 0%) linear-gradient(0deg, color.mix($color-outer-bg-bottom, $color-outer-bg-top, 100%) 0%, $color-outer-bg-top 100%) repeat-x;
 $color-inner-bg: $color-light-gray-1;
 $color-content-bg: $color-white;
 

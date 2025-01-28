@@ -1,4 +1,6 @@
-@charset "utf-8";
+@use "sass:list";
+@use "sass:map";
+@use "defaults";
 
 // Mixin for border radiuses
 //
@@ -13,12 +15,12 @@
   // with a standardized radius size.
   $radius: 0;
   $radiuses: (
-    s: $border-radius-s,
-    m: $border-radius-m,
-    l: $border-radius-l,
-    xl: $border-radius-xl,
+    s: defaults.$border-radius-s,
+    m: defaults.$border-radius-m,
+    l: defaults.$border-radius-l,
+    xl: defaults.$border-radius-xl,
   );
-  $amount-val: map-get($radiuses, $amount);
+  $amount-val: map.get($radiuses, $amount);
 
   // Either take our standard value or use whatever was passed to $amount.
   @if ($amount-val != null) {
@@ -32,7 +34,7 @@
   border-radius: 0;
 
   // Loop through the $corners argument.
-  $i: length($corners);
+  $i: list.length($corners);
   $cmap: (
     tl: border-top-left-radius,
     tr: border-top-right-radius,
@@ -40,8 +42,8 @@
     br: border-bottom-right-radius,
   );
   @while $i > 0 {
-    $corner: nth($corners, $i);
-    $attr: map-get($cmap, $corner);
+    $corner: list.nth($corners, $i);
+    $attr: map.get($cmap, $corner);
     #{$attr}: $radius;
     $i: $i - 1;
   }
@@ -140,23 +142,23 @@
 
 // Returns a tag color by color name and variant
 @function get-tag-color($color-name, $variant) {
-  @return map-get(map-get($color-tag-sets, $color-name), $variant);
+  @return map.get(map.get(defaults.$color-tag-sets, $color-name), $variant);
 }
 
 // Returns a tag color by index (zero indexed)
 @function get-tag-color-set-by-idx($idx) {
-  $color-names: map-keys($color-tag-sets);
-  $color-name: nth($color-names, $idx + 1);
-  @return map-get($color-tag-sets, $color-name);
+  $color-names: map.keys(defaults.$color-tag-sets);
+  $color-name: list.nth($color-names, $idx + 1);
+  @return map.get(defaults.$color-tag-sets, $color-name);
 }
 
 // Mixin for a tag
 @mixin block-tag() {
   display: inline-block;
   padding: 0.5em 0.8em 0.5em;
-  border-radius: $border-radius-m;
+  border-radius: defaults.$border-radius-m;
 
-  @if ($layout-pre-header-has-shadow) {
+  @if (defaults.$layout-pre-header-has-shadow) {
     padding-bottom: calc(0.5em + 1px);
     box-shadow: inset 0px -2px rgba(0, 0, 0, 0.3);
   }

@@ -1,5 +1,9 @@
-@charset "utf-8";
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
 @use 'sass:math';
+@use "defaults";
+@use "icons";
 
 // The nav items that have an icon (see icons.scss)
 $nav-sub-icon-links: (
@@ -38,8 +42,8 @@ $nav-other-icon-links: (
 );
 
 // Whether the main content section is offset from the side of the viewport.
-$layout-content-is-offset-left: $layout-left-inset-content > 0em;
-$layout-content-is-offset-right: $layout-right-inset-content > 0em;
+$layout-content-is-offset-left: defaults.$layout-left-inset-content > 0em;
+$layout-content-is-offset-right: defaults.$layout-right-inset-content > 0em;
 
 // Layout settings for the nav.
 $nav-item-padding: 0.75em;
@@ -54,10 +58,10 @@ html, body {
 }
 
 body {
-  background: $color-outer-bg;
+  background: defaults.$color-outer-bg;
   background-size: 100% 500px;
   background-position: bottom;
-  min-width: $layout-minimum-width;
+  min-width: defaults.$layout-minimum-width;
 }
 
 @mixin white-text {
@@ -66,7 +70,7 @@ body {
     color: white;
   }
   a {
-    color: $color-dandelion;
+    color: defaults.$color-dandelion;
   }
   a.new {
     opacity: 0.6;
@@ -74,16 +78,16 @@ body {
 }
 
 @mixin subnav-item {
-  color: $color-cobalt;
+  color: defaults.$color-cobalt;
   width: inherit;
-  height: #{math.div($layout-height-nav-sub, $layout-font-size-nav-sub)}em;
+  height: #{math.div(defaults.$layout-height-nav-sub, defaults.$layout-font-size-nav-sub)}em;
   padding: 0 $nav-item-padding;
-  line-height: #{math.div($layout-height-nav-sub, $layout-font-size-nav-sub)}em;
-  font-size: $layout-font-size-nav-sub;
+  line-height: #{math.div(defaults.$layout-height-nav-sub, defaults.$layout-font-size-nav-sub)}em;
+  font-size: defaults.$layout-font-size-nav-sub;
   position: relative;
 
   &::before {
-    width: #{math.div($icon-width, $layout-font-size-nav-sub)}em;
+    width: #{math.div($icon-width, defaults.$layout-font-size-nav-sub)}em;
     background-size: contain;
     height: auto;
     position: absolute;
@@ -99,60 +103,60 @@ body {
     display: block;
     position: absolute;
     inset: $highlight-padding (math.div($highlight-padding, 2));
-    border-radius: $border-radius-m;
+    border-radius: defaults.$border-radius-m;
     background-image: none;
     opacity: 1;
     height: auto;
   }
 
   &:hover::after {
-    background: rgba($color-cobalt, 0.1);
+    background: rgba(defaults.$color-cobalt, 0.1);
   }
 }
 
 // Main content body
 #content.mw-body {
-  padding-left: $layout-width-nav-panel + $layout-padding-h-content;
-  padding-right: $layout-padding-h-content;
-  padding-top: $layout-padding-v-content + $layout-inset-content;
-  padding-bottom: $layout-padding-v-content;
+  padding-left: defaults.$layout-width-nav-panel + defaults.$layout-padding-h-content;
+  padding-right: defaults.$layout-padding-h-content;
+  padding-top: defaults.$layout-padding-v-content + defaults.$layout-inset-content;
+  padding-bottom: defaults.$layout-padding-v-content;
   position: relative;
   z-index: 0;
   border: 0;
-  background: $color-inner-bg;
-  margin: 0 $layout-right-inset-content 3px $layout-left-inset-content;
+  background: defaults.$color-inner-bg;
+  margin: 0 defaults.$layout-right-inset-content 3px defaults.$layout-left-inset-content;
   border-bottom: 0;
-  box-shadow: 0 3px mix(#333, $color-outer-bg-bottom, 35%);
+  box-shadow: 0 3px color.mix(#333, defaults.$color-outer-bg-bottom, 35%);
   min-height: 34em;
 
-  @if $layout-has-tomba-image {
+  @if defaults.$layout-has-tomba-image {
     background-image: url('./assets/tomba-running-bg.png');
     background-repeat: no-repeat;
     background-size: 389px 387px;
     background-position: -9em 23em;
   }
   @if $layout-content-is-offset-left {
-    border-bottom-left-radius: $layout-rounding-content;
+    border-bottom-left-radius: defaults.$layout-rounding-content;
   }
   @if $layout-content-is-offset-right {
-    border-bottom-right-radius: $layout-rounding-content;
+    border-bottom-right-radius: defaults.$layout-rounding-content;
   }
 
   &::before {
-    width: calc(100% - #{$layout-width-nav-panel});
-    height: calc(100% - #{$layout-inset-content});
-    left: $layout-width-nav-panel;
-    top: $layout-inset-content;
+    width: calc(100% - #{defaults.$layout-width-nav-panel});
+    height: calc(100% - #{defaults.$layout-inset-content});
+    left: defaults.$layout-width-nav-panel;
+    top: defaults.$layout-inset-content;
   
     pointer-events: none;
     position: absolute;
-    border-top-left-radius: $layout-rounding-content;
+    border-top-left-radius: defaults.$layout-rounding-content;
     @if $layout-content-is-offset-right {
-      border-bottom-right-radius: $layout-rounding-content;
+      border-bottom-right-radius: defaults.$layout-rounding-content;
     }
     display: block;
     content: '';
-    background: $color-content-bg;
+    background: defaults.$color-content-bg;
     z-index: -1;
   }
 
@@ -163,13 +167,13 @@ body {
 
 // Top navigation
 #mw-page-base, #mw-head-base {
-  height: $layout-height-nav;
+  height: defaults.$layout-height-nav;
   background: transparent;
 }
 #mw-head-base {
   // For some reason, Chrome wants an extra pixel here.
   // I don't know why. I don't care.
-  margin-top: calc(($layout-height-nav * -1) - 1px);
+  margin-top: calc((defaults.$layout-height-nav * -1) - 1px);
 }
 #mw-navigation {
   a {
@@ -179,8 +183,8 @@ body {
   }
   // Article top menu, containing e.g. 'edit', 'edit source', 'view history'.
   #mw-head {
-    background: radial-gradient(circle, rgba($color-light-gray-1, 0.4) 0%, rgba($color-light-gray-1, 0) 100%);
-    min-width: $layout-minimum-width;
+    background: radial-gradient(circle, rgba(defaults.$color-light-gray-1, 0.4) 0%, rgba(defaults.$color-light-gray-1, 0) 100%);
+    min-width: defaults.$layout-minimum-width;
     left: 0;
     right: 0;
 
@@ -201,13 +205,13 @@ body {
     #p-personal {
       position: absolute;
       top: 0;
-      right: $layout-right-inset-content;
+      right: defaults.$layout-right-inset-content;
 
       .vector-menu-content-list {
-        background: $color-dark-transparent;
+        background: defaults.$color-dark-transparent;
         transition: background-color 150ms;
         padding: 0;
-        border-radius: 0 0 $layout-rounding-nav-personal $layout-rounding-nav-personal;
+        border-radius: 0 0 defaults.$layout-rounding-nav-personal defaults.$layout-rounding-nav-personal;
         border-bottom: 2px solid rgba(0, 0, 0, 0.25);
         border-top: none;
 
@@ -258,7 +262,7 @@ body {
           height: 1.15em;
         }
         li#pt-anonuserpage:hover, li#pt-userpage a:hover, li#pt-mytalk a:hover {
-          color: $color-dandelion;
+          color: defaults.$color-dandelion;
         }
         li#pt-anonuserpage:hover::before, li#pt-userpage a:hover::before {
           filter: invert(78%) sepia(65%) saturate(445%) hue-rotate(357deg) brightness(359%) contrast(105%);
@@ -293,39 +297,39 @@ body {
       float: none;
       display: block;
       position: relative;
-      margin: $layout-height-nav-logo calc(#{$layout-right-inset-content} + #{$layout-rounding-nav-sub}) 0 calc(#{$layout-width-nav-hamburger + $layout-left-inset-content} + #{$layout-rounding-nav-sub});
-      height: $layout-height-nav-main;
+      margin: defaults.$layout-height-nav-logo calc(#{defaults.$layout-right-inset-content} + #{defaults.$layout-rounding-nav-sub}) 0 calc(#{defaults.$layout-width-nav-hamburger + defaults.$layout-left-inset-content} + #{defaults.$layout-rounding-nav-sub});
+      height: defaults.$layout-height-nav-main;
 
       .vector-menu {
         // For some reason, Safari wants an extra 0.1px here.
         // Don't ask me why.
         position: relative;
         top: 0.1px;
-        height: $layout-height-nav-main;
+        height: defaults.$layout-height-nav-main;
 
         li {
           a {
             padding: 0 1em;
             font-size: inherit;
             height: auto;
-            line-height: calc($layout-height-nav-main - 4px);
+            line-height: calc(defaults.$layout-height-nav-main - 4px);
             margin-left: 0.25em;
-            border-top-left-radius: $layout-rounding-nav-main;
-            border-top-right-radius: $layout-rounding-nav-main;
-            background: linear-gradient(to bottom, $color-dark-transparent 0%, $color-dark-transparent 87%, $color-dark-transparent-shadow 100%);
+            border-top-left-radius: defaults.$layout-rounding-nav-main;
+            border-top-right-radius: defaults.$layout-rounding-nav-main;
+            background: linear-gradient(to bottom, defaults.$color-dark-transparent 0%, defaults.$color-dark-transparent 87%, defaults.$color-dark-transparent-shadow 100%);
             color: white;
             padding-top: 2px;
             // Extra spacing here to ensure there's no gap.
             padding-bottom: 3px;
 
             &:hover, &:focus {
-              background: linear-gradient(to bottom, $color-dark-transparent-hover 0%, $color-dark-transparent-hover 87%, $color-dark-transparent-hover-shadow 100%);
+              background: linear-gradient(to bottom, defaults.$color-dark-transparent-hover 0%, defaults.$color-dark-transparent-hover 87%, defaults.$color-dark-transparent-hover-shadow 100%);
             }
           }
           &.selected a {
-            background: $color-content-bg;
-            color: $color-body;
-            border-top: 2px solid $color-dandelion;
+            background: defaults.$color-content-bg;
+            color: defaults.$color-body;
+            border-top: 2px solid defaults.$color-dandelion;
             padding-top: 0;
           }
           &:first-child a {
@@ -333,7 +337,7 @@ body {
           }
           &.new {
             a {
-              color: rgba($color-white, $new-nav-tab-opacity);
+              color: rgba(defaults.$color-white, $new-nav-tab-opacity);
   
               &::before {
                 opacity: $new-nav-tab-opacity;
@@ -346,7 +350,7 @@ body {
       #p-namespaces {
         li {
           a::before {
-            width: #{math.div($icon-width, $layout-font-size-nav-sub)}em;
+            width: #{math.div($icon-width, defaults.$layout-font-size-nav-sub)}em;
             background-size: contain;
             position: absolute;
             top: 0;
@@ -357,24 +361,24 @@ body {
           // All the main nav links with an icon.
           @each $cls, $icon-settings in $nav-main-icon-links {
             &##{$cls} {
-              $icon: nth($icon-settings, 1);
-              $direction: nth($icon-settings, 2);
+              $icon: list.nth($icon-settings, 1);
+              $direction: list.nth($icon-settings, 2);
               a {
-                padding-#{$direction}: #{$nav-item-padding + (math.div($icon-width + $icon-spacing, $layout-font-size-nav-sub))};
+                padding-#{$direction}: #{$nav-item-padding + (math.div($icon-width + $icon-spacing, defaults.$layout-font-size-nav-sub))};
                 &::before {
                   content: '';
-                  #{$direction}: math.div($nav-item-padding + math.div($icon-width + $icon-spacing, $layout-font-size-nav-sub) - math.div($icon-width, 2), 2);
-                  background-image: make-icon-url($icon, $color-white);
+                  #{$direction}: math.div($nav-item-padding + math.div($icon-width + $icon-spacing, defaults.$layout-font-size-nav-sub) - math.div($icon-width, 2), 2);
+                  background-image: icons.make-icon-url($icon, defaults.$color-white);
                 }
               }
               &.selected a {
-                color: $color-green-haze;
+                color: defaults.$color-green-haze;
                 
                 &::after {
-                  background: rgba($color-green-haze, 0.1);
+                  background: rgba(defaults.$color-green-haze, 0.1);
                 }
                 &::before {
-                  background-image: make-icon-url($icon, $color-green-haze);
+                  background-image: icons.make-icon-url($icon, defaults.$color-green-haze);
                 }
               }
             }
@@ -386,14 +390,14 @@ body {
     // Sub nav section
     #right-navigation {
       float: none;
-      margin: 0 $layout-right-inset-content 0 $layout-left-inset-content;
-      height: $layout-height-nav-sub;
-      background: $color-content-bg;
+      margin: 0 defaults.$layout-right-inset-content 0 defaults.$layout-left-inset-content;
+      height: defaults.$layout-height-nav-sub;
+      background: defaults.$color-content-bg;
       box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.1);
       position: relative;
 
       #p-search, #p-cactions, #p-views {
-        height: $layout-height-nav-sub;
+        height: defaults.$layout-height-nav-sub;
         margin: 0;
       }
 
@@ -403,7 +407,7 @@ body {
 
         #searchform {
           margin: 0;
-          height: $layout-height-nav-sub;
+          height: defaults.$layout-height-nav-sub;
           display: flex;
           align-items: center;
 
@@ -411,23 +415,23 @@ body {
             height: auto;
 
             #searchInput {
-              font-size: $layout-font-size-nav-sub;
+              font-size: defaults.$layout-font-size-nav-sub;
               padding: 0;
-              color: $color-gray-1;
-              height: calc(#{math.div($layout-height-nav-sub - $nav-item-padding, $layout-font-size-nav-sub)}em + 2px);
+              color: defaults.$color-gray-1;
+              height: calc(#{math.div(defaults.$layout-height-nav-sub - $nav-item-padding, defaults.$layout-font-size-nav-sub)}em + 2px);
               padding: 0 0.75em;
               border: 1px solid transparent;
-              border-radius: $layout-rounding-content - 1px;
-              box-shadow: inset 0 0 0 2px $color-light-gray-2;
+              border-radius: defaults.$layout-rounding-content - 1px;
+              box-shadow: inset 0 0 0 2px defaults.$color-light-gray-2;
               transition: border-color 150ms, box-shadow 150ms, color 150ms;
               background-color: white;
 
               &:focus {
-                box-shadow: inset 0 0 0 2px $color-cobalt;
-                color: $color-cobalt;
+                box-shadow: inset 0 0 0 2px defaults.$color-cobalt;
+                color: defaults.$color-cobalt;
 
                 &::placeholder {
-                  color: $color-cobalt;
+                  color: defaults.$color-cobalt;
                 }
               }
             }
@@ -438,7 +442,7 @@ body {
 
             &:hover {
               #searchInput {
-                box-shadow: inset 0 0 0 2px $color-cobalt;
+                box-shadow: inset 0 0 0 2px defaults.$color-cobalt;
               }
               #searchButton {
                 // See: <https://codepen.io/sosuke/pen/Pjoqqp>
@@ -452,18 +456,18 @@ body {
               bottom: 0;
               right: 1px;
               opacity: 1;
-              width: #{math.div($layout-height-nav-sub - $nav-item-padding, $layout-font-size-nav-sub)}em;
+              width: #{math.div(defaults.$layout-height-nav-sub - $nav-item-padding, defaults.$layout-font-size-nav-sub)}em;
               min-width: 0;
-              height: #{math.div($layout-height-nav-sub - $nav-item-padding, $layout-font-size-nav-sub)}em;
+              height: #{math.div(defaults.$layout-height-nav-sub - $nav-item-padding, defaults.$layout-font-size-nav-sub)}em;
               border: none;
               padding: 0;
               margin: 0;
-              font-size: $layout-font-size-nav-sub;
+              font-size: defaults.$layout-font-size-nav-sub;
               text-indent: -99999px;
               white-space: nowrap;
               overflow: hidden;
-              background: make-icon-url('search', $color-gray-1) no-repeat 50% 50%;
-              background-size: #{math.div($icon-width, $layout-font-size-nav-sub)}em;
+              background: icons.make-icon-url('search', defaults.$color-gray-1) no-repeat 50% 50%;
+              background-size: #{math.div($icon-width, defaults.$layout-font-size-nav-sub)}em;
             }
           }
         }
@@ -474,24 +478,24 @@ body {
           // All the subnav links with an icon.
           @each $cls, $icon-settings in $nav-sub-icon-links {
             &##{$cls} {
-              $icon: nth($icon-settings, 1);
-              $direction: nth($icon-settings, 2);
+              $icon: list.nth($icon-settings, 1);
+              $direction: list.nth($icon-settings, 2);
               a {
-                padding-#{$direction}: #{$nav-item-padding + (math.div($icon-width + $icon-spacing, $layout-font-size-nav-sub))};
+                padding-#{$direction}: #{$nav-item-padding + (math.div($icon-width + $icon-spacing, defaults.$layout-font-size-nav-sub))};
                 &::before {
                   content: '';
-                  #{$direction}: math.div($nav-item-padding + math.div($icon-width + $icon-spacing, $layout-font-size-nav-sub) - math.div($icon-width, 2), 2);
-                  background-image: make-icon-url($icon, $color-cobalt);
+                  #{$direction}: math.div($nav-item-padding + math.div($icon-width + $icon-spacing, defaults.$layout-font-size-nav-sub) - math.div($icon-width, 2), 2);
+                  background-image: icons.make-icon-url($icon, defaults.$color-cobalt);
                 }
               }
               &.selected a {
-                color: $color-green-haze;
+                color: defaults.$color-green-haze;
                 
                 &::after {
-                  background: rgba($color-green-haze, 0.1);
+                  background: rgba(defaults.$color-green-haze, 0.1);
                 }
                 &::before {
-                  background-image: make-icon-url($icon, $color-green-haze);
+                  background-image: icons.make-icon-url($icon, defaults.$color-green-haze);
                 }
               }
             }
@@ -517,25 +521,25 @@ body {
       }
 
       #p-cactions {
-        $icon-settings: map-get($nav-other-icon-links, 'p-cactions-label');
-        $icon: nth($icon-settings, 1);
-        $direction: nth($icon-settings, 2);
+        $icon-settings: map.get($nav-other-icon-links, 'p-cactions-label');
+        $icon: list.nth($icon-settings, 1);
+        $direction: list.nth($icon-settings, 2);
         
         #p-cactions-label {
           @include subnav-item;
           background: none;
           margin: 0;
-          padding-#{$direction}: #{$nav-item-padding + (math.div($icon-width + $icon-spacing, $layout-font-size-nav-sub))};
+          padding-#{$direction}: #{$nav-item-padding + (math.div($icon-width + $icon-spacing, defaults.$layout-font-size-nav-sub))};
 
           &::before {
             content: '';
             #{$direction}: $icon-width;
-            background-image: make-icon-url($icon, $color-cobalt);
+            background-image: icons.make-icon-url($icon, defaults.$color-cobalt);
           }
         }
 
         &:hover #p-cactions-label::after {
-          background: rgba($color-cobalt, 0.1);
+          background: rgba(defaults.$color-cobalt, 0.1);
         }
         .vector-menu-checkbox:checked ~ #p-cactions-label {
           &::before {
@@ -544,7 +548,7 @@ body {
         .vector-menu-content {
           position: absolute;
           min-width: 8em;
-          top: $layout-height-nav-sub;
+          top: defaults.$layout-height-nav-sub;
           left: 0;
           right: inherit;
           margin: -2px 0 0 calc(-0.2em - 2px);
@@ -556,20 +560,20 @@ body {
 
           li a {
             padding: ($highlight-padding + 0.2em) ($nav-item-padding + 0.4em);
-            font-size: $layout-font-size-nav-sub;
+            font-size: defaults.$layout-font-size-nav-sub;
 
             &:hover {
-              background: rgba($color-cobalt, 0.1);
+              background: rgba(defaults.$color-cobalt, 0.1);
             }
           }
         }
       }
 
       @if $layout-content-is-offset-left {
-        border-top-left-radius: $layout-rounding-nav-sub;
+        border-top-left-radius: defaults.$layout-rounding-nav-sub;
       }
       @if $layout-content-is-offset-right {
-        border-top-right-radius: $layout-rounding-nav-sub;
+        border-top-right-radius: defaults.$layout-rounding-nav-sub;
       }
     }
   }
@@ -577,15 +581,15 @@ body {
   // Wiki side menu, containing e.g. 'main page', 'recent changes', 'random page'.
   #mw-panel {
     position: absolute;
-    top: $layout-height-nav-logo + $layout-height-nav-main + $layout-height-nav-sub + $layout-inset-content;
-    width: $layout-width-nav-panel;
+    top: defaults.$layout-height-nav-logo + defaults.$layout-height-nav-main + defaults.$layout-height-nav-sub + defaults.$layout-inset-content;
+    width: defaults.$layout-width-nav-panel;
     padding-left: 0;
-    left: $layout-left-inset-content;
+    left: defaults.$layout-left-inset-content;
 
     // Fixes to bring the logo to the top of the layout.
     #p-logo {
       position: absolute;
-      top: -($layout-height-nav-logo + $layout-height-nav-main + $layout-height-nav-sub + $layout-inset-content);
+      top: -(defaults.$layout-height-nav-logo + defaults.$layout-height-nav-main + defaults.$layout-height-nav-sub + defaults.$layout-inset-content);
       margin: 0.2em 0 0 0;
       left: calc(50vw - 80px);
     }
@@ -601,7 +605,7 @@ body {
       .vector-menu-heading {
         display: block;
         background: none;
-        padding: 0 ($layout-side-nav-padding-right - $layout-side-nav-header-offset-right) 0 ($layout-side-nav-padding-left - $layout-side-nav-header-offset-left);
+        padding: 0 (defaults.$layout-side-nav-padding-right - defaults.$layout-side-nav-header-offset-right) 0 (defaults.$layout-side-nav-padding-left - defaults.$layout-side-nav-header-offset-left);
         font-weight: normal;
         text-transform: none;
         margin: 0 0 0.4em;
@@ -611,10 +615,10 @@ body {
         span {
           border-bottom: 2px solid rgba(0, 0, 0, 0.2);
           display: block;
-          border-radius: $layout-rounding-nav-main;
+          border-radius: defaults.$layout-rounding-nav-main;
           transition: background 150ms, color 150ms;
-          background: $color-green-haze;
-          padding: calc(0.25em + 1px) $layout-side-nav-header-offset-right 0.25em $layout-side-nav-header-offset-left;
+          background: defaults.$color-green-haze;
+          padding: calc(0.25em + 1px) defaults.$layout-side-nav-header-offset-right 0.25em defaults.$layout-side-nav-header-offset-left;
         }
       }
       .vector-menu-content {
@@ -629,9 +633,9 @@ body {
             font-size: 1em;
 
             a {
-              color: $color-dark-gray;
+              color: defaults.$color-dark-gray;
               display: block;
-              padding: 0.25em $layout-side-nav-padding-right 0.25em $layout-side-nav-padding-left;
+              padding: 0.25em defaults.$layout-side-nav-padding-right 0.25em defaults.$layout-side-nav-padding-left;
               position: relative;
               background-image: none;
 
@@ -640,47 +644,47 @@ body {
                 background-size: contain;
                 position: absolute;
                 top: 0;
-                left: $layout-side-nav-padding-left;
+                left: defaults.$layout-side-nav-padding-left;
                 bottom: 0;
                 background-repeat: no-repeat;
                 background-position: 0 50%;
               }
               &:hover {
-                color: $color-cobalt;
+                color: defaults.$color-cobalt;
                 text-decoration: underline;
               }
             }
 
             &.active-link {
               a {
-                color: $color-salem;
+                color: defaults.$color-salem;
               }
             }
 
             // All the portlet links with an icon.
             @each $cls, $icon-settings in $nav-panel-icon-links {
               &##{$cls} {
-                $icon: nth($icon-settings, 1);
-                $direction: nth($icon-settings, 2);
+                $icon: list.nth($icon-settings, 1);
+                $direction: list.nth($icon-settings, 2);
                 a {
-                  padding-#{$direction}: #{(math.div($icon-width, 1.1em)) + $layout-side-nav-padding-left + 0.3em};
+                  padding-#{$direction}: #{(math.div($icon-width, 1.1em)) + defaults.$layout-side-nav-padding-left + 0.3em};
                   &::before {
                     content: '\00a0';
-                    background-color: $color-dark-gray;
+                    background-color: defaults.$color-dark-gray;
                     mask-size: contain;
                     mask-repeat: no-repeat;
                     mask-position: 0 50%;
-                    mask-image: make-icon-url($icon, $color-dark-gray);
+                    mask-image: icons.make-icon-url($icon, defaults.$color-dark-gray);
                   }
                   &:hover::before {
-                    background-color: $color-cobalt;
+                    background-color: defaults.$color-cobalt;
                   }
                 }
               }
               &.active-link##{$cls} {
                 a {
                   &::before {
-                    background-color: $color-salem;
+                    background-color: defaults.$color-salem;
                   }
                 }
               }
@@ -695,7 +699,7 @@ body {
       }
       &:hover .vector-menu-heading {
         span {
-          background: $color-dandelion;
+          background: defaults.$color-dandelion;
           color: rgba(0, 0, 0, 0.65);
         }
       }
@@ -707,8 +711,8 @@ body {
 #footer {
   @include white-text;
   margin-left: 0;
-  margin-right: $layout-right-inset-content;
-  padding: math.div($layout-padding-v-content, 2) $layout-padding-h-content ($layout-padding-v-content * 2) ($layout-padding-h-content + $layout-left-inset-content + $layout-width-nav-panel);
+  margin-right: defaults.$layout-right-inset-content;
+  padding: math.div(defaults.$layout-padding-v-content, 2) defaults.$layout-padding-h-content (defaults.$layout-padding-v-content * 2) (defaults.$layout-padding-h-content + defaults.$layout-left-inset-content + defaults.$layout-width-nav-panel);
   position: relative;
   min-height: 2.5em;
 
@@ -721,7 +725,7 @@ body {
 
   #footer-icons {
     position: absolute;
-    top: math.div($layout-padding-v-content, 2);
+    top: math.div(defaults.$layout-padding-v-content, 2);
     right: 0;
   }
   // Remove the copyright notices since we've got our custom notice.
@@ -736,8 +740,8 @@ body {
   // This is our custom notice. Move it to the left column manually.
   #footer-places-tc_copyright {
     position: absolute;
-    top: math.div($layout-padding-v-content, 2) + 0.16em; // todo: not sure why this 0.15em is needed.
-    left: ($layout-side-nav-padding-left - $layout-side-nav-header-offset-left + $layout-left-inset-content);
+    top: math.div(defaults.$layout-padding-v-content, 2) + 0.16em; // todo: not sure why this 0.15em is needed.
+    left: (defaults.$layout-side-nav-padding-left - defaults.$layout-side-nav-header-offset-left + defaults.$layout-left-inset-content);
 
     .tc-copyright {
       .license-text {
@@ -745,7 +749,7 @@ body {
         padding-bottom: 0;
 
         a {
-          color: $color-white;
+          color: defaults.$color-white;
         }
       }
       .license-image {
