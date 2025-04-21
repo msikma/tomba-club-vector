@@ -143,7 +143,7 @@ body {
   }
 
   &::before {
-    width: calc(100% - #{defaults.$layout-width-nav-panel});
+    width: calc(100% - #{defaults.$layout-width-nav-panel} - 0.5em);
     height: calc(100% - #{defaults.$layout-inset-content});
     left: defaults.$layout-width-nav-panel;
     top: defaults.$layout-inset-content;
@@ -152,12 +152,21 @@ body {
     position: absolute;
     border-top-left-radius: defaults.$layout-rounding-content;
     @if $layout-content-is-offset-right {
-      border-bottom-right-radius: defaults.$layout-rounding-content;
+      border-top-right-radius: defaults.$layout-rounding-content;
     }
+    border-bottom-right-radius: 0;
     display: block;
     content: '';
     background: defaults.$color-content-bg;
     z-index: -1;
+  }
+
+  &.full-width::before {
+    width: calc(100% - #{defaults.$layout-width-nav-panel});
+    @if $layout-content-is-offset-right {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: defaults.$layout-rounding-content;
+    }
   }
 
   .vector-body {
