@@ -47,6 +47,7 @@ $color-success: $color-malachite;
 $color-neutral: #d7d1d1;
 
 $color-white: #fff;
+$color-superlight-gray: #faf9f9;
 $color-light-gray-1: #f2efef;
 $color-light-gray-2: color.mix(#000, $color-light-gray-1, 10%);
 $color-light-gray-3: color.mix(#000, $color-light-gray-1, 15%);
@@ -110,6 +111,7 @@ $layout-rounding-nav-main: $border-radius-m;
 $layout-rounding-nav-sub: $border-radius-l;
 $layout-rounding-nav-personal: $border-radius-l;
 $layout-font-size-nav-sub: 0.9em;
+$layout-font-size-page-heading: 1.8em;
 $layout-width-nav-hamburger: 0em; // menu on the left side of the main nav buttons
 $layout-width-nav-panel: 14em;
 
@@ -118,6 +120,16 @@ $layout-width-nav-panel: 14em;
 // '0em' specifically to make sure the calculation doesn't NaN.
 $layout-left-inset-content: 0.8em;
 $layout-right-inset-content: 0.8em;
+
+// Amount that the inner content is offset. The left side is determined by $layout-side-nav-padding-left etc.
+$layout-inner-right-inset: 0.75em;
+// Viewport widths at which point we'll show the right panel, and how large the panel will be.
+$layout-right-panel-small-limit: 1190px;
+$layout-right-panel-small-size: 18em;
+$layout-right-panel-medium-limit: 1300px;
+$layout-right-panel-medium-size: 24em;
+$layout-right-panel-large-limit: 1460px;
+$layout-right-panel-large-size: 28em;
 
 // Whether to add a Tomba image in the left sidebar.
 $layout-has-tomba-image: true;

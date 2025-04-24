@@ -16,6 +16,11 @@ body.mediawiki {
     font-family: defaults.$font-header;
     font-weight: 500;
     border-width: 2px;
+    font-size: inherit;
+
+    > span {
+      font-size: defaults.$layout-font-size-page-heading;
+    }
 
     .mw-page-title-namespace {
     }

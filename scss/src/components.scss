@@ -47,6 +47,31 @@ $color-cs-successbox: defaults.$color-success;
   }
 }
 
+// Thumbnail boxes.
+.mw-parser-output {
+  .thumb {
+    .thumbinner {
+      border: 1px solid defaults.$color-light-gray-2;
+      padding: 3px;
+      background-color: defaults.$color-superlight-gray;
+      font-size: defaults.$font-mono-size;
+      border-radius: defaults.$border-radius-s;
+      box-sizing: border-box;
+
+      a.image {
+        display: block;
+      }
+
+      .thumbimage {
+        border: 1px solid defaults.$color-light-gray-2;
+        background-color: defaults.$color-white;
+        box-sizing: border-box;
+        display: block;
+      }
+    }
+  }
+}
+
 // Category links at the bottom of the page.
 .catlinks {
   @include functions.border-radius('m');

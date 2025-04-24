@@ -52,6 +52,10 @@ $icon-spacing: 0.35em;
 $highlight-padding: 0.5em;
 $new-nav-tab-opacity: 0.7;
 
+:root {
+  --tc-layout-width-right-panel: 0px;
+}
+
 html, body {
   height: inherit;
   min-height: 100%;
@@ -114,10 +118,61 @@ body {
   }
 }
 
+// This is the CSS for the alternate right panel layout.
+// This is designed to put right-floating images in its own column entirely without new HTML.
+@mixin right-panel {
+  #firstHeading {
+    width: calc(100% - var(--tc-layout-width-right-panel));
+  }
+  #bodyContent {
+    width: calc(100% - var(--tc-layout-width-right-panel));
+  }
+  .thumb.tright {
+    margin-right: calc((var(--tc-layout-width-right-panel) * -1) - #{defaults.$layout-padding-h-content});
+    width: calc(var(--tc-layout-width-right-panel) - 1.5em);
+
+    .thumbinner {
+      width: 100% !important;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      border-radius: 0;
+
+      .image {
+        position: relative;
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          box-shadow: inset 0px 0px 0px 1px rgba(defaults.$color-black, 0.17);
+          border-top-left-radius: defaults.$border-radius-m;
+          border-top-right-radius: defaults.$border-radius-m;
+        }
+      }
+
+      .thumbimage {
+        width: 100%;
+        border: 0;
+        border-top-left-radius: defaults.$border-radius-m;
+        border-top-right-radius: defaults.$border-radius-m;
+      }
+      .thumbcaption {
+        border: 1px solid defaults.$color-light-gray-2;
+        border-top: 0;
+        border-bottom-left-radius: defaults.$border-radius-m;
+        border-bottom-right-radius: defaults.$border-radius-m;
+      }
+    }
+  }
+}
+
 // Main content body
 #content.mw-body {
   padding-left: defaults.$layout-width-nav-panel + defaults.$layout-padding-h-content;
-  padding-right: defaults.$layout-padding-h-content;
+  padding-right: defaults.$layout-padding-h-content + defaults.$layout-inner-right-inset;
   padding-top: defaults.$layout-padding-v-content + defaults.$layout-inset-content;
   padding-bottom: defaults.$layout-padding-v-content;
   position: relative;
@@ -143,7 +198,7 @@ body {
   }
 
   &::before {
-    width: calc(100% - #{defaults.$layout-width-nav-panel} - 0.5em);
+    width: calc(100% - #{defaults.$layout-width-nav-panel} - defaults.$layout-inner-right-inset - var(--tc-layout-width-right-panel, 0px));
     height: calc(100% - #{defaults.$layout-inset-content});
     left: defaults.$layout-width-nav-panel;
     top: defaults.$layout-inset-content;
@@ -161,11 +216,28 @@ body {
     z-index: -1;
   }
 
+  #firstHeading {
+    width: 100%;
+  }
+
   &.full-width::before {
     width: calc(100% - #{defaults.$layout-width-nav-panel});
     @if $layout-content-is-offset-right {
       border-top-right-radius: 0;
       border-bottom-right-radius: defaults.$layout-rounding-content;
+    }
+  }
+
+  &.right-panel {
+    @media only screen and (min-width: #{defaults.$layout-right-panel-small-limit}) {
+      @include right-panel;
+      --tc-layout-width-right-panel: #{defaults.$layout-right-panel-small-size};
+    }
+    @media only screen and (min-width: #{defaults.$layout-right-panel-medium-limit}) {
+      --tc-layout-width-right-panel: #{defaults.$layout-right-panel-medium-size};
+    }
+    @media only screen and (min-width: #{defaults.$layout-right-panel-large-limit}) {
+      --tc-layout-width-right-panel: #{defaults.$layout-right-panel-large-size};
     }
   }
 
