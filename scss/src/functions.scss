@@ -163,3 +163,13 @@
     box-shadow: inset 0px -2px rgba(0, 0, 0, 0.3);
   }
 }
+
+// Mixin that adds a border around an image. Use on &::before on a parent.
+@mixin image-border {
+  box-shadow: inset 0px 0px 0px 1px rgba(defaults.$color-black, 0.16);
+}
+
+// As above, but slightly darker. Used by the right sidebar.
+@mixin image-border-darker {
+  box-shadow:  inset 0px 0px 0px 1px rgba(defaults.$color-light-gray-7, 0.10), inset 0px 0px 0px 1px rgba(defaults.$color-black, 0.2);
+}
