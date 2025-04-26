@@ -561,6 +561,7 @@ body {
 
           #simpleSearch {
             height: auto;
+            min-width: 13em;
 
             #searchInput {
               font-size: defaults.$layout-font-size-nav-sub;
@@ -799,10 +800,17 @@ body {
                 bottom: 0;
                 background-repeat: no-repeat;
                 background-position: 0 50%;
+                content: '\00a0';
+                background: transparent no-repeat 0 50%;
+                background-size: contain;
+                @include colorize.colorize-gray-1;
               }
               &:hover {
                 color: defaults.$color-cobalt;
                 text-decoration: underline;
+              }
+              &:hover::before {
+                @include colorize.colorize-cobalt;
               }
             }
 
@@ -820,14 +828,7 @@ body {
                 a {
                   padding-#{$direction}: #{(math.div($icon-width, 1.1em)) + defaults.$layout-side-nav-padding-left + 0.3em};
                   &::before {
-                    content: '\00a0';
-                    background: transparent no-repeat 0 50%;
-                    background-size: contain;
                     background-image: icons.icon-url($icon);
-                    @include colorize.colorize-gray-1;
-                  }
-                  &:hover::before {
-                    @include colorize.colorize-cobalt;
                   }
                 }
               }

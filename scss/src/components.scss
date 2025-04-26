@@ -352,8 +352,26 @@ $color-cs-successbox: defaults.$color-success;
   background-color: color.mix(#fff, defaults.$color-light-gray-1, 80%);
   padding: 0.55em 0.75em;
 
+  #mw-toc-heading {
+    margin: 0.15em 0 0.4em;
+    display: block;
+  }
+
+  .toctogglespan {
+    // Disable the "hide" prompt. Who ever hides the ToC?
+    display: none;
+  }
+
   > ul {
     margin: 0;
+
+    li {
+      margin-bottom: 0.1em;
+    }
+
+    a + ul {
+      margin-top: 0.1em;
+    }
   }
 
   li > ul {
