@@ -3,6 +3,8 @@
 // Primary font used in copy
 $font-regular: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $font-size-regular: 0.9rem;
+$font-size-caption: 0.92em;
+$line-height-regular: 1.6;
 // Primary header font
 $font-header: "Roboto", sans-serif !default;
 //$font-header: "Linux Libertine", "Georgia", "Times", serif !default;
@@ -13,6 +15,7 @@ $font-mono-size: 94%;
 // Theme style settings
 $border-radius-s: 2px !default;
 $border-radius-m: 3px !default;
+$border-radius-mm: 5px !default;
 $border-radius-l: 6px !default;
 $border-radius-xl: 12px !default;
 
@@ -60,6 +63,8 @@ $color-light-gray-0: color.mix(#fff, $color-light-gray-1, 25%);
 $color-gray-1: color.mix(#000, $color-light-gray-1, 75%);
 $color-dark-gray: #313030;
 $color-black: #202122;
+$color-heading-positive: #fff;
+$color-heading-negative: rgba($color-black, 0.85);
 
 // Colors used for tags and various other things.
 $color-tag-sets: (
@@ -79,6 +84,9 @@ $color-tag-sets: (
   'lime': (dark: #617218, medium: #a5d134, light: #f3ffce),
   'brown': (dark: #7a3515, medium: #dc9777, light: #ffede5)
 );
+
+// Social media and other icons.
+$external-sites: facebook, github, homepage, instagram, linkedin, reddit, tiktok, tumblr, twitter, wikipedia, youtube, website;
 
 // Layout settings and sizes
 $color-body: $color-dark-gray;

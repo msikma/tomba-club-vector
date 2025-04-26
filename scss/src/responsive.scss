@@ -267,8 +267,8 @@
 
             span {
               background: defaults.$color-dandelion;
-              color: rgba(0, 0, 0, 0.65);
-              border-bottom-color: rgba(0, 0, 0, 0.65);
+              color: defaults.$color-heading-negative;
+              border-bottom-color: defaults.$color-heading-negative;
             }
           }
           

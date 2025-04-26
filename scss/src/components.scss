@@ -16,6 +16,167 @@ $color-cs-errorbox: defaults.$color-error;
 $color-cs-warningbox: defaults.$color-warning;
 $color-cs-successbox: defaults.$color-success;
 
+// Infobox design.
+.tc-infobox {
+  float: right;
+
+  th, td {
+    padding: 0;
+  }
+
+  border: 1px solid defaults.$color-light-gray-2;
+  padding: 2px;
+  background-color: defaults.$color-superlight-gray;
+  border-radius: defaults.$border-radius-m;
+  box-sizing: border-box;
+  margin-left: 1.0em;
+  margin-bottom: 1.4em;
+  max-width: 22em;
+
+  .main-image {
+    p {
+      margin: 0;
+
+      .image {
+        display: block;
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          box-shadow: inset 0px 0px 0px 1px rgba(defaults.$color-black, 0.17);
+          border-radius: defaults.$border-radius-m;
+        }
+
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: defaults.$border-radius-m;
+        }
+      }
+    }
+  }
+
+  .row {
+    td, th {
+      font-size: defaults.$font-size-caption;
+      line-height: defaults.$line-height-regular;
+      padding: 0.1em 0 0.1em;
+      vertical-align: top;
+    }
+    th {
+      text-align: left;
+      padding-left: 0.25em;
+      padding-right: 1.1em;
+    }
+  }
+
+  .tc-infobox-separator {
+    th {
+      padding: 0.1em 0 0.1em;
+
+      .header {
+        padding: 2px 0 1px;
+        background: defaults.$color-dandelion;
+        font-weight: bold;
+        color: defaults.$color-heading-negative;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+        border-radius: defaults.$layout-rounding-nav-main;
+      }
+    }
+  }
+
+  .tc-infobox-links {
+    .links {
+      display: flex;
+      place-content: center;
+      gap: 0.25em;
+    }
+
+    .link {
+      position: relative;
+
+      &::after {
+        content: '';
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        display: block;
+        visibility: hidden;
+      }
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        background-size: 80% 80%;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+      }
+
+      @each $icon in defaults.$external-sites {
+        &.#{$icon}::before {
+          background-image: url('./assets/sites/#{$icon}.svg');
+        }
+        &.#{$icon}::after {
+          background-image: url('./assets/sites/#{$icon}-mask.svg');
+        }
+        &:hover {
+          &.#{$icon}::before {
+            background-image: url('./assets/sites/#{$icon}-mask.svg');
+          }
+        }
+      }
+
+      a {
+        display: block;
+        text-indent: -9999px;
+        width: 2em;
+        height: 2em;
+        border: 1px solid defaults.$color-light-gray-2;
+        background: defaults.$color-light-gray-1;
+        border-radius: defaults.$border-radius-m;
+
+        &::after {
+          content: '';
+          display: none;
+        }
+      }
+
+      &:hover {
+        &::before {
+          filter: brightness(0) saturate(100%) invert(59%) sepia(27%) saturate(1016%) hue-rotate(287deg) brightness(97%) contrast(87%);
+        }
+        a {
+          border-color: defaults.$color-tomba-pink;
+          background-color: rgba(defaults.$color-tomba-pink, 0.2);
+        }
+      }
+    }
+  }
+}
+
+// Japanese name wrapper.
+.tpl-japanese-name {
+  word-break: break-all;
+
+  .tpl-western-version {
+    word-break: break-all;
+  }
+  .tpl-japanese-version {
+    white-space: nowrap;
+    word-break: break-word;
+  }
+}
+
 // The tags that appear before the main article title.
 // Note: these are only used on the Tomba Wiki, not on standard Mediawiki sites.
 // Note: not implemented yet.
@@ -54,9 +215,10 @@ $color-cs-successbox: defaults.$color-success;
       border: 1px solid defaults.$color-light-gray-2;
       padding: 3px;
       background-color: defaults.$color-superlight-gray;
-      font-size: defaults.$font-mono-size;
+      font-size: defaults.$font-size-caption;
       border-radius: defaults.$border-radius-s;
       box-sizing: border-box;
+      margin: 0.5em 0 1.3em 1.0em;
 
       a.image {
         display: block;
@@ -210,7 +372,7 @@ $color-cs-successbox: defaults.$color-success;
 #contentSub, #contentSub2, #mw-content-text {
   .messagebox, .errorbox, .warningbox, .successbox {
     font-size: 0.77rem;
-    line-height: 1.6;
+    line-height: defaults.$line-height-regular;
     padding: defaults.$layout-padding-v-box defaults.$layout-padding-h-box;
     border-radius: defaults.$border-radius-m;
     border-bottom-width: 1px;

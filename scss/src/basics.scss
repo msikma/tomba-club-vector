@@ -34,7 +34,7 @@ body.mediawiki {
   }
   .mw-body-content {
     font-size: inherit;
-    line-height: 1.6;
+    line-height: defaults.$line-height-regular;
 
     h1, h2, h3, h4, h5, h6 {
       font-family: defaults.$font-header;
@@ -54,7 +54,7 @@ pre, code, .mw-code {
   font-family: defaults.$font-mono;
   font-size: defaults.$font-mono-size;
   border: none;
-  line-height: 1.6;
+  line-height: defaults.$line-height-regular;
   background-color: color.mix(#fff, defaults.$color-light-gray-1, 30%);
 }
 code {
