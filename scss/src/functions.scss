@@ -15,10 +15,10 @@
   // with a standardized radius size.
   $radius: 0;
   $radiuses: (
-    s: defaults.$border-radius-s,
-    m: defaults.$border-radius-m,
+    s: defaults.$border-radius-xxs,
+    m: defaults.$border-radius-xs,
     l: defaults.$border-radius-l,
-    xl: defaults.$border-radius-xl,
+    xl: defaults.$border-radius-xxl,
   );
   $amount-val: map.get($radiuses, $amount);
 
@@ -156,7 +156,7 @@
 @mixin block-tag() {
   display: inline-block;
   padding: 0.5em 0.8em 0.5em;
-  border-radius: defaults.$border-radius-m;
+  border-radius: defaults.$border-radius-xs;
 
   @if (defaults.$layout-pre-header-has-shadow) {
     padding-bottom: calc(0.5em + 1px);

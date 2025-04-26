@@ -109,7 +109,7 @@ body {
     display: block;
     position: absolute;
     inset: $highlight-padding (math.div($highlight-padding, 2));
-    border-radius: defaults.$border-radius-m;
+    border-radius: defaults.$border-radius-xs;
     background-image: none;
     opacity: 1;
     height: auto;
@@ -145,7 +145,7 @@ body {
     border: 0;
     padding: 0;
     border-collapse: collapse;
-    border-radius: defaults.$border-radius-mm;
+    border-radius: defaults.$border-radius-m;
 
     .tc-infobox-header {
       .main-image {
@@ -156,7 +156,7 @@ body {
             @include functions.image-border-darker;
           }
           &::before, img {
-            border-radius: defaults.$border-radius-mm;
+            border-radius: defaults.$border-radius-m;
           }
         }
       }
@@ -211,7 +211,7 @@ body {
           left: 0;
           right: 0;
           bottom: 0;
-          border-radius: defaults.$border-radius-m;
+          border-radius: defaults.$border-radius-xs;
         }
       }
 
@@ -219,7 +219,7 @@ body {
         width: 100%;
         border: 0;
         box-sizing: border-box;
-        border-radius: defaults.$border-radius-m;
+        border-radius: defaults.$border-radius-xs;
       }
       .thumbcaption {
         border: 0;
@@ -254,10 +254,10 @@ body {
     background-position: -9em 23em;
   }
   @if $layout-content-is-offset-left {
-    border-bottom-left-radius: defaults.$layout-rounding-content;
+    border-bottom-left-radius: defaults.$layout-rounding-content-outer;
   }
   @if $layout-content-is-offset-right {
-    border-bottom-right-radius: defaults.$layout-rounding-content;
+    border-bottom-right-radius: defaults.$layout-rounding-content-outer;
   }
 
   &::before {
@@ -268,9 +268,9 @@ body {
   
     pointer-events: none;
     position: absolute;
-    border-top-left-radius: defaults.$layout-rounding-content;
+    border-top-left-radius: defaults.$layout-rounding-content-inner;
     @if $layout-content-is-offset-right {
-      border-top-right-radius: defaults.$layout-rounding-content;
+      border-top-right-radius: defaults.$layout-rounding-content-inner;
     }
     border-bottom-right-radius: 0;
     display: block;
@@ -287,7 +287,7 @@ body {
     width: calc(100% - #{defaults.$layout-width-nav-panel});
     @if $layout-content-is-offset-right {
       border-top-right-radius: 0;
-      border-bottom-right-radius: defaults.$layout-rounding-content;
+      border-bottom-right-radius: defaults.$layout-rounding-content-outer;
     }
   }
 
@@ -567,7 +567,7 @@ body {
               height: calc(#{math.div(defaults.$layout-height-nav-sub - $nav-item-padding, defaults.$layout-font-size-nav-sub)}em + 2px);
               padding: 0 0.75em;
               border: 1px solid transparent;
-              border-radius: defaults.$layout-rounding-content - 1px;
+              border-radius: defaults.$layout-rounding-content-outer - 1px;
               box-shadow: inset 0 0 0 2px defaults.$color-light-gray-2;
               transition: border-color 150ms, box-shadow 150ms, color 150ms;
               background-color: white;

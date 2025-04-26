@@ -106,7 +106,7 @@
         .vector-menu-content {
           position: relative;
           top: -1px;
-          left: -(defaults.$layout-rounding-content);
+          left: -(defaults.$layout-rounding-content-outer);
     
           .vector-menu-content-list {
             border-bottom: none;
@@ -296,7 +296,7 @@
         right: 0;
         width: 100%;
         border-top-left-radius: 0;
-        border-bottom-left-radius: defaults.$layout-rounding-content;
+        border-bottom-left-radius: defaults.$layout-rounding-content-outer;
       }
     }
   }

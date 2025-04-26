@@ -28,7 +28,7 @@ $color-cs-successbox: defaults.$color-success;
   border: 1px solid defaults.$color-light-gray-2;
   padding: 2px;
   background-color: defaults.$color-superlight-gray;
-  border-radius: defaults.$border-radius-m;
+  border-radius: defaults.$border-radius-s;
   box-sizing: border-box;
   margin-left: 1.0em;
   margin-bottom: 1.4em;
@@ -50,13 +50,13 @@ $color-cs-successbox: defaults.$color-success;
           left: 0;
           right: 0;
           bottom: 0;
-          border-radius: defaults.$border-radius-m;
+          border-radius: defaults.$border-radius-xxs;
         }
 
         img {
           width: 100%;
           height: auto;
-          border-radius: defaults.$border-radius-m;
+          border-radius: defaults.$border-radius-xxs;
         }
       }
     }
@@ -148,7 +148,7 @@ $color-cs-successbox: defaults.$color-success;
         height: 2em;
         border: 1px solid defaults.$color-light-gray-2;
         background: defaults.$color-light-gray-1;
-        border-radius: defaults.$border-radius-m;
+        border-radius: defaults.$border-radius-xs;
 
         &::after {
           content: '';
@@ -221,7 +221,7 @@ $color-cs-successbox: defaults.$color-success;
       padding: 2px;
       background-color: defaults.$color-superlight-gray;
       font-size: inherit;
-      border-radius: defaults.$border-radius-s;
+      border-radius: defaults.$border-radius-xxs;
       box-sizing: content-box;
       margin: 0.5em 0 1.3em 1.0em;
 
@@ -347,7 +347,7 @@ $color-cs-successbox: defaults.$color-success;
 
 // The table of contents on most pages.
 #toc {
-  border-radius: defaults.$border-radius-m;
+  border-radius: defaults.$border-radius-xs;
   border-color: defaults.$color-light-gray-5;
   background-color: color.mix(#fff, defaults.$color-light-gray-1, 80%);
   padding: 0.55em 0.75em;
@@ -396,11 +396,11 @@ $color-cs-successbox: defaults.$color-success;
     font-size: 0.77rem;
     line-height: defaults.$line-height-regular;
     padding: defaults.$layout-padding-v-box defaults.$layout-padding-h-box;
-    border-radius: defaults.$border-radius-m;
+    border-radius: defaults.$border-radius-xs;
     border-bottom-width: 1px;
     border-top-width: 4px;
-    border-bottom-left-radius: calc(defaults.$border-radius-m + 1px);
-    border-bottom-right-radius: calc(defaults.$border-radius-m + 1px);
+    border-bottom-left-radius: calc(defaults.$border-radius-xs + 1px);
+    border-bottom-right-radius: calc(defaults.$border-radius-xs + 1px);
 
     p:first-child {
       margin-top: 0;
@@ -436,7 +436,7 @@ $color-cs-successbox: defaults.$color-success;
 .suggestions {
   font-size: defaults.$layout-font-size-nav-sub !important;
   border: 2px solid defaults.$color-light-gray-2 !important;
-  border-radius: defaults.$layout-rounding-content - 1px;
+  border-radius: defaults.$layout-rounding-content-outer - 1px;
   margin-top: 1px !important;
   margin-right: 1px !important;
   min-width: 24em;
@@ -551,7 +551,7 @@ $color-cs-successbox: defaults.$color-success;
       display: block;
       position: absolute;
       inset: layout.$highlight-padding (math.div(layout.$highlight-padding, 2));
-      border-radius: defaults.$border-radius-m;
+      border-radius: defaults.$border-radius-xs;
       background-image: none;
       opacity: 1;
     }

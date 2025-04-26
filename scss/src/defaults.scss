@@ -14,12 +14,13 @@ $font-mono-size: 94%;
 $font-subnav-weight: 450;
 
 // Theme style settings
-$border-radius-s: 2px !default;
-$border-radius-m: 3px !default;
-$border-radius-mm: 5px !default;
+$border-radius-xxs: 2px !default;
+$border-radius-xs: 3px !default;
+$border-radius-s: 4px !default;
+$border-radius-m: 5px !default;
 $border-radius-l: 6px !default;
-$border-radius-ll: 8px !default;
-$border-radius-xl: 12px !default;
+$border-radius-xl: 8px !default;
+$border-radius-xxl: 12px !default;
 
 // Swatches
 $color-green-haze: #00a94b;
@@ -116,8 +117,9 @@ $layout-padding-h-content: 1em;
 $layout-padding-v-content: 1em;
 $layout-padding-h-box: 1.5em;
 $layout-padding-v-box: 1em;
-$layout-rounding-content: $border-radius-ll;
-$layout-rounding-nav-main: $border-radius-m;
+$layout-rounding-content-inner: $border-radius-xl;
+$layout-rounding-content-outer: $border-radius-l;
+$layout-rounding-nav-main: $border-radius-xs;
 $layout-rounding-nav-sub: $border-radius-l;
 $layout-rounding-nav-personal: $border-radius-l;
 $layout-font-size-nav-sub: 0.9em;
