@@ -3,6 +3,7 @@
 @use "defaults";
 @use "icons";
 @use "layout";
+@use "colorize";
 
 @media only screen and (max-width: 950px) and (min-width: 801px) {
   #mw-navigation #mw-panel #p-logo {
@@ -56,12 +57,13 @@
 
             > span {
               @include layout.subnav-item;
+              @include colorize.colorize-cobalt;
               width: #{math.div(layout.$icon-width, defaults.$layout-font-size-nav-sub)}em;
               text-indent: -9999px;
               position: absolute;
               font-size: 3.6vw;
               font-weight: normal;
-              background-image: icons.make-icon-url('three-bars', defaults.$color-cobalt);
+              background-image: icons.icon-url('three-bars');
               background-repeat: no-repeat;
               background-position: center;
               top: 0;

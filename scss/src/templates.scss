@@ -1,5 +1,6 @@
 @use "sass:color";
 @use "defaults";
+@use "colorize";
 @use "functions";
 @use "icons";
 
@@ -26,16 +27,16 @@ table.wikitable {
 
   // Make the external links a bit darker.
   a.external {
-    color: defaults.$color-external-visited;
+    color: defaults.$color-salem;
   }
   a.external::after {
-    background-color: defaults.$color-external-visited;
+    @include colorize.colorize-salem;
   }
   a.external:visited {
-    color: defaults.$color-external-visited;
+    color: defaults.$color-salem;
   }
   a.external:visited::after {
-    background-color: defaults.$color-external-visited;
+    @include colorize.colorize-salem;
   }
 }
 
@@ -47,12 +48,13 @@ table.wikitable {
     content: '\00a0';
     width: calc(0.83333333333em + 1px);
     display: inline-block;
-    background-color: currentColor;
-    mask-size: 0.83333333333em 0.83333333333em;
-    mask-repeat: no-repeat;
-    mask-position: center left;
+    background: transparent;
+    background-size: 0.83333333333em 0.83333333333em;
+    background-repeat: no-repeat;
+    background-position: center left;
   }
   &.internet-archive::before {
-    mask-image: icons.make-icon-url('internet-archive', defaults.$color-black);
+    @include colorize.colorize-black;
+    background-image: icons.icon-url('internet-archive');
   }
 }

@@ -5,6 +5,7 @@
 @use "defaults";
 @use "functions";
 @use "icons";
+@use "colorize";
 
 // The nav items that have an icon (see icons.scss)
 $nav-sub-icon-links: (
@@ -514,7 +515,8 @@ body {
                 &::before {
                   content: '';
                   #{$direction}: math.div($nav-item-padding + math.div($icon-width + $icon-spacing, defaults.$layout-font-size-nav-sub) - math.div($icon-width, 2), 2);
-                  background-image: icons.make-icon-url($icon, defaults.$color-white);
+                  background-image: icons.icon-url($icon);
+                  @include colorize.colorize-white;
                 }
               }
               &.selected a {
@@ -524,7 +526,7 @@ body {
                   background: rgba(defaults.$color-green-haze, 0.1);
                 }
                 &::before {
-                  background-image: icons.make-icon-url($icon, defaults.$color-green-haze);
+                  @include colorize.colorize-green-haze;
                 }
               }
             }
@@ -591,12 +593,12 @@ body {
                 box-shadow: inset 0 0 0 2px defaults.$color-cobalt;
               }
               #searchButton {
-                // See: <https://codepen.io/sosuke/pen/Pjoqqp>
-                filter: invert(16%) sepia(100%) saturate(7466%) hue-rotate(215deg) brightness(86%) contrast(105%);
+                @include colorize.colorize-cobalt;
               }
             }
 
             #searchButton {
+              @include colorize.colorize-gray-1;
               position: absolute;
               top: 1px;
               bottom: 0;
@@ -612,7 +614,8 @@ body {
               text-indent: -99999px;
               white-space: nowrap;
               overflow: hidden;
-              background: icons.make-icon-url('search', defaults.$color-gray-1) no-repeat 50% 50%;
+              background: transparent no-repeat 50% 50%;
+              background-image: icons.icon-url('search');
               background-size: #{math.div($icon-width, defaults.$layout-font-size-nav-sub)}em;
             }
           }
@@ -631,7 +634,8 @@ body {
                 &::before {
                   content: '';
                   #{$direction}: math.div($nav-item-padding + math.div($icon-width + $icon-spacing, defaults.$layout-font-size-nav-sub) - math.div($icon-width, 2), 2);
-                  background-image: icons.make-icon-url($icon, defaults.$color-cobalt);
+                  background-image: icons.icon-url($icon);
+                  @include colorize.colorize-cobalt;
                 }
               }
               &.selected a {
@@ -641,7 +645,7 @@ body {
                   background: rgba(defaults.$color-green-haze, 0.1);
                 }
                 &::before {
-                  background-image: icons.make-icon-url($icon, defaults.$color-green-haze);
+                  @include colorize.colorize-green-haze;
                 }
               }
             }
@@ -680,7 +684,8 @@ body {
           &::before {
             content: '';
             #{$direction}: $icon-width;
-            background-image: icons.make-icon-url($icon, defaults.$color-cobalt);
+            background-image: icons.icon-url($icon);
+            @include colorize.colorize-cobalt;
           }
         }
 
@@ -816,14 +821,13 @@ body {
                   padding-#{$direction}: #{(math.div($icon-width, 1.1em)) + defaults.$layout-side-nav-padding-left + 0.3em};
                   &::before {
                     content: '\00a0';
-                    background-color: defaults.$color-dark-gray;
-                    mask-size: contain;
-                    mask-repeat: no-repeat;
-                    mask-position: 0 50%;
-                    mask-image: icons.make-icon-url($icon, defaults.$color-dark-gray);
+                    background: transparent no-repeat 0 50%;
+                    background-size: contain;
+                    background-image: icons.icon-url($icon);
+                    @include colorize.colorize-gray-1;
                   }
                   &:hover::before {
-                    background-color: defaults.$color-cobalt;
+                    @include colorize.colorize-cobalt;
                   }
                 }
               }

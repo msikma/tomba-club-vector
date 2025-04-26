@@ -532,7 +532,8 @@ $color-cs-successbox: defaults.$color-success;
     left: math.div(layout.$highlight-padding, 2);
 
     &::before {
-      background-image: icons.make-icon-url('question', $color-mw-indicators);
+      @include colorize.colorize-mw-indicators;
+      background-image: icons.icon-url('question');
       background-position: 0 50%;
       background-repeat: no-repeat;
       background-size: contain;

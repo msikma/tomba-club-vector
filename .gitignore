@@ -15,4 +15,5 @@ tc-vector.css.map
 # OS
 .DS_Store
 Icon[^M]
+!TombaClub/assets/icons
 Thumbs.db
