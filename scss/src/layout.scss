@@ -261,10 +261,10 @@ body.right-panel {
   margin: 0 defaults.$layout-right-inset-content 3px defaults.$layout-left-inset-content;
   border-bottom: 0;
   box-shadow: 0 3px color.mix(#333, defaults.$color-outer-bg-bottom, 35%);
-  min-height: 36em;
+  min-height: 38em;
 
   @if defaults.$layout-has-tomba-wikipedia-logo {
-    min-height: 42em;
+    min-height: 44em;
   }
 
   @if defaults.$layout-has-tomba-sidebar-bg {
