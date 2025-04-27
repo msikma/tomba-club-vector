@@ -864,6 +864,9 @@ body.right-panel {
             &.active-link {
               a {
                 color: defaults.$color-salem;
+                &::before {
+                  @include colorize.colorize-salem;
+                }
               }
             }
 
@@ -876,13 +879,6 @@ body.right-panel {
                   padding-#{$direction}: #{(math.div($icon-width, 1.1em)) + defaults.$layout-side-nav-padding-left + 0.3em};
                   &::before {
                     background-image: icons.icon-url($icon);
-                  }
-                }
-              }
-              &.active-link##{$cls} {
-                a {
-                  &::before {
-                    @include colorize.colorize-salem;
                   }
                 }
               }
