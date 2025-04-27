@@ -139,6 +139,11 @@ body {
         margin-top: calc((-#{defaults.$layout-font-size-page-heading} * 1.3) - 1em - 0.5em - 2px);
       }
     }
+    // Should normally never show up, but if it does this will screw with the layout.
+    .MediaTransformError {
+      width: 100% !important;
+      background: rgba(0, 0, 0, 0.1);
+    }
   }
   .box.tright {
     color: defaults.$color-dark-gray;
@@ -271,7 +276,7 @@ body.right-panel {
     background-image: url('./assets/tomba-running-bg.png');
     background-repeat: no-repeat;
     background-size: 389px 387px;
-    background-position: -9em 23em;
+    background-position: -9em 30em;
   }
   @if $layout-content-is-offset-left {
     border-bottom-left-radius: defaults.$layout-rounding-content-outer;
