@@ -125,7 +125,7 @@ body {
 // This is designed to put right-floating images in its own column entirely without new HTML.
 @mixin right-panel {
   #firstHeading {
-    width: calc(100% - var(--tc-layout-width-right-panel));
+    width: calc(100% - (var(--tc-layout-width-right-panel) / defaults.$layout-font-size-page-heading-div));
   }
   #bodyContent {
     width: calc(100% - var(--tc-layout-width-right-panel));
