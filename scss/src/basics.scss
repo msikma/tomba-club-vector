@@ -20,6 +20,12 @@ body.mediawiki {
     font-size: inherit;
 
     > span {
+      // Most pages have a .mw-page-title-namespace, .mw-page-title-separator and .mw-page-title-main <span> items inside.
+      font-size: defaults.$layout-font-size-page-heading;
+    }
+
+    &:not(:has(span)) {
+      // Special pages don't have a <span> inside the #firstHeading.
       font-size: defaults.$layout-font-size-page-heading;
     }
 

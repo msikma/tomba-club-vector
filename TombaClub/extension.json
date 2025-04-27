@@ -8,7 +8,8 @@
     "SkinBuildSidebar": "TombaClubHooks::onSkinBuildSidebar",
     "SkinAddFooterLinks": "TombaClubHooks::onSkinAddFooterLinks",
     "BeforePageDisplay": "TombaClubHooks::onBeforePageDisplay",
-    "SetupAfterCache": "TombaClubHooks::onSetupAfterCache"
+    "SetupAfterCache": "TombaClubHooks::onSetupAfterCache",
+    "OutputPageParserOutput": "TombaClubHooks::onOutputPageParserOutput"
   },
   "AutoloadClasses": {
     "TombaClubHooks": "TombaClubHooks.php"

@@ -233,6 +233,21 @@ body {
   }
 }
 
+body.right-panel {
+  #content.mw-body {
+    @media only screen and (min-width: #{defaults.$layout-right-panel-small-limit}) {
+      @include right-panel;
+      --tc-layout-width-right-panel: #{defaults.$layout-right-panel-small-size};
+    }
+    @media only screen and (min-width: #{defaults.$layout-right-panel-medium-limit}) {
+      --tc-layout-width-right-panel: #{defaults.$layout-right-panel-medium-size};
+    }
+    @media only screen and (min-width: #{defaults.$layout-right-panel-large-limit}) {
+      --tc-layout-width-right-panel: #{defaults.$layout-right-panel-large-size};
+    }
+  }
+}
+
 // Main content body
 #content.mw-body {
   padding-left: defaults.$layout-width-nav-panel + defaults.$layout-padding-h-content;
@@ -289,19 +304,6 @@ body {
     @if $layout-content-is-offset-right {
       border-top-right-radius: 0;
       border-bottom-right-radius: defaults.$layout-rounding-content-outer;
-    }
-  }
-
-  &.right-panel {
-    @media only screen and (min-width: #{defaults.$layout-right-panel-small-limit}) {
-      @include right-panel;
-      --tc-layout-width-right-panel: #{defaults.$layout-right-panel-small-size};
-    }
-    @media only screen and (min-width: #{defaults.$layout-right-panel-medium-limit}) {
-      --tc-layout-width-right-panel: #{defaults.$layout-right-panel-medium-size};
-    }
-    @media only screen and (min-width: #{defaults.$layout-right-panel-large-limit}) {
-      --tc-layout-width-right-panel: #{defaults.$layout-right-panel-large-size};
     }
   }
 
@@ -835,7 +837,7 @@ body {
               &.active-link##{$cls} {
                 a {
                   &::before {
-                    background-color: defaults.$color-salem;
+                    @include colorize.colorize-salem;
                   }
                 }
               }

@@ -25,6 +25,39 @@ class TombaClubHooks {
     return $wgExtensionAssetsPath.'/TombaClub';
   }
 
+  /** Returns whether we have right panels (thumbnails and infoboxes that float to the right). */
+  private static function hasRightPanels($html) {
+    $doc = new \DOMDocument();
+    @$doc->loadHTML('<?xml encoding="utf-8" ?>'.$html);
+    $xpath = new \DOMXPath($doc);
+
+    // We only need to look for items that are a direct descendant of the .mw-parser-output div.
+    $mwParserDiv = $xpath->query('//div[contains(@class, "mw-parser-output")]');
+    if ($mwParserDiv->length === 0) {
+      return false;
+    }
+    $mwParserOutput = $mwParserDiv->item(0);
+
+    // Find thumbnails and infoboxes that float right.
+    foreach ($mwParserOutput->childNodes as $child) {
+      if ($child->nodeType !== XML_ELEMENT_NODE) {
+        continue;
+      }
+
+      $classAttr = $child->getAttribute('class');
+      $classes = preg_split('/\s+/', trim($classAttr));
+
+      // Relevant items will have .tright as well as one of .thumb or .box.
+      if (in_array('tright', $classes)) {
+        if (in_array('thumb', $classes) || in_array('box', $classes)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
   /**
    * Adds the CC BY-NC-SA 4.0 copyright icon to the footer.
    */
@@ -52,6 +85,22 @@ class TombaClubHooks {
         <span class="license-image"><a href="'.$copyrightLink.'"><img src="'.$licenseImage.'" width="62" height="15" /></a></span>
       </div>
     ';
+  }
+
+  /**
+   * Adds the .right-panel CSS class to the <body> element if applicable.
+   * 
+   * Pages that have a right floating thumbnail or infobox get a right sidebar.
+   */
+  public static function onOutputPageParserOutput(&$out, &$parserOutput) {
+    // The full HTML output of this page.
+    $html = $parserOutput->getText();
+    // Check if this page has right floating thumbnails or infoboxes.
+    $panels = self::hasRightPanels($html);
+    // If so, enable the right panel class. This activates the right sidebar and makes it show up.
+    if ($panels) {
+      $out->addBodyClasses('right-panel');
+    }
   }
 
   /**
