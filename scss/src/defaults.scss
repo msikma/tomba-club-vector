@@ -143,8 +143,10 @@ $layout-right-panel-medium-size: 24em;
 $layout-right-panel-large-limit: 1460px;
 $layout-right-panel-large-size: 26em;
 
-// Whether to add a Tomba image in the left sidebar.
-$layout-has-tomba-image: true;
+// Adds the extra logo image of Tomba holding on to the Wikipedia logo.
+$layout-has-tomba-wikipedia-logo: true;
+// Adds the image of Tomba running to the left sidebar background (very lightly transparent).
+$layout-has-tomba-sidebar-bg: true;
 
 // The amount that the layout will move down to accommodate the logo in responsive mode.
 $layout-responsive-offset-y: 30px;

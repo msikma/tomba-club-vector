@@ -174,6 +174,10 @@ class TombaClubHooks {
       ],
     ]);
 
+    // Add a special portlet to the start of the list that will be used by our globe logo.
+    // The header will be hidden, and the only item will be replaced with an image.
+    $bar = ['Tomba Wiki' => [['id' => 'tomba_sidebar_logo', 'href' => 'Main_Page', 'text' => 'Main page']]] + $bar;
+
     return true;
   }
 }

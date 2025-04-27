@@ -261,9 +261,13 @@ body.right-panel {
   margin: 0 defaults.$layout-right-inset-content 3px defaults.$layout-left-inset-content;
   border-bottom: 0;
   box-shadow: 0 3px color.mix(#333, defaults.$color-outer-bg-bottom, 35%);
-  min-height: 34em;
+  min-height: 36em;
 
-  @if defaults.$layout-has-tomba-image {
+  @if defaults.$layout-has-tomba-wikipedia-logo {
+    min-height: 42em;
+  }
+
+  @if defaults.$layout-has-tomba-sidebar-bg {
     background-image: url('./assets/tomba-running-bg.png');
     background-repeat: no-repeat;
     background-size: 389px 387px;
@@ -740,12 +744,53 @@ body.right-panel {
     padding-left: 0;
     left: defaults.$layout-left-inset-content;
 
-    // Fixes to bring the logo to the top of the layout.
+    // Moves the logo to the top of the layout.
     #p-logo {
       position: absolute;
       top: -(defaults.$layout-height-nav-logo + defaults.$layout-height-nav-main + defaults.$layout-height-nav-sub + defaults.$layout-inset-content);
       margin: 0.2em 0 0 0;
       left: calc(50vw - 80px);
+    }
+
+    // An *additional* logo, which sits in the place where the MediaWiki logo normally would.
+    // It's complicated, I know, but whatever. We add a special portlet for this in TombaClubHooks.php.
+    #p-Tomba_Wiki {
+      @if not defaults.$layout-has-tomba-wikipedia-logo {
+        // If we're not displaying this, just turn the whole thing off.
+        display: none;
+      }
+      > h3 {
+        display: none;
+      }
+      #tomba_sidebar_logo > a {
+        --logo-width: 196px; // defaults.$layout-width-nav-panel;
+        --logo-height: 161px; // (1146 / 942);
+        text-indent: -9999px;
+        width: var(--logo-width);
+        height: var(--logo-height);
+        padding: 0;
+        background: transparent url('./assets/globe-tomba.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        display: block;
+        margin-top: -0.5em;
+        margin-bottom: 0.4em;
+        position: relative;
+        left: 0.6em;
+
+        &::before {
+          content: none;
+        }
+      }
+    }
+
+    // If we're not displaying the globe logo, we also need to make sure the first
+    // navigation portlet does not have any undue space above it.
+    @if not defaults.$layout-has-tomba-wikipedia-logo {
+      #p-navigation {
+        padding-top: 0;
+      }
     }
 
     .mw-portlet {
