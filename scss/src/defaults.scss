@@ -5,6 +5,7 @@ $font-regular: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
 $font-size-regular: 0.9rem;
 $font-size-caption: 0.92em;
 $line-height-regular: 1.6;
+$line-height-caption: 1.475;
 // Primary header font
 $font-header: "Roboto", sans-serif !default;
 //$font-header: "Linux Libertine", "Georgia", "Times", serif !default;
@@ -54,6 +55,7 @@ $color-neutral: #d7d1d1;
 $color-white: #fff;
 $color-superlight-gray: #faf9f9;
 $color-light-gray-1: #f2efef;
+$color-light-gray-1-5: color.mix(#000, $color-light-gray-1, 4%);
 $color-light-gray-2: color.mix(#000, $color-light-gray-1, 10%);
 $color-light-gray-3: color.mix(#000, $color-light-gray-1, 15%);
 $color-light-gray-4: color.mix(#000, $color-light-gray-1, 20%);
