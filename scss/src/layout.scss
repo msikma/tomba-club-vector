@@ -135,11 +135,12 @@ body {
   }
   .mw-parser-output {
     // An infobox that's right at the start of an article needs to be moved up a bit.
-    .box.tright {
+    .box.tright,
+    .thumb.tright {
       &:first-child {
         // Haven't quite figured out why this is the formula. TODO
         // Also, this breaks if the #firstHeading is 2 lines or more (pretty rare).
-        margin-top: calc((-#{defaults.$layout-font-size-page-heading} * 1.3) - 1em - 0.5em - 2px);
+        margin-top: calc((-#{defaults.$layout-font-size-page-heading} * 1.3) - 1em - 0.5em - 2px + 0.05em);
       }
     }
     // Should normally never show up, but if it does this will screw with the layout.
