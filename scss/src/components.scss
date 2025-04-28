@@ -314,6 +314,11 @@ $color-cs-successbox: defaults.$color-success;
   padding: 0.45em 0.5em 0.4em;
 }
 
+// Category links at the bottom of the content.
+#mw-content-text + #catlinks {
+  // TODO
+}
+
 // The bar at the top of file (image) detail pages.
 #bodyContent #filetoc {
   // We really just don't need this. There's nothing on these pages that would warrant a ToC.

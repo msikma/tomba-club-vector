@@ -145,6 +145,9 @@ body {
         // Also, this breaks if the #firstHeading is 2 lines or more (pretty rare).
         margin-top: calc((-#{defaults.$layout-font-size-page-heading} * 1.3) - 1em - 0.5em - 2px + 0.05em);
       }
+      // Push up the image 0.5em, which is the margin of the text paragraphs.
+      // This allows images placed directly underneath a header to touch the header line.
+      margin-top: -0.5em;
     }
     // Should normally never show up, but if it does this will screw with the layout.
     .MediaTransformError {
@@ -202,6 +205,7 @@ body {
   .thumb.tright,
   .box.tright {
     margin-right: calc((var(--tc-layout-width-right-panel) * -1) - #{defaults.$layout-padding-h-content});
+    margin-bottom: 1.8em;
     width: calc(var(--tc-layout-width-right-panel) - 1.5em);
     max-width: inherit;
     color: defaults.$color-dark-gray;
