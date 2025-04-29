@@ -35,6 +35,18 @@ $color-cs-successbox: defaults.$color-success;
   max-width: 22em;
 
   .main-image {
+    &.frameless {
+      p {
+        .image {
+          &::before {
+            display: none;
+          }
+          img {
+            border-radius: 0;
+          }
+        }
+      }
+    }
     p {
       margin: 0;
 
