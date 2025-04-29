@@ -422,9 +422,10 @@ body.right-panel {
           background-image: none;
         }
         li#pt-anonuserpage::before, li#pt-userpage a::before {
+          @include colorize.colorize-white;
           content: '';
           display: block;
-          background-image: url('./assets/user-avatar.svg');
+          background-image: url('./assets/icons/user-avatar.svg');
           padding: 0;
           background-position: center;
           background-repeat: no-repeat;
@@ -439,8 +440,7 @@ body.right-panel {
           color: defaults.$color-dandelion;
         }
         li#pt-anonuserpage:hover::before, li#pt-userpage a:hover::before {
-          // color-filter defaults.$color-dandelion
-          filter: invert(78%) sepia(65%) saturate(445%) hue-rotate(357deg) brightness(359%) contrast(105%);
+          @include colorize.colorize-dandelion;
         }
         li#pt-mytalk:after {
           content: '';
