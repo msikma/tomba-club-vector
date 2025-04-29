@@ -166,6 +166,10 @@ body {
       .main-image {
         padding-bottom: 0.15em;
 
+        &.frameless {
+          padding-bottom: 0.5em;
+        }
+
         .image {
           &::before {
             @include functions.image-border-darker;
