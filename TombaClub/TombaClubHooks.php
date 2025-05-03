@@ -25,8 +25,8 @@ class TombaClubHooks {
     return $wgExtensionAssetsPath.'/TombaClub';
   }
 
-  /** Returns whether we have right panels (thumbnails and infoboxes that float to the right). */
-  private static function hasRightPanels($html) {
+  /** Returns the .mw-parser-output div. */
+  private static function getMwParserOutput($html) {
     $doc = new \DOMDocument();
     @$doc->loadHTML('<?xml encoding="utf-8" ?>'.$html);
     $xpath = new \DOMXPath($doc);
@@ -37,6 +37,15 @@ class TombaClubHooks {
       return false;
     }
     $mwParserOutput = $mwParserDiv->item(0);
+    return $mwParserOutput;
+  }
+
+  /** Returns whether we have right panels (thumbnails and infoboxes that float to the right). */
+  private static function hasRightPanels($html) {
+    $mwParserOutput = self::getMwParserOutput($html);
+    if ($mwParserOutput === false) {
+      return false;
+    }
 
     // Find thumbnails and infoboxes that float right.
     foreach ($mwParserOutput->childNodes as $child) {
@@ -52,6 +61,28 @@ class TombaClubHooks {
         if (in_array('thumb', $classes) || in_array('box', $classes)) {
           return true;
         }
+      }
+    }
+
+    return false;
+  }
+
+  private static function hasInlineBackdrop($html) {
+    $mwParserOutput = self::getMwParserOutput($html);
+    if ($mwParserOutput === false) {
+      return false;
+    }
+
+    // Search for .inline-backdrop divs.
+    foreach ($mwParserOutput->childNodes as $child) {
+      if ($child->nodeType !== XML_ELEMENT_NODE) {
+        continue;
+      }
+
+      $classAttr = $child->getAttribute('class');
+      $classes = preg_split('/\s+/', trim($classAttr));
+      if (in_array('inline-backdrop', $classes)) {
+        return true;
       }
     }
 
@@ -97,9 +128,16 @@ class TombaClubHooks {
     $html = $parserOutput->getText();
     // Check if this page has right floating thumbnails or infoboxes.
     $panels = self::hasRightPanels($html);
-    // If so, enable the right panel class. This activates the right sidebar and makes it show up.
+    // Check if this page has an inline backdrop.
+    $backdrops = self::hasInlineBackdrop($html);
+
+    // If there are panels, enable the right panel class. This activates the right sidebar.
     if ($panels) {
       $out->addBodyClasses('right-panel');
+    }
+    // If an inline backdrop is present, turn on "alt content" mode for this page.
+    if ($backdrops) {
+      $out->addBodyClasses('alt-content');
     }
   }
 
@@ -122,7 +160,7 @@ class TombaClubHooks {
     // Add Roboto font from Google Fonts.
     $out->addLink(['href' => 'https://fonts.googleapis.com', 'rel' => 'preconnect']);
     $out->addLink(['href' => 'https://fonts.gstatic.com', 'crossorigin' => 'anonymous']);
-    $out->addLink(['href' => 'https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap', 'rel' => 'stylesheet']);
+    $out->addLink(['href' => 'https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap', 'rel' => 'stylesheet']);
   }
 
   /**
@@ -156,6 +194,7 @@ class TombaClubHooks {
    * This links all of our social media accounts under a separate portlet.
    */
   public static function onSkinBuildSidebar($skin, &$bar) {
+    // Add our social media items after the navigation section.
     self::addCustomPortlet($bar, 'navigation', 'Social Media', [
       [
         'text' => 'Discord',
@@ -176,7 +215,13 @@ class TombaClubHooks {
 
     // Add a special portlet to the start of the list that will be used by our globe logo.
     // The header will be hidden, and the only item will be replaced with an image.
-    $bar = ['Tomba Wiki' => [['id' => 'tomba_sidebar_logo', 'href' => 'Main_Page', 'text' => 'Main page']]] + $bar;
+    $bar = ['Tomba Wiki' => [
+      [
+        'text' => 'Main page',
+        'href' => 'Main_Page',
+        'id' => 'tomba_sidebar_logo'
+      ]
+    ]] + $bar;
 
     return true;
   }

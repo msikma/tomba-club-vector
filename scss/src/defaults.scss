@@ -8,9 +8,10 @@ $line-height-regular: 1.6;
 $line-height-caption: 1.475;
 // Primary header font
 $font-header: "Roboto", sans-serif !default;
+$line-height-header: 1.3;
 //$font-header: "Linux Libertine", "Georgia", "Times", serif !default;
 // Font used for monospaced elements, such as <code>, <pre>, etc
-$font-mono: "Menlo", "Andale Mono", "Ubuntu Mono", monospace !default;
+$font-mono: "Roboto Mono", "Menlo", "Andale Mono", "Ubuntu Mono", monospace !default;
 $font-mono-size: 94%;
 $font-subnav-weight: 450;
 
@@ -87,6 +88,16 @@ $color-tag-sets: (
   'blueGray': (dark: #35355d, medium: #8383ab, light: #f2f2ff),
   'lime': (dark: #617218, medium: #a5d134, light: #f3ffce),
   'brown': (dark: #7a3515, medium: #dc9777, light: #ffede5)
+);
+$color-tag-sets2: (
+  'gray': (dark: #3d3d3d, light: #e6e6e6),
+  'red': (dark: #b10202, light: #ffcfc9),
+  'orange': (dark: #753800, light: #ffc8aa),
+  'yellow': (dark: #473822, light: #ffe5a0),
+  'green': (dark: #11734b, light: #d4edbc),
+  'blue': (dark: #0a53a8, light: #bfe1f6),
+  'cyan': (dark: #215a6c, light: #c6dbe1),
+  'purple': (dark: #5a3286, light: #e6cff2),
 );
 
 // Social media and other icons.

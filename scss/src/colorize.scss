@@ -8,6 +8,10 @@
   // #3D3C3C
   filter: brightness(0) saturate(100%) invert(17%) sepia(5%) saturate(129%) hue-rotate(314deg) brightness(106%) contrast(84%);
 }
+@mixin colorize-dark-gray {
+  // #313030
+  filter: brightness(0) saturate(100%) invert(13%) sepia(10%) saturate(103%) hue-rotate(314deg) brightness(91%) contrast(82%);
+}
 @mixin colorize-black {
   // #202122
   filter: brightness(0) saturate(100%) invert(10%) sepia(5%) saturate(470%) hue-rotate(169deg) brightness(95%) contrast(91%);
