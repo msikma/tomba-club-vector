@@ -823,6 +823,10 @@ body.alt-content {
     margin: 0;
     margin-bottom: calc(-2em - 2px);
 
+    &::before {
+      border-top: 1px solid transparent;
+    }
+
     .inner {
       overflow: scroll;
       clip-path: polygon(0.0% 0.0%, 100% 0%, 100% $top, 100% 100%, ($left - 1em) 100%, ($left - 1em) $top, 0% $top);
