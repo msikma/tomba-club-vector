@@ -153,7 +153,6 @@ class TombaClubHooks {
     }
 
     // Include the base skin assets.
-    $out->addMeta('viewport', 'width=360px, initial-scale=1');
     $out->addStyle($extBaseDir.'/tc-vector.css');
     $out->addScriptFile($extBaseDir.'/tc-vector.js');
 
