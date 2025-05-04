@@ -768,19 +768,6 @@ body.alt-content {
   }
 }
 
-.page-TaableTest.action-view {
-  // https://docs.google.com/spreadsheets/d/1OIS7zp7hTjOEGku5eOebieJ1NjZHb3Wua-RVqcLwZFs/edit?gid=0#gid=0
-  // fix positioning mobile
-  $gap: 1em;
-  #content {
-    overflow: hidden;
-
-    &::before {
-      display: none;
-    }
-  }
-}
-
 .text-table {
   text-align: left;
   border-collapse: separate;
@@ -828,7 +815,6 @@ body.alt-content {
     }
 
     .inner {
-      overflow: scroll;
       clip-path: polygon(0.0% 0.0%, 100% 0%, 100% $top, 100% 100%, ($left - 1em) 100%, ($left - 1em) $top, 0% $top);
     }
 
@@ -855,7 +841,7 @@ body.alt-content {
   }
 
   .inner {
-    overflow: scroll;
+    overflow-x: scroll;
   }
 
   table {

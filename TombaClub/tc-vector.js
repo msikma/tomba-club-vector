@@ -116,8 +116,8 @@ function decorateBigTables() {
         const defaultDirection = 'asc'
         const defaultActive = false
         const text = col.innerText
-        const slug = col.getAttribute('data-slug') ?? text.toLowerCase().replaceAll(' ', '_')
-        const dataType = col.getAttribute('data-type') ?? 'string'
+        const slug = col.getAttribute('data-slug') ? col.getAttribute('data-slug') : text.toLowerCase().replaceAll(' ', '_')
+        const dataType = col.getAttribute('data-type') ? col.getAttribute('data-type') : 'string'
         col.setAttribute('data-direction', defaultDirection)
         col.setAttribute('data-active', defaultActive)
         col.insertAdjacentHTML('beforeend', '<span class="sorter"></span>');
