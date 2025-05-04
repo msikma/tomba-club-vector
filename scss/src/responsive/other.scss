@@ -1,0 +1,16 @@
+// Small fixes.
+
+@media only screen and (max-width: 980px) {
+  #mw-navigation {
+    #mw-head {
+      #p-personal {
+        .vector-menu-content {
+          #pt-userpage a {
+            // Remove username from the quick menu.
+            text-indent: -9999px;
+          }
+        }
+      }
+    }
+  }
+}

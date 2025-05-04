@@ -1,0 +1,26 @@
+// For smaller tablet sizes.
+@media only screen and (max-width: 660px) {
+  .mw-parser-output {
+    // Make sure all boxes and thumbs don't float.
+    .box.tright,
+    .thumb.tright,
+    .thumb.tleft {
+      float: none;
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      max-width: unset;
+
+      .thumbinner {
+        box-sizing: border-box;
+        width: 100% !important;
+        margin-left: 0;
+        margin-right: 0;
+
+        .thumbimage {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
