@@ -34,21 +34,75 @@ $color-cs-successbox: defaults.$color-success;
   margin-bottom: 1.4em;
   max-width: 22em;
 
-  .main-image {
-    &.frameless {
-      p {
-        .image {
-          &::before {
-            display: none;
-          }
-          img {
-            border-radius: 0 !important;
-          }
-        }
+  &.viewing-image-1 {
+    .main-image .image-items {
+      left: 0;
+    }
+    .main-image-labels .label-items .label-item.img-1 {
+      background: defaults.$color-green-haze;
+      color: white;
+
+      &::before {
+        @include colorize.colorize-white;
       }
     }
-    p {
+  }
+  &.viewing-image-2 {
+    .main-image .image-items {
+      left: 110%;
+    }
+    .main-image-labels .label-items .label-item.img-2 {
+      background: defaults.$color-green-haze;
+      color: white;
+
+      &::before {
+        @include colorize.colorize-white;
+      }
+    }
+  }
+  &.viewing-image-3 {
+    .main-image .image-items {
+      left: 220%;
+    }
+    .main-image-labels .label-items .label-item.img-3 {
+      background: defaults.$color-green-haze;
+      color: white;
+
+      &::before {
+        @include colorize.colorize-white;
+      }
+    }
+  }
+
+  .main-image {
+    overflow: hidden;
+
+    .image-items {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .image-item {
       margin: 0;
+      position: absolute;
+      width: 100%;
+
+      &.img-1 {
+        position: relative;
+      }
+      &.img-2 {
+        left: -110%;
+      }
+      &.img-3 {
+        left: -220%;
+      }
+
+      &.disc {
+        .image::before {
+          display: none;
+        }
+      }
 
       .image {
         display: block;
@@ -69,6 +123,56 @@ $color-cs-successbox: defaults.$color-success;
           width: 100%;
           height: auto;
           border-radius: defaults.$border-radius-xxs;
+        }
+      }
+    }
+  }
+
+  .main-image-labels {
+    padding: 0.5em 0;
+    
+    .label-items {
+      text-align: center;
+      display: flex;
+      gap: 0.25em;
+      place-content: center;
+
+      .label-item {
+        font-size: defaults.$font-size-caption;
+        font-weight: 450;
+        background: rgba(defaults.$color-green-haze, 0.1);
+        color: defaults.$color-green-haze;
+        padding: 0.1em 0.8em;
+        border-radius: defaults.$border-radius-xs;
+        position: relative;
+        cursor: pointer;
+
+        &:hover {
+          background: rgba(defaults.$color-green-haze, 0.25);
+        }
+
+        &::before {
+          @include colorize.colorize-green-haze;
+          width: 0.875rem;
+          height: 0.875rem;
+          left: 0.8em;
+          top: calc(50% - (0.875rem * 0.5));
+          position: absolute;
+          display: inline-block;
+          vertical-align: text-top;
+          background: transparent;
+          background-position: 50% 50%;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+
+        &.disc {
+          padding-left: calc(0.8em + 1rem);
+
+          &::before {
+            content: '';
+            background-image: url('./assets/icons/cd.svg');
+          }
         }
       }
     }

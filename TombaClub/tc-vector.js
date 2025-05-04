@@ -229,6 +229,25 @@ function decorateHamburgerMenu() {
 }
 
 /**
+ * Decorates dynamic content for infoboxes.
+ */
+function decorateInfoBoxes() {
+  const infoboxes = [...document.querySelectorAll('.tc-infobox')]
+  infoboxes.forEach(infobox => {
+    const labels = [...infobox.querySelectorAll('.label-items .label-item')]
+    labels.forEach((label, n) => {
+      label.addEventListener('click', ev => {
+        ev.preventDefault()
+        for (let n = 0; n < labels.length; ++n) {
+          infobox.classList.remove(`viewing-image-${n + 1}`)
+        }
+        infobox.classList.add(`viewing-image-${n + 1}`)
+      })
+    })
+  })
+}
+
+/**
  * Script for the Tomba Club Mediawiki skin.
  * 
  * This runs after the <footer> has been printed.
@@ -238,6 +257,7 @@ function main() {
   ensureNonEmptyNav()
   decorateHamburgerMenu()
   decorateBigTables()
+  decorateInfoBoxes()
 }
 
 main()
