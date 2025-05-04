@@ -62,6 +62,17 @@
   .main-image {
     overflow: hidden;
 
+    &.frameless {
+      .image {
+        &::before {
+          display: none;
+        }
+        img {
+          border-radius: 0;
+        }
+      }
+    }
+
     .image-items {
       position: relative;
       display: flex;
@@ -88,27 +99,27 @@
           display: none;
         }
       }
+    }
 
-      .image {
-        display: block;
-        position: relative;
+    .image {
+      display: block;
+      position: relative;
 
-        &::before {
-          @include functions.image-border;
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          border-radius: defaults.$border-radius-xxs;
-        }
+      &::before {
+        @include functions.image-border;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: defaults.$border-radius-xxs;
+      }
 
-        img {
-          width: 100%;
-          height: auto;
-          border-radius: defaults.$border-radius-xxs;
-        }
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: defaults.$border-radius-xxs;
       }
     }
   }
