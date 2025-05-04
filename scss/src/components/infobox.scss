@@ -1,0 +1,271 @@
+@use "../defaults";
+@use "../colorize";
+@use "../functions";
+
+// Infobox design.
+.tc-infobox {
+  float: right;
+
+  th, td {
+    padding: 0;
+  }
+
+  border: 1px solid defaults.$color-light-gray-2;
+  padding: 2px;
+  background-color: defaults.$color-superlight-gray;
+  border-radius: defaults.$border-radius-s;
+  box-sizing: border-box;
+  margin-left: 1.0em;
+  margin-bottom: 1.4em;
+  max-width: 22em;
+
+  &.viewing-image-1 {
+    .main-image .image-items {
+      left: 0;
+    }
+    .main-image-labels .label-items .label-item.img-1 {
+      background: defaults.$color-green-haze;
+      color: white;
+
+      &::before {
+        @include colorize.colorize-white;
+      }
+    }
+  }
+  &.viewing-image-2 {
+    .main-image .image-items {
+      left: 110%;
+    }
+    .main-image-labels .label-items .label-item.img-2 {
+      background: defaults.$color-green-haze;
+      color: white;
+
+      &::before {
+        @include colorize.colorize-white;
+      }
+    }
+  }
+  &.viewing-image-3 {
+    .main-image .image-items {
+      left: 220%;
+    }
+    .main-image-labels .label-items .label-item.img-3 {
+      background: defaults.$color-green-haze;
+      color: white;
+
+      &::before {
+        @include colorize.colorize-white;
+      }
+    }
+  }
+
+  .main-image {
+    overflow: hidden;
+
+    .image-items {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .image-item {
+      margin: 0;
+      position: absolute;
+      width: 100%;
+
+      &.img-1 {
+        position: relative;
+      }
+      &.img-2 {
+        left: -110%;
+      }
+      &.img-3 {
+        left: -220%;
+      }
+
+      &.disc {
+        .image::before {
+          display: none;
+        }
+      }
+
+      .image {
+        display: block;
+        position: relative;
+
+        &::before {
+          @include functions.image-border;
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: defaults.$border-radius-xxs;
+        }
+
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: defaults.$border-radius-xxs;
+        }
+      }
+    }
+  }
+
+  .main-image-labels {
+    padding: 0.5em 0;
+    
+    .label-items {
+      text-align: center;
+      display: flex;
+      gap: 0.25em;
+      place-content: center;
+
+      .label-item {
+        font-size: defaults.$font-size-caption;
+        font-weight: 450;
+        background: rgba(defaults.$color-green-haze, 0.1);
+        color: defaults.$color-green-haze;
+        padding: 0.1em 0.8em;
+        border-radius: defaults.$border-radius-xs;
+        position: relative;
+        cursor: pointer;
+
+        &:hover {
+          background: rgba(defaults.$color-green-haze, 0.25);
+        }
+
+        &::before {
+          @include colorize.colorize-green-haze;
+          width: 0.875rem;
+          height: 0.875rem;
+          left: 0.8em;
+          top: calc(50% - (0.875rem * 0.5));
+          position: absolute;
+          display: inline-block;
+          vertical-align: text-top;
+          background: transparent;
+          background-position: 50% 50%;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+
+        &.disc {
+          padding-left: calc(0.8em + 1rem);
+
+          &::before {
+            content: '';
+            background-image: url('./assets/icons/cd.svg');
+          }
+        }
+      }
+    }
+  }
+
+  .row {
+    td, th {
+      font-size: defaults.$font-size-caption;
+      line-height: defaults.$line-height-regular;
+      padding: 0.1em 0 0.1em;
+      vertical-align: top;
+    }
+    td {
+      font-weight: 450;
+    }
+    th {
+      text-align: left;
+      padding-left: 0.25em;
+      padding-right: 1.1em;
+    }
+  }
+
+  .tc-infobox-separator {
+    th {
+      padding: 0.1em 0 0.1em;
+
+      .header {
+        padding: 2px 0 1px;
+        background: defaults.$color-dandelion;
+        background: defaults.$color-green-haze;
+        font-weight: defaults.$font-subnav-weight;
+        color: defaults.$color-heading-positive;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+        border-radius: defaults.$layout-rounding-nav-main;
+      }
+    }
+  }
+
+  .tc-infobox-links {
+    .links {
+      display: flex;
+      place-content: center;
+      gap: 0.25em;
+    }
+
+    .link {
+      position: relative;
+
+      &::after {
+        content: '';
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        display: block;
+        visibility: hidden;
+      }
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        background-size: 80% 80%;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+      }
+
+      @each $icon in defaults.$external-sites {
+        &.#{$icon}::before {
+          background-image: url('./assets/sites/#{$icon}.svg');
+        }
+        &.#{$icon}::after {
+          background-image: url('./assets/sites/#{$icon}-mask.svg');
+        }
+        &:hover {
+          &.#{$icon}::before {
+            background-image: url('./assets/sites/#{$icon}-mask.svg');
+          }
+        }
+      }
+
+      a {
+        display: block;
+        text-indent: -9999px;
+        width: 2em;
+        height: 2em;
+        border: 1px solid defaults.$color-light-gray-2;
+        background: defaults.$color-light-gray-1;
+        border-radius: defaults.$border-radius-xs;
+
+        &::after {
+          content: '';
+          display: none;
+        }
+      }
+
+      &:hover {
+        &::before {
+          @include colorize.colorize-green-haze;
+        }
+        a {
+          border-color: defaults.$color-green-haze;
+          background-color: rgba(defaults.$color-green-haze, 0.2);
+        }
+      }
+    }
+  }
+}

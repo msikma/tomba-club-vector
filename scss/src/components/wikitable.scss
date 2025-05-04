@@ -1,0 +1,40 @@
+@use "sass:color";
+@use "../defaults";
+@use "../colorize";
+@use "../functions";
+
+// Standard Wikitable with rounding.
+table.wikitable {
+  @include functions.table-universal();
+  @include functions.table-rounded('m');
+
+  border: none;
+
+  tbody, thead, tfoot {
+    tr {
+      th, td {
+        border-color: defaults.$color-light-gray-5;
+      }
+      th {
+        background-color: color.mix(#000, defaults.$color-light-gray-1, 2%);
+      }
+      td {
+        background-color: color.mix(#fff, defaults.$color-light-gray-1, 80%);
+      }
+    }
+  }
+
+  // Make the external links a bit darker.
+  a.external {
+    color: defaults.$color-salem;
+  }
+  a.external::after {
+    @include colorize.colorize-salem;
+  }
+  a.external:visited {
+    color: defaults.$color-salem;
+  }
+  a.external:visited::after {
+    @include colorize.colorize-salem;
+  }
+}

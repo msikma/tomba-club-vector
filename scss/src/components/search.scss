@@ -1,0 +1,56 @@
+@use "../defaults";
+
+// Search suggestions. These show up when you type something in the search box.
+.suggestions {
+  font-size: defaults.$layout-font-size-nav-sub !important;
+  border: 2px solid defaults.$color-light-gray-2 !important;
+  border-radius: defaults.$layout-rounding-content-outer - 1px;
+  margin-top: 1px !important;
+  margin-right: 1px !important;
+  min-width: 24em;
+
+  .suggestions-results {
+    border: none;
+    border-bottom: 1px solid defaults.$color-light-gray-2;
+
+    .mw-searchSuggest-link {
+      padding: 0;
+    }
+
+    .suggestions-result {
+      padding: 0.25em 0.75em;
+
+      &.suggestions-result-current {
+        background: defaults.$color-cobalt;
+      }
+    }
+  }
+  .mw-searchSuggest-link {
+    display: block;
+
+    .suggestions-special {
+      border: none;
+      margin: 0;
+      padding: 0;
+      padding: 0.25em 0.75em;
+
+      &.suggestions-result-current {
+        background: defaults.$color-cobalt;
+      }
+
+      .special-label {
+        color: defaults.$color-light-gray-8;
+
+        &::after {
+          content: ':';
+        }
+      }
+      &.suggestions-result-current .special-label {
+        color: white;
+      }
+      .special-query {
+        padding: 0.25em 0 0;
+      }
+    }
+  }
+}

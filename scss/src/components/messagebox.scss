@@ -1,0 +1,50 @@
+@use "sass:color";
+@use "../defaults";
+
+// Colors of the contentSub message boxes.
+$color-cs-messagebox: defaults.$color-neutral;
+$color-cs-errorbox: defaults.$color-error;
+$color-cs-warningbox: defaults.$color-warning;
+$color-cs-successbox: defaults.$color-success;
+
+
+#contentSub, #contentSub2, #mw-content-text {
+  .messagebox, .errorbox, .warningbox, .successbox {
+    font-size: 0.77rem;
+    line-height: defaults.$line-height-regular;
+    padding: defaults.$layout-padding-v-box defaults.$layout-padding-h-box;
+    border-radius: defaults.$border-radius-xs;
+    border-bottom-width: 1px;
+    border-top-width: 4px;
+    border-bottom-left-radius: calc(defaults.$border-radius-xs + 1px);
+    border-bottom-right-radius: calc(defaults.$border-radius-xs + 1px);
+
+    p:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .messagebox {
+    border-color: color.mix(#fff, $color-cs-messagebox, 0%);
+    background-color: color.mix(#fff, $color-cs-messagebox, 80%);
+    border-top-width: 1px;
+  }
+
+  .errorbox {
+    border-color: color.mix(#fff, $color-cs-errorbox, 60%);
+    background-color: color.mix(#fff, $color-cs-errorbox, 90%);
+    border-top-color: $color-cs-errorbox;
+  }
+
+  .warningbox {
+    border-color: color.mix(#fff, $color-cs-warningbox, 60%);
+    background-color: color.mix(#fff, $color-cs-warningbox, 90%);
+    border-top-color: $color-cs-warningbox;
+  }
+
+  .successbox {
+    border-color: color.mix(#fff, $color-cs-successbox, 60%);
+    background-color: color.mix(#fff, $color-cs-successbox, 90%);
+    border-top-color: $color-cs-successbox;
+  }
+}

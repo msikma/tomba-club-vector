@@ -1,0 +1,16 @@
+@use "../defaults";
+@use "../functions";
+
+// Category links at the bottom of the page.
+.catlinks {
+  @include functions.border-radius('m');
+  background-color: defaults.$color-light-gray-0;
+  border: 1px solid defaults.$color-light-gray-5;
+  margin: 2em 0 0 0;
+  padding: 0.45em 0.5em 0.4em;
+}
+
+// Category links at the bottom of the content.
+#mw-content-text + #catlinks {
+  // TODO
+}

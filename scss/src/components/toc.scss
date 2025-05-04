@@ -1,0 +1,67 @@
+@use "sass:color";
+@use "../defaults";
+
+// The table of contents on most pages.
+#toc {
+  border-radius: defaults.$border-radius-xs;
+  border-color: defaults.$color-light-gray-5;
+  background-color: color.mix(#fff, defaults.$color-light-gray-1, 80%);
+  padding: 0.55em 0.75em;
+
+  #mw-toc-heading {
+    margin: 0.15em 0 0.4em;
+    display: block;
+  }
+
+  .toctogglespan {
+    // Disable the "hide" prompt. Who ever hides the ToC?
+    display: none;
+  }
+
+  > ul {
+    margin: 0;
+
+    li {
+      margin-bottom: 0.1em;
+    }
+
+    a + ul {
+      margin-top: 0.1em;
+    }
+  }
+
+  li > ul {
+    margin: 0 0 0 1.5em;
+  }
+
+  li a {
+    text-decoration: none;
+    display: flex;
+
+    .tocnumber {
+      padding: 0;
+      padding-right: 0.5em;
+      display: inline-block;
+      text-align: left;
+    }
+    &:hover .toctext {
+      text-decoration: underline;
+    }
+  }
+
+  li.toclevel-1 .tocnumber {
+    min-width: 1ch;
+  }
+  li.toclevel-2 .tocnumber {
+    min-width: 2ch + 0.5ch;
+  }
+  li.toclevel-3 .tocnumber {
+    min-width: 3ch + 1ch;
+  }
+}
+
+// The bar at the top of file (image) detail pages.
+#bodyContent #filetoc {
+  // We really just don't need this. There's nothing on these pages that would warrant a ToC.
+  display: none;
+}

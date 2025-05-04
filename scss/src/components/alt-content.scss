@@ -1,0 +1,65 @@
+@use "sass:color";
+@use "../defaults";
+
+// Some pages are tagged as "alt-content" pages. What does this mean?
+// Normally, each page just has wiki content: a first heading followed by a bunch of HTML rendered from wiki code.
+// For "alt-content" pages, we omit the first heading, as well as the white backdrop that all pages normally get;
+// this is done to get some space for a special kind of content that will precede the main content.
+// This is currently only done on BigTable pages.
+body.alt-content {
+  // Turn off the main backdrop.
+  #content.mw-body {
+    &::before {
+      display: none;
+    }
+  }
+  // The first heading must also be hidden.
+  #firstHeading {
+    display: none;
+  }
+
+  .mw-parser-output {
+    // Make the first <h1> look like the #firstHeading.
+    > h1:first-of-type, > .fake-header {
+      font-size: defaults.$layout-font-size-page-heading;
+      line-height: defaults.$line-height-header;
+      font-weight: 500;
+      border-width: 2px !important;
+
+      .mw-editsection {
+        display: none;
+      }
+    }
+    // The .inline-backdrop div can be added inside of a wiki page to add a white backdrop later on.
+    // Only one can be added on a page, and only on pages that don't have a regular backdrop.
+    .inline-backdrop {
+      display: block !important;
+
+      &::before {
+        pointer-events: none;
+        height: 9999em;
+        border-top-left-radius: defaults.$layout-rounding-content-inner;
+        @if defaults.$layout-right-inset-content > 0em {
+          border-top-right-radius: defaults.$layout-rounding-content-inner;
+        }
+        display: block !important;
+        content: '';
+        background: defaults.$color-content-bg;
+        z-index: -1;
+        position: absolute;
+        margin-top: -1em;
+        left: -1em;
+        right: -1em;
+      }
+    }
+  }
+}
+
+// Turn off the backdrop entirely on regular pages.
+.inline-backdrop {
+  display: none;
+
+  &::before {
+    display: none;
+  }
+}

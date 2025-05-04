@@ -1,0 +1,49 @@
+@use "../defaults";
+
+// Galleries. There are two types: .mw-gallery-traditional (<gallery>), and .mw-gallery-nolines (<gallery mode="nolines">).
+.mw-parser-output {
+  .gallery {
+    margin: 1em 0;
+
+    &.mw-gallery-traditional {
+      margin-left: -2px;
+
+      .gallerybox {
+        margin-bottom: 0.5em;
+        
+        .thumb {
+          border-color: defaults.$color-light-gray-2;
+          background: defaults.$color-superlight-gray;
+          border-radius: defaults.$border-radius-xs;
+          margin: 2px;
+        }
+        .gallerytext {
+          font-size: 1em;
+          margin-top: -2px;
+          padding: 0.25em 0.15em calc(0.25em + 1px);
+          font-size: defaults.$font-size-caption;
+
+          p:first-child {
+            margin-top: 0;
+          }
+          p:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    &.mw-gallery-nolines {
+      margin-left: -2px;
+
+      // Note: gallery boxes will have a width set in the style attribute.
+      .gallerybox {
+        .thumb {
+          img {
+            border-radius: defaults.$border-radius-xxs;
+          }
+        }
+      }
+    }
+  }
+}

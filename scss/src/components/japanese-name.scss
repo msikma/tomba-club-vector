@@ -1,0 +1,12 @@
+// Japanese name wrapper.
+.tpl-japanese-name {
+  word-break: break-all;
+
+  .tpl-western-version {
+    word-break: break-all;
+  }
+  .tpl-japanese-version {
+    white-space: nowrap;
+    word-break: break-word;
+  }
+}

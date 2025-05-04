@@ -1,0 +1,44 @@
+// A bunch of random smaller things are modified here.
+
+// Submit buttons in some special pages (e.g. the image upload page).
+#content .mw-htmlform-submit-buttons {
+  margin-top: 1em;
+}
+
+// A redirect indicator.
+#content {
+  #redirectsub {
+    font-size: 1.3em;
+    padding-top: 1.3em;
+    display: block;
+    margin-bottom: -0.5em;
+    color: black;
+  }
+  .redirectMsg {
+    .redirectText a {
+      position: relative;
+      top: 0.15em;
+    }
+  }
+}
+
+// The notification area that appears underneath the page title.
+#contentSub, #contentSub2 {
+  margin: 0.5em 0;
+}
+
+// Some special tables used in specific places.
+#sv-skin, #sv-ext {
+  .mw-version-ext {
+    td:first-child {
+      white-space: nowrap;
+    }
+  }
+}
+#sv-libraries {
+  tr[id^="mw-version-library"] {
+    td:first-child {
+      white-space: nowrap;
+    }
+  }
+}

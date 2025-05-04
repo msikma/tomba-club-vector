@@ -1,0 +1,65 @@
+@use "sass:math";
+@use "sass:color";
+@use "../defaults";
+@use "../layout";
+@use "../colorize";
+@use "../icons";
+
+// Color of the indicator links.
+$color-mw-indicators: defaults.$color-cobalt;
+
+// The indicators used on e.g. the "page information" page.
+// These appear on the right side of the page title.
+.mw-indicators {
+  #mw-indicator-mw-helplink a {
+    background: none;
+    display: inline-block;
+    color: $color-mw-indicators;
+
+    width: inherit;
+    height: #{math.div(defaults.$layout-height-nav-sub, defaults.$layout-font-size-nav-sub)}em;
+    line-height: #{math.div(defaults.$layout-height-nav-sub, defaults.$layout-font-size-nav-sub)}em;
+
+    font-size: defaults.$layout-font-size-nav-sub;
+    position: relative;
+    padding: 0 layout.$nav-item-padding;
+    padding-left: #{layout.$nav-item-padding + (math.div(layout.$icon-width + layout.$icon-spacing, defaults.$layout-font-size-nav-sub))};
+
+    top: -(math.div(layout.$highlight-padding, 2));
+    left: math.div(layout.$highlight-padding, 2);
+
+    &::before {
+      @include colorize.colorize-mw-indicators;
+      background-image: icons.icon-url('question');
+      background-position: 0 50%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      content: '';
+      height: auto;
+      left: math.div(layout.$nav-item-padding + math.div(layout.$icon-width + layout.$icon-spacing, defaults.$layout-font-size-nav-sub) - math.div(layout.$icon-width, 2), 2);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: #{math.div(layout.$icon-width, defaults.$layout-font-size-nav-sub)}em;
+    }
+
+    &::after {
+      content: '';
+      width: auto;
+      display: block;
+      position: absolute;
+      inset: layout.$highlight-padding (math.div(layout.$highlight-padding, 2));
+      border-radius: defaults.$border-radius-xs;
+      background-image: none;
+      opacity: 1;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  
+    &:hover::after {
+      background: rgba($color-mw-indicators, 0.1);
+    }
+  }
+}

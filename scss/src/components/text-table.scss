@@ -1,0 +1,27 @@
+@use "../defaults";
+
+.text-table {
+  text-align: left;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: defaults.$font-size-caption;
+
+  tr:nth-child(1) {
+    font-weight: bold;
+
+    th {
+      font-weight: bold;
+    }
+  }
+  th:nth-child(1) {
+    padding-right: 4em;
+    font-weight: 500;
+  }
+  th, td {
+    padding: 0.35em 0;
+    border-bottom: 1px solid defaults.$color-light-gray-2;
+  }
+  th {
+    white-space: nowrap;
+  }
+}

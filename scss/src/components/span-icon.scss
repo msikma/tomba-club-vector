@@ -1,0 +1,20 @@
+@use "../colorize";
+@use "../icons";
+
+// Span icons are icons that get added to a piece of text.
+// Used in, for example, the {{{IA}}} template.
+.tc-span-icon {
+  &::before {
+    content: '\00a0';
+    width: calc(0.83333333333em + 1px);
+    display: inline-block;
+    background: transparent;
+    background-size: 0.83333333333em 0.83333333333em;
+    background-repeat: no-repeat;
+    background-position: center left;
+  }
+  &.internet-archive::before {
+    @include colorize.colorize-black;
+    background-image: icons.icon-url('internet-archive');
+  }
+}
