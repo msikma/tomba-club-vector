@@ -22,17 +22,22 @@ wfLoadExtension('TombaClub');
 
 Various resources like the logo and favicon are added automatically by the extension.
 
-### Required hack
+## Setup requirements
 
 The Vector skin has a feature where if there's too many tabs in the right navigation, they get collapsed under a "more" menu. This is called "tab collapse". This needs to be hacked out for the Tomba Club skin since the left and right navigation are both left-aligned now, and it mistakenly detects this as there being no space at all. There is no way to turn this feature off without editing the file directly.
 
-To do this, edit `mediawiki/skins/Vector/resources/skins.vector.legacy.js/vector.js` and comment out the entire latter half (from `$tabContainer.on('beforeTabCollapse', ..` to the end); see the `resources/hacks` directory in this repository for an example.
+To do this, apply the `resources/patches/vector-1.43.1.patch` to the `mediawiki/skins/Vector/resources/skins.vector.legacy.js/vector.js` file, or just do the same as in the example files in the `resources/hacks/` directory.
+
+Additionally, the following options must be set in `LocalSettings.php`:
+
+```php
+$wgParserEnableLegacyMediaDOM = true;
+$wgParserEnableLegacyHeadingDOM = true
+```
 
 ## Development
 
 Building the CSS requires [SassC 1.43.1](https://sass-lang.com/install) or up.
-
-
 
 ## License
 

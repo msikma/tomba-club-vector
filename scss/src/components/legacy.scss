@@ -1,0 +1,12 @@
+// These are styles that we've had to add when upgrading from 1.39.3 to 1.43.1.
+// A whole bunch of HTML changed, and the Vector default styles changed as well.
+// So we've had to put some of them back.
+// This still requires $wgParserEnableLegacyMediaDOM and $wgParserEnableLegacyHeadingDOM to be set to true in the LocalSettings.
+
+div.tright {
+  clear: right;
+  float: right;
+}
+.mw-content-ltr .magnify {
+  display: none;
+}
