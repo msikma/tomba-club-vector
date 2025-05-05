@@ -16,6 +16,7 @@ $nav-sub-icon-links: (
   'ca-history': ('history', 'left'),
   'ca-unwatch': ('star-fill', 'left'),
   'ca-watch': ('star', 'left'),
+  'ca-recreatedata': ('package', 'left'),
 );
 $nav-main-icon-links: (
   'ca-talk': ('comment-discussion', 'left'),
@@ -36,6 +37,7 @@ $nav-panel-icon-links: (
   't-specialpages': ('hash', 'left'),
   't-info': ('info', 'left'),
   'feedlinks': ('rss', 'left'),
+  't-cargopagevalueslink': ('package', 'left'),
 
   // Social media items.
   'socmed_discord': ('discord', 'left'),
