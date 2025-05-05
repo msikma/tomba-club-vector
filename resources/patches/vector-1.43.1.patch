@@ -1,0 +1,19 @@
+--- vector.js	2025-04-10 14:48:00
++++ vectorb.js	2025-05-05 11:20:15
+@@ -23,6 +23,7 @@
+ 		return width;
+ 	};
+ 
++	/*
+ 	// Bind callback functions to animate our drop down menu in and out
+ 	// and then call the collapsibleTabs function on the menu
+ 	$tabContainer
+@@ -112,7 +113,7 @@
+ 				} );
+ 				return doCollapse;
+ 			}
+-		} );
++		} );*/
+ }
+ 
+ module.exports = Object.freeze( { init: init } );
