@@ -1,0 +1,13 @@
+@use "sass:color";
+@use "../defaults";
+
+body.tombooru {
+  #firstHeading {
+    display: none !important;
+  }
+  #mw-content-subtitle,
+  #contentSub,
+  #contentSub2 {
+    margin: 0;
+  }
+}

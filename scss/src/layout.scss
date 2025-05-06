@@ -75,6 +75,25 @@ body {
   min-width: defaults.$layout-minimum-width;
 }
 
+body.no-mw-panel {
+  // When .no-mw-panel is set, remove everything from the #mw-panel navbar.
+  // In this case, there will be something else there, probably a .mw-content-panel, which
+  // has the same styling as the regular #mw-panel but is located inside the main content.
+  #mw-panel {
+    > *:not([role="banner"]) {
+      display: none;
+    }
+  }
+}
+
+.mw-content-panel {
+  // Repositions the .mw-content-panel to be over the left navbar.
+  position: absolute;
+  top: calc((defaults.$layout-inset-content) * -1);
+  left: calc((defaults.$layout-width-nav-panel + defaults.$layout-padding-h-content) * -1);
+  width: calc(defaults.$layout-width-nav-panel);
+}
+
 @mixin white-text {
   color: white;
   li {
@@ -819,109 +838,152 @@ body.right-panel {
         padding-top: 0;
       }
     }
+  }
+}
 
-    .mw-portlet {
+// Design for the portlets in the left navigation.
+.mw-content-panel,
+#mw-navigation #mw-panel {
+  .mw-portlet {
+    padding: 0;
+    margin: 0;
+
+    &:not(:first-of-type) {
+      padding-top: 1em;
+    }
+
+    .vector-menu-heading {
+      display: block;
+      background: none;
+      padding: 0 (defaults.$layout-side-nav-padding-right - defaults.$layout-side-nav-header-offset-right) 0 (defaults.$layout-side-nav-padding-left - defaults.$layout-side-nav-header-offset-left);
+      font-weight: defaults.$font-subnav-weight;
+      text-transform: none;
+      margin: 0 0 0.4em;
+      font-size: 1em;
+      color: defaults.$color-heading-positive;
+
+      span {
+        border-bottom: 2px solid rgba(defaults.$color-black, 0.25);
+        display: block;
+        border-radius: defaults.$layout-rounding-nav-main;
+        transition: background 150ms, color 150ms;
+        background: defaults.$color-green-haze;
+        padding: calc(0.25em + 1px) defaults.$layout-side-nav-header-offset-right 0.25em defaults.$layout-side-nav-header-offset-left;
+      }
+    }
+    .vector-menu-content {
       padding: 0;
       margin: 0;
 
-      &:not(:first-of-type) {
-        padding-top: 1em;
-      }
-
-      .vector-menu-heading {
-        display: block;
-        background: none;
-        padding: 0 (defaults.$layout-side-nav-padding-right - defaults.$layout-side-nav-header-offset-right) 0 (defaults.$layout-side-nav-padding-left - defaults.$layout-side-nav-header-offset-left);
-        font-weight: defaults.$font-subnav-weight;
-        text-transform: none;
-        margin: 0 0 0.4em;
-        font-size: 1em;
-        color: defaults.$color-heading-positive;
-
-        span {
-          border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-          display: block;
-          border-radius: defaults.$layout-rounding-nav-main;
-          transition: background 150ms, color 150ms;
-          background: defaults.$color-green-haze;
-          padding: calc(0.25em + 1px) defaults.$layout-side-nav-header-offset-right 0.25em defaults.$layout-side-nav-header-offset-left;
-        }
-      }
-      .vector-menu-content {
+      .vector-menu-content-list {
         padding: 0;
-        margin: 0;
-
-        .vector-menu-content-list {
+        
+        li {
           padding: 0;
-          
-          li {
-            padding: 0;
-            font-size: 1em;
+          font-size: 1em;
 
+          a {
+            color: defaults.$color-dark-gray;
+            display: block;
+            padding: 0.25em defaults.$layout-side-nav-padding-right 0.25em defaults.$layout-side-nav-padding-left;
+            position: relative;
+            background-image: none;
+
+            &::before {
+              width: #{math.div($icon-width, 1.1em)}em;
+              background-size: contain;
+              position: absolute;
+              top: 0;
+              left: defaults.$layout-side-nav-padding-left;
+              bottom: 0;
+              background-repeat: no-repeat;
+              background-position: 0 50%;
+              content: '\00a0';
+              background: transparent no-repeat 0 50%;
+              background-size: contain;
+              @include colorize.colorize-gray-1;
+            }
+            &:hover {
+              color: defaults.$color-cobalt;
+              text-decoration: underline;
+            }
+            &:hover::before {
+              @include colorize.colorize-cobalt;
+            }
+          }
+
+          &.active-link {
             a {
-              color: defaults.$color-dark-gray;
-              display: block;
-              padding: 0.25em defaults.$layout-side-nav-padding-right 0.25em defaults.$layout-side-nav-padding-left;
-              position: relative;
-              background-image: none;
-
+              color: defaults.$color-salem;
               &::before {
-                width: #{math.div($icon-width, 1.1em)}em;
-                background-size: contain;
-                position: absolute;
-                top: 0;
-                left: defaults.$layout-side-nav-padding-left;
-                bottom: 0;
-                background-repeat: no-repeat;
-                background-position: 0 50%;
-                content: '\00a0';
-                background: transparent no-repeat 0 50%;
-                background-size: contain;
-                @include colorize.colorize-gray-1;
-              }
-              &:hover {
-                color: defaults.$color-cobalt;
-                text-decoration: underline;
-              }
-              &:hover::before {
-                @include colorize.colorize-cobalt;
+                @include colorize.colorize-salem;
               }
             }
+          }
 
-            &.active-link {
+          // All the portlet links with an icon.
+          @each $cls, $icon-settings in $nav-panel-icon-links {
+            &##{$cls} {
+              $icon: list.nth($icon-settings, 1);
+              $direction: list.nth($icon-settings, 2);
               a {
-                color: defaults.$color-salem;
+                padding-#{$direction}: #{(math.div($icon-width, 1.1em)) + defaults.$layout-side-nav-padding-left + 0.3em};
                 &::before {
-                  @include colorize.colorize-salem;
+                  background-image: icons.icon-url($icon);
                 }
               }
             }
+          }
 
-            // All the portlet links with an icon.
-            @each $cls, $icon-settings in $nav-panel-icon-links {
-              &##{$cls} {
-                $icon: list.nth($icon-settings, 1);
-                $direction: list.nth($icon-settings, 2);
-                a {
-                  padding-#{$direction}: #{(math.div($icon-width, 1.1em)) + defaults.$layout-side-nav-padding-left + 0.3em};
-                  &::before {
-                    background-image: icons.icon-url($icon);
-                  }
-                }
-              }
-            }
-
-            // Slight adjustments.
-            &#t-upload a::before {
-              margin-left: 0.03em;
-            }
+          // Slight adjustments.
+          &#t-upload a::before {
+            margin-left: 0.03em;
           }
         }
       }
-      &:hover .vector-menu-heading {
+    }
+    &:hover .vector-menu-heading {
+      span {
+        background: defaults.$color-dandelion;
+        color: defaults.$color-heading-negative;
+        border-bottom-color: rgba(defaults.$color-black, 0.25);
+      }
+    }
+  }
+}
+// If they happen to be in the regular content, make them blue and take out the navbar padding.
+#mw-content-text {
+  // Don't reset portlets inside .mw-content-panel, since that's meant to be a navbar replacement.
+  :not(.mw-content-panel) {
+    .mw-portlet {
+      .vector-menu-heading {
+        padding-left: 0;
+        padding-right: 0;
+
         span {
-          background: defaults.$color-dandelion;
-          color: defaults.$color-heading-negative;
+          background: defaults.$color-cobalt;
+          // Make the 3D effect a bit darker since $color-cobalt is a bit dark too.
+          border-bottom-color: rgba(defaults.$color-black, 0.5);
+        }
+      }
+
+      &:hover {
+        .vector-menu-heading {
+          span {
+            background: defaults.$color-dandelion;
+            color: defaults.$color-heading-negative;
+            border-bottom-color: rgba(defaults.$color-black, 0.25);
+          }
+        }
+      }
+
+      .vector-menu-content {
+        .vector-menu-content-list {
+          .mw-list-item {
+            a {
+              padding: 0.25em defaults.$layout-side-nav-header-offset-right 0.25em defaults.$layout-side-nav-header-offset-left;
+            }
+          }
         }
       }
     }
