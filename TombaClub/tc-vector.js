@@ -200,8 +200,21 @@ function decorateBigTables() {
       return sections
     }
 
+    function selectDefaultSort() {
+      const defaultSort = table.getAttribute('data-default-sort')
+      if (!defaultSort) {
+        return
+      }
+      const n = tableData.header.findIndex(col => col.slug === defaultSort)
+      if (n < 0) {
+        return
+      }
+      sortTable(n)
+    }
+
     tableData.header = getHeaderCols()
     tableData.sections = getRowSections()
+    selectDefaultSort()
   })
 }
 
