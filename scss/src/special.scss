@@ -1,1 +1,55 @@
 @use "special/tombooru";
+@use "defaults";
+
+body.no-mw-panel {
+  // When .no-mw-panel is set, remove everything from the #mw-panel navbar.
+  // In this case, there will be something else there, probably a .mw-content-panel, which
+  // has the same styling as the regular #mw-panel but is located inside the main content.
+  #mw-panel {
+    > *:not([role="banner"]) {
+      display: none;
+    }
+  }
+}
+
+body.pink-page {
+  // This totally changes the design of the page.
+  // It turns off the main content white backdrop and hides the sidebar.
+  // This is used for the imageboard main search page. It could also be used for
+  // special events or notices.
+  #content.mw-body {
+    // Hide main content backdrop.
+    background: transparent;
+    box-shadow: none;
+    // This is *roughly* 100vw minus the header and footer.
+    min-height: calc(100vh - 8em - 8.0em);
+    padding: 1em;
+
+    &::before {
+      display: none !important;
+    }
+  }
+  #mw-navigation {
+    #mw-head {
+      #right-navigation {
+        // Fix navigation rounding, given that there's no more backdrop.
+        // Improve the shadow a bit since it's on a darker background now.
+        --right-navigation-shadow-color: rgba(0, 0, 0, 0.2);
+        border-bottom-left-radius: defaults.$border-radius-l;
+        border-bottom-right-radius: defaults.$border-radius-l;
+
+        @media only screen and (max-width: 400px) {
+          // On the smallest size we knock out the padding, so remove the radius then.
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+    }
+    #mw-panel {
+      // Hide everything except the logo.
+      > *:not(#p-logo) {
+        display: none;
+      }
+    }
+  }
+}

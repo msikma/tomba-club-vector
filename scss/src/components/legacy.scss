@@ -15,3 +15,7 @@ div.tright {
   padding-right: 0;
   background-color: transparent;
 }
+.mw-helplink-icon {
+  // MediaWiki has its own icons now, but we already added our own.
+  display: none !important;
+}

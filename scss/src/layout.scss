@@ -23,6 +23,9 @@ $nav-sub-icon-links: (
   'ca-tombooru_edit': ('file-code', 'left'),
   'ca-tombooru_upload': ('upload', 'left'),
   'ca-tombooru_viewonwiki': ('external', 'left'),
+  'ca-tombooru_viewdata': ('package', 'left'),
+  'ca-tombooru_search': ('search', 'left'),
+  'ca-tombooru_recent': ('history', 'left'),
 );
 $nav-main-icon-links: (
   'ca-talk': ('comment-discussion', 'left'),
@@ -87,22 +90,13 @@ body {
   min-width: defaults.$layout-minimum-width;
 }
 
-body.no-mw-panel {
-  // When .no-mw-panel is set, remove everything from the #mw-panel navbar.
-  // In this case, there will be something else there, probably a .mw-content-panel, which
-  // has the same styling as the regular #mw-panel but is located inside the main content.
-  #mw-panel {
-    > *:not([role="banner"]) {
-      display: none;
-    }
-  }
-}
-
 #mw-content-text {
   .mw-content-panel {
     h1, h2, h3, h4, h5, h6 {
       font-family: defaults.$font-regular;
     }
+  }
+  .mw-content-navigation-panel {
     // Repositions the .mw-content-panel to be over the left navbar.
     position: relative;
     float: left;
@@ -322,12 +316,12 @@ body.right-panel {
   background: defaults.$color-inner-bg;
   margin: 0 defaults.$layout-right-inset-content 3px defaults.$layout-left-inset-content;
   border-bottom: 0;
-  box-shadow: 0 3px color.mix(#333, defaults.$color-outer-bg-bottom, 35%);
+  box-shadow: 0 3px rgba(defaults.$color-black, 0.42);
   min-height: 38em;
   overflow: hidden;
 
   @if defaults.$layout-has-tomba-wikipedia-logo {
-    min-height: 44em;
+    min-height: 46em;
   }
 
   @if defaults.$layout-has-tomba-sidebar-bg {
@@ -396,12 +390,37 @@ body.right-panel {
       text-decoration: none;
     }
   }
+  // We commandeer the <h2> containing the navigation header for the gradient.
+  // This is because we want to make the gradient bigger than the screen, but still with overflow hidden.
+  // So we need a real element plus a pseudoelement.
+  > h2 {
+    text-indent: -9999px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    pointer-events: none;
+    overflow: hidden;
+
+    &, &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      background: radial-gradient(circle at 50% 0, rgba(defaults.$color-light-gray-1, 0.4) 0%, rgba(defaults.$color-light-gray-1, 0) 50%);
+      bottom: inherit;
+      height: 80rem;
+      z-index: -1;
+    }
+  }
   // Article top menu, containing e.g. 'edit', 'edit source', 'view history'.
   #mw-head {
-    background: radial-gradient(circle, rgba(defaults.$color-light-gray-1, 0.4) 0%, rgba(defaults.$color-light-gray-1, 0) 100%);
     min-width: defaults.$layout-minimum-width;
-    left: 0;
-    right: 0;
 
     .vector-menu-tabs {
       background: none;
@@ -530,7 +549,7 @@ body.right-panel {
             font-size: inherit;
             height: auto;
             line-height: calc(defaults.$layout-height-nav-main - 4px);
-            margin-left: 0.25em;
+            margin-left: 0.21em;
             border-top-left-radius: defaults.$layout-rounding-nav-main;
             border-top-right-radius: defaults.$layout-rounding-nav-main;
             background: linear-gradient(to bottom, defaults.$color-dark-transparent 0%, defaults.$color-dark-transparent 87%, defaults.$color-dark-transparent-shadow 100%);
@@ -622,11 +641,12 @@ body.right-panel {
 
     // Sub nav section
     #right-navigation {
+      --right-navigation-shadow-color: rgba(0, 0, 0, 0.1);
       float: none;
       margin: 0 defaults.$layout-right-inset-content 0 defaults.$layout-left-inset-content;
       height: defaults.$layout-height-nav-sub;
       background: defaults.$color-content-bg;
-      box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 1px var(--right-navigation-shadow-color);
       position: relative;
 
       #p-search, #p-cactions, #p-views {
@@ -893,9 +913,22 @@ body.right-panel {
       }
     }
   }
+
+  // Special situation: this allows us to style the first tab if there's a "view source" link.
+  // This indicates that the current page is locked.
+  // TODO: we should probably do this in a better way.
+  // #mw-head:has(#ca-viewsource) #p-namespaces .vector-menu-content-list .mw-list-item:first-child a {
+  //   padding-left: #{$nav-item-padding + (math.div($icon-width + $icon-spacing, defaults.$layout-font-size-nav-sub))};
+  //   &::before {
+  //     content: '';
+  //     left: math.div($nav-item-padding + math.div($icon-width + $icon-spacing, defaults.$layout-font-size-nav-sub) - math.div($icon-width, 2), 2);
+  //     background-image: icons.icon-url('lock');
+  //   }
+  // }
 }
 
 // Design for the portlets in the left navigation.
+// These CAN also appear in the main content. In that case they MUST be in a .mw-content-panel wrapper.
 .mw-content-panel, #mw-navigation #mw-panel {
   a.external {
     color: defaults.$color-salem;
@@ -935,6 +968,7 @@ body.right-panel {
       padding: 0;
       margin: 0;
       line-height: 1;
+      transition: background 150ms;
 
       .vector-menu-content-static {
         white-space: nowrap;
@@ -1025,13 +1059,38 @@ body.right-panel {
       }
     }
   }
+  &.solid-panel {
+    .mw-portlet {
+      .vector-menu-heading {
+        margin-bottom: 0;
+
+        span {
+          border-bottom-left-radius: 0 !important;
+          border-bottom-right-radius: 0 !important;
+          border-color: transparent;
+        }
+      }
+      .vector-menu-content:not(.no-background) {
+        background: rgba(defaults.$color-green-haze, 0.2);
+      }
+      .vector-menu-content {
+        border-bottom-left-radius: defaults.$border-radius-xxs !important;
+        border-bottom-right-radius: defaults.$border-radius-xxs !important;
+      }
+      &:hover {
+        .vector-menu-content:not(.no-background) {
+          background: rgba(defaults.$color-dandelion, 0.2);
+        }
+      }
+    }
+  }
   &.small-panel {
     // A variant with smaller text and more narrow padding.
     // Used by the Tombooru special pages.
     .mw-portlet {
       font-size: defaults.$font-size-caption;
       .vector-menu-heading {
-        padding: 0 calc((defaults.$layout-side-nav-padding-right - defaults.$layout-side-nav-header-offset-right) * 0.8) 0 calc((defaults.$layout-side-nav-padding-left - defaults.$layout-side-nav-header-offset-left) * 0.8) !important;
+        padding: 0 0.8em 0 0.8em !important;
         span {
           border-radius: defaults.$border-radius-xxs;
           border-width: 0.15em;
@@ -1046,10 +1105,13 @@ body.right-panel {
         }
       }
       .vector-menu-content {
-        padding: 0.0em calc((defaults.$layout-side-nav-padding-right - defaults.$layout-side-nav-header-offset-right) * 0.8) 0 1.15em;
+        padding: 0;
         line-height: defaults.$line-height-sidebar-small;
+        margin-right: 0.8em;
+        margin-left: 0.8em;
 
         .vector-menu-content-static {
+          padding: calc(0.25em + 1px) 0.4em calc(0.32em + 1px) 0.4em;
           line-height: defaults.$line-height-sidebar-small;
         }
 
@@ -1065,13 +1127,15 @@ body.right-panel {
 }
 // If they happen to be in the regular content, make them blue and take out the navbar padding.
 #mw-content-text {
-  // Don't reset portlets inside .mw-content-panel, since that's meant to be a navbar replacement.
-  :not(.mw-content-panel) {
+  // Don't reset portlets inside .mw-content-navigation-panel, since that's meant to be a navbar replacement.
+  .mw-content-panel:not(.mw-content-navigation-panel) {
     .mw-portlet {
-      .vector-menu-heading {
-        padding-left: 0;
-        padding-right: 0;
+      // The vector menu has a bunch of extra padding for the navbar.
+      // Here we undo that extra padding. This should probably be fixed better so we don't need to do this.
+      margin-left: calc((defaults.$layout-side-nav-padding-left - defaults.$layout-side-nav-header-offset-left) * -1) !important;
+      margin-right: calc((defaults.$layout-side-nav-padding-right - defaults.$layout-side-nav-header-offset-right) * -1) !important;
 
+      .vector-menu-heading {
         span {
           background: defaults.$color-cobalt;
           // Make the 3D effect a bit darker since $color-cobalt is a bit dark too.
@@ -1092,10 +1156,37 @@ body.right-panel {
       .vector-menu-content {
         .vector-menu-content-list {
           .mw-list-item {
+            &.active-link {
+              a {
+                color: defaults.$color-cobalt;
+
+                &::before {
+                  @include colorize.colorize-cobalt;
+                }
+              }
+            }
             a {
-              padding: 0.25em defaults.$layout-side-nav-header-offset-right 0.25em defaults.$layout-side-nav-header-offset-left;
+              //padding: 0.25em defaults.$layout-side-nav-header-offset-right 0.25em defaults.$layout-side-nav-header-offset-left;
             }
           }
+        }
+      }
+    }
+    &.small-panel {
+      .mw-portlet {
+        margin-left: -0.8em !important;
+        margin-right: -0.8em !important;
+      }
+    }
+    &.solid-panel {
+      .mw-portlet {
+        .vector-menu-heading {
+          span {
+            border-color: transparent;
+          }
+        }
+        .vector-menu-content:not(.no-background) {
+          background: rgba(defaults.$color-cobalt, 0.2);
         }
       }
     }

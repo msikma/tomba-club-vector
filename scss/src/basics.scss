@@ -59,7 +59,9 @@ body.mediawiki {
 }
 
 // Make sure all monospace containers are consistent.
-pre, code, .mw-code {
+pre, code, tt, .mw-code {
+  padding: inherit;
+  border-radius: inherit;
   font-family: defaults.$font-mono;
   font-size: defaults.$font-mono-size;
   border: none;
@@ -83,6 +85,33 @@ dfn[title] {
   font-style: normal;
   text-decoration: underline;
   text-decoration-style: dotted;
+}
+.mw-body-content {
+  form {
+    textarea:focus-visible {
+      border-color: defaults.$color-cobalt;
+      outline: 3px solid rgba(defaults.$color-cobalt, 0.4);
+    }
+    textarea {
+      border-color: defaults.$color-light-gray-5;
+      border-radius: defaults.$border-radius-xs;
+    }
+  }
+  button,
+  input[type="submit"],
+  a.btn {
+    background-color: defaults.$color-cobalt;
+    color: defaults.$color-white;
+    padding: 0.4em 0.6em;
+    font-weight: 450;
+    border-radius: defaults.$border-radius-xs;
+    display: inline-block;
+    &:hover {
+      text-decoration: none;
+      //background-color: color.scale(defaults.$color-cobalt, $lightness: 10%);
+      background-color: color.mix(defaults.$color-cobalt, defaults.$color-black, 80%);
+    }
+  }
 }
 
 // Fixes to display the Tomba logo correctly.
