@@ -95,6 +95,9 @@ body {
 
 #mw-content-text {
   .mw-content-panel {
+    // Sometimes we'll put a .mw-content-panel inside the main content.
+    // In that case we should reset its text, as the headers normally
+    // have a different font inside of the main wiki content.
     h1, h2, h3, h4, h5, h6 {
       font-family: defaults.$font-regular;
     }
@@ -109,19 +112,8 @@ body {
   }
 }
 
-@mixin white-text {
-  color: white;
-  li {
-    color: white;
-  }
-  a {
-    color: defaults.$color-dandelion;
-  }
-  a.new {
-    opacity: 0.6;
-  }
-}
-
+// Subnav items are the navigation items underneath the primary navigation.
+// This contain links such as "read", "edit", "edit source", "view history", and so on.
 @mixin subnav-item {
   color: defaults.$color-cobalt;
   width: inherit;
@@ -163,8 +155,10 @@ body {
   }
 }
 
-// This is the CSS for the alternate right panel layout.
-// This is designed to put right-floating images in its own column entirely without new HTML.
+// This mixin provides styles for the right sidebar that contains images and infoboxes.
+// Basically, if the space is there (not on smaller layouts), all items that normally float to the right
+// side of the page get collected into a totally separate sidebar (purely by CSS).
+// FIXME: Currently this *requires* $wgParserEnableLegacyMediaDOM to be true.
 @mixin right-panel {
   #firstHeading {
     width: calc(100% - (var(--tc-layout-width-right-panel) / defaults.$layout-font-size-page-heading-div));
@@ -292,6 +286,7 @@ body {
   }
 }
 
+// Determine when the right sidebar gets activated.
 body.right-panel {
   #content.mw-body {
     @media only screen and (min-width: #{defaults.$layout-right-panel-small-limit}) {
@@ -859,7 +854,7 @@ body.right-panel {
     }
   }
 
-  // Wiki side menu, containing e.g. 'main page', 'recent changes', 'random page'.
+  // Wiki side menu, containing e.g. "main page", "recent changes", "random page".
   #mw-panel {
     position: absolute;
     top: defaults.$layout-height-nav-logo + defaults.$layout-height-nav-main + defaults.$layout-height-nav-sub + defaults.$layout-inset-content;
@@ -1198,7 +1193,18 @@ body.right-panel {
 
 // Copyright section and other links
 #footer {
-  @include white-text;
+  color: white;
+
+  li {
+    color: white;
+  }
+  a {
+    color: defaults.$color-dandelion;
+  }
+  a.new {
+    opacity: 0.6;
+  }
+
   margin-left: 0;
   margin-right: defaults.$layout-right-inset-content;
   padding: math.div(defaults.$layout-padding-v-content, 2) defaults.$layout-padding-h-content (defaults.$layout-padding-v-content * 2) (defaults.$layout-padding-h-content + defaults.$layout-left-inset-content + defaults.$layout-width-nav-panel);
