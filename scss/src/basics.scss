@@ -142,6 +142,9 @@ body,
   a:visited {
     color: defaults.$color-visited;
   }
+  a.new:visited {
+    color: defaults.$color-visited-nonexistent;
+  }
   a.external {
     color: defaults.$color-green-haze;
     padding-right: 0;
