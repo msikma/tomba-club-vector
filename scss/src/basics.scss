@@ -66,7 +66,10 @@ pre, code, tt, .mw-code {
   font-size: defaults.$font-mono-size;
   border: none;
   line-height: defaults.$line-height-regular;
-  background-color: color.mix(#fff, defaults.$color-light-gray-1, 30%);
+  background-color: defaults.$color-light-gray-0;
+}
+pre {
+  padding: 1em;
 }
 code {
   background-color: transparent;
