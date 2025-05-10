@@ -1,0 +1,73 @@
+@use "sass:color";
+@use "../../defaults";
+@use "../../colorize";
+@use "../../icons";
+
+body.tombooru {
+  // The pagination links at the bottom of a search results page.
+  .pagination {
+    display: flex;
+    place-content: center;
+
+    .inner {
+      display: flex;
+
+      > a,
+      > span {
+        color: white;
+        background: defaults.$color-cobalt;
+        line-height: 1.6;
+        padding: 0 0.5em;
+        text-align: center;
+        margin-right: 1px;
+        box-sizing: border-box;
+        min-width: 2.4em;
+        line-height: 2.4em;
+        position: relative;
+
+        &.item-previous,
+        &.item-next {
+          &::before {
+            @include colorize.colorize-white;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: contain;
+            content: '';
+            position: absolute;
+            width: 1.1em;
+            top: 0;
+            bottom: 0;
+          }
+        }
+        &.item-previous {
+          padding-left: 2em;
+
+          &::before {
+            background-image: icons.icon-url('arrow-left');
+            left: 0.5em;
+          }
+        }
+        &.item-next {
+          padding-right: 2em;
+
+          &::before {
+            background-image: icons.icon-url('arrow-right');
+            right: 0.5em;
+          }
+        }
+        &.ellipsis {
+          color: defaults.$color-cobalt;
+          background: transparent;
+        }
+        &:first-child {
+          border-top-left-radius: defaults.$border-radius-xs;
+          border-bottom-left-radius: defaults.$border-radius-xs;
+        }
+        &:last-child {
+          border-top-right-radius: defaults.$border-radius-xs;
+          border-bottom-right-radius: defaults.$border-radius-xs;
+        }
+      }
+    }
+  }
+}

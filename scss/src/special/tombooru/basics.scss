@@ -1,0 +1,39 @@
+@use "sass:color";
+@use "../../defaults";
+@use "../../colorize";
+@use "../../icons";
+
+body.tombooru {
+  // Since we're totally replacing the regular body content, take out all of the regular things.
+  #mw-content-subtitle,
+  #firstHeading {
+    display: none !important;
+  }
+  #contentSub,
+  #contentSub2 {
+    margin: 0;
+  }
+  // todo: mvoe this
+  #mw-content-text .mw-content-panel:not(.mw-content-navigation-panel).solid-panel .tag-type::after {
+    background-color: #{defaults.$color-cobalt};
+  }
+
+  #mw-content-text .tombooru-nav-panel {
+
+  }
+
+  #mw-content-text {
+    // Anything following the navigation panel should always have zero margin.
+    // Since the .mw-content-navigation-panel is floated, it too would adopt any margin.
+    > .mw-content-navigation-panel + * {
+      margin-top: 0 !important;
+    }
+    .tombooru-page {
+      h1, h2, h3, h4, h5, h6 {
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}

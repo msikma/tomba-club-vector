@@ -1,0 +1,153 @@
+@use "sass:color";
+@use "../../defaults";
+@use "../../colorize";
+@use "../../icons";
+
+// The start page contains only a single search form in the middle of the page.
+// This page utilizes the body.pink-page class, which strips it of the regular body content design.
+body.tombooru {
+  &.tombooru-page-start {
+    // .hero-search is the big search bar that's only on the main page.
+    .hero-search {
+      display: flex;
+      place-content: center;
+      place-items: center;
+      height: calc(100vh - 8em - 8em);
+      text-align: center;
+
+      .panel {
+        .panel-inner {
+          max-width: 40em;
+          background: defaults.$color-white;
+          width: 40em;
+          display: flex;
+          place-content: center;
+          border-radius: defaults.$border-radius-xxl;
+          padding: 1em;
+          box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2);
+
+          > h1 {
+            display: none;
+          }
+
+          .search-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+
+            .search-bar {
+              position: relative;
+
+              .bar {
+                font-size: 1.4em;
+                width: 100%;
+                color: defaults.$color-gray-1;
+                padding: 0 0.75em;
+                border: 1px solid transparent;
+                border-radius: defaults.$border-radius-xl;
+                box-shadow: 0 0 0 2px rgba(defaults.$color-cobalt, 0.0);
+                transition: border-color 150ms, outline 150ms, box-shadow 150ms, color 150ms;
+                background-color: white;
+                height: 3.25rem;
+                padding: 1px calc(1px + 0.7em);
+                border: 2px solid defaults.$color-light-gray-2;
+
+                &::placeholder {
+                  color: defaults.$color-light-gray-8;
+                  transition: color 150ms;
+                }
+
+                &:focus {
+                  box-shadow: 0 0 0 2px rgba(defaults.$color-cobalt, 0.2);
+                  border-color: defaults.$color-cobalt;
+                  color: defaults.$color-cobalt;
+                  outline: 0;
+
+                  &::placeholder {
+                    color: defaults.$color-cobalt;
+                  }
+                }
+              }
+              .button-container {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                border: 0;
+                padding: 0;
+                margin: 0;
+                width: 3.25rem;
+                cursor: pointer;
+
+                .button {
+                  @include colorize.colorize-gray-1;
+                  text-indent: -9999px;
+                  width: 100%;
+                  height: 100%;
+                  background: transparent no-repeat 50% 50%;
+                  background-image: icons.icon-url('search');
+                  background-size: 1.5em;
+                  cursor: pointer;
+                  border: 0;
+                }
+
+                &::before {
+                  content: '';
+                  background-color: defaults.$color-cobalt;
+                  position: absolute;
+                  top: calc(0.1em + 3px);
+                  right: calc(0.1em + 3px);
+                  bottom: calc(0.1em + 3px);
+                  left: calc(0.1em + 3px);
+                  display: block;
+                  opacity: 0;
+                  border-radius: defaults.$border-radius-xl - 3px;
+                }
+
+                &:hover {
+                  &::before {
+                    opacity: 0.2;
+                  }
+                }
+              }
+
+
+              &:hover {
+                .bar {
+                  color: defaults.$color-cobalt;
+                  border-color: defaults.$color-cobalt;
+                  &::placeholder {
+                    color: defaults.$color-cobalt;
+                  }
+                }
+                .button-container {
+                  .button {
+                    @include colorize.colorize-cobalt;
+                  }
+                }
+              }
+            }
+            .quicklinks {
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 0.6em;
+              text-align: center;
+            }
+          }
+        }
+        .panel-outer {
+          padding-top: 1em;
+          color: white;
+          p {
+            margin-top: 0.25em;
+            margin-bottom: 0.25em;
+          }
+          a {
+            color: defaults.$color-dandelion;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,131 @@
+@use "sass:color";
+@use "../../defaults";
+@use "../../colorize";
+@use "../../icons";
+
+body.tombooru {
+  // The navigation panel on the left side.
+  .tombooru-nav-panel {
+    .tag-list {
+      font-variant-numeric: tabular-nums;
+      line-height: defaults.$line-height-sidebar-small;
+
+      .tag-type {
+        --tag-color: #{defaults.$color-green-haze};
+        position: relative;
+        padding-top: calc(0.25em + 1px);
+        padding-bottom: calc(0.25em + 1px);
+        margin-bottom: 1px;
+
+        &::after {
+          content: '';
+          //background-color: var(--tag-color);
+          background-color: #{defaults.$color-green-haze};
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 0;
+          pointer-events: none;
+          opacity: 0.2;
+        }
+
+        .tag-type-title {
+          position: relative;
+          h3 {
+            line-height: defaults.$line-height-sidebar-small;
+            font-size: 1em;
+            margin: 0;
+            color: defaults.$color-black;
+            padding: 1px 0 1px 0.4em;
+            color: var(--tag-color);
+            filter: brightness(0.5) saturate(0.8);
+            z-index: 1;
+          }
+        }
+        .tag-type-list {
+          margin-bottom: 1px;
+
+          .tag {
+            position: relative;
+            padding: 1px 0;
+            display: flex;
+            place-items: center;
+
+            a {
+              flex-basis: 100%;
+              font-weight: 450;
+              padding-left: 0.4em;
+              color: var(--tag-color);
+              z-index: 1;
+              display: block;
+              position: relative;
+
+              > span {
+                filter: brightness(0.6) saturate(0.8);
+              }
+            }
+
+            &::after {
+              content: attr(data-count);
+              padding-right: 0.4em;
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+
+      // private static array $tagTypeOrder = ['Copyright', 'Artist', 'Characters', 'Locations', 'Meta'];
+      .tag-type[data-tag-type="Copyright"] {
+        --tag-color: #3696ae;
+      }
+      .tag-type[data-tag-type="Artist"] {
+        --tag-color: #1367e6;
+      }
+      .tag-type[data-tag-type="Characters"] {
+        --tag-color: #8a40b3;
+      }
+      .tag-type[data-tag-type="Locations"] {
+        --tag-color: #aa482c;
+      }
+      .tag-type[data-tag-type="Meta"] {
+        --tag-color: #b3ac40;
+      }
+      .tag-type[data-tag-type="__generic"] {
+        --tag-color: #{defaults.$color-green-haze};
+      }
+    }
+
+    .data-list {
+      li {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin: 0;
+
+        .key {
+          font-weight: bold;
+
+          &::after {
+            content: ': ';
+          }
+        }
+        .value {
+          font-weight: 450;
+        }
+      }
+      .with-overflow {
+        overflow: visible;
+      }
+      .with-break-spaces {
+        white-space: break-spaces;
+      }
+      .url-items {
+        a {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

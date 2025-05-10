@@ -1,0 +1,77 @@
+@use "sass:color";
+@use "../../defaults";
+@use "../../colorize";
+@use "../../icons";
+
+// The detail page is where the user can see an image in full size.
+// This covers all subpages of the detail page, including edit.
+body.tombooru {
+  #mw-content-text {
+    .tombooru-page.page-detail {
+      // The main image embed component.
+      .media-embed {
+        margin-bottom: 1em;
+
+        a.media {
+          display: inline-block;
+        }
+
+        p.media-info {
+        }
+      }
+      // All subsequent post information such as the description.
+      .post-details {
+
+      }
+
+      // The edit page. Most of the form styles are defined elsewhere.
+      // This mostly just sets up the page layout.
+      &.subpage-edit {
+        .edit-form-wrapper {
+          display: grid;
+          grid-template-columns: 4fr 2fr;
+          position: relative;
+          background: defaults.$color-superlight-gray;
+          margin-left: -1.0em;
+          margin-right: -1.0em;
+          margin-bottom: -1.0em;
+          border-top: 1px solid defaults.$color-light-gray-1;
+          gap: 0;
+        }
+        .edit-form, .preview {
+          padding-left: 1em;
+          padding-right: 1em;
+          padding-bottom: 1.5em;
+        }
+        .edit-form {
+          border-right: 1px solid defaults.$color-light-gray-1;
+          textarea {
+            resize: vertical;
+          }
+
+          .group {
+            .help {
+              font-size: defaults.$font-size-caption;
+              line-height: defaults.$line-height-caption;
+
+              p:first-child {
+                margin-top: 0;
+              }
+              p:last-child {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+        .preview {
+          background-color: white;
+          padding: 1em;
+        }
+      }
+
+      // The data page. This shows all the raw data we have for a given image.
+      &.subpage-data {
+      }
+    }
+  }
+}
