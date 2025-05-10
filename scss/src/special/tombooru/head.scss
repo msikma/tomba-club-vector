@@ -1,0 +1,34 @@
+@use "sass:color";
+@use "../../defaults";
+@use "../../colorize";
+@use "../../icons";
+
+// We do a bunch of weird things to the navigation at the top of the page.
+// First, we hide the search bar on the right side of the bar to make some space.
+// Then, we transplant some HTML from the content section to the top nav section.
+// This is the one really big layout hack that we do, and it's accomplished by
+// a find and replace before outputting the HTML.
+
+body.tombooru {
+  #right-navigation {
+    // Hide everything except #p-views. We'll put our extra content inside there.
+    // This hides the search bar too. We don't need the search bar anyway, as the imageboard
+    // has its own search that works differently anyway.
+    > *:not(#p-views) {
+      display: none !important;
+    }
+
+    #p-views {
+      width: 100%;
+    }
+    .vector-menu-content-list {
+      width: 100%;
+      display: flex;
+
+      // Select the last .mw-list-item *before* we get a .right item.
+      .mw-list-item:has(+ .right):not(.right) {
+        flex: 1 0;
+      }
+    }
+  }
+}

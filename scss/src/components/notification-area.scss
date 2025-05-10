@@ -18,9 +18,9 @@
     box-shadow: 0px 2px 0px color.mix(#000, defaults.$color-dandelion, 20%);
 
     &:hover {
-      background-color: defaults.$color-dandelion-2;
-      border-color: defaults.$color-dandelion-2;
-      box-shadow: 0px 2px 0px color.mix(#000, defaults.$color-dandelion-2, 20%);
+      background-color: defaults.$color-sand-wisp;
+      border-color: defaults.$color-sand-wisp;
+      box-shadow: 0px 2px 0px color.mix(#000, defaults.$color-sand-wisp, 20%);
     }
   }
 }

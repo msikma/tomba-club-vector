@@ -1,0 +1,83 @@
+@use "../defaults";
+@use "../colorize";
+
+body.has-subsubnav {
+  --sub-bar-offset: 2em;
+}
+
+// The "subsubnav" is a nav that pops up on some pages and sits below the subnav.
+// It's used to display information and filter search results.
+// It looks very similar to the top row of a BigTable.
+.mw-subsubnav {
+  $left: (defaults.$layout-width-nav-panel + defaults.$layout-padding-h-content);
+  position: absolute;
+  background-color: red;
+  top: calc((defaults.$layout-padding-v-content + defaults.$layout-inset-content) * -1);
+  left: calc($left * -1);
+  width: calc(100% + (defaults.$layout-width-nav-panel + defaults.$layout-padding-h-content + defaults.$layout-padding-h-content + defaults.$layout-inner-right-inset));
+  height: calc(1em + 0.4em);
+  background: defaults.$color-superlight-gray;
+  height: calc(2em + 1px);
+  z-index: -1;
+  box-sizing: border-box;
+  color: defaults.$color-dark-gray;
+
+  .navbar {
+    border-top: 1px solid defaults.$color-light-gray-2;
+    border-bottom: 1px solid defaults.$color-light-gray-2;
+    padding-left: calc($left - 1em);
+    padding-right: defaults.$layout-inner-right-inset;
+
+    .navbar-content {
+      display: flex;
+      font-weight: 450;
+      line-height: calc(2em - 1px);
+      padding-top: 1px;
+
+      > * {
+        border-width: 0;
+        border-style: solid;
+        border-color: defaults.$color-light-gray-2;
+      }
+
+      .info {
+        padding-left: calc(1em + 1px);
+        flex: 1 0;
+
+        .search-details {
+        }
+      }
+      .filters {
+        padding-right: calc(1em);
+        border-right-width: 1px;
+
+        select {
+          font-size: 1em;
+        }
+      }
+    }
+  }
+}
+
+// Example:
+// <div class="mw-subsubnav">
+//   <div class="navbar">
+//     <div class="navbar-content">
+//       <div class="info">
+//         <div class="search-details">
+//           Found 123 results.
+//         </div>
+//       </div>
+//       <div class="filters">
+//         <div class="filter">
+//           <label>Thumbnail size:</label>
+//           <select>
+//             <option>Large</option>
+//             <option selected="selected">Regular</option>
+//             <option>Small</option>
+//           </select>
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// </div>

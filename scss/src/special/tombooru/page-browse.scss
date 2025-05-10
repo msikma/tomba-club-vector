@@ -2,19 +2,48 @@
 @use "../../defaults";
 @use "../../colorize";
 @use "../../icons";
+@use "../../functions";
 
 // The browse page covers all the pages containing search results.
 body.tombooru {
+  --tombooru-results-base-size: 10rem;
+
+  &.tombooru-browse-page {
+    // --tc-backdrop-offset-from-bottom: 4em;
+    // --tc-backdrop-bottom-border-radius: #{defaults.$layout-rounding-content-inner};
+  }
+
   #mw-content-text {
     // A set of search results.
     .result-set {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr;
+      gap: 1em;
+      grid-template-columns: repeat(auto-fit, minmax(var(--tombooru-results-base-size), 1fr));
+      padding-bottom: 5em;
 
       .post {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+
+        &::before {
+          border-radius: defaults.$border-radius-s;
+          @include functions.image-border;
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 5;
+          pointer-events: none;
+        }
+
         .media {
+          border-radius: defaults.$border-radius-s;
           display: block;
+          width: 100%;
+          height: 100%;
 
           img {
             width: 100%;

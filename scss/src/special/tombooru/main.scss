@@ -1,11 +1,12 @@
 @use "sass:color";
 @use "basics";
+@use "head";
 @use "nav-panel";
-@use "pagination";
 @use "page-detail";
 @use "page-browse";
 @use "page-start";
 @use "../../defaults";
+@use "../../layout";
 @use "../../colorize";
 @use "../../icons";
 

@@ -30,6 +30,14 @@ $nav-sub-icon-links: (
   'ca-tombooru_artists': ('paintbrush', 'left'),
   'ca-tombooru_popular': ('trending', 'left'),
 );
+// Nav icons with an icon, but applied via a class rather than an id.
+$nav-sub-icon-link-classes: (
+  'settings': ('gear', 'left'),
+  'arrow-top': ('arrow-top', 'left'),
+  'arrow-right': ('arrow-right', 'left'),
+  'arrow-bottom': ('arrow-bottom', 'left'),
+  'arrow-left': ('arrow-left', 'left'),
+);
 $nav-main-icon-links: (
   'ca-talk': ('comment-discussion', 'left'),
   'n-tombooru_posts': ('apps', 'left'),
@@ -79,6 +87,8 @@ $new-nav-tab-opacity: 0.7;
 
 :root {
   --tc-layout-width-right-panel: 0px;
+  --tc-backdrop-offset-from-bottom: 0px;
+  --tc-backdrop-bottom-border-radius: 0px;
 }
 
 html, body {
@@ -116,6 +126,7 @@ body {
 // This contain links such as "read", "edit", "edit source", "view history", and so on.
 @mixin subnav-item {
   color: defaults.$color-cobalt;
+  background: transparent;
   width: inherit;
   height: #{math.div(defaults.$layout-height-nav-sub, defaults.$layout-font-size-nav-sub)}em;
   padding: 0 $nav-item-padding;
@@ -338,7 +349,7 @@ body.right-panel {
   &::before {
     // This is the main white backdrop behind the text.
     width: calc(100% - #{defaults.$layout-width-nav-panel} - defaults.$layout-inner-right-inset - var(--tc-layout-width-right-panel, 0px));
-    height: calc(100% - #{defaults.$layout-inset-content});
+    height: calc(100% - #{defaults.$layout-inset-content} - var(--tc-backdrop-offset-from-bottom, 0px));
     left: defaults.$layout-width-nav-panel;
     top: calc(defaults.$layout-inset-content + (var(--sub-bar-offset, 0em)));
   
@@ -348,7 +359,8 @@ body.right-panel {
     @if $layout-content-is-offset-right {
       border-top-right-radius: defaults.$layout-rounding-content-inner;
     }
-    border-bottom-right-radius: 0;
+    border-bottom-left-radius: var(--tc-backdrop-bottom-border-radius, 0px);
+    border-bottom-right-radius: var(--tc-backdrop-bottom-border-radius, 0px);
     display: block;
     content: '';
     background: defaults.$color-content-bg;
@@ -369,6 +381,11 @@ body.right-panel {
 
   .vector-body {
     font-size: inherit;
+    position: static;
+  }
+
+  #mw-content-text {
+    padding-top: calc(0em + var(--sub-bar-offset, 0em));
   }
 }
 
@@ -430,6 +447,11 @@ body.right-panel {
         a {
           padding: 0;
           background: none;
+
+          span {
+            position: relative;
+            z-index: 5;
+          }
         }
       }
     }
@@ -641,6 +663,7 @@ body.right-panel {
     #right-navigation {
       --right-navigation-shadow-color: rgba(0, 0, 0, 0.1);
       float: none;
+      font-variant-numeric: tabular-nums;
       margin: 0 defaults.$layout-right-inset-content 0 defaults.$layout-left-inset-content;
       height: defaults.$layout-height-nav-sub;
       background: defaults.$color-content-bg;
@@ -744,6 +767,40 @@ body.right-panel {
             }
           }
 
+          @each $cls, $icon-settings in $nav-sub-icon-link-classes {
+            &.#{$cls} {
+              $icon: list.nth($icon-settings, 1);
+              $direction: list.nth($icon-settings, 2);
+              a {
+                padding-#{$direction}: #{$nav-item-padding + (math.div($icon-width + $icon-spacing, defaults.$layout-font-size-nav-sub))};
+                &::before {
+                  content: '';
+                  #{$direction}: math.div($nav-item-padding + math.div($icon-width + $icon-spacing, defaults.$layout-font-size-nav-sub) - math.div($icon-width, 2), 2);
+                  background-image: icons.icon-url($icon);
+                }
+              }
+            }
+          }
+
+          &.no-text {
+            a {
+              width: 2.6em;
+              padding: 0;
+              span {
+                display: none;
+              }
+              &::before {
+                top: 0;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                width: inherit;
+                background-position: 50% 50%;
+                background-size: #{math.div($icon-width, defaults.$layout-font-size-nav-sub)}em;
+              }
+            }
+          }
+
           &.selected a {
             color: defaults.$color-green-haze;
             
@@ -758,6 +815,65 @@ body.right-panel {
             }
           }
 
+          &.inert {
+            a {
+              padding-left: 0.5em;
+              padding-right: 0.5em;
+              pointer-events: none;
+              &::after {
+                display: none;
+              }
+            }
+          }
+
+          &.stick-right {
+            a {
+              margin-right: -0.175em;
+              &::after {
+              }
+            }
+          }
+
+          &.stick-left {
+            a {
+              margin-left: -0.175em;
+              &::after {
+              }
+            }
+          }
+
+          &.yellow {
+            a {
+              color: defaults.$color-sahara;
+              
+              &::after {
+                background: rgba(defaults.$color-dandelion, 0.3);
+              }
+              &::before {
+                @include colorize.colorize-sahara;
+              }
+              &:hover::after {
+                background: rgba(defaults.$color-dandelion, 0.5);
+              }
+            }
+          }
+
+          &.blue {
+            a {
+              color: defaults.$color-cobalt;
+              
+              &::after {
+                background: rgba(defaults.$color-cobalt, 0.1);
+              }
+              &::before {
+                @include colorize.colorize-cobalt;
+              }
+              &:hover::after {
+                background: rgba(defaults.$color-cobalt, 0.2);
+              }
+            }
+          }
+
           a {
             @include subnav-item;
 
@@ -768,6 +884,9 @@ body.right-panel {
 
           &:first-child a {
             margin-left: ($nav-item-padding) - $highlight-padding;
+          }
+          &:last-child.right a {
+            margin-right: ($nav-item-padding) - $highlight-padding;
           }
 
           &#ca-unwatch {

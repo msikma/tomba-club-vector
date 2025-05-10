@@ -1,0 +1,134 @@
+@use "sass:color";
+@use "../defaults";
+@use "../layout";
+@use "../colorize";
+@use "../icons";
+
+// The 
+#mw-content-text {
+  .content-footer {
+    font-variant-numeric: tabular-nums;
+    display: flex;
+    place-content: start;
+    position: absolute;
+    bottom: 0;
+    left: defaults.$layout-width-nav-panel;
+    right: 0.75em;
+    border-top: 1px solid defaults.$color-light-gray-1;
+    padding: 0.5em;
+
+    &.pagination {
+      place-content: center;
+    }
+
+    .link-sets {
+      display: flex;
+      gap: 0.75em;
+
+      .links {
+        display: flex;
+        gap: 0.125rem;
+
+        span {
+          cursor: default;
+        }
+        a {
+          cursor: pointer;
+        }
+
+        .item {
+          @include layout.subnav-item;
+          display: inline-block;
+          padding-left: 0;
+          padding-right: 0;
+          min-width: 2.10em;
+          text-align: center;
+          line-height: 3.08em;
+          height: 3.1em;
+
+          &.label {
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+
+            &.no-background {
+              &::after {
+                display: none;
+              }
+            }
+          }
+
+          &.len-1 {
+            min-width: 2.10em;
+          }
+          &.len-2 {
+            min-width: calc(2.10em + 0.6ch);
+          }
+          &.len-3 {
+            min-width: calc(2.10em + 1.2ch);
+          }
+
+          &.ellipsis {
+            &::after {
+              background: rgba(defaults.$color-cobalt, 0.0);
+            }
+          }
+
+          &::after {
+            background: rgba(defaults.$color-cobalt, 0.1);
+            left: 0;
+            right: 0;
+            z-index: -1;
+          }
+
+          &.item-current {
+            color: white;
+            &::after {
+              background: rgba(defaults.$color-cobalt, 1);
+            }
+          }
+        }
+        a.item {
+          &:hover {
+            text-decoration: none;
+            &::after {
+              background: rgba(defaults.$color-cobalt, 0.2);
+            }
+          }
+        }
+
+        &.labels {
+          .item {
+            text-indent: -9999px;
+            position: relative;
+
+            &.item-previous {
+              &::before {
+                background-image: icons.icon-url('arrow-left');
+              }
+            }
+            &.item-next {
+              &::before {
+                background-image: icons.icon-url('arrow-right');
+              }
+            }
+
+            &::before {
+              @include colorize.colorize-cobalt;
+              width: inherit;
+              content: '';
+              position: absolute;
+              top: 0;
+              right: 0;
+              left: 0;
+              bottom: 0;
+              display: block;
+              background: transparent no-repeat;
+              background-position: 50% 50%;
+              background-size: 1.1111111111em;
+            }
+          }
+        }
+      }
+    }
+  }
+}

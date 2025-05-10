@@ -56,7 +56,11 @@
   // #ffdb41
   filter: brightness(0) saturate(100%) invert(89%) sepia(31%) saturate(982%) hue-rotate(343deg) brightness(101%) contrast(102%);
 }
-@mixin colorize-dandelion-2 {
+@mixin colorize-sahara {
+  // #c69c22
+  filter: brightness(0) saturate(100%) invert(48%) sepia(88%) saturate(1318%) hue-rotate(18deg) brightness(89%) contrast(84%);
+}
+@mixin colorize-sand-wisp {
   // #ffeda0
   filter: brightness(0) saturate(100%) invert(73%) sepia(100%) saturate(138%) hue-rotate(4deg) brightness(105%) contrast(103%);
 }

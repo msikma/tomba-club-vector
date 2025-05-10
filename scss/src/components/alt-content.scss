@@ -12,6 +12,9 @@ body.alt-content {
     &::before {
       display: none;
     }
+    .vector-body {
+      position: relative;
+    }
   }
   // The first heading must also be hidden.
   #firstHeading {
