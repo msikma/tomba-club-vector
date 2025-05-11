@@ -140,6 +140,7 @@ body {
     background-size: contain;
     height: auto;
     position: absolute;
+    z-index: 4;
     top: 0;
     bottom: 0;
     background-repeat: no-repeat;
@@ -680,6 +681,7 @@ body.right-panel {
         margin-right: calc((#{$nav-item-padding} / 2) - 1px);
 
         #searchform {
+          $duration: 80ms;
           margin: 0;
           height: defaults.$layout-height-nav-sub;
           display: flex;
@@ -698,7 +700,7 @@ body.right-panel {
               border: 1px solid transparent;
               border-radius: defaults.$layout-rounding-content-outer - 1px;
               box-shadow: inset 0 0 0 2px defaults.$color-light-gray-2;
-              transition: border-color 150ms, box-shadow 150ms, color 150ms;
+              transition: border-color $duration, box-shadow $duration, color $duration;
               background-color: white;
 
               &:focus {
@@ -718,6 +720,9 @@ body.right-panel {
             &:hover {
               #searchInput {
                 box-shadow: inset 0 0 0 2px defaults.$color-cobalt;
+                &::placeholder {
+                  color: defaults.$color-cobalt;
+                }
               }
               #searchButton {
                 @include colorize.colorize-cobalt;
@@ -1072,6 +1077,7 @@ body.right-panel {
       color: defaults.$color-heading-positive;
 
       span {
+        cursor: auto;
         line-height: 1.2;
         border-bottom: 2px solid rgba(defaults.$color-black, 0.25);
         display: block;
@@ -1168,13 +1174,6 @@ body.right-panel {
         }
       }
     }
-    &:hover .vector-menu-heading {
-      span {
-        background: defaults.$color-dandelion;
-        color: defaults.$color-heading-negative;
-        border-bottom-color: rgba(defaults.$color-black, 0.25);
-      }
-    }
   }
   &.solid-panel {
     .mw-portlet {
@@ -1193,11 +1192,6 @@ body.right-panel {
       .vector-menu-content {
         border-bottom-left-radius: defaults.$border-radius-xxs !important;
         border-bottom-right-radius: defaults.$border-radius-xxs !important;
-      }
-      &:hover {
-        .vector-menu-content:not(.no-background) {
-          background: rgba(defaults.$color-dandelion, 0.2);
-        }
       }
     }
   }
@@ -1237,6 +1231,29 @@ body.right-panel {
         }
         li, td, th {
           padding: 0.075em 0;
+        }
+      }
+    }
+  }
+  .mw-portlet {
+    // "Primary style" indicates that this item is styled as if it's in the main content.
+    &.primary-style {
+      .vector-menu-heading {
+        .vector-menu-heading-label {
+          background-color: defaults.$color-cobalt;
+        }
+      }
+      .vector-menu-content {
+      }
+    }
+  }
+  &.solid-panel {
+    .mw-portlet {
+      &.primary-style {
+        .vector-menu-content {
+          &:not(.no-background) {
+            background-color: rgba(defaults.$color-cobalt, 0.1);
+          }
         }
       }
     }

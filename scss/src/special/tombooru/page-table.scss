@@ -1,0 +1,21 @@
+@use "sass:color";
+@use "../../defaults";
+@use "../../colorize";
+@use "../../icons";
+
+// This is for pages that have only a BigTable on them, e.g. the tags page.
+body.tombooru {
+  &.alt-content {
+    #mw-content-text {
+      .mw-content-navigation-panel {
+        top: calc(0.6em + 1.5px);
+      }
+      .tombooru-page {
+        .tc-big-table.is-article-header {
+          // I'm not sure why we need to knock out the 0.5em here.
+          top: calc((defaults.$layout-padding-v-content + defaults.$layout-inset-content - 2px) * -1);
+        }
+      }
+    }
+  }
+}

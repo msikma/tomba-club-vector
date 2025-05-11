@@ -74,6 +74,13 @@ body.tombooru {
             }
           }
         }
+
+        &:last-child {
+          &::after {
+            border-bottom-left-radius: defaults.$border-radius-xxs;
+            border-bottom-right-radius: defaults.$border-radius-xxs;
+          }
+        }
       }
 
       // private static array $tagTypeOrder = ['Copyright', 'Artist', 'Characters', 'Locations', 'Meta'];
@@ -118,8 +125,8 @@ body.tombooru {
       .with-overflow {
         overflow: visible;
       }
-      .with-break-spaces {
-        white-space: break-spaces;
+      .with-wrap {
+        white-space: wrap;
       }
       .url-items {
         a {

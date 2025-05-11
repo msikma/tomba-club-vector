@@ -243,6 +243,15 @@
       }
     }
 
+    // In case we have a separator without a section before it.
+    .header + .separator + tr {
+      td, th {
+        &:first-child {
+          border-top-left-radius: defaults.$border-radius-m;
+        }
+      }
+    }
+
     td, th {
       padding: 0.2em 0.5em;
       border-width: 0;

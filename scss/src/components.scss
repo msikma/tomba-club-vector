@@ -1,15 +1,16 @@
+@use "components/actions";
 @use "components/alt-content";
 @use "components/big-table";
 @use "components/catlinks";
 @use "components/checkbox";
 @use "components/code";
-@use "components/content-footer";
 @use "components/etc";
 @use "components/gallery";
 @use "components/indicators";
 @use "components/infobox";
 @use "components/japanese-name";
 @use "components/messagebox";
+@use "components/notice";
 @use "components/notification-area";
 @use "components/page-metadata";
 @use "components/search";
