@@ -81,7 +81,7 @@ body.tombooru {
                 cursor: pointer;
 
                 .button {
-                  @include colorize.colorize-gray-1;
+                  filter: colorize.colorize-gray-1();
                   text-indent: -9999px;
                   width: 100%;
                   height: 100%;
@@ -123,7 +123,7 @@ body.tombooru {
                 }
                 .button-container {
                   .button {
-                    @include colorize.colorize-cobalt;
+                    filter: colorize.colorize-cobalt();
                   }
                 }
               }

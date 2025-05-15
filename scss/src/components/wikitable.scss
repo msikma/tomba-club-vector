@@ -29,12 +29,12 @@ table.wikitable {
     color: defaults.$color-salem;
   }
   a.external::after {
-    @include colorize.colorize-salem;
+    filter: colorize.colorize-salem();
   }
   a.external:visited {
     color: defaults.$color-salem;
   }
   a.external:visited::after {
-    @include colorize.colorize-salem;
+    filter: colorize.colorize-salem();
   }
 }

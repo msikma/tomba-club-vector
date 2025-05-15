@@ -49,7 +49,7 @@
         background: defaults.$color-cobalt;
       }
       &::after {
-        @include colorize.colorize-white;
+        filter: colorize.colorize-white();
       }
     }
     &.state-unchecked {
@@ -57,7 +57,7 @@
         background: defaults.$color-superlight-gray;
       }
       &::after {
-        @include colorize.colorize-light-gray-4;
+        filter: colorize.colorize-light-gray-4();
       }
     }
   }

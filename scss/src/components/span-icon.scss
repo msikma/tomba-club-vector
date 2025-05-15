@@ -14,7 +14,7 @@
     background-position: center left;
   }
   &.internet-archive::before {
-    @include colorize.colorize-black;
+    filter: colorize.colorize-black();
     background-image: icons.icon-url('internet-archive');
   }
 }

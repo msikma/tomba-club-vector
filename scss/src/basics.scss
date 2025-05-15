@@ -161,14 +161,14 @@ body,
     background-position: center right;
     background-size: 0.833333em 0.833333em;
     background-image: icons.icon-url('external-link');
-    @include colorize.colorize-green-haze;
+    filter: colorize.colorize-green-haze();
   }
   a.external:visited {
     color: defaults.$color-salem;
   }
   a.external:visited::after {
     // This doesn't actually work, since visited links have limited styling available.
-    @include colorize.colorize-salem;
+    filter: colorize.colorize-salem();
   }
   a.image img {
     // Ensure inlined images don't exceed the page width.

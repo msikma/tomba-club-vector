@@ -73,7 +73,7 @@
 
             > span {
               @include layout.subnav-item;
-              @include colorize.colorize-cobalt;
+              filter: colorize.colorize-cobalt();
               width: #{math.div(layout.$icon-width, defaults.$layout-font-size-nav-sub)}em;
               text-indent: -9999px;
               position: absolute;

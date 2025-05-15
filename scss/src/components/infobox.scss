@@ -32,7 +32,7 @@
       color: white;
 
       &::before {
-        @include colorize.colorize-white;
+        filter: colorize.colorize-white();
       }
     }
   }
@@ -45,7 +45,7 @@
       color: white;
 
       &::before {
-        @include colorize.colorize-white;
+        filter: colorize.colorize-white();
       }
     }
   }
@@ -58,7 +58,7 @@
       color: white;
 
       &::before {
-        @include colorize.colorize-white;
+        filter: colorize.colorize-white();
       }
     }
   }
@@ -154,7 +154,7 @@
         &::before {
           // TODO: make this configurable via CSS vars.
           // This will require moving these @includes to functions.
-          @include colorize.colorize-green-haze;
+          filter: colorize.colorize-green-haze();
           width: 0.875rem;
           height: 0.875rem;
           left: 0.8em;
@@ -275,7 +275,7 @@
 
       &:hover {
         &::before {
-          @include colorize.colorize-green-haze;
+          filter: colorize.colorize-green-haze();
         }
         a {
           border-color: defaults.$color-green-haze;

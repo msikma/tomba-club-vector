@@ -25,7 +25,7 @@
     h6 {
       position: relative;
       &::before {
-        @include colorize.colorize-black;
+        filter: colorize.colorize-black();
         content: '';
         width: 1em;
         display: block;

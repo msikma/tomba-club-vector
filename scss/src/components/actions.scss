@@ -80,7 +80,7 @@
       }
       &::before {
         // The icon section pseudoelement.
-        @include colorize.colorize-cobalt;
+        filter: colorize.colorize-cobalt();
         content: '';
         width: #{math.div(layout.$icon-width, defaults.$layout-font-size-nav-sub)}em;
         height: auto;
@@ -146,12 +146,12 @@
     .item {
       --color: var(--portlet-color-dark, #{defaults.$color-cobalt});
       &::before {
-        @include colorize.colorize-cobalt;
+        filter: colorize.colorize-cobalt();
       }
       &.active {
         color: defaults.$color-white;
         &::before {
-          @include colorize.colorize-white;
+          filter: colorize.colorize-white();
         }
         &::after {
           opacity: var(--bg-active);
@@ -161,12 +161,12 @@
       &.green {
         --color: #{defaults.$color-green-haze};
         &::before {
-          @include colorize.colorize-green-haze;
+          filter: colorize.colorize-green-haze();
         }
         &.active {
           color: defaults.$color-white;
           &::before {
-            @include colorize.colorize-white;
+            filter: colorize.colorize-white();
           }
         }
       }
@@ -174,12 +174,12 @@
       &.red {
         --color: #{defaults.$color-radical-red};
         &::before {
-          @include colorize.colorize-radical-red;
+          filter: colorize.colorize-radical-red();
         }
         &.active {
           color: defaults.$color-white;
           &::before {
-            @include colorize.colorize-white;
+            filter: colorize.colorize-white();
           }
         }
       }
@@ -189,12 +189,12 @@
         --bg-regular: 0.2;
         --bg-regular-hover: 0.3;
         &::before {
-          @include colorize.colorize-deep-blush;
+          filter: colorize.colorize-deep-blush();
         }
         &.active {
           color: defaults.$color-white;
           &::before {
-            @include colorize.colorize-white;
+            filter: colorize.colorize-white();
           }
         }
       }
@@ -207,13 +207,13 @@
         --bg-active: 1.0;
         --bg-active-hover: 0.75;
         &::before {
-          @include colorize.colorize-sahara;
+          filter: colorize.colorize-sahara();
         }
         &.active {
           color: defaults.$color-white;
           --color: #{defaults.$color-corn};
           &::before {
-            @include colorize.colorize-white;
+            filter: colorize.colorize-white();
           }
         }
       }

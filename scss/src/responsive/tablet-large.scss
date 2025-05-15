@@ -87,10 +87,10 @@
         padding-right: defaults.$layout-side-nav-header-offset-right !important;
 
         &:hover::before {
-          @include colorize.colorize-white;
+          filter: colorize.colorize-white();
         }
         &::before {
-          @include colorize.colorize-white;
+          filter: colorize.colorize-white();
           left: 0.5em;
         }
       }
@@ -207,7 +207,7 @@
               color: defaults.$color-dandelion;
 
               &::before {
-                @include colorize.colorize-dandelion;
+                filter: colorize.colorize-dandelion();
               }
             }
           }

@@ -124,7 +124,7 @@ body.tombooru {
                 > span {
                   filter: brightness(0.6) saturate(0.8);
                   &::before {
-                    @include colorize.colorize-green-haze;
+                    filter: colorize.colorize-green-haze();
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: 88%;
@@ -239,12 +239,12 @@ body.tombooru {
                 box-shadow: 0 0 0 2px rgba(defaults.$color-cobalt, 0.4);
 
                 + button {
-                  @include colorize.colorize-cobalt;
+                  filter: colorize.colorize-cobalt();
                 }
               }
             }
             button {
-              @include colorize.colorize-black;
+              filter: colorize.colorize-black();
               position: absolute;
               top: 0;
               right: 0;
@@ -396,12 +396,12 @@ body.tombooru {
                   box-shadow: 0 0 0 2px rgba(defaults.$color-cobalt, 0.4);
 
                   + button {
-                    @include colorize.colorize-cobalt;
+                    filter: colorize.colorize-cobalt();
                   }
                 }
               }
               button {
-                @include colorize.colorize-cobalt;
+                filter: colorize.colorize-cobalt();
               }
               .autocomplete {
                 border-color: defaults.$color-cobalt;
