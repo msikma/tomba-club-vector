@@ -1116,6 +1116,7 @@ body.right-panel {
   &.solid-panel {
     .mw-portlet {
       --portlet-color: #{defaults.$color-green-haze};
+      --portlet-color-filter: #{colorize.colorize-green-haze()};
       --portlet-color-heading-text: #{defaults.$color-white};
       --portlet-color-dark: #{colorize.portlet-darken(defaults.$color-green-haze)};
       --portlet-color-dark-filter: #{colorize.colorize-green-haze()} #{colorize.portlet-darken-filter()};
@@ -1200,6 +1201,7 @@ body.right-panel {
   .mw-portlet {
     &.blue {
       --portlet-color: #{defaults.$color-cobalt};
+      --portlet-color-filter: #{colorize.colorize-cobalt()};
       --portlet-color-heading-text: #{defaults.$color-white};
       --portlet-color-dark: #{colorize.portlet-darken(defaults.$color-cobalt)};
       --portlet-color-dark-filter: #{colorize.colorize-cobalt()} #{colorize.portlet-darken-filter()};
@@ -1208,6 +1210,7 @@ body.right-panel {
   .mw-portlet {
     &.pink {
       --portlet-color: #{defaults.$color-deep-blush};
+      --portlet-color-filter: #{colorize.colorize-deep-blush()};
       --portlet-color-heading-text: #{defaults.$color-white};
       --portlet-color-dark: #{colorize.portlet-darken(defaults.$color-deep-blush)};
       --portlet-color-dark-filter: #{colorize.colorize-deep-blush()} #{colorize.portlet-darken-filter()};;

@@ -21,7 +21,7 @@ body.tombooru {
         &::after {
           content: '';
           //background-color: var(--tag-color);
-          background-color: var(--color, defaults.$color-green-haze);
+          background-color: var(--portlet-color, defaults.$color-green-haze);
           position: absolute;
           top: 0;
           left: 0;
@@ -122,9 +122,8 @@ body.tombooru {
                 }
 
                 > span {
-                  filter: brightness(0.6) saturate(0.8);
                   &::before {
-                    filter: colorize.colorize-green-haze();
+                    filter: var(--portlet-color-dark-filter, #{colorize.colorize-green-haze() colorize.portlet-darken-filter()});
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: 88%;

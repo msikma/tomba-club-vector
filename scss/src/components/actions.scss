@@ -42,7 +42,8 @@
     // The items are the basic links themselves.
     // ::after covers the background element, and ::before covers the icon, if set.
     .item {
-      --color: #{defaults.$color-cobalt};
+      --action-color: var(--portlet-color, #{defaults.$color-cobalt});
+      --action-color-filter: var(--portlet-color-filter, #{colorize.colorize-cobalt()});
       --bg-regular: 0.1;
       --bg-regular-hover: 0.2;
       --bg-active: 1.0;
@@ -53,7 +54,7 @@
       text-decoration: none;
       padding: 0 0.5em;
       min-width: 2.10em;
-      color: var(--color);
+      color: var(--action-color);
       background: transparent;
       width: inherit;
       font-size: defaults.$layout-font-size-nav-sub;
@@ -70,7 +71,7 @@
         position: absolute;
         border-radius: defaults.$border-radius-xs;
         background: none;
-        background-color: var(--color);
+        background-color: var(--action-color);
         top: 0;
         bottom: 0;
         left: 0;
@@ -80,7 +81,7 @@
       }
       &::before {
         // The icon section pseudoelement.
-        filter: colorize.colorize-cobalt();
+        filter: var(--action-color-filter);
         content: '';
         width: #{math.div(layout.$icon-width, defaults.$layout-font-size-nav-sub)}em;
         height: auto;
@@ -144,64 +145,43 @@
 
     // All color styles.
     .item {
-      --color: var(--portlet-color-dark, #{defaults.$color-cobalt});
-      &::before {
-        filter: colorize.colorize-cobalt();
-      }
+      // "Active" items have a fully opaque background and white text.
       &.active {
-        color: defaults.$color-white;
-        &::before {
-          filter: colorize.colorize-white();
-        }
+        color: defaults.$color-white !important;
         &::after {
           opacity: var(--bg-active);
+        }
+        &::before {
+          filter: colorize.colorize-white() !important;
         }
       }
 
       &.green {
-        --color: #{defaults.$color-green-haze};
+        --action-color: #{defaults.$color-green-haze};
         &::before {
           filter: colorize.colorize-green-haze();
-        }
-        &.active {
-          color: defaults.$color-white;
-          &::before {
-            filter: colorize.colorize-white();
-          }
         }
       }
 
       &.red {
-        --color: #{defaults.$color-radical-red};
+        --action-color: #{defaults.$color-radical-red};
         &::before {
           filter: colorize.colorize-radical-red();
-        }
-        &.active {
-          color: defaults.$color-white;
-          &::before {
-            filter: colorize.colorize-white();
-          }
         }
       }
 
       &.pink {
-        --color: #{defaults.$color-deep-blush};
+        --action-color: #{defaults.$color-deep-blush};
         --bg-regular: 0.2;
         --bg-regular-hover: 0.3;
         &::before {
           filter: colorize.colorize-deep-blush();
         }
-        &.active {
-          color: defaults.$color-white;
-          &::before {
-            filter: colorize.colorize-white();
-          }
-        }
       }
 
       &.yellow {
         color: defaults.$color-sahara;
-        --color: #{defaults.$color-dandelion};
+        --action-color: #{defaults.$color-dandelion};
         --bg-regular: 0.3;
         --bg-regular-hover: 0.5;
         --bg-active: 1.0;
@@ -210,11 +190,7 @@
           filter: colorize.colorize-sahara();
         }
         &.active {
-          color: defaults.$color-white;
-          --color: #{defaults.$color-corn};
-          &::before {
-            filter: colorize.colorize-white();
-          }
+          --action-color: #{defaults.$color-corn};
         }
       }
     }
@@ -228,6 +204,33 @@
         &:hover {
           &::after {
             opacity: var(--bg-active-hover);
+          }
+        }
+      }
+    }
+  }
+
+  // Special adjustments for portlets. Inside portlets we want darker text.
+  .mw-content-panel.solid-panel {
+    .mw-portlet {
+      .actions {
+        .action-set {
+          display: block;
+        }
+        .item {
+          font-size: 1em;
+
+          --action-color: var(--portlet-color-dark, #{colorize.portlet-darken(defaults.$color-cobalt)});
+          --action-color-filter: var(--portlet-color-dark-filter, #{colorize.colorize-cobalt()} #{colorize.portlet-darken-filter()});
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          &.green {
+            --action-color: var(--portlet-color-dark, #{colorize.portlet-darken(defaults.$color-cobalt)});
+            --action-color-filter: var(--portlet-color-dark-filter, #{colorize.colorize-cobalt()} #{colorize.portlet-darken-filter()});
+
           }
         }
       }
