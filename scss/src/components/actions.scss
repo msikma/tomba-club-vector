@@ -1,145 +1,290 @@
 @use "sass:color";
+@use "sass:math";
 @use "../defaults";
 @use "../layout";
 @use "../colorize";
 @use "../icons";
 
-// These are links or buttons that perform some kind of action, such as adding a filter.
-// This is used for the pagination on the imageboard.
+// "Actions" are links or buttons that perform some kind of action, such as adding a filter
+// or downloading a file. They can also be used to indicate labels alongside buttons.
+// Four colors are usable: blue (default), green, yellow and pink. Buttons are positive by default.
+// If .active is added, the buttons become negative. .label is used for text sections.
+// If an item has .icon, it will display an icon that can be set by setting the --icon CSS variable.
+//
+// These are used for pagination sections as well as on the imageboard to indicate e.g. downloads.
 #mw-content-text {
   .actions {
     font-variant-numeric: tabular-nums;
+    display: flex;
+    gap: 0.25rem;
 
-    &.section-footer {
-      display: flex;
-      place-content: start;
-      position: absolute;
-      bottom: 0;
-      left: defaults.$layout-width-nav-panel;
-      right: 0.75em;
-      border-top: 1px solid defaults.$color-light-gray-1;
-      padding: 0.5em;
-    }
-
-    &.pagination {
-      place-content: center;
-    }
-
-    .link-sets {
+    // For grouping links together.
+    .action-sets {
       display: flex;
       gap: 0.75em;
-    }
 
-    .links {
-      display: flex;
-      gap: 0.125rem;
-
-      &.text-gap {
+      .action-set {
+        display: flex;
         gap: 0.25rem;
       }
+    }
 
-      span {
-        cursor: default;
+    // Unlinked items, as well as text labels.
+    span {
+      cursor: default;
+    }
+
+    // Linked items.
+    a {
+      cursor: pointer;
+    }
+
+    // The items are the basic links themselves.
+    // ::after covers the background element, and ::before covers the icon, if set.
+    .item {
+      --color: #{defaults.$color-cobalt};
+      --bg-regular: 0.1;
+      --bg-regular-hover: 0.2;
+      --bg-active: 1.0;
+      --bg-active-hover: 0.75;
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      padding: 0 0.5em;
+      min-width: 2.10em;
+      color: var(--color);
+      background: transparent;
+      width: inherit;
+      font-size: defaults.$layout-font-size-nav-sub;
+      font-weight: defaults.$font-subnav-weight;
+      height: #{math.div(defaults.$layout-height-nav-sub, defaults.$layout-font-size-nav-sub) - 1em};
+      line-height: #{math.div(defaults.$layout-height-nav-sub, defaults.$layout-font-size-nav-sub) - 1.03em};
+
+      &::after {
+        // The background section pseudoelement.
+        content: '';
+        width: auto;
+        height: auto;
+        display: block;
+        position: absolute;
+        border-radius: defaults.$border-radius-xs;
+        background: none;
+        background-color: var(--color);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        opacity: var(--bg-regular);
       }
-      a {
-        cursor: pointer;
+      &::before {
+        // The icon section pseudoelement.
+        @include colorize.colorize-cobalt;
+        content: '';
+        width: #{math.div(layout.$icon-width, defaults.$layout-font-size-nav-sub)}em;
+        height: auto;
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0.625em;
+        bottom: 0;
+        background: none;
+        background-position: 0 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: var(--icon);
+        z-index: 4;
       }
 
-      .item {
-        @include layout.subnav-item;
-        display: inline-block;
+      // A "label" type has no background.
+      &.label {
         padding-left: 0;
         padding-right: 0;
-        min-width: 2.10em;
-        text-align: center;
-        line-height: 3.08em;
-        height: 3.1em;
-
-        &.label {
-          padding-left: 0.5em;
-          padding-right: 0.5em;
-        }
-        &.no-background {
-          &::after {
-            display: none;
-          }
-        }
-
-        &.len-1 {
-          min-width: 2.10em;
-        }
-        &.len-2 {
-          min-width: calc(2.10em + 0.6ch);
-        }
-        &.len-3 {
-          min-width: calc(2.10em + 1.2ch);
-        }
-
-        &.ellipsis {
-          &::after {
-            background: rgba(defaults.$color-cobalt, 0.0);
-          }
-        }
-
+        
         &::after {
-          background: rgba(defaults.$color-cobalt, 0.1);
-          left: 0;
-          right: 0;
-          z-index: -1;
+          display: none;
         }
 
-        &.item-current {
-          color: white;
-          &::after {
-            background: rgba(defaults.$color-cobalt, 1);
-          }
-        }
-      }
-      a.item {
-        &:hover {
-          text-decoration: none;
-          &::after {
-            background: rgba(defaults.$color-cobalt, 0.2);
-          }
-        }
-      }
-
-      &.narrow {
-        .item {
-          line-height: 2.68em;
-          height: 2.7em;
-        }
-      }
-
-      &.labels {
-        .item {
-          text-indent: -9999px;
-          position: relative;
-
-          &.item-previous {
-            &::before {
-              background-image: icons.icon-url('arrow-left');
-            }
-          }
-          &.item-next {
-            &::before {
-              background-image: icons.icon-url('arrow-right');
-            }
-          }
+        // Fix the padding if there's an icon.
+        &.icon {
+          padding-left: 1.5em;
+          padding-right: 0;
 
           &::before {
-            @include colorize.colorize-cobalt;
-            width: inherit;
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            display: block;
-            background: transparent no-repeat;
-            background-position: 50% 50%;
-            background-size: 1.1111111111em;
+            left: 0.125em;
+          }
+        }
+      }
+
+      // If .icon is set, space is added on the left side for an icon.
+      // The icon is set through the --icon CSS variable.
+      &.icon {
+        padding-left: 2.0em;
+
+        &::before {
+          display: block;
+        }
+      }
+
+      // If .icon-only is set (in conjunction with .icon), the text is omitted and the icon is centered.
+      &.icon.icon-only {
+        padding: 0;
+        text-indent: -9999px;
+        position: relative;
+        &::before {
+          left: 0;
+          right: 0;
+          width: auto;
+          background-size: #{math.div(layout.$icon-width, defaults.$layout-font-size-nav-sub)}em;
+          background-position: 50%;
+        }
+      }
+    }
+
+    // All color styles.
+    .item {
+      --color: #{defaults.$color-cobalt};
+      &::before {
+        @include colorize.colorize-cobalt;
+      }
+      &.active {
+        color: defaults.$color-white;
+        &::before {
+          @include colorize.colorize-white;
+        }
+        &::after {
+          opacity: var(--bg-active);
+        }
+      }
+
+      &.green {
+        --color: #{defaults.$color-green-haze};
+        &::before {
+          @include colorize.colorize-green-haze;
+        }
+        &.active {
+          color: defaults.$color-white;
+          &::before {
+            @include colorize.colorize-white;
+          }
+        }
+      }
+
+      &.red {
+        --color: #{defaults.$color-radical-red};
+        &::before {
+          @include colorize.colorize-radical-red;
+        }
+        &.active {
+          color: defaults.$color-white;
+          &::before {
+            @include colorize.colorize-white;
+          }
+        }
+      }
+
+      &.pink {
+        --color: #{defaults.$color-deep-blush};
+        --bg-regular: 0.2;
+        --bg-regular-hover: 0.3;
+        &::before {
+          @include colorize.colorize-deep-blush;
+        }
+        &.active {
+          color: defaults.$color-white;
+          &::before {
+            @include colorize.colorize-white;
+          }
+        }
+      }
+
+      &.yellow {
+        color: defaults.$color-sahara;
+        --color: #{defaults.$color-dandelion};
+        --bg-regular: 0.3;
+        --bg-regular-hover: 0.5;
+        --bg-active: 1.0;
+        --bg-active-hover: 0.75;
+        &::before {
+          @include colorize.colorize-sahara;
+        }
+        &.active {
+          color: defaults.$color-white;
+          --color: #{defaults.$color-corn};
+          &::before {
+            @include colorize.colorize-white;
+          }
+        }
+      }
+    }
+    a.item {
+      &:hover {
+        &::after {
+          opacity: var(--bg-regular-hover);
+        }
+      }
+      &.active {
+        &:hover {
+          &::after {
+            opacity: var(--bg-active-hover);
+          }
+        }
+      }
+    }
+  }
+
+  // Adjustments for items appearing in the section footer (the footer of the main content area).
+  .actions.section-footer {
+    display: flex;
+    place-content: start;
+    position: absolute;
+    bottom: 0;
+    left: defaults.$layout-width-nav-panel;
+    right: 0.75em;
+    border-top: 1px solid defaults.$color-light-gray-1;
+    padding: 0.5em;
+  }
+
+  // Specific adjustments for the pagination section.
+  .actions.pagination {
+    place-content: center !important;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    .action-set {
+      gap: 0.125rem;
+
+      &.page-numbers {
+        .item {
+          padding-left: 0;
+          padding-right: 0;
+
+          &.len-1 {
+            min-width: 2.10em;
+          }
+          &.len-2 {
+            min-width: calc(2.10em + 0.6ch);
+          }
+          &.len-3 {
+            min-width: calc(2.10em + 1.2ch);
+          }
+
+          &.ellipsis {
+            &::after {
+              display: none !important;
+            }
+          }
+        }
+      }
+
+      &.previous-next {
+        .item {
+          &.previous {
+            --icon: #{icons.icon-url('arrow-left')};
+          }
+          &.next {
+            --icon: #{icons.icon-url('arrow-right')};
           }
         }
       }

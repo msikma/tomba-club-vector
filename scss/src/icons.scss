@@ -3,6 +3,73 @@
 @use "sass:meta";
 @use "sass:string";
 
+// The nav items that have an icon.
+$nav-sub-icon-links: (
+  'ca-ve-edit': ('pencil', 'left'),
+  'ca-edit': ('file-code', 'left'),
+  'ca-viewsource': ('file-code', 'left'),
+  'ca-view': ('book', 'left'),
+  'ca-history': ('history', 'left'),
+  'ca-unwatch': ('star-fill', 'left'),
+  'ca-watch': ('star', 'left'),
+  'ca-recreatedata': ('package', 'left'),
+
+  // For Tombooru.
+  'ca-tombooru_post': ('image', 'left'),
+  'ca-tombooru_edit': ('file-code', 'left'),
+  'ca-tombooru_upload': ('upload', 'left'),
+  'ca-tombooru_viewonwiki': ('external', 'left'),
+  'ca-tombooru_viewdata': ('package', 'left'),
+  'ca-tombooru_search': ('search', 'left'),
+  'ca-tombooru_recent': ('history', 'left'),
+  'ca-tombooru_tags': ('tag', 'left'),
+  'ca-tombooru_artists': ('paintbrush', 'left'),
+  'ca-tombooru_popular': ('trending', 'left'),
+);
+// Nav icons with an icon, but applied via a class rather than an id.
+$nav-sub-icon-link-classes: (
+  'settings': ('gear', 'left'),
+  'arrow-top': ('arrow-top', 'left'),
+  'arrow-right': ('arrow-right', 'left'),
+  'arrow-bottom': ('arrow-bottom', 'left'),
+  'arrow-left': ('arrow-left', 'left'),
+);
+$nav-main-icon-links: (
+  'ca-talk': ('comment-discussion', 'left'),
+  'n-tombooru_posts': ('apps', 'left'),
+  'n-tombooru_tags': ('tag', 'left'),
+  'n-tombooru_artists': ('paintbrush', 'left'),
+  'n-tombooru_upload': ('upload', 'left'),
+);
+$nav-panel-icon-links: (
+  'n-mainpage-description': ('home', 'left'),
+  'n-Imageboard': ('image', 'left'),
+  'n-Edit-guide': ('file-badge', 'left'),
+  'n-recentchanges': ('broadcast', 'left'),
+  'n-randompage': ('rocket', 'left'),
+  't-whatlinkshere': ('git-merge', 'left'),
+  't-recentchangeslinked': ('cross-reference', 'left'),
+  't-contributions': ('repo-push', 'left'),
+  't-log': ('log', 'left'),
+  't-userrights': ('people', 'left'),
+  't-print': ('print', 'left'),
+  't-upload': ('image', 'left'),
+  't-permalink': ('diff-renamed', 'left'),
+  't-specialpages': ('hash', 'left'),
+  't-info': ('info', 'left'),
+  't-blockip': ('stop', 'left'),
+  't-cargopagevalueslink': ('package', 'left'),
+  'feedlinks': ('rss', 'left'),
+
+  // Social media items.
+  'socmed_discord': ('discord', 'left'),
+  'socmed_youtube': ('youtube', 'left'),
+  'socmed_twitter': ('twitter', 'left'),
+);
+$nav-other-icon-links: (
+  'p-cactions-label': ('chevron-down', 'right'),
+);
+
 @function icon-url($icon) {
   @return url('./assets/icons/#{$icon}.svg');
 }

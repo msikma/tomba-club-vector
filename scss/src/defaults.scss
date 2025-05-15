@@ -29,12 +29,14 @@ $border-radius-xxl: 12px !default;
 // Swatches
 $color-green-haze: #00a94b;
 $color-salem: #008634;
+$color-jewel: #0f6033;
 $color-tomba-pink: #ef84b1;
 $color-tomba-pink-2: #e776a9;
 $color-deep-blush: #e453a7;
 $color-cobalt: #0043c3;
 $color-midnight-blue: #002162;
 $color-dandelion: #ffdb41;
+$color-corn: #dea701;
 $color-sahara: #a67000;
 $color-sand-wisp: #ffeda0;
 
@@ -73,8 +75,6 @@ $color-light-gray-0: color.mix(#fff, $color-light-gray-1, 25%);
 $color-gray-1: color.mix(#000, $color-light-gray-1, 75%);
 $color-dark-gray: #313030;
 $color-black: #202122;
-$color-heading-positive: #fff;
-$color-heading-negative: rgba($color-black, 0.85);
 
 // Colors used for tags and various other things.
 $color-tag-sets: (

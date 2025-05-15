@@ -4,6 +4,10 @@
 
 // Infobox design.
 .tc-infobox {
+  // Colors follow the same pattern as navigation portlets.
+  --color: #{defaults.$color-green-haze};
+  --color-heading-text: #{defaults.$color-white};
+
   float: right;
 
   th, td {
@@ -24,7 +28,7 @@
       left: 0;
     }
     .main-image-labels .label-items .label-item.img-1 {
-      background: defaults.$color-green-haze;
+      background: var(--color, defaults.$color-green-haze);
       color: white;
 
       &::before {
@@ -37,7 +41,7 @@
       left: 110%;
     }
     .main-image-labels .label-items .label-item.img-2 {
-      background: defaults.$color-green-haze;
+      background: var(--color, defaults.$color-green-haze);
       color: white;
 
       &::before {
@@ -50,7 +54,7 @@
       left: 220%;
     }
     .main-image-labels .label-items .label-item.img-3 {
-      background: defaults.$color-green-haze;
+      background: var(--color, defaults.$color-green-haze);
       color: white;
 
       &::before {
@@ -148,6 +152,8 @@
         }
 
         &::before {
+          // TODO: make this configurable via CSS vars.
+          // This will require moving these @includes to functions.
           @include colorize.colorize-green-haze;
           width: 0.875rem;
           height: 0.875rem;
@@ -197,10 +203,9 @@
 
       .header {
         padding: 2px 0 1px;
-        background: defaults.$color-dandelion;
-        background: defaults.$color-green-haze;
+        background: var(--color, defaults.$color-green-haze);
         font-weight: defaults.$font-subnav-weight;
-        color: defaults.$color-heading-positive;
+        color: var(--color-heading-text, defaults.$color-white);
         border-bottom: 2px solid rgba(0, 0, 0, 0.2);
         border-radius: defaults.$layout-rounding-nav-main;
       }

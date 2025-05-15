@@ -8,11 +8,6 @@
 body.tombooru {
   --tombooru-results-base-size: 12rem;
 
-  &.tombooru-browse-page {
-    // --tc-backdrop-offset-from-bottom: 4em;
-    // --tc-backdrop-bottom-border-radius: #{defaults.$layout-rounding-content-inner};
-  }
-
   #mw-content-text {
     // The description of what we searched for and how many results we have.
     .search-result-info {

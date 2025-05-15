@@ -8,7 +8,7 @@
 // Color of the indicator links.
 $color-mw-indicators: defaults.$color-cobalt;
 
-// The indicators used on e.g. the "page information" page.
+// The indicators used on e.g. the "page information" page. Special:RecentChanges has an example.
 // These appear on the right side of the page title.
 .mw-indicators {
   #mw-indicator-mw-helplink a {
@@ -29,7 +29,7 @@ $color-mw-indicators: defaults.$color-cobalt;
     left: math.div(layout.$highlight-padding, 2);
 
     &::before {
-      @include colorize.colorize-mw-indicators;
+      filter: colorize.colorize-cobalt();
       background-image: icons.icon-url('question');
       background-position: 0 50%;
       background-repeat: no-repeat;

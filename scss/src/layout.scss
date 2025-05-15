@@ -7,73 +7,6 @@
 @use "icons";
 @use "colorize";
 
-// The nav items that have an icon (see icons.scss)
-$nav-sub-icon-links: (
-  'ca-ve-edit': ('pencil', 'left'),
-  'ca-edit': ('file-code', 'left'),
-  'ca-viewsource': ('file-code', 'left'),
-  'ca-view': ('book', 'left'),
-  'ca-history': ('history', 'left'),
-  'ca-unwatch': ('star-fill', 'left'),
-  'ca-watch': ('star', 'left'),
-  'ca-recreatedata': ('package', 'left'),
-
-  // For Tombooru.
-  'ca-tombooru_post': ('image', 'left'),
-  'ca-tombooru_edit': ('file-code', 'left'),
-  'ca-tombooru_upload': ('upload', 'left'),
-  'ca-tombooru_viewonwiki': ('external', 'left'),
-  'ca-tombooru_viewdata': ('package', 'left'),
-  'ca-tombooru_search': ('search', 'left'),
-  'ca-tombooru_recent': ('history', 'left'),
-  'ca-tombooru_tags': ('tag', 'left'),
-  'ca-tombooru_artists': ('paintbrush', 'left'),
-  'ca-tombooru_popular': ('trending', 'left'),
-);
-// Nav icons with an icon, but applied via a class rather than an id.
-$nav-sub-icon-link-classes: (
-  'settings': ('gear', 'left'),
-  'arrow-top': ('arrow-top', 'left'),
-  'arrow-right': ('arrow-right', 'left'),
-  'arrow-bottom': ('arrow-bottom', 'left'),
-  'arrow-left': ('arrow-left', 'left'),
-);
-$nav-main-icon-links: (
-  'ca-talk': ('comment-discussion', 'left'),
-  'n-tombooru_posts': ('apps', 'left'),
-  'n-tombooru_tags': ('tag', 'left'),
-  'n-tombooru_artists': ('paintbrush', 'left'),
-  'n-tombooru_upload': ('upload', 'left'),
-);
-$nav-panel-icon-links: (
-  'n-mainpage-description': ('home', 'left'),
-  'n-Imageboard': ('image', 'left'),
-  'n-Edit-guide': ('file-badge', 'left'),
-  'n-recentchanges': ('broadcast', 'left'),
-  'n-randompage': ('rocket', 'left'),
-  't-whatlinkshere': ('git-merge', 'left'),
-  't-recentchangeslinked': ('cross-reference', 'left'),
-  't-contributions': ('repo-push', 'left'),
-  't-log': ('log', 'left'),
-  't-userrights': ('people', 'left'),
-  't-print': ('print', 'left'),
-  't-upload': ('image', 'left'),
-  't-permalink': ('diff-renamed', 'left'),
-  't-specialpages': ('hash', 'left'),
-  't-info': ('info', 'left'),
-  't-blockip': ('stop', 'left'),
-  't-cargopagevalueslink': ('package', 'left'),
-  'feedlinks': ('rss', 'left'),
-
-  // Social media items.
-  'socmed_discord': ('discord', 'left'),
-  'socmed_youtube': ('youtube', 'left'),
-  'socmed_twitter': ('twitter', 'left'),
-);
-$nav-other-icon-links: (
-  'p-cactions-label': ('chevron-down', 'right'),
-);
-
 // Whether the main content section is offset from the side of the viewport.
 $layout-content-is-offset-left: defaults.$layout-left-inset-content > 0em;
 $layout-content-is-offset-right: defaults.$layout-right-inset-content > 0em;
@@ -116,6 +49,7 @@ body {
     // Repositions the .mw-content-panel to be over the left navbar.
     position: relative;
     float: left;
+    z-index: 5;
     top: calc((defaults.$layout-inset-content - 0.5em) * -1);
     margin-left: calc((defaults.$layout-width-nav-panel + defaults.$layout-padding-h-content) * -1);
     width: calc(defaults.$layout-width-nav-panel);
@@ -637,7 +571,7 @@ body.right-panel {
             background-position: 0 50%;
           }
           // All the main nav links with an icon.
-          @each $cls, $icon-settings in $nav-main-icon-links {
+          @each $cls, $icon-settings in icons.$nav-main-icon-links {
             &##{$cls} {
               $icon: list.nth($icon-settings, 1);
               $direction: list.nth($icon-settings, 2);
@@ -757,7 +691,7 @@ body.right-panel {
       #p-views {
         li {
           // All the subnav links with an icon.
-          @each $cls, $icon-settings in $nav-sub-icon-links {
+          @each $cls, $icon-settings in icons.$nav-sub-icon-links {
             &##{$cls} {
               $icon: list.nth($icon-settings, 1);
               $direction: list.nth($icon-settings, 2);
@@ -772,7 +706,7 @@ body.right-panel {
             }
           }
 
-          @each $cls, $icon-settings in $nav-sub-icon-link-classes {
+          @each $cls, $icon-settings in icons.$nav-sub-icon-link-classes {
             &.#{$cls} {
               $icon: list.nth($icon-settings, 1);
               $direction: list.nth($icon-settings, 2);
@@ -816,7 +750,7 @@ body.right-panel {
               @include colorize.colorize-green-haze;
             }
             &:hover::after {
-              background: rgba(defaults.$color-green-haze, 0.15);
+              background: rgba(defaults.$color-green-haze, 0.2);
             }
           }
 
@@ -920,7 +854,7 @@ body.right-panel {
       }
 
       #p-cactions {
-        $icon-settings: map.get($nav-other-icon-links, 'p-cactions-label');
+        $icon-settings: map.get(icons.$nav-other-icon-links, 'p-cactions-label');
         $icon: list.nth($icon-settings, 1);
         $direction: list.nth($icon-settings, 2);
         
@@ -1059,6 +993,10 @@ body.right-panel {
     }
   }
   .mw-portlet {
+    --color: #{defaults.$color-green-haze};
+    --color-heading-text: #{defaults.$color-white};
+    --color-dark: #{defaults.$color-salem};
+
     padding: 0;
     margin: 0;
 
@@ -1074,7 +1012,7 @@ body.right-panel {
       text-transform: none;
       margin: 0 0 0.4em;
       font-size: 1em;
-      color: defaults.$color-heading-positive;
+      color: var(--color-heading-text);
 
       span {
         cursor: auto;
@@ -1083,7 +1021,7 @@ body.right-panel {
         display: block;
         border-radius: defaults.$layout-rounding-nav-main;
         transition: background 150ms, color 150ms;
-        background: defaults.$color-green-haze;
+        background: var(--color, defaults.$color-green-haze);
         padding: calc(0.25em + 1px) defaults.$layout-side-nav-header-offset-right 0.25em defaults.$layout-side-nav-header-offset-left;
       }
     }
@@ -1140,7 +1078,7 @@ body.right-panel {
 
           &.active-link {
             a {
-              color: defaults.$color-salem;
+              color: var(--color-dark, defaults.$color-salem);
               &::before {
                 @include colorize.colorize-salem;
               }
@@ -1148,7 +1086,7 @@ body.right-panel {
           }
 
           // All the portlet links with an icon.
-          @each $cls, $icon-settings in $nav-panel-icon-links {
+          @each $cls, $icon-settings in icons.$nav-panel-icon-links {
             &##{$cls} {
               $icon: list.nth($icon-settings, 1);
               $direction: list.nth($icon-settings, 2);
@@ -1177,6 +1115,18 @@ body.right-panel {
   }
   &.solid-panel {
     .mw-portlet {
+      --color: #{defaults.$color-green-haze};
+      --color-heading-text: #{defaults.$color-white};
+      --color-dark: #{colorize.portlet-darken(defaults.$color-green-haze)};
+      --color-dark-filter: #{colorize.colorize-green-haze()};
+
+      a {
+        color: var(--color-dark, defaults.$color-salem);
+
+        &::after {
+          filter: var(--color-dark-filter);
+        }
+      }
       .vector-menu-heading {
         margin-bottom: 0;
 
@@ -1187,7 +1137,19 @@ body.right-panel {
         }
       }
       .vector-menu-content:not(.no-background) {
-        background: rgba(defaults.$color-green-haze, 0.2);
+        position: relative;
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: var(--color, defaults.$color-green-haze);
+          opacity: 0.2;
+          z-index: -1;
+          pointer-events: none;
+        }
       }
       .vector-menu-content {
         border-bottom-left-radius: defaults.$border-radius-xxs !important;
@@ -1235,9 +1197,9 @@ body.right-panel {
       }
     }
   }
+  // A couple of color variations.
   .mw-portlet {
-    // "Primary style" indicates that this item is styled as if it's in the main content.
-    &.primary-style {
+    &.blue {
       .vector-menu-heading {
         .vector-menu-heading-label {
           background-color: defaults.$color-cobalt;
@@ -1249,7 +1211,7 @@ body.right-panel {
   }
   &.solid-panel {
     .mw-portlet {
-      &.primary-style {
+      &.blue {
         .vector-menu-content {
           &:not(.no-background) {
             background-color: rgba(defaults.$color-cobalt, 0.1);
@@ -1274,16 +1236,6 @@ body.right-panel {
           background: defaults.$color-cobalt;
           // Make the 3D effect a bit darker since $color-cobalt is a bit dark too.
           border-bottom-color: rgba(defaults.$color-black, 0.5);
-        }
-      }
-
-      &:hover {
-        .vector-menu-heading {
-          span {
-            background: defaults.$color-dandelion;
-            color: defaults.$color-heading-negative;
-            border-bottom-color: rgba(defaults.$color-black, 0.25);
-          }
         }
       }
 

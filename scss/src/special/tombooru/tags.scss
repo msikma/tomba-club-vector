@@ -1,0 +1,23 @@
+@use "../../defaults";
+
+.tag-type {
+  --tag-color: #{defaults.$color-green-haze};
+}
+.tag-type[data-tag-type="Copyright"] {
+  --tag-color: #3696ae;
+}
+.tag-type[data-tag-type="Artist"] {
+  --tag-color: #1367e6;
+}
+.tag-type[data-tag-type="Character"] {
+  --tag-color: #8a40b3;
+}
+.tag-type[data-tag-type="Location"] {
+  --tag-color: #aa482c;
+}
+.tag-type[data-tag-type="Meta"] {
+  --tag-color: #b3ac40;
+}
+.tag-type[data-tag-type="Generic"] {
+  --tag-color: #{defaults.$color-green-haze};
+}

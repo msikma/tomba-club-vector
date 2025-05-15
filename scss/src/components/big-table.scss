@@ -88,6 +88,11 @@
           }
         }
 
+        &.id {
+          width: 0.1%;
+          min-width: 4.6ch;
+        }
+
         &:hover {
           &::before {
             background-color: rgba($highlight-color, 0.1);
@@ -246,8 +251,11 @@
     // In case we have a separator without a section before it.
     .header + .separator + tr {
       td, th {
-        &:first-child {
+        &:first-child, &:first-child::before {
           border-top-left-radius: defaults.$border-radius-m;
+        }
+        &:last-child, &:last-child::before {
+          border-top-right-radius: defaults.$border-radius-m;
         }
       }
     }
