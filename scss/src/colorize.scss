@@ -152,3 +152,7 @@
 @function portlet-darken($color) {
   @return color.adjust($color, $lightness: -13%, $saturation: -15%);
 }
+// Roughly the same thing.
+@function portlet-darken-filter() {
+  @return brightness(0.59) saturate(0.83);
+}

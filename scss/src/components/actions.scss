@@ -144,7 +144,7 @@
 
     // All color styles.
     .item {
-      --color: #{defaults.$color-cobalt};
+      --color: var(--portlet-color-dark, #{defaults.$color-cobalt});
       &::before {
         @include colorize.colorize-cobalt;
       }

@@ -993,9 +993,9 @@ body.right-panel {
     }
   }
   .mw-portlet {
-    --color: #{defaults.$color-green-haze};
-    --color-heading-text: #{defaults.$color-white};
-    --color-dark: #{defaults.$color-salem};
+    --portlet-color: #{defaults.$color-green-haze};
+    --portlet-color-heading-text: #{defaults.$color-white};
+    --portlet-color-dark: #{defaults.$color-salem};
 
     padding: 0;
     margin: 0;
@@ -1012,7 +1012,7 @@ body.right-panel {
       text-transform: none;
       margin: 0 0 0.4em;
       font-size: 1em;
-      color: var(--color-heading-text);
+      color: var(--portlet-color-heading-text);
 
       span {
         cursor: auto;
@@ -1021,7 +1021,7 @@ body.right-panel {
         display: block;
         border-radius: defaults.$layout-rounding-nav-main;
         transition: background 150ms, color 150ms;
-        background: var(--color, defaults.$color-green-haze);
+        background: var(--portlet-color, defaults.$color-green-haze);
         padding: calc(0.25em + 1px) defaults.$layout-side-nav-header-offset-right 0.25em defaults.$layout-side-nav-header-offset-left;
       }
     }
@@ -1078,7 +1078,7 @@ body.right-panel {
 
           &.active-link {
             a {
-              color: var(--color-dark, defaults.$color-salem);
+              color: var(--portlet-color-dark, defaults.$color-salem);
               &::before {
                 @include colorize.colorize-salem;
               }
@@ -1115,16 +1115,17 @@ body.right-panel {
   }
   &.solid-panel {
     .mw-portlet {
-      --color: #{defaults.$color-green-haze};
-      --color-heading-text: #{defaults.$color-white};
-      --color-dark: #{colorize.portlet-darken(defaults.$color-green-haze)};
-      --color-dark-filter: #{colorize.colorize-green-haze()};
+      --portlet-color: #{defaults.$color-green-haze};
+      --portlet-color-heading-text: #{defaults.$color-white};
+      --portlet-color-dark: #{colorize.portlet-darken(defaults.$color-green-haze)};
+      --portlet-color-dark-filter: #{colorize.colorize-green-haze()} #{colorize.portlet-darken-filter()};
+      --portlet-border-rounding: #{defaults.$border-radius-xxs};
 
       a {
-        color: var(--color-dark, defaults.$color-salem);
+        color: var(--portlet-color-dark, defaults.$color-salem);
 
         &::after {
-          filter: var(--color-dark-filter);
+          filter: var(--portlet-color-dark-filter);
         }
       }
       .vector-menu-heading {
@@ -1145,15 +1146,13 @@ body.right-panel {
           left: 0;
           right: 0;
           bottom: 0;
-          background: var(--color, defaults.$color-green-haze);
+          background: var(--portlet-color, defaults.$color-green-haze);
           opacity: 0.2;
           z-index: -1;
           pointer-events: none;
+          border-bottom-left-radius: var(--portlet-border-rounding) !important;
+          border-bottom-right-radius: var(--portlet-border-rounding) !important;
         }
-      }
-      .vector-menu-content {
-        border-bottom-left-radius: defaults.$border-radius-xxs !important;
-        border-bottom-right-radius: defaults.$border-radius-xxs !important;
       }
     }
   }
@@ -1165,7 +1164,7 @@ body.right-panel {
       .vector-menu-heading {
         padding: 0 0.8em 0 0.8em !important;
         span {
-          border-radius: defaults.$border-radius-xxs;
+          border-radius: var(--portlet-border-rounding);
           border-width: 0.15em;
         }
       }
@@ -1200,24 +1199,18 @@ body.right-panel {
   // A couple of color variations.
   .mw-portlet {
     &.blue {
-      .vector-menu-heading {
-        .vector-menu-heading-label {
-          background-color: defaults.$color-cobalt;
-        }
-      }
-      .vector-menu-content {
-      }
+      --portlet-color: #{defaults.$color-cobalt};
+      --portlet-color-heading-text: #{defaults.$color-white};
+      --portlet-color-dark: #{colorize.portlet-darken(defaults.$color-cobalt)};
+      --portlet-color-dark-filter: #{colorize.colorize-cobalt()} #{colorize.portlet-darken-filter()};
     }
   }
-  &.solid-panel {
-    .mw-portlet {
-      &.blue {
-        .vector-menu-content {
-          &:not(.no-background) {
-            background-color: rgba(defaults.$color-cobalt, 0.1);
-          }
-        }
-      }
+  .mw-portlet {
+    &.pink {
+      --portlet-color: #{defaults.$color-deep-blush};
+      --portlet-color-heading-text: #{defaults.$color-white};
+      --portlet-color-dark: #{colorize.portlet-darken(defaults.$color-deep-blush)};
+      --portlet-color-dark-filter: #{colorize.colorize-deep-blush()} #{colorize.portlet-darken-filter()};;
     }
   }
 }
