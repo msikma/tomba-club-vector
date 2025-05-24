@@ -17,6 +17,8 @@ body.tombooru {
         padding-top: calc(0.25em + 1px);
         padding-bottom: calc(0.25em + 1px);
         margin-bottom: 1px;
+        padding-left: 0.2em;
+        padding-right: 0;
 
         &::after {
           content: '';
@@ -34,6 +36,7 @@ body.tombooru {
 
         .tag-type-title {
           position: relative;
+          z-index: 20;
           h3 {
             line-height: defaults.$line-height-sidebar-small;
             font-size: 1em;
@@ -41,7 +44,7 @@ body.tombooru {
             color: defaults.$color-black;
             padding: 1px 0 1px 0.4em;
             color: var(--tag-color);
-            filter: brightness(0.5) saturate(0.8);
+            filter: brightness(0.7) saturate(0.9);
             z-index: 1;
             display: flex;
 
@@ -76,9 +79,26 @@ body.tombooru {
               z-index: 1;
               display: block;
               position: relative;
+              text-decoration: none;
+
+              &:hover {
+                > span:not(.amount) {
+                  text-decoration: underline;
+                }
+              }
 
               > span {
-                filter: brightness(0.6) saturate(0.8);
+                filter: brightness(0.7) saturate(0.9);
+
+                &.amount {
+                  //color: defaults.$color-black;
+                  filter: brightness(0.4) saturate(0.6);
+                  font-size: 0.84em;
+                  margin-left: 0.25em;
+                  text-decoration: none;
+                  font-weight: 450;
+                  opacity: 0.85;
+                }
               }
             }
 
@@ -177,8 +197,65 @@ body.tombooru {
       }
     }
 
+    // List of wiki subpages.
+    .links-list {
+      padding-left: 0.2em;
+      padding-right: 0;
+
+      li {
+        margin: 0;
+        padding: 0 !important;
+        position: relative;
+
+        a {
+          display: block;
+          margin-bottom: 0.1em;
+          line-height: defaults.$line-height-regular;
+
+          &:hover {
+            text-decoration: underline;
+          }
+          &.current {
+            font-weight: bold;
+          }
+        }
+        ul {
+          margin-left: 1em;
+          padding-left: 0;
+
+          li {
+            a {
+              position: relative;
+              &::before {
+                filter: var(--portlet-color-dark-filter);
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -1em;
+                bottom: 0;
+                width: 0.85em;
+                background: transparent no-repeat;
+                background-position: center left;
+                background-size: contain;
+                background-image: icons.icon-url('bullet');
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // List of actions that the user can perform on a page.
+    .actions-list {
+      padding-left: 0.1em; // little less than normal due to the icons.
+      padding-right: 0;
+    }
+
     // The data list contains basic information about a media item, such as its resolution and size.
     .data-list {
+      padding-left: 0.2em;
+      padding-right: 0;
+
       li {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -202,9 +279,86 @@ body.tombooru {
       .with-wrap {
         white-space: wrap;
       }
+      .no-colon {
+        .key::after {
+          content: '';
+        }
+      }
       .url-items {
+        overflow: visible;
         a {
-          display: inline-block;
+          display: flex;
+          position: relative;
+          cursor: pointer;
+
+          &::after {
+            display: none;
+          }
+
+          span.favicon {
+            width: 1rem;
+            padding-right: 0.125rem;
+            img {
+              border-radius: defaults.$border-radius-xxs;
+              vertical-align: text-bottom;
+            }
+          }
+
+          span.text {
+            display: flex;
+            width: 100%;
+            position: relative;
+
+            span.preview {
+              display: inline-block;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            span.hover {
+              display: none;
+              position: absolute;
+              left: 0;
+
+              &::after {
+                position: absolute;
+                content: '';
+                z-index: -1;
+                border-radius: defaults.$border-radius-xxs;
+                background-color: defaults.$color-light-gray-1;
+                background-color: var(--portlet-color);
+                top: -0.05em;
+                bottom: -0.05em;
+                left: -0.2em;
+                right: -0.2em;
+              }
+            }
+          }
+          &:hover {
+            > span.text {
+              color: defaults.$color-white;
+
+              > span.preview {
+                visibility: hidden;
+              }
+              > span.hover {
+                //text-decoration: underline;
+                display: inherit;
+              }
+            }
+          }
+
+          &:has(.favicon) {
+            span.text {
+              width: calc(100% - 1.125rem);
+
+              span.hover {
+                &::after {
+                  left: calc(-0.2em - 1.125rem);
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -228,8 +382,7 @@ body.tombooru {
               box-sizing: border-box;
               box-shadow: 0 0 0 1px transparent;
               position: relative;
-              z-index: 10;
-
+              z-index: 50;
 
               &:focus-visible {
                 outline: 1px solid transparent;
@@ -261,7 +414,11 @@ body.tombooru {
               background-position: center;
               cursor: pointer;
               transition: filter;
-              z-index: 20;
+              z-index: 60;
+            }
+            .autocomplete-container {
+              position: relative;
+              z-index: 45;
             }
             .autocomplete {
               background: white;
@@ -271,7 +428,7 @@ body.tombooru {
               transition: border-color 80ms, box-shadow 80ms, color 80ms;
               position: absolute;
               width: 100%;
-              z-index: 5;
+              z-index: 6;
               box-sizing: border-box;
               margin-top: -1px;
               border-bottom-left-radius: defaults.$border-radius-s;
@@ -290,8 +447,29 @@ body.tombooru {
 
                     > span,
                     > a {
-                      position: relative;
+                      position: static;
                       z-index: 6;
+                    }
+                  }
+
+                  .term {
+                    display: block;
+                    &::before {
+                      position: absolute;
+                      content: '';
+                      top: 0;
+                      right: 0;
+                      left: 0;
+                      bottom: 0;
+                      background-color: var(--tag-color, defaults.$color-cobalt);
+                      opacity: 0.0;
+                      pointer-events: all;
+                      z-index: -1;
+                    }
+                    &:hover {
+                      &::before {
+                        opacity: 0.1;
+                      }
                     }
                   }
 
@@ -314,6 +492,24 @@ body.tombooru {
 
                     a {
                       color: var(--tag-color, defaults.$color-cobalt);
+
+                      > b {
+                        font-weight: normal;
+                        position: relative;
+
+                        &::after {
+                          content: '';
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          right: 0;
+                          bottom: 0;
+                          opacity: 0.2;
+                          border-radius: defaults.$border-radius-xxs;
+                          background-color: var(--tag-color, defaults.$color-cobalt);
+                          z-index: -1;
+                        }
+                      }
                     }
 
                     .arrow {
@@ -321,33 +517,6 @@ body.tombooru {
                       text-indent: -9999px;
                       display: inline-block;
                       width: 1.25em;
-
-                      &::before {
-                        position: absolute;
-                        content: '';
-                        top: 1px;
-                        right: 0;
-                        left: 0;
-                        bottom: 0;
-                        background: transparent icons.icon-url('arrow-right');
-                        background-repeat: no-repeat;
-                        background-position: center;
-                        background-size: contain;
-                      }
-                    }
-
-                    &::before {
-                      content: '';
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      right: 0;
-                      bottom: 0;
-                      opacity: 0.0;
-                      visibility: hidden;
-                      pointer-events: none;
-                      z-index: 4;
-                      background-color: var(--tag-color, defaults.$color-cobalt);
                     }
                   }
 
@@ -356,18 +525,6 @@ body.tombooru {
                     padding-right: 0.5em;
                     white-space: nowrap;
                     width: 1px;
-                  }
-
-                  &:hover {
-                    td {
-                      background-color: rgba(defaults.$color-cobalt, 0.1);
-                    }
-                    td:first-child {
-                      &::before {
-                        opacity: 0.1;
-                        visibility: visible;
-                      }
-                    }
                   }
                 }
               }
@@ -409,12 +566,38 @@ body.tombooru {
               }
             }
 
-            &:has(.autocomplete) {
+            &.has-autocomplete {
               input {
                 border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
               }
             }
+          }
+          .search-filters {
+            margin-top: 0.35em;
+
+            .filter {
+              margin: 0.125rem 0 0;
+
+              &.select {
+                select {
+                  width: 100%;
+                  font-size: 1em;
+                }
+              }
+              &.description {
+                select {
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    &.small-panel {
+      .search-panel .vector-menu-content-static form .search-filters .filter {
+        &.description {
+          select {
           }
         }
       }

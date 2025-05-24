@@ -63,8 +63,22 @@
 
   .mw-parser-output {
     .mw-editsection {
+      float: right;
       display: block;
-      margin: 0.5em 0 1em;
+      margin: 0;
+      position: relative;
+      top: 1.35em;
+    }
+    h2 .mw-editsection {
+      top: 1.35em;
+    }
+    h3 .mw-editsection {
+      top: 1.2em;
+    }
+    h4, h5, h6 {
+      .mw-editsection {
+        top: 0.95em;
+      }
     }
   }
 

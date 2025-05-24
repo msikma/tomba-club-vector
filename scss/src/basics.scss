@@ -38,6 +38,10 @@ body.mediawiki {
     h1, h2, h3, h4, h5, h6 {
       font-family: defaults.$font-header;
       overflow: inherit;
+
+      &.body-font {
+        font-family: defaults.$font-regular;
+      }
     }
     
     .toc {
@@ -109,10 +113,18 @@ dfn[title] {
     font-weight: 450;
     border-radius: defaults.$border-radius-xs;
     display: inline-block;
+    border: none;
+    line-height: defaults.$line-height-regular;
+    cursor: pointer;
+
     &:hover {
       text-decoration: none;
       //background-color: color.scale(defaults.$color-cobalt, $lightness: 10%);
       background-color: color.mix(defaults.$color-cobalt, defaults.$color-black, 80%);
+    }
+    &:disabled {
+      opacity: 0.75;
+      cursor: default;
     }
   }
 }

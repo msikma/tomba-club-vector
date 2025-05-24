@@ -9,6 +9,10 @@
   border-radius: defaults.$border-radius-m;
   margin-bottom: 1em;
 
+  h1, h2 {
+    margin-top: 0;
+  }
+
   pre {
     background-color: defaults.$color-light-gray-1;
   }

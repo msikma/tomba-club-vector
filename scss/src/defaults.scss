@@ -40,6 +40,15 @@ $color-corn: #dea701;
 $color-sahara: #a67000;
 $color-sand-wisp: #ffeda0;
 
+// Additional colors for things such as tags.
+$color-aqua: #38a3ca;
+$color-teal: #019f83;
+$color-orange: #e25d38;
+$color-magenta: #8a40b3;
+$color-violet: #502ad0;
+$color-gray: #5a6484;
+
+// Colors for notifications.
 $color-radical-red: #ff3855;
 $color-bright-sun: #ffcc3c;
 $color-malachite: #00c02f;
@@ -71,7 +80,6 @@ $color-light-gray-5: color.mix(#000, $color-light-gray-1, 25%);
 $color-light-gray-6: color.mix(#000, $color-light-gray-1, 30%);
 $color-light-gray-7: color.mix(#000, $color-light-gray-1, 35%);
 $color-light-gray-8: color.mix(#000, $color-light-gray-1, 40%);
-$color-light-gray-0: color.mix(#fff, $color-light-gray-1, 25%);
 $color-gray-1: color.mix(#000, $color-light-gray-1, 75%);
 $color-dark-gray: #313030;
 $color-black: #202122;

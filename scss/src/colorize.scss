@@ -75,6 +75,31 @@
   @return brightness(0) saturate(100%) invert(34%) sepia(84%) saturate(2988%) hue-rotate(331deg) brightness(101%) contrast(102%);
 }
 
+@function colorize-orange() {
+  // #e25d38
+  @return brightness(0) saturate(100%) invert(38%) sepia(98%) saturate(2448%) hue-rotate(347deg) brightness(105%) contrast(77%);
+}
+@function colorize-gray() {
+  // #5a6484
+  @return brightness(0) saturate(100%) invert(35%) sepia(22%) saturate(618%) hue-rotate(188deg) brightness(104%) contrast(87%);
+}
+@function colorize-teal() {
+  // #019f83
+  @return brightness(0) saturate(100%) invert(48%) sepia(80%) saturate(4464%) hue-rotate(146deg) brightness(94%) contrast(99%);
+}
+@function colorize-aqua() {
+  // #38a3ca
+  @return brightness(0) saturate(100%) invert(58%) sepia(83%) saturate(418%) hue-rotate(156deg) brightness(84%) contrast(86%);
+}
+@function colorize-magenta() {
+  // #8a40b3
+  @return brightness(0) saturate(100%) invert(29%) sepia(47%) saturate(1998%) hue-rotate(252deg) brightness(95%) contrast(90%);
+}
+@function colorize-violet() {
+  // #502ad0
+  @return brightness(0) saturate(100%) invert(19%) sepia(77%) saturate(4520%) hue-rotate(251deg) brightness(81%) contrast(103%);
+}
+
 // Darkens a color for use in solid portlets.
 @function portlet-darken($color) {
   @return color.adjust($color, $lightness: -13%, $saturation: -15%);

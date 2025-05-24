@@ -24,6 +24,12 @@ table.wikitable {
     }
   }
 
+  &.align-left {
+    th {
+      text-align: left;
+    }
+  }
+
   // Make the external links a bit darker.
   a.external {
     color: defaults.$color-salem;

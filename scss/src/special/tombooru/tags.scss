@@ -4,19 +4,19 @@
   --tag-color: #{defaults.$color-green-haze};
 }
 .tag-type[data-tag-type="Copyright"] {
-  --tag-color: #3696ae;
+  --tag-color: #{defaults.$color-teal};
 }
 .tag-type[data-tag-type="Artist"] {
-  --tag-color: #1367e6;
+  --tag-color: #{defaults.$color-aqua};
 }
 .tag-type[data-tag-type="Character"] {
-  --tag-color: #8a40b3;
+  --tag-color: #{defaults.$color-cobalt};
 }
 .tag-type[data-tag-type="Location"] {
-  --tag-color: #aa482c;
+  --tag-color: #{defaults.$color-violet};
 }
 .tag-type[data-tag-type="Meta"] {
-  --tag-color: #b3ac40;
+  --tag-color: #{defaults.$color-gray};
 }
 .tag-type[data-tag-type="Generic"] {
   --tag-color: #{defaults.$color-green-haze};

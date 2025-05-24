@@ -32,3 +32,15 @@ body.tombooru {
     }
   }
 }
+// We have an issue: we don't actually know whether there's a previous/next page in the navigation hook.
+// So we hack around it a bit by setting classes on the <body> element.
+body:not(.pagination-has-previous) {
+  .nav-browse-page-previous {
+    pointer-events: none !important;
+  }
+}
+body:not(.pagination-has-next) {
+  .nav-browse-page-next {
+    pointer-events: none !important;
+  }
+}

@@ -1,0 +1,44 @@
+@use "../../defaults";
+
+// Modifications to the edit form.
+body.tombooru #mw-content-text .edit-form-wrapper {
+  .group .group-inner {
+    .group-content {
+      // On smaller PC monitors, move the help column to the next row.
+      @media only screen and (max-width: 1060px) {
+        .group-input {
+          grid-column: 2 / -1;
+        }
+        .group-input:not(:has(+ .empty)) {
+          &::before {
+            border-left-width: 1px;
+          }
+        }
+        .group-help {
+          grid-column: 2 / -1;
+          grid-row: 2;
+
+          &.empty {
+            display: none;
+          }
+
+          &::before {
+            border-top-width: 1px;
+            border-left-width: 1px;
+          }
+        }
+      }
+
+      // On larger viewport sizes, the text becomes pretty long.
+      // Let's grant some more space to the help column (on the right).
+      // These columns are max-width limited.
+      @media only screen and (min-width: 1440px) {
+        grid-template-columns: 2fr 10fr 12fr;
+      }
+      @media only screen and (min-width: 1580px) {
+        grid-template-columns: 2fr 10fr 16fr;
+      }
+    }
+  }
+}
+

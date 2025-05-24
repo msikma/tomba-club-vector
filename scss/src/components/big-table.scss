@@ -21,7 +21,7 @@
       border-top: 1px solid transparent;
     }
 
-    .inner {
+    > .inner {
       clip-path: polygon(0.0% 0.0%, 100% 0%, 100% $top, 100% 100%, ($left - 1em) 100%, ($left - 1em) $top, 0% $top);
     }
 
@@ -47,8 +47,18 @@
     box-sizing: border-box;
   }
 
-  .inner {
+  > .inner {
     overflow-x: auto;
+  }
+
+  // In case we don't want visited links; for tables where the content isn't wiki content.
+  &.no-visited {
+    a:visited {
+      color: defaults.$color-cobalt;
+    }
+    a.new:visited {
+      color: defaults.$color-nonexistent;
+    }
   }
 
   table {
@@ -184,9 +194,29 @@
           z-index: 5;
         }
       }
+      td.tiny {
+        width: 0.1%;
+      }
+      td.even-padding {
+        padding-left: calc(0.2em + 1px);
+        padding-right: calc(0.2em + 1px);
+      }
       td.mono {
         font-family: defaults.$font-mono;
         font-size: defaults.$font-mono-size;
+      }
+      td:has(+ td.control-panel) {
+        // The .control-panel holds actions ("edit", etc) and only shows up on hover.
+        // It's expected to be all the way on the right side of the table.
+        border-right: 0;
+      }
+      td.control-panel .inner {
+        visibility: hidden;
+      }
+      &:hover {
+        td.control-panel .inner {
+          visibility: visible;
+        }
       }
       td.highlighted {
         position: relative;
@@ -245,6 +275,15 @@
         font-weight: 500;
         margin: 0.3em 0 0.15em;
         font-size: 1.4em;
+      }
+    }
+
+    tr.notification {
+      td {
+          text-align: center;
+          padding-top: 3em;
+          padding-bottom: 3em;
+          font-weight: 450;
       }
     }
 

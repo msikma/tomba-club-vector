@@ -21,7 +21,7 @@
     // For grouping links together.
     .action-sets {
       display: flex;
-      gap: 0.75em;
+      gap: 0.65rem;
 
       .action-set {
         display: flex;
@@ -102,6 +102,7 @@
       &.label {
         padding-left: 0;
         padding-right: 0;
+        cursor: auto;
         
         &::after {
           display: none;
@@ -143,6 +144,10 @@
       }
     }
 
+    a.item.label {
+      cursor: pointer;
+    }
+
     // All color styles.
     .item {
       // "Active" items have a fully opaque background and white text.
@@ -156,13 +161,6 @@
         }
       }
 
-      &.green {
-        --action-color: #{defaults.$color-green-haze};
-        &::before {
-          filter: colorize.colorize-green-haze();
-        }
-      }
-
       &.red {
         --action-color: #{defaults.$color-radical-red};
         &::before {
@@ -170,12 +168,12 @@
         }
       }
 
-      &.pink {
-        --action-color: #{defaults.$color-deep-blush};
-        --bg-regular: 0.2;
-        --bg-regular-hover: 0.3;
+      &.orange {
+        --action-color: #{defaults.$color-orange};
+        --bg-regular: 0.15;
+        --bg-regular-hover: 0.25;
         &::before {
-          filter: colorize.colorize-deep-blush();
+          filter: colorize.colorize-orange();
         }
       }
 
@@ -193,6 +191,61 @@
           --action-color: #{defaults.$color-corn};
         }
       }
+
+      &.green {
+        --action-color: #{defaults.$color-green-haze};
+        &::before {
+          filter: colorize.colorize-green-haze();
+        }
+      }
+
+      &.teal {
+        --action-color: #{defaults.$color-teal};
+        &::before {
+          filter: colorize.colorize-teal();
+        }
+      }
+
+      &.aqua {
+        --action-color: #{defaults.$color-aqua};
+        &::before {
+          filter: colorize.colorize-aqua();
+        }
+      }
+
+      &.pink {
+        --action-color: #{defaults.$color-deep-blush};
+        --bg-regular: 0.2;
+        --bg-regular-hover: 0.3;
+        &::before {
+          filter: colorize.colorize-deep-blush();
+        }
+      }
+
+      &.magenta {
+        --action-color: #{defaults.$color-magenta};
+        &::before {
+          filter: colorize.colorize-magenta();
+        }
+      }
+
+      &.violet {
+        --action-color: #{defaults.$color-violet};
+        // --bg-regular: 0.2;
+        // --bg-regular-hover: 0.3;
+        &::before {
+          filter: colorize.colorize-violet();
+        }
+      }
+
+      &.gray {
+        --action-color: #{defaults.$color-gray};
+        --bg-regular: 0.15;
+        --bg-regular-hover: 0.25;
+        &::before {
+          filter: colorize.colorize-gray();
+        }
+      }
     }
     a.item {
       &:hover {
@@ -204,6 +257,26 @@
         &:hover {
           &::after {
             opacity: var(--bg-active-hover);
+          }
+        }
+      }
+    }
+
+    &.list {
+      .action-sets {
+        display: flex;
+        width: 100%;
+
+        .action-set {
+          display: flex !important;
+          flex-direction: column;
+          width: 100%;
+
+          .item {
+            width: auto;
+            text-align: left;
+            height: 1.8em;
+            line-height: 1.8em;
           }
         }
       }
@@ -291,6 +364,36 @@
           }
         }
       }
+    }
+  }
+
+  // The "narrow" actions set is used in places like the BigTable component.
+  .actions.narrow {
+    .item {
+      line-height: 1.7;
+      height: auto;
+
+      &.icon {
+        padding-left: 1.8em;
+
+        &::before {
+          left: 0.475em;
+        }
+      }
+    }
+  }
+}
+
+// On the alt-content pages (pages without a regular white backdrop),
+// the footer section needs to be adjusted to properly center it.
+body.alt-content {
+  #mw-content-text {
+    .actions.section-footer {
+      position: static;
+      border-top: 0;
+      padding-top: 1.5em;
+      left: 0;
+      right: 0;
     }
   }
 }

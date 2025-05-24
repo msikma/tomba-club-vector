@@ -1,5 +1,17 @@
 @use "defaults";
 
 form {
-  
+  .radio-set {
+    label {
+      margin-right: 0.35em;
+      .label {
+        position: relative;
+        top: -0.05em;
+      }
+    }
+  }
+  select,
+  textarea {
+    font-size: 1em;
+  }
 }
