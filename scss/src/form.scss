@@ -1,6 +1,75 @@
+@use "sass:color";
 @use "defaults";
 
 form {
+  select,
+  textarea,
+  input {
+    font-size: 1em;
+  }
+}
+
+@mixin text-like-input {
+  $types: text password email tel url search number date time datetime-local;
+
+  @each $type in $types {
+    input[type="#{$type}"] {
+      @content;
+    }
+  }
+}
+
+.mw-body-content {
+  form {
+    @include text-like-input {
+      padding: 0.0625rem 0.125rem;
+      border-width: 1px;
+      border-style: solid;
+      border-color: defaults.$color-light-gray-5;
+      border-radius: defaults.$border-radius-xs;
+      line-height: 1.6;
+      box-sizing: border-box;
+
+      &:focus-visible {
+        border-color: defaults.$color-cobalt;
+        outline: 3px solid rgba(defaults.$color-cobalt, 0.4);
+      }
+    }
+    textarea {
+      border-width: 1px;
+      border-style: solid;
+      border-color: defaults.$color-light-gray-5;
+      border-radius: defaults.$border-radius-xs;
+
+      &:focus-visible {
+        border-color: defaults.$color-cobalt;
+        outline: 3px solid rgba(defaults.$color-cobalt, 0.4);
+      }
+    }
+  }
+  button,
+  input[type="submit"],
+  a.btn {
+    background-color: defaults.$color-cobalt;
+    color: defaults.$color-white;
+    padding: 0.4em 0.6em;
+    font-weight: 450;
+    border-radius: defaults.$border-radius-xs;
+    display: inline-block;
+    border: none;
+    line-height: defaults.$line-height-regular;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: none;
+      //background-color: color.scale(defaults.$color-cobalt, $lightness: 10%);
+      background-color: color.mix(defaults.$color-cobalt, defaults.$color-black, 80%);
+    }
+    &:disabled {
+      opacity: 0.75;
+      cursor: default;
+    }
+  }
   .radio-set {
     label {
       margin-right: 0.35em;
@@ -9,9 +78,5 @@ form {
         top: -0.05em;
       }
     }
-  }
-  select,
-  textarea {
-    font-size: 1em;
   }
 }

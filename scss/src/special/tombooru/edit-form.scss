@@ -1,5 +1,6 @@
 @use "../../defaults";
 @use "../../layout";
+@use "../../form";
 @use "../../colorize";
 @use "../../icons";
 
@@ -58,7 +59,6 @@ body.tombooru {
               grid-row: 1;
             }
 
-
             .group-header {
               min-width: 10rem;
 
@@ -97,6 +97,57 @@ body.tombooru {
             .group-input {
               &::after {
                 content: none;
+              }
+              input[type="file"] {
+                width: 100%;
+              }
+              @include form.text-like-input {
+                width: 100%;
+              }
+              .form-suffix {
+                display: flex;
+
+                input {
+
+                }
+                .suffix {
+                  color: defaults.$color-dark-gray;
+                  white-space: nowrap;
+                  padding: 0.0625rem 0.25rem;
+                  line-height: 1.6;
+                  border: 1px solid defaults.$color-light-gray-5;
+                  border-left-color: defaults.$color-light-gray-2;
+                  border-top-right-radius: defaults.$border-radius-xs;
+                  border-bottom-right-radius: defaults.$border-radius-xs;
+                  background: defaults.$color-superlight-gray;
+                  max-width: 4rem;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  min-width: fit-content;
+
+                  &:empty {
+                    display: none;
+                  }
+                }
+                input:has(+ .suffix:not(:empty)) {
+                  border-top-right-radius: 0;
+                  border-bottom-right-radius: 0;
+                  border-right: 0;
+                }
+
+                &:has(input:focus-within) {
+                  border-color: defaults.$color-cobalt;
+                  outline: 3px solid rgba(defaults.$color-cobalt, 0.4);
+                  border-radius: defaults.$border-radius-xs;
+
+                  input:focus-within {
+                    outline: none;
+                  }
+                  .suffix {
+                    border-color: defaults.$color-cobalt;
+                    background: rgba(defaults.$color-cobalt, 0.1);
+                  }
+                }
               }
             }
             .group-help {
