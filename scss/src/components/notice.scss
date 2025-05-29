@@ -2,12 +2,31 @@
 
 // This is used for big error notifications that aren't MediaWiki specific.
 .tc-notification {
+  --notification-color: #{defaults.$color-black};
+  --notification-border: #{defaults.$color-light-gray-2};
+
+  &::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--notification-color);
+    opacity: 0.03;
+  }
+  position: relative;
   font-size: 1em;
   border: 1px solid defaults.$color-light-gray-2;
-  padding: 1em;
-  background-color: defaults.$color-superlight-gray;
+  border-color: var(--notification-border);
+  padding: 1px;
   border-radius: defaults.$border-radius-m;
   margin-bottom: 1em;
+
+  .inner {
+    padding: 1em;
+  }
 
   h1, h2 {
     margin-top: 0;
@@ -17,7 +36,14 @@
     background-color: defaults.$color-light-gray-1;
   }
 
-  &.type-error {
+  p:first-child {
+    margin-top: 0;
+  }
 
+  &.type-error {
+    --notification-color: #{defaults.$color-radical-red};
+    --notification-border: #{defaults.$color-radical-red};
+    border-width: 2px;
+    padding: 0;
   }
 }

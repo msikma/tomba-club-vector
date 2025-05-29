@@ -93,6 +93,9 @@ dfn[title] {
   text-decoration: underline;
   text-decoration-style: dotted;
 }
+ul {
+  list-style-image: none;
+}
 
 // Fixes to display the Tomba logo correctly.
 #p-logo {

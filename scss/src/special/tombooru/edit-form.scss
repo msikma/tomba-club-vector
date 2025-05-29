@@ -17,6 +17,12 @@ body.tombooru {
         margin-right: -1em;
       }
 
+      .tc-notification {
+        @if $tight-to-sides {
+          margin: 0 1em;
+        }
+      }
+
       h3, h4 {
         font-size: 1em;
         line-height: defaults.$line-height-regular;
@@ -58,6 +64,43 @@ body.tombooru {
             .group-header, .group-input, .group-help {
               grid-row: 1;
             }
+            &.has-error {
+              textarea {
+                --border-color: #{defaults.$color-radical-red};
+                --primary: #{defaults.$color-radical-red};
+                --outline: #{rgba(defaults.$color-radical-red, 0.4)};
+              }
+              select {
+                border: 2px solid defaults.$color-radical-red;
+                border-radius: 5px;
+              }
+              border-color: defaults.$color-radical-red;
+              border-top-width: 1px;
+              border-top-style: solid;
+              margin-top: -1px;
+              position: relative;
+              z-index: 1;
+              .group-input {
+                border-right: 1px solid defaults.$color-radical-red;
+              }
+              .group-header {
+                position: relative;
+                &::before {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  z-index: -1;
+                  border-left: 1px solid defaults.$color-radical-red;
+                }
+              }
+              .group-header,
+              .group-input {
+                background-color: rgba(defaults.$color-radical-red, 0.03);
+              }
+            }
 
             .group-header {
               min-width: 10rem;
@@ -74,6 +117,15 @@ body.tombooru {
               .help,
               .input-preview {
                 margin-top: 0.5em;
+              }
+              .input-preview.tags {
+                .actions {
+                  flex-wrap: wrap;
+
+                  .item {
+                    min-width: inherit;;
+                  }
+                }
               }
             }
             .group-input, .group-help {
@@ -244,6 +296,11 @@ body.tombooru {
             display: none;
           }
         }
+      }
+
+      .error-list {
+        margin-top: 0.5em;
+        color: defaults.$color-radical-red-dark;
       }
     }
   }

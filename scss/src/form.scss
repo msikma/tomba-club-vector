@@ -22,28 +22,34 @@ form {
 .mw-body-content {
   form {
     @include text-like-input {
+      --border-color: #{defaults.$color-light-gray-5};
+      --primary: #{defaults.$color-cobalt};
+      --outline: #{rgba(defaults.$color-cobalt, 0.4)};
       padding: 0.0625rem 0.125rem;
       border-width: 1px;
       border-style: solid;
-      border-color: defaults.$color-light-gray-5;
+      border-color: var(--border-color);
       border-radius: defaults.$border-radius-xs;
       line-height: 1.6;
       box-sizing: border-box;
 
       &:focus-visible {
-        border-color: defaults.$color-cobalt;
-        outline: 3px solid rgba(defaults.$color-cobalt, 0.4);
+        border-color: var(--primary);
+        outline: 3px solid var(--outline);
       }
     }
     textarea {
+      --border-color: #{defaults.$color-light-gray-5};
+      --primary: #{defaults.$color-cobalt};
+      --outline: #{rgba(defaults.$color-cobalt, 0.4)};
       border-width: 1px;
       border-style: solid;
-      border-color: defaults.$color-light-gray-5;
+      border-color: var(--border-color);
       border-radius: defaults.$border-radius-xs;
 
       &:focus-visible {
-        border-color: defaults.$color-cobalt;
-        outline: 3px solid rgba(defaults.$color-cobalt, 0.4);
+        border-color: var(--primary);
+        outline: 3px solid var(--outline);
       }
     }
   }

@@ -12,7 +12,7 @@ body.tombooru {
       font-variant-numeric: tabular-nums;
       line-height: defaults.$line-height-sidebar-small;
 
-      .tag-type {
+      .tag-category {
         position: relative;
         padding-top: calc(0.25em + 1px);
         padding-bottom: calc(0.25em + 1px);
@@ -34,7 +34,7 @@ body.tombooru {
           opacity: 0.2;
         }
 
-        .tag-type-title {
+        .tag-category-title {
           position: relative;
           z-index: 20;
           h3 {
@@ -61,7 +61,7 @@ body.tombooru {
             }
           }
         }
-        .tag-type-list {
+        .tag-category-list {
           margin-bottom: 1px;
 
           .tag {

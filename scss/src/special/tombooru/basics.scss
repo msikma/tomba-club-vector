@@ -14,7 +14,7 @@ body.tombooru {
     margin: 0;
   }
   // todo: mvoe this
-  #mw-content-text .mw-content-panel:not(.mw-content-navigation-panel).solid-panel .tag-type::after {
+  #mw-content-text .mw-content-panel:not(.mw-content-navigation-panel).solid-panel .tag-category::after {
     background-color: #{defaults.$color-cobalt};
   }
 

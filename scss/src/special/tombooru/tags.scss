@@ -1,23 +1,23 @@
 @use "../../defaults";
 
-.tag-type {
+.tag-category {
   --tag-color: #{defaults.$color-green-haze};
 }
-.tag-type[data-tag-type="Copyright"] {
+.tag-category[data-tag-category="Copyright"] {
   --tag-color: #{defaults.$color-teal};
 }
-.tag-type[data-tag-type="Artist"] {
+.tag-category[data-tag-category="Artist"] {
   --tag-color: #{defaults.$color-aqua};
 }
-.tag-type[data-tag-type="Character"] {
+.tag-category[data-tag-category="Character"] {
   --tag-color: #{defaults.$color-cobalt};
 }
-.tag-type[data-tag-type="Location"] {
+.tag-category[data-tag-category="Location"] {
   --tag-color: #{defaults.$color-violet};
 }
-.tag-type[data-tag-type="Meta"] {
+.tag-category[data-tag-category="Meta"] {
   --tag-color: #{defaults.$color-gray};
 }
-.tag-type[data-tag-type="Generic"] {
+.tag-category[data-tag-category="Generic"] {
   --tag-color: #{defaults.$color-green-haze};
 }
