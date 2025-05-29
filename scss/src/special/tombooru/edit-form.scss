@@ -85,14 +85,8 @@ body.tombooru {
               }
               .group-header {
                 position: relative;
+
                 &::before {
-                  content: '';
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  right: 0;
-                  bottom: 0;
-                  z-index: -1;
                   border-left: 1px solid defaults.$color-radical-red;
                 }
               }
@@ -102,8 +96,80 @@ body.tombooru {
               }
             }
 
+            &:has(+ .group-content.help) {
+              > div {
+                padding-bottom: 0;
+              }
+
+              border-bottom: 0;
+            }
+            & + .group-content.help {
+              > div {
+                padding-top: 0;
+              }
+            }
+
+            &.source-input {
+              // The source input group is quite different from the rest. It has connected input fields on both columns.
+
+              .actions {
+                margin-top: 0.5em;
+              }
+
+              .source-input-field {
+                display: flex;
+                flex-direction: column;
+                gap: 0.125rem;
+              }
+
+              .group-input.source-url {
+                padding-right: 0;
+
+                input {
+                  border-top-right-radius: 0;
+                  border-bottom-right-radius: 0;
+                  width: calc(100% + 1px);
+                  position: relative;
+
+                  &:focus-visible {
+                    z-index: 50;
+                  }
+                }
+                .input-caption {
+                  padding-right: 1em;
+                }
+              }
+              .group-input.archive-url {
+                grid-column: 3;
+                padding-left: 0;
+
+                .prefix {
+                  border-top-left-radius: 0;
+                  border-bottom-left-radius: 0;
+                  padding-left: 1em;
+                  padding-right: 1em;
+                }
+
+                .input-caption {
+                  padding-left: 1em;
+                }
+              }
+
+            }
+
             .group-header {
+              position: relative;
               min-width: 10rem;
+
+              &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+              }
 
               @if $tight-to-sides {
                 padding-left: 1em;
@@ -123,7 +189,7 @@ body.tombooru {
                   flex-wrap: wrap;
 
                   .item {
-                    min-width: inherit;;
+                    min-width: inherit;
                   }
                 }
               }
@@ -156,12 +222,13 @@ body.tombooru {
               @include form.text-like-input {
                 width: 100%;
               }
-              .form-suffix {
+              .form-affixed {
                 display: flex;
 
                 input {
 
                 }
+                .prefix,
                 .suffix {
                   color: defaults.$color-dark-gray;
                   white-space: nowrap;
@@ -181,6 +248,19 @@ body.tombooru {
                     display: none;
                   }
                 }
+                .prefix {
+                  border-left-color: defaults.$color-light-gray-5;
+                  border-right-color: defaults.$color-light-gray-2;
+                  border-top-right-radius: 0;
+                  border-bottom-right-radius: 0;
+                  border-top-left-radius: defaults.$border-radius-xs;
+                  border-bottom-left-radius: defaults.$border-radius-xs;
+                }
+                .prefix:not(:empty) + input {
+                  border-top-left-radius: 0;
+                  border-bottom-left-radius: 0;
+                  border-left: 0;
+                }
                 input:has(+ .suffix:not(:empty)) {
                   border-top-right-radius: 0;
                   border-bottom-right-radius: 0;
@@ -195,6 +275,7 @@ body.tombooru {
                   input:focus-within {
                     outline: none;
                   }
+                  .prefix,
                   .suffix {
                     border-color: defaults.$color-cobalt;
                     background: rgba(defaults.$color-cobalt, 0.1);
@@ -219,6 +300,32 @@ body.tombooru {
               }
               .help-inner {
                 max-width: 35rem;
+              }
+            }
+          }
+          &.multiple-rows:has(.has-error) {
+            position: relative;
+            &::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              z-index: 15;
+              border: 1px solid defaults.$color-radical-red;
+              pointer-events: none;
+            }
+            .group-content {
+              .group-header, .group-input {
+                background: none;
+
+                &::before {
+                  background-color: rgba(defaults.$color-radical-red, 0.03);
+                }
+              }
+              .group-input {
+                border-right: 0;
               }
             }
           }
