@@ -209,10 +209,15 @@ body.tombooru {
       
       // The categories-only list that's on the tags page.
       &.tag-categories {
-        .tag-category .tag-category-title {
-          margin-bottom: 0;
-          h3 {
-            filter: none;
+        .tag-category {
+          .tag-category-title {
+            margin-bottom: 0;
+            h3 {
+              filter: none;
+              .tag-link {
+                font-weight: bold;
+              }
+            }
           }
         }
       }

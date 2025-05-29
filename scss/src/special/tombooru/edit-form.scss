@@ -40,6 +40,10 @@ body.tombooru {
         resize: vertical;
       }
 
+      .tag-buttons {
+        margin-top: 0.5em;
+      }
+
       .group {
         .group-inner {
           .group-content {
@@ -148,6 +152,7 @@ body.tombooru {
                   border-bottom-left-radius: 0;
                   padding-left: 1em;
                   padding-right: 1em;
+                  border-left-color: defaults.$color-light-gray-2;
                 }
 
                 .input-caption {
