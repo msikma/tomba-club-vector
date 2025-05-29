@@ -3,21 +3,30 @@
 .tag-category {
   --tag-color: #{defaults.$color-green-haze};
 }
-.tag-category[data-tag-category="Copyright"] {
+.tag-category[data-tag-color="teal"] {
   --tag-color: #{defaults.$color-teal};
 }
-.tag-category[data-tag-category="Artist"] {
+.tag-category[data-tag-color="yellow"] {
+  --tag-color: #{defaults.$color-corn};
+}
+.tag-category[data-tag-color="red"] {
+  --tag-color: #{defaults.$color-radical-red};
+}
+.tag-category[data-tag-color="orange"] {
+  --tag-color: #{defaults.$color-orange};
+}
+.tag-category[data-tag-color="aqua"] {
   --tag-color: #{defaults.$color-aqua};
 }
-.tag-category[data-tag-category="Character"] {
+.tag-category[data-tag-color="blue"] {
   --tag-color: #{defaults.$color-cobalt};
 }
-.tag-category[data-tag-category="Location"] {
+.tag-category[data-tag-color="violet"] {
   --tag-color: #{defaults.$color-violet};
 }
-.tag-category[data-tag-category="Meta"] {
+.tag-category[data-tag-color="gray"] {
   --tag-color: #{defaults.$color-gray};
 }
-.tag-category[data-tag-category="Generic"] {
+.tag-category[data-tag-color="generic"] {
   --tag-color: #{defaults.$color-green-haze};
 }

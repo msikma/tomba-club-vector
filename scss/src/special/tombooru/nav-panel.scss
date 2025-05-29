@@ -195,6 +195,17 @@ body.tombooru {
           }
         }
       }
+
+      .tag-category[data-tag-header="0"]:has(+ .tag-category[data-tag-header="0"]) {
+        padding-bottom: 0;
+      }
+      .tag-category[data-tag-header="0"] + .tag-category[data-tag-header="0"] {
+        padding-top: 0;
+
+        &::after {
+          top: -1px;
+        }
+      }
       
       // The categories-only list that's on the tags page.
       &.tag-categories {
