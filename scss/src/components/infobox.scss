@@ -246,14 +246,14 @@
 
       @each $icon in defaults.$external-sites {
         &.#{$icon}::before {
-          background-image: url('./assets/sites/#{$icon}.svg');
+          background-image: url('./assets/social/#{$icon}.svg');
         }
         &.#{$icon}::after {
-          background-image: url('./assets/sites/#{$icon}-mask.svg');
+          background-image: url('./assets/social/#{$icon}-mask.svg');
         }
         &:hover {
           &.#{$icon}::before {
-            background-image: url('./assets/sites/#{$icon}-mask.svg');
+            background-image: url('./assets/social/#{$icon}-mask.svg');
           }
         }
       }
