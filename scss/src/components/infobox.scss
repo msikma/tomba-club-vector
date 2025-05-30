@@ -244,7 +244,7 @@
         background-position: 50% 50%;
       }
 
-      @each $icon in defaults.$external-sites {
+      @each $icon in defaults.$social-media-sites {
         &.#{$icon}::before {
           background-image: url('./assets/social/#{$icon}.svg');
         }

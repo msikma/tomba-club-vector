@@ -170,6 +170,48 @@ body.tombooru {
       // All post information, e.g. description and comments.
       .post-details {
         margin-bottom: 2em;
+
+        // The sources list for a given post.
+        .entity-source {
+          ul {
+            list-style: none;
+            margin-left: 0.125rem;
+
+            li {
+              a {
+                text-decoration: none;
+                position: relative;
+                padding-left: 1rem;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                max-width: 100%;
+                display: inline-block;
+                vertical-align: top;
+
+                .site-favicon {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  bottom: 0;
+                  width: 1rem;
+                  height: inherit;
+                }
+                .text {
+                  padding-left: 0.1875rem;
+                }
+                &:hover {
+                  .text {
+                    text-decoration: underline;
+                  }
+                }
+              }
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
       }
 
       // The edit page. Most of the form styles are defined in edit-form.scss.

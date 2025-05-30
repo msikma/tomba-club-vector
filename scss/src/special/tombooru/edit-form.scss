@@ -68,6 +68,11 @@ body.tombooru {
             .group-header, .group-input, .group-help {
               grid-row: 1;
             }
+            .group-header h4 {
+              &::after {
+                content: ':';
+              }
+            }
             &.has-error {
               textarea {
                 --border-color: #{defaults.$color-radical-red};

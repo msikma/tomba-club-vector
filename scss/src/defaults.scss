@@ -114,8 +114,32 @@ $color-tag-sets2: (
   'purple': (dark: #5a3286, light: #e6cff2),
 );
 
-// Social media and other icons.
-$external-sites: facebook, github, homepage, instagram, linkedin, reddit, tiktok, tumblr, twitter, wikipedia, youtube, mobygames, bluesky, mastodon, website;
+// Used for the site favicons.
+$favicon-sites: (
+  "artstation.com": null,
+  "behance.net": null,
+  "deviantart.com": null,
+  "dribbble.com": null,
+  "facebook.com": null,
+  "github.com": null,
+  "google.com": ("maps"),
+  "drive.google.com": null,
+  "docs.google.com": null,
+  "sheets.google.com": null,
+  "instagram.com": null,
+  "newgrounds.com": null,
+  "pixiv.com": null,
+  "redbubble.com": null,
+  "reddit.com": null,
+  "squarespace.com": null,
+  "teefury.com": null,
+  "tumblr.com": null,
+  "twitter.com": null,
+  "wikipedia.org": null,
+);
+
+// Used for social media icons in the infobox.
+$social-media-sites: facebook, github, homepage, instagram, linkedin, reddit, tiktok, tumblr, twitter, wikipedia, youtube, mobygames, bluesky, mastodon, website;
 
 // Layout settings and sizes
 $color-body: $color-dark-gray;

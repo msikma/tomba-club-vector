@@ -321,19 +321,20 @@ body.tombooru {
             display: none;
           }
 
-          span.favicon {
-            width: 1rem;
-            padding-right: 0.125rem;
-            img {
-              border-radius: defaults.$border-radius-xxs;
-              vertical-align: text-bottom;
-            }
+          span.site-favicon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            height: inherit;
           }
 
           span.text {
             display: flex;
             width: 100%;
             position: relative;
+            padding-left: 1.125rem;
+            box-sizing: border-box;
 
             span.preview {
               display: inline-block;
@@ -345,6 +346,7 @@ body.tombooru {
               display: none;
               position: absolute;
               left: 0;
+              padding-left: 1.125rem;
 
               &::after {
                 position: absolute;
