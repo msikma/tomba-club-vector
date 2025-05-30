@@ -14,14 +14,19 @@ $sites: defaults.$favicon-sites;
   &::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: calc(50% - 0.5rem);
     left: 0;
     right: 0;
     bottom: 0;
+    height: 1rem;
+    width: 1rem;
     background-image: var(--favicon, var(--favicon-fallback));
     background-size: contain;
     background-position: 50%;
     background-repeat: no-repeat;
+    border-radius: 1.5px;
+    overflow: hidden;
+    filter: drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.15));
   }
 }
 
