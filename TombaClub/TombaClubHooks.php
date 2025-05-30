@@ -155,6 +155,10 @@ class TombaClubHooks {
     // Include the base skin assets.
     $out->addStyle($extBaseDir.'/tc-vector.css');
     $out->addScriptFile($extBaseDir.'/tc-vector.js');
+    
+    // Add our favicon images.
+    $out->addLink(['href' => $extBaseDir.'/assets/favicon-512x512.png', 'rel' => 'icon', 'type' => 'image/png', 'sizes' => 'any']);
+    $out->addLink(['href' => $extBaseDir.'/assets/favicon-32x32.png', 'rel' => 'icon', 'type' => 'image/png', 'sizes' => '32x32']);
 
     // Add Roboto font from Google Fonts.
     $out->addLink(['href' => 'https://fonts.googleapis.com', 'rel' => 'preconnect']);
@@ -171,9 +175,10 @@ class TombaClubHooks {
     global $wgLogo, $wgFavicon, $wgFooterIcons, $wgVectorFeatures;
     $extBaseDir = self::getExtensionBaseDir();
 
-    // Set up the logo and favicon.
+    // Set up the logo.
     $wgLogo = $extBaseDir.'/assets/logo-tomba.png';
-    $wgFavicon = $extBaseDir.'/assets/favicon/favicon-512x512.png';
+    // We'll set up the favicon manually in self::onBeforePageDisplay().
+    $wgFavicon = null;
 
     // Disable buggy Vector skin features.
     $wgVectorFeatures['collapsiblenav']['global'] = false;
