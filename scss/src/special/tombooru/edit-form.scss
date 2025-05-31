@@ -381,7 +381,8 @@ body.tombooru {
           }
         }
       }
-      .group.section-header:first-of-type {
+      .group.section-header:first-of-type,
+      .tc-notification:first-child + .group.section-header {
         .group-inner .group-content .group-help::before {
           border-top-left-radius: defaults.$border-radius-xl;
           border-top-right-radius: defaults.$border-radius-xl;
@@ -408,7 +409,8 @@ body.tombooru {
         }
       }
       @if not $oversized-help-bg {
-        .group.section-header:first-of-type {
+        .group.section-header:first-of-type,
+        .tc-notification:first-child + .group.section-header {
           .group-inner .group-content .group-help::before {
             display: none;
           }
