@@ -38,14 +38,15 @@ $aliases: defaults.$favicon-aliases;
 
 .mw-body-content {
   .site-favicon {
-    @each $domain in $sites {
-      &:has(a[href*="#{$domain}"]) {
+    @each $alias, $domain in $aliases {
+      &:has(a[href*="#{$alias}"]) {
         --favicon: url('./assets/site-favicons/#{favicon-url($domain)}.png');
         --favicon-colorize: ;
       }
     }
-    @each $alias, $domain in $aliases {
-      &:has(a[href*="#{$alias}"]) {
+    @each $domain in $sites {
+      &:has(a[href*="#{$domain}"]),
+      &[class*="domain-#{$domain}"] {
         --favicon: url('./assets/site-favicons/#{favicon-url($domain)}.png');
         --favicon-colorize: ;
       }
