@@ -1,10 +1,17 @@
 @use "../defaults.scss";
+@use "../colorize.scss";
 @use "../functions.scss";
 
 $sites: defaults.$favicon-sites;
+$aliases: defaults.$favicon-aliases;
 
-// All the base styling.
+@function favicon-url($path) {
+  @return functions.str-replace($path, "/", "_");
+}
+
+// Base styles.
 .site-favicon {
+  --favicon-colorize: #{colorize.colorize-salem()};
   --favicon-fallback: url('./assets/site-favicons/fallback.png');
   --favicon: url('./assets/site-favicons/fallback.png');
   position: relative;
@@ -17,7 +24,6 @@ $sites: defaults.$favicon-sites;
     top: calc(50% - 0.5rem);
     left: 0;
     right: 0;
-    bottom: 0;
     height: 1rem;
     width: 1rem;
     background-image: var(--favicon, var(--favicon-fallback));
@@ -26,25 +32,26 @@ $sites: defaults.$favicon-sites;
     background-repeat: no-repeat;
     border-radius: 1.5px;
     overflow: hidden;
-    filter: drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.15));
+    filter: var(--favicon-colorize) drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.15));
   }
 }
 
-// Add all the site icons.
-.site-favicon {
-  @each $domain, $paths in $sites {
-    $domain-sanitized: functions.str-replace($domain, ".", "_");
-    &.domain-#{$domain-sanitized} {
-      --favicon: url('./assets/site-favicons/#{$domain}.png');
-
-      @if $paths {
-        @each $path in $paths {
-          $path-sanitized: functions.str-replace($path, ".", "_");
-          &.path-#{$path-sanitized} {
-            --favicon: url('./assets/site-favicons/#{$domain}_#{$path}.png');
-          }
-        }
+.mw-body-content {
+  .site-favicon {
+    @each $domain in $sites {
+      &:has(a[href*="#{$domain}"]) {
+        --favicon: url('./assets/site-favicons/#{favicon-url($domain)}.png');
+        --favicon-colorize: ;
       }
+    }
+    @each $alias, $domain in $aliases {
+      &:has(a[href*="#{$alias}"]) {
+        --favicon: url('./assets/site-favicons/#{favicon-url($domain)}.png');
+        --favicon-colorize: ;
+      }
+    }
+    a {
+      padding-left: 1.1875rem;
     }
   }
 }

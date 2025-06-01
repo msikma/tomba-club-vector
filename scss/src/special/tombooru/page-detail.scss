@@ -184,7 +184,6 @@ body.tombooru {
               a {
                 text-decoration: none;
                 position: relative;
-                padding-left: 1rem;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;
@@ -204,9 +203,7 @@ body.tombooru {
                   padding-left: 0.1875rem;
                 }
                 &:hover {
-                  .text {
-                    text-decoration: underline;
-                  }
+                  text-decoration: underline;
                 }
               }
               &:last-child {

@@ -29,7 +29,7 @@ $border-radius-xxl: 12px !default;
 // Swatches
 $color-green-haze: #00a94b;
 $color-salem: #008634;
-$color-jewel: #0f6033;
+$color-jewel: #097839;
 $color-tomba-pink: #ef84b1;
 $color-tomba-pink-2: #e776a9;
 $color-deep-blush: #e453a7;
@@ -116,26 +116,35 @@ $color-tag-sets2: (
 
 // Used for the site favicons.
 $favicon-sites: (
-  "artstation.com": null,
-  "behance.net": null,
-  "deviantart.com": null,
-  "dribbble.com": null,
-  "facebook.com": null,
-  "github.com": null,
-  "google.com": ("maps"),
-  "drive.google.com": null,
-  "docs.google.com": null,
-  "sheets.google.com": null,
-  "instagram.com": null,
-  "newgrounds.com": null,
-  "pixiv.net": null,
-  "redbubble.com": null,
-  "reddit.com": null,
-  "squarespace.com": null,
-  "teefury.com": null,
-  "tumblr.com": null,
-  "twitter.com": null,
-  "wikipedia.org": null,
+  "artstation.com",
+  "behance.net",
+  "deviantart.com",
+  "dribbble.com",
+  "facebook.com",
+  "github.com",
+  "google.com",
+  "drive.google.com",
+  "docs.google.com",
+  "sheets.google.com",
+  "instagram.com",
+  "newgrounds.com",
+  "pixiv.net",
+  "redbubble.com",
+  "reddit.com",
+  "squarespace.com",
+  "teefury.com",
+  "tumblr.com",
+  "twitter.com",
+  "wikipedia.org",
+  "google.com/maps",
+);
+$favicon-aliases: (
+  "maps.app.goo.gl": "google.com/maps",
+  "x.com": "twitter.com",
+  "github.io": "github.com",
+  "redd.it": "reddit.com",
+  "google.com/spreadsheets": "sheets.google.com",
+  "google.com/documents": "docs.google.com",
 );
 
 // Used for social media icons in the infobox.

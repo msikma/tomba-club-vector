@@ -34,6 +34,10 @@
   // #008634
   @return brightness(0) saturate(100%) invert(21%) sepia(95%) saturate(3216%) hue-rotate(144deg) brightness(93%) contrast(101%);
 }
+@function colorize-jewel() {
+  // #097839
+  @return brightness(0) saturate(100%) invert(29%) sepia(92%) saturate(710%) hue-rotate(105deg) brightness(93%) contrast(93%);
+}
 @function colorize-tomba-pink() {
   // #ef84b1
   @return brightness(0) saturate(100%) invert(63%) sepia(23%) saturate(833%) hue-rotate(284deg) brightness(95%) contrast(98%);

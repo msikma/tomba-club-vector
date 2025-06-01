@@ -175,6 +175,7 @@
   box-shadow:  inset 0px 0px 0px 1px rgba(defaults.$color-light-gray-7, 0.10), inset 0px 0px 0px 1px rgba(defaults.$color-black, 0.2);
 }
 
+// Replaces substrings.
 @function str-replace($string, $search, $replace: '') {
   $index: string.index($string, $search);
   @if $index {

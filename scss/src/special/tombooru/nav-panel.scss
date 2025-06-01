@@ -334,6 +334,11 @@ body.tombooru {
       }
       .url-items {
         overflow: visible;
+        .site-favicon {
+          &::before {
+            top: 0.0625rem;
+          }
+        }
         a {
           display: flex;
           position: relative;
@@ -409,6 +414,9 @@ body.tombooru {
               }
             }
           }
+        }
+        .value {
+          display: block;
         }
       }
     }
