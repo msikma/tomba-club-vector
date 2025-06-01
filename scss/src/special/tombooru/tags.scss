@@ -1,32 +1,33 @@
 @use "../../defaults";
 
-.tag-category {
+:root {
   --tag-color: #{defaults.$color-green-haze};
-}
-.tag-category[data-tag-color="teal"] {
-  --tag-color: #{defaults.$color-teal};
-}
-.tag-category[data-tag-color="yellow"] {
-  --tag-color: #{defaults.$color-corn};
-}
-.tag-category[data-tag-color="red"] {
-  --tag-color: #{defaults.$color-radical-red};
-}
-.tag-category[data-tag-color="orange"] {
-  --tag-color: #{defaults.$color-orange};
-}
-.tag-category[data-tag-color="aqua"] {
-  --tag-color: #{defaults.$color-aqua};
-}
-.tag-category[data-tag-color="blue"] {
-  --tag-color: #{defaults.$color-cobalt};
-}
-.tag-category[data-tag-color="violet"] {
-  --tag-color: #{defaults.$color-violet};
-}
-.tag-category[data-tag-color="gray"] {
-  --tag-color: #{defaults.$color-gray};
-}
-.tag-category[data-tag-color="generic"] {
-  --tag-color: #{defaults.$color-green-haze};
+
+  [data-tag-color="teal"] {
+    --tag-color: #{defaults.$color-teal};
+  }
+  [data-tag-color="yellow"] {
+    --tag-color: #{defaults.$color-corn};
+  }
+  [data-tag-color="red"] {
+    --tag-color: #{defaults.$color-radical-red};
+  }
+  [data-tag-color="orange"] {
+    --tag-color: #{defaults.$color-orange};
+  }
+  [data-tag-color="aqua"] {
+    --tag-color: #{defaults.$color-aqua};
+  }
+  [data-tag-color="blue"] {
+    --tag-color: #{defaults.$color-cobalt};
+  }
+  [data-tag-color="violet"] {
+    --tag-color: #{defaults.$color-violet};
+  }
+  [data-tag-color="gray"] {
+    --tag-color: #{defaults.$color-gray};
+  }
+  [data-tag-color="generic"] {
+    --tag-color: #{defaults.$color-green-haze};
+  }
 }

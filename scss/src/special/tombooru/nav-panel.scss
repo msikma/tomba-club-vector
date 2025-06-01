@@ -80,16 +80,24 @@ body.tombooru {
               display: block;
               position: relative;
               text-decoration: none;
+              width: 100%;
+              word-wrap: break-word;
+              padding-right: 0.4em;
+              box-sizing: border-box;
 
               &:hover {
-                > span:not(.amount) {
+                > span.name {
                   text-decoration: underline;
                 }
               }
 
+              > span:not(.amount) {
+                color: var(--tag-color);
+              }
+
               > span {
                 filter: brightness(0.7) saturate(0.9);
-
+                
                 &.amount {
                   //color: defaults.$color-black;
                   filter: brightness(0.4) saturate(0.6);
@@ -99,6 +107,20 @@ body.tombooru {
                   font-weight: 450;
                   opacity: 0.85;
                 }
+              }
+
+              > span.moved {
+                text-decoration: line-through;
+              }
+              > span.moved + .arrow {
+                &::before {
+                  content: '→';
+                }
+                filter: brightness(0.4) saturate(0.6);
+                opacity: 0.85;
+                font-size: 0.84em;
+                margin: 0 0.25em;
+                text-decoration: none !important;
               }
             }
 
