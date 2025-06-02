@@ -15,8 +15,6 @@ $aliases: defaults.$favicon-aliases;
   --favicon-fallback: url('./assets/site-favicons/fallback.png');
   --favicon: url('./assets/site-favicons/fallback.png');
   position: relative;
-  width: 1rem;
-  height: 1rem;
 
   &::before {
     content: '';
@@ -38,6 +36,11 @@ $aliases: defaults.$favicon-aliases;
 
 .mw-body-content {
   .site-favicon {
+    a {
+      padding-left: 1.1875rem;
+    }
+
+    // Pick the icon based on what the <a href> has.
     @each $alias, $domain in $aliases {
       &:has(a[href*="#{$alias}"]) {
         --favicon: url('./assets/site-favicons/#{favicon-url($domain)}.png');
@@ -51,8 +54,19 @@ $aliases: defaults.$favicon-aliases;
         --favicon-colorize: ;
       }
     }
-    a {
-      padding-left: 1.1875rem;
+    // If a data-url attribute is added to the .site-favicon,
+    // that takes precedence over whatever the <a href> has.
+    @each $alias, $domain in $aliases {
+      &[data-url*="#{$alias}"] {
+        --favicon: url('./assets/site-favicons/#{favicon-url($domain)}.png');
+        --favicon-colorize: ;
+      }
+    }
+    @each $domain in $sites {
+      &[data-url*="#{$domain}"] {
+        --favicon: url('./assets/site-favicons/#{favicon-url($domain)}.png');
+        --favicon-colorize: ;
+      }
     }
   }
 }
