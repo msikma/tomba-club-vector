@@ -20,6 +20,10 @@ body.tombooru {
         padding-left: 0.2em;
         padding-right: 0;
 
+        &.hidden {
+          display: none;
+        }
+
         &::after {
           content: '';
           //background-color: var(--tag-color);
