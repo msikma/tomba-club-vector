@@ -12,7 +12,7 @@ body.tombooru {
       font-variant-numeric: tabular-nums;
       line-height: defaults.$line-height-sidebar-small;
 
-      .tag-category {
+      .tag-category-group {
         position: relative;
         padding-top: calc(0.25em + 1px);
         padding-bottom: calc(0.25em + 1px);
@@ -37,6 +37,21 @@ body.tombooru {
           pointer-events: none;
           opacity: 0.2;
         }
+      }
+
+      .tag-category-group[data-has-group-header="0"]:has(+ .tag-category-group[data-has-group-header="0"]) {
+        padding-bottom: 0;
+      }
+      .tag-category-group[data-has-group-header="0"] + .tag-category-group[data-has-group-header="0"] {
+        padding-top: 0;
+
+        &::after {
+          top: -1px;
+        }
+      }
+
+      .tag-category {
+        position: relative;
 
         .tag-category-title {
           position: relative;
@@ -205,6 +220,10 @@ body.tombooru {
             }
 
             &:hover {
+              a.tag-link {
+                // Masks out the right side of the link, equal to the size of the .actions section.
+                clip-path: inset(0 calc((1.52em * 2) + 0.4em - 1px) 0 0);
+              }
               .tag-actions {
                 a.action {
                   opacity: 1;
@@ -219,17 +238,6 @@ body.tombooru {
             border-bottom-left-radius: defaults.$border-radius-xxs;
             border-bottom-right-radius: defaults.$border-radius-xxs;
           }
-        }
-      }
-
-      .tag-category[data-tag-header="0"]:has(+ .tag-category[data-tag-header="0"]) {
-        padding-bottom: 0;
-      }
-      .tag-category[data-tag-header="0"] + .tag-category[data-tag-header="0"] {
-        padding-top: 0;
-
-        &::after {
-          top: -1px;
         }
       }
       
