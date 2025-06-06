@@ -430,6 +430,11 @@ body.tombooru {
         .value {
           display: block;
         }
+        &.inline {
+          .value {
+            display: inline;
+          }
+        }
       }
     }
 
