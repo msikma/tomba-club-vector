@@ -2,6 +2,7 @@
 @use "../../defaults";
 @use "../../colorize";
 @use "../../icons";
+@use "./tags";
 
 body.tombooru {
   // The navigation panel on the left side.
@@ -89,6 +90,12 @@ body.tombooru {
             padding: 1px 0;
             display: flex;
             place-items: center;
+
+            @each $tag, $color in tags.$tag-color-exceptions {
+              &[data-tag-name="#{$tag}"] {
+                --tag-color: #{$color};
+              }
+            }
 
             a.tag-link {
               flex-basis: 100%;

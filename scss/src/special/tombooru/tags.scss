@@ -31,3 +31,8 @@
     --tag-color: #{defaults.$color-green-haze};
   }
 }
+
+// These tags will get a specific color regardless of what group they're in.
+$tag-color-exceptions: (
+  "unknown_artist": defaults.$color-radical-red,
+);
