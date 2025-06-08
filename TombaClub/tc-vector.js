@@ -48,12 +48,22 @@ function ensureNonEmptyNav() {
  * Decorates the big tables.
  */
 function decorateBigTables() {
+  // The API code is very poor quality, but whatever, it works for now.
+  // TODO: rewrite this sometime.
   const bigTables = [...document.querySelectorAll('.tc-big-table')]
   bigTables.forEach(table => {
     // Container for all of this table's data.
     const tableData = {
       header: null,
       sections: null,
+      defaultSort: null,
+      apiEndpoint: null,
+      apiBaseURL: null,
+      isRunningApiCall: false,
+      tablePagination: null,
+      pageBaseURL: null,
+      sortCol: null,
+      tableState: {},
     }
 
     function getSortedRows(header, rows) {
@@ -77,10 +87,184 @@ function decorateBigTables() {
       return direction === 'asc' ? 'desc' : 'asc'
     }
 
-    function sortTable(n) {
+    function getApiEndpointURLData(page, slug, direction) {
+      const base = new URL(document.URL)
+      const url = new URL([base.origin, tableData.apiBaseURL, tableData.apiEndpoint].join('/'));
+      const searchValue = base.searchParams.get('search') ?? '';
+      const pageValue = page ?? tableData.tableState.page;
+      const slugValue = slug ?? tableData.tableState.slug;
+      const directionValue = direction ?? tableData.tableState.direction;
+      url.searchParams.set('search', `${searchValue}`);
+      url.searchParams.set('page', `${pageValue}`);
+      url.searchParams.set('sort', `${slugValue}`);
+      url.searchParams.set('direction', `${directionValue}`);
+      return {
+        url: url.toString(),
+        page: pageValue,
+        slug: slugValue,
+        direction: directionValue,
+      };
+    }
+
+    async function runApiRequest(url) {
+      try {
+        const res = await fetch(url)
+        if (!res.ok) {
+          throw new Error('not 200')
+        }
+        const data = await res.json()
+        return {success: true, err: null, data}
+      }
+      catch (err) {
+        return {success: false, err, data: null}
+      }
+    }
+
+    async function runApiCall(page, slug, direction) {
+      if (tableData.isRunningApiCall) {
+        return
+      }
+      tableData.isRunningApiCall = true;
+      const urlData = getApiEndpointURLData(page, slug, direction)
+      const {success, data, err} = await runApiRequest(urlData.url)
+      if (success && data) {
+        replaceTableRows(data.data.results.rows, data.data.results.layout)
+        replaceTablePagination(data.data.results.paginationLinks)
+      }
+      tableData.tableState.page = urlData.page;
+      tableData.tableState.slug = urlData.slug;
+      tableData.tableState.direction = urlData.direction;
+      tableData.sections = getRowSections();
+      tableData.isRunningApiCall = false;
+
+      const newUrl = new URL(window.location);
+      newUrl.searchParams.set('page', urlData.page);
+      window.history.replaceState({}, '', newUrl);
+    }
+
+    function getNewTableRows(rows, layout) {
+      const tableRows = []
+      for (const row of rows) {
+        const tr = document.createElement('tr');
+        for (const col of layout) {
+          const td = document.createElement('td');
+          const {slug, classes} = col;
+          const inner = row[slug];
+          const classItems = (classes ?? '').split(/\s+/).filter(c => c)
+          classItems.forEach(cls => td.classList.add(cls));
+          if (slug === tableData.tableState.slug) {
+            td.classList.add('highlighted');
+          }
+          td.innerHTML = `<span class="inner">${inner}</span>`;
+          tr.appendChild(td)
+        }
+        tableRows.push(tr)
+      }
+      return tableRows;
+    }
+
+    function getNewTablePagination(paginationLinks) {
+      function pageLink(linkData, isPrevious = false, isNext = false) {
+        const item = document.createElement(linkData.active ? 'a' : 'span');
+        item.classList.add('item', 'blue');
+        if (isPrevious) {
+          item.classList.add('previous');
+        }
+        if (isNext) {
+          item.classList.add('next');
+        }
+        if (isPrevious || isNext) {
+          item.classList.add('icon');
+          item.classList.add('icon-only');
+          const itemURL = new URL(`http://example.com/${linkData.url}`)
+          item.setAttribute('data-page-number', itemURL.searchParams.get('page'));
+        }
+        else {
+          if (linkData.text) {
+            item.setAttribute('data-page-number', Number(linkData.text));
+          }
+        }
+        if (linkData.active) {
+          item.setAttribute('href', linkData.url)
+        }
+        item.classList.toggle('active', !linkData.active);
+        item.innerText = linkData.text;
+        if (linkData.type === 'ellipsis') {
+          item.innerText = '...';
+          item.classList.toggle('active', false);
+        }
+        return item;
+      }
+      const paginationDiv = document.createElement('div');
+      paginationDiv.classList.add('action-sets');
+
+      const pageNumbersDiv = document.createElement('div');
+      pageNumbersDiv.classList.add('action-set');
+      pageNumbersDiv.classList.add('page-numbers');
+      paginationLinks.pages.forEach(pageNum => {
+        pageNumbersDiv.appendChild(pageLink(pageNum));
+      });
+
+      const prevNextDiv = document.createElement('div');
+      prevNextDiv.classList.add('action-set');
+      prevNextDiv.classList.add('previous-next');
+      prevNextDiv.appendChild(pageLink(paginationLinks.previous, true, false));
+      prevNextDiv.appendChild(pageLink(paginationLinks.next, false, true));
+
+      // Put it all together.
+      paginationDiv.appendChild(pageNumbersDiv);
+      paginationDiv.appendChild(prevNextDiv);
+
+      return paginationDiv;
+    }
+
+    function replaceTablePagination(paginationData) {
+      const newPagination = getNewTablePagination(paginationData)
+      if (tableData.tablePagination) {
+        tableData.tablePagination.innerHTML = '';
+        tableData.tablePagination.appendChild(newPagination);
+      }
+      bindTablePagination();
+    }
+
+    function bindTablePagination() {
+      // Only bind if we're using an API endpoint.
+      if (!tableData.apiEndpoint) {
+        return;
+      }
+      const pageNumbers = tableData.tablePagination.querySelectorAll('a.item')
+      pageNumbers.forEach(pageNumber => pageNumber.addEventListener('click', async ev => {
+        ev.preventDefault();
+        const target = ev.target;
+        const page = Number(target.getAttribute('data-page-number') ?? tableData.tableState.page);
+        await runApiCall(page)
+        //sortTable(tableData.sortCol, true);
+      }))
+    }
+
+    function replaceTableRows(rows, layout) {
+      // TODO: for now we just assume we have one section.
+      const section = tableData.sections[0];
+      const toRemove = section.rows.map(row => row.el)
+      toRemove.forEach(el => el.remove())
+      const newRows = getNewTableRows(rows, layout)
+      let refNode = section.section
+      newRows.forEach(row => {
+        refNode.parentNode.insertBefore(row, refNode.nextSibling)
+        refNode = row;
+      })
+    }
+
+    async function sortTable(n, keepSameSortOrder = false) {
+      tableData.sortCol = n;
       const header = tableData.header[n]
-      if (header.isActive) {
-        header.direction = flipDirection(header.direction)
+      if (!keepSameSortOrder) {
+        if (header.isActive) {
+          header.direction = flipDirection(header.direction)
+        }
+      }
+      if (tableData.apiEndpoint) {
+        await runApiCall(tableData.tableState.page, header.slug, header.direction)
       }
       for (const everyHeader of tableData.header) {
         everyHeader.isActive = false
@@ -142,7 +326,18 @@ function decorateBigTables() {
       // Determines the data inside the rows.
       const cols = [...row.querySelectorAll('td')]
       const data = cols.map((col, n) => {
-        const header = tableData.header[n]
+        let header = tableData.header[n]
+        if (header == null) {
+          header = {
+            text: '',
+            slug: '',
+            dataType: '',
+            isActive: false,
+            direction: 'asc',
+            el: col,
+            n,
+          }
+        }
         const dataValue = col.getAttribute('data-value')
         const rawValue = dataValue ? dataValue : col.innerText
         let value
@@ -162,7 +357,7 @@ function decorateBigTables() {
 
     function getRowSections() {
       // Get all sections, then list all the subsequent rows per section.
-      const sectionRows = [...table.querySelectorAll('tr.section')]
+      const sectionRows = [...table.querySelectorAll('tr.section'), ...table.querySelectorAll('tr.separator:not(:has( + .section))')]
       const rows = [...table.querySelectorAll('tr')]
       const sections = []
       let n = 0
@@ -201,19 +396,39 @@ function decorateBigTables() {
     }
 
     function selectDefaultSort() {
-      const defaultSort = table.getAttribute('data-default-sort')
-      if (!defaultSort) {
+      if (!tableData.defaultSort) {
         return
       }
-      const n = tableData.header.findIndex(col => col.slug === defaultSort)
+      const n = tableData.header.findIndex(col => col.slug === tableData.defaultSort)
       if (n < 0) {
         return
       }
       sortTable(n)
     }
 
+    function getTableMeta() {
+      const defaultSort = table.getAttribute('data-default-sort')
+      const defaultDirection = table.getAttribute('data-default-direction')
+      const apiEndpoint = table.getAttribute('data-api-endpoint')
+      const apiBaseURL = table.getAttribute('data-api-base-url')
+      tableData.defaultSort = defaultSort
+      tableData.apiEndpoint = apiEndpoint
+      tableData.apiBaseURL = apiBaseURL
+
+      const tablePagination = table.nextElementSibling && table.nextElementSibling.classList.contains('pagination')
+        ? table.nextElementSibling
+        : null;
+      tableData.tablePagination = tablePagination;
+      tableData.pageBaseURL = new URL(document.URL)
+
+      tableData.tableState.page = Number(tableData.pageBaseURL.searchParams.get('page') ?? '1');
+      tableData.tableState.slug = defaultSort;
+      tableData.tableState.direction = defaultDirection;
+    }
+
     tableData.header = getHeaderCols()
     tableData.sections = getRowSections()
+    getTableMeta()
     selectDefaultSort()
   })
 }
