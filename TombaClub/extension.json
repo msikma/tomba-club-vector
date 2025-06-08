@@ -9,7 +9,8 @@
     "SkinAddFooterLinks": "TombaClubHooks::onSkinAddFooterLinks",
     "BeforePageDisplay": "TombaClubHooks::onBeforePageDisplay",
     "SetupAfterCache": "TombaClubHooks::onSetupAfterCache",
-    "OutputPageParserOutput": "TombaClubHooks::onOutputPageParserOutput"
+    "OutputPageParserOutput": "TombaClubHooks::onOutputPageParserOutput",
+    "OutputPageAfterGetHeadLinksArray": "TombaClubHooks::onOutputPageAfterGetHeadLinksArray"
   },
   "AutoloadClasses": {
     "TombaClubHooks": "TombaClubHooks.php"

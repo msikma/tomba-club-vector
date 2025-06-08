@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\MediaWikiServices;
 
 class TombaClubHooks {
   /** Adds a custom portlet to the navigation. */
@@ -87,6 +88,16 @@ class TombaClubHooks {
     }
 
     return false;
+  }
+
+  /**
+   * Forces the viewport to include responsive support.
+   * 
+   * This works around the fact that 1.40+ broke responsive support for Vector 2010.
+   */
+  public static function onOutputPageAfterGetHeadLinksArray(&$tags, $output) {
+    $tags['meta-viewport'] = '<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=0.25, maximum-scale=5"/>';
+    return true;
   }
 
   /**
