@@ -255,7 +255,7 @@ function decorateBigTables() {
       })
     }
 
-    async function sortTable(n, keepSameSortOrder = false) {
+    async function sortTable(n, keepSameSortOrder = false, waitForCall = true) {
       tableData.sortCol = n;
       const header = tableData.header[n]
       if (!keepSameSortOrder) {
@@ -264,7 +264,10 @@ function decorateBigTables() {
         }
       }
       if (tableData.apiEndpoint) {
-        await runApiCall(tableData.tableState.page, header.slug, header.direction)
+        const call = runApiCall(tableData.tableState.page, header.slug, header.direction)
+        if (waitForCall) {
+          await call
+        }
       }
       for (const everyHeader of tableData.header) {
         everyHeader.isActive = false
@@ -403,7 +406,7 @@ function decorateBigTables() {
       if (n < 0) {
         return
       }
-      sortTable(n)
+      sortTable(n, false, false)
     }
 
     function getTableMeta() {
