@@ -32,6 +32,7 @@ body.tombooru {
         .item {
           &.tag {
             display: flex;
+            min-width: 0;
 
             &.modifier-plus {
               .tag-modifier {
