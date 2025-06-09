@@ -14,6 +14,10 @@ body.tombooru {
       margin-top: -0.4em;
       padding-bottom: 0.4em;
 
+      &.no-filters {
+        display: none;
+      }
+
       .actions {
         margin-left: -1em;
         margin-right: -1em;
@@ -39,6 +43,10 @@ body.tombooru {
                 display: none;
               }
             }
+          }
+          &.label {
+            font-weight: 400;
+            color: defaults.$color-dark-gray;
           }
         }
       }
