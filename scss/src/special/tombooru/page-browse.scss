@@ -13,6 +13,35 @@ body.tombooru {
     .search-result-info {
       margin-top: -0.4em;
       padding-bottom: 0.4em;
+
+      .actions {
+        margin-left: -1em;
+        margin-right: -1em;
+        padding: 0.5em 1.1em;
+        position: relative;
+        margin-bottom: 1em;
+        top: calc(-0.5em - 2px);
+        border-radius: 0;
+        border-bottom: 1px solid defaults.$color-light-gray-1;
+        justify-content: center;
+
+        .item {
+          &.tag {
+            display: flex;
+
+            &.modifier-plus {
+              .tag-modifier {
+                display: none;
+              }
+            }
+            &.type-tag {
+              .tag-type {
+                display: none;
+              }
+            }
+          }
+        }
+      }
     }
     // A set of search results.
     .result-set {
