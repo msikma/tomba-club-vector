@@ -10,6 +10,25 @@
 // a find and replace before outputting the HTML.
 
 body.tombooru {
+  #left-navigation {
+    // Make some adjustments so we can have a tab on the right side as well.
+    #p-namespaces {
+      width: 100%;
+
+      .vector-menu-content {
+        width: 100%;
+
+        .vector-menu-content-list {
+          width: 100%;
+          display: flex;
+
+          > .divider {
+            flex: 1 0;
+          }
+        }
+      }
+    }
+  }
   #right-navigation {
     // Hide everything except #p-views. We'll put our extra content inside there.
     // This hides the search bar too. We don't need the search bar anyway, as the imageboard
