@@ -95,6 +95,18 @@ dfn[title] {
 }
 ul {
   list-style-image: none;
+  margin: 0.3em 0 0 1.6em;
+}
+table {
+  .diff {
+    color: defaults.$color-light-gray-8;
+    &.positive {
+      color: defaults.$color-salem;
+    }
+    &.negative {
+      color: defaults.$color-radical-red-dark;
+    }
+  }
 }
 
 // Fixes to display the Tomba logo correctly.

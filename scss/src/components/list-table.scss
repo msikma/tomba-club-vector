@@ -1,0 +1,15 @@
+@use "../defaults";
+
+.list-table {
+  text-align: left;
+  margin-left: 1.6em;
+  border-spacing: 0;
+
+  td {
+    padding: 0 0.75em 0.1em 0;
+
+    &:first-child {
+      display: list-item;
+    }
+  }
+}
