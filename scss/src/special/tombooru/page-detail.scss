@@ -23,9 +23,9 @@ body.tombooru {
         // Default ("dynamic") scaling: this makes landscape images 100% width, and portrait images limited by height.
         // Images will always be fully visible without having to scroll.
         &.scaling-default {
-          a.media {
+          .media {
             width: fit-content;
-            img {
+            .media-embed {
               max-width: 100%;
               max-height: calc(100vh - 17.5em);
               height: auto;
@@ -40,13 +40,13 @@ body.tombooru {
         // Fullwidth scaling: scale images to the full available width.
         // Can cause a lot of scrolling for portrait images.
         &.scaling-fullwidth {
-          a.media img {
+          .media .media-embed {
             width: 100%;
             height: auto;
           }
         }
 
-        a.media {
+        .media {
           display: inherit;
         }
       }
