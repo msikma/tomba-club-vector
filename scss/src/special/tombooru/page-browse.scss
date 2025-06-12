@@ -129,5 +129,11 @@ body.tombooru {
         padding-bottom: 2em;
       }
     }
+    // When nothing was found for the given search.
+    .empty-result-set {
+      p {
+        margin: 0;
+      }
+    }
   }
 }
