@@ -1,0 +1,60 @@
+@use "sass:color";
+@use "../../defaults";
+@use "../../colorize";
+@use "../../icons";
+@use "../../functions";
+
+// The browse page covers all the pages containing search results.
+body.tombooru {
+  #mw-content-text {
+    .page-browse {
+      .tc-big-table {
+      }
+      .tags {
+        .actions.narrow {
+          overflow: hidden;
+          white-space: wrap;
+          display: -webkit-box;
+          line-clamp: 1;
+          box-orient: vertical;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+        }
+      }
+      .blurb {
+        position: relative;
+
+        .inner {
+          a {
+            .mw-parser-output {
+              overflow: hidden;
+              white-space: wrap;
+              display: -webkit-box;
+              line-clamp: 1;
+              box-orient: vertical;
+              -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;
+
+              h1, h2, h3, h4, h5, h6 {
+                font-family: defaults.$font-regular;
+                font-size: 1em;
+                color: inherit;
+              }
+
+              * {
+                display: inline;
+                margin: 0;
+                padding: 0;
+                border: none;
+              }
+
+              br {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

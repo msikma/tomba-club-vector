@@ -24,6 +24,9 @@
   [data-tag-color="violet"] {
     --tag-color: #{defaults.$color-violet};
   }
+  [data-tag-color="pink"] {
+    --tag-color: #{defaults.$color-deep-blush};
+  }
   [data-tag-color="gray"] {
     --tag-color: #{defaults.$color-gray};
   }
