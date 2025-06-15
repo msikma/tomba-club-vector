@@ -274,8 +274,12 @@ body.tombooru {
           .tag-category-title {
             margin-bottom: 0;
             h3 {
+              padding-left: 0.4em;
               filter: none;
+              
               .tag-link {
+                padding-left: 0;
+                margin-left: 0;
                 font-weight: bold;
               }
             }
