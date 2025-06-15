@@ -15,6 +15,16 @@ body.tombooru {
         font-size: 1.8em;
       }
     }
+    .tombooru-page.page-tags {
+      h2, h3 {
+        &:has(+ .result-set) {
+          margin-bottom: 0;
+        }
+        + .result-set {
+          margin-top: 1em;
+        }
+      }
+    }
     .tombooru-page.page-detail {
       // The main image embed component.
       .media-embed {
