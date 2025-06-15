@@ -59,6 +59,7 @@ function decorateBigTables() {
       defaultSort: null,
       apiEndpoint: null,
       apiBaseURL: null,
+      isSortable: true,
       isRunningApiCall: false,
       tablePagination: null,
       pageBaseURL: null,
@@ -256,6 +257,9 @@ function decorateBigTables() {
     }
 
     async function sortTable(n, keepSameSortOrder = false, waitForCall = true) {
+      if (!tableData.isSortable) {
+        return
+      }
       tableData.sortCol = n;
       const header = tableData.header[n]
       if (!keepSameSortOrder) {
@@ -301,13 +305,16 @@ function decorateBigTables() {
       const headerCols = [...header.querySelectorAll('th')]
       const headerColsWithData = headerCols.map((col, n) => {
         const defaultDirection = 'asc'
-        const defaultActive = false
+        const defaultActive = col.getAttribute('data-default-active') === 'true' ? true : false
         const text = col.innerText
         const slug = col.getAttribute('data-slug') ? col.getAttribute('data-slug') : text.toLowerCase().replaceAll(' ', '_')
         const dataType = col.getAttribute('data-type') ? col.getAttribute('data-type') : 'string'
         col.setAttribute('data-direction', defaultDirection)
         col.setAttribute('data-active', defaultActive)
-        col.insertAdjacentHTML('beforeend', '<span class="sorter"></span>');
+        const existingSorter = col.querySelector('span.sorter')
+        if (existingSorter === null) {
+          col.insertAdjacentHTML('beforeend', '<span class="sorter"></span>');
+        }
         col.addEventListener('click', ev => {
           ev.preventDefault()
           sortTable(n)
@@ -411,12 +418,16 @@ function decorateBigTables() {
 
     function getTableMeta() {
       const defaultSort = table.getAttribute('data-default-sort')
+      const isSortable = table.getAttribute('data-is-sortable') === 'false' ? false : true
       const defaultDirection = table.getAttribute('data-default-direction')
       const apiEndpoint = table.getAttribute('data-api-endpoint')
       const apiBaseURL = table.getAttribute('data-api-base-url')
       tableData.defaultSort = defaultSort
       tableData.apiEndpoint = apiEndpoint
       tableData.apiBaseURL = apiBaseURL
+      tableData.isSortable = isSortable
+
+      console.log('i', tableData)
 
       const tablePagination = table.nextElementSibling && table.nextElementSibling.classList.contains('pagination')
         ? table.nextElementSibling

@@ -317,6 +317,16 @@
       }
     }
   }
+
+  &[data-is-sortable="false"] {
+    table {
+      tr.header {
+        > th:not(.minimal) > .sorter {
+          display: none;
+        }
+      }
+    }
+  }
 }
 .mw-parser-output {
   h2:has(+ .tc-big-table) {
