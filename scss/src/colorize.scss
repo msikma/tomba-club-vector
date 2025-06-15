@@ -78,6 +78,10 @@
   // #ff3855
   @return brightness(0) saturate(100%) invert(34%) sepia(84%) saturate(2988%) hue-rotate(331deg) brightness(101%) contrast(102%);
 }
+@function colorize-malachite() {
+  // #00c02f
+  @return brightness(0) saturate(100%) invert(61%) sepia(39%) saturate(7055%) hue-rotate(103deg) brightness(98%) contrast(105%);
+}
 
 @function colorize-orange() {
   // #e25d38
