@@ -71,6 +71,7 @@ pre, code, tt, .mw-code {
   border: none;
   line-height: defaults.$line-height-regular;
   background-color: defaults.$color-light-gray-0;
+  color: inherit;
 }
 pre {
   padding: 1em;
