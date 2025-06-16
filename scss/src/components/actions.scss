@@ -37,6 +37,10 @@
     // Linked items.
     a {
       cursor: pointer;
+
+      &.here {
+        text-decoration: underline;
+      }
     }
 
     // The items are the basic links themselves.
