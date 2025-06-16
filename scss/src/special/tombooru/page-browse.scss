@@ -122,6 +122,7 @@ body.tombooru {
           }
         }
 
+        &.selected,
         &:hover {
           .image {
             &::before {
@@ -137,7 +138,6 @@ body.tombooru {
         }
       }
 
-
       // A header that separates the results.
       .result-separator-header {
         grid-column: 1 / -1;
@@ -148,7 +148,15 @@ body.tombooru {
         }
       }
 
+      // This class is used when the result set enumerates a set's items on a set detail page.
       &.set-posts {
+        padding-bottom: 2em;
+      }
+
+      // And this class is used when we're looking at the other set posts on a post detail page.
+      // In this case the result items are smaller and a consistent size.
+      &.is-post-primary-set {
+        grid-template-columns: repeat(auto-fill, 8rem);
         padding-bottom: 2em;
       }
     }
