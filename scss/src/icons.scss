@@ -3,7 +3,11 @@
 @use "sass:meta";
 @use "sass:string";
 
-// The nav items that have an icon.
+// Primary nav link icons.
+$nav-main-icon-links: (
+  'ca-talk': ('comment-discussion', 'left'),
+);
+// Subnav link icons.
 $nav-sub-icon-links: (
   'ca-ve-edit': ('pencil', 'left'),
   'ca-edit': ('file-code', 'left'),
@@ -13,39 +17,15 @@ $nav-sub-icon-links: (
   'ca-unwatch': ('star-fill', 'left'),
   'ca-watch': ('star', 'left'),
   'ca-recreatedata': ('package', 'left'),
-
-  // For Tombooru.
-  'ca-tombooru_post': ('image', 'left'),
-  'ca-tombooru_edit': ('file-code', 'left'),
-  'ca-tombooru_upload': ('upload', 'left'),
-  'ca-tombooru_sets': ('archive', 'left'),
-  'ca-tombooru_viewonwiki': ('external', 'left'),
-  'ca-tombooru_viewdata': ('package', 'left'),
-  'ca-tombooru_search': ('search', 'left'),
-  'ca-tombooru_recent': ('history', 'left'),
-  'ca-tombooru_by_year': ('calendar', 'left'),
-  'ca-tombooru_list': ('list-ordered', 'left'),
-  'ca-tombooru_tags': ('tag', 'left'),
-  'ca-tombooru_tag_categories': ('file-directory', 'left'),
-  'ca-tombooru_artists': ('paintbrush', 'left'),
-  'ca-tombooru_popular': ('trending', 'left'),
 );
-// Nav icons with an icon, but applied via a class rather than an id.
-$nav-sub-icon-link-classes: (
-  'settings': ('gear', 'left'),
-  'arrow-top': ('arrow-top', 'left'),
-  'arrow-right': ('arrow-right', 'left'),
-  'arrow-bottom': ('arrow-bottom', 'left'),
-  'arrow-left': ('arrow-left', 'left'),
+// The following icons can be set using the icon-$name class, both for primary and subnav.
+// They're primarily used by Tombooru, as MediaWiki pages normally use specific IDs for nav items.
+$nav-icon-link-classes: (
+  'apps', 'archive', 'arrow-bottom', 'arrow-left', 'arrow-right', 'arrow-top', 'book', 'calendar',
+  'external', 'file-code', 'file-directory', 'gear', 'globe-arrow', 'history', 'image', 'koma',
+  'list-ordered', 'package', 'paintbrush', 'pencil', 'search', 'tag', 'tomba', 'trending', 'upload',
 );
-$nav-main-icon-links: (
-  'ca-talk': ('comment-discussion', 'left'),
-  'n-tombooru_posts': ('apps', 'left'),
-  'n-tombooru_tags': ('tag', 'left'),
-  'n-tombooru_artists': ('paintbrush', 'left'),
-  'n-tombooru_upload': ('upload', 'left'),
-  'n-tombooru_back_to_wiki': ('back-to-wiki', 'left'),
-);
+// Icons for the sidebar navigation panel.
 $nav-panel-icon-links: (
   'n-mainpage-description': ('home', 'left'),
   'n-Imageboard': ('image', 'left'),
@@ -71,6 +51,7 @@ $nav-panel-icon-links: (
   'socmed_youtube': ('youtube', 'left'),
   'socmed_twitter': ('twitter', 'left'),
 );
+// Additional icons.
 $nav-other-icon-links: (
   'p-cactions-label': ('chevron-down', 'right'),
 );

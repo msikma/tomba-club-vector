@@ -372,6 +372,36 @@ body.right-panel {
   #mw-head {
     min-width: defaults.$layout-minimum-width;
 
+    .vector-menu-content-list {
+      li {
+        @each $icon in icons.$nav-icon-link-classes {
+          &.icon-#{$icon} {
+            $direction: left;
+            a {
+              padding-#{$direction}: #{$nav-item-padding + (math.div($icon-width + $icon-spacing, defaults.$layout-font-size-nav-sub))} !important;
+              &::before {
+                content: '';
+                #{$direction}: math.div($nav-item-padding + math.div($icon-width + $icon-spacing, defaults.$layout-font-size-nav-sub) - math.div($icon-width, 2), 2);
+                background-image: icons.icon-url($icon);
+              }
+            }
+          }
+        }
+        // Some small optimizations for the icons.
+        &.icon-book {
+          a::before {
+            width: 1.2em !important;
+            top: -0.05em !important;
+          }
+        }
+        &.icon-pencil {
+          a::before {
+            top: -0.05em !important;
+          }
+        }
+      }
+    }
+
     .vector-menu-tabs {
       background: none;
       padding: 0;
@@ -705,10 +735,9 @@ body.right-panel {
             }
           }
 
-          @each $cls, $icon-settings in icons.$nav-sub-icon-link-classes {
-            &.#{$cls} {
-              $icon: list.nth($icon-settings, 1);
-              $direction: list.nth($icon-settings, 2);
+          @each $icon in icons.$nav-icon-link-classes {
+            &.icon-#{$icon} {
+              $direction: left;
               a {
                 padding-#{$direction}: #{$nav-item-padding + (math.div($icon-width + $icon-spacing, defaults.$layout-font-size-nav-sub))};
                 &::before {
