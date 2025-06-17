@@ -1,5 +1,6 @@
 @use "../defaults";
 @use "../colorize";
+@use "../icons";
 @use "../functions";
 
 // Infobox design.
@@ -23,42 +24,19 @@
   margin-bottom: 1.4em;
   max-width: 22em;
 
-  &.viewing-image-1 {
-    .main-image .image-items {
-      left: 0;
-    }
-    .main-image-labels .label-items .label-item.img-1 {
-      background: var(--color, defaults.$color-green-haze);
-      color: white;
-
-      &::before {
-        filter: colorize.colorize-white();
+  @for $i from 1 through 3 {
+    &.viewing-image-#{$i} {
+      .main-image .image-items {
+        left: #{($i - 1) * 110}#{"%"};
       }
-    }
-  }
-  &.viewing-image-2 {
-    .main-image .image-items {
-      left: 110%;
-    }
-    .main-image-labels .label-items .label-item.img-2 {
-      background: var(--color, defaults.$color-green-haze);
-      color: white;
 
-      &::before {
-        filter: colorize.colorize-white();
-      }
-    }
-  }
-  &.viewing-image-3 {
-    .main-image .image-items {
-      left: 220%;
-    }
-    .main-image-labels .label-items .label-item.img-3 {
-      background: var(--color, defaults.$color-green-haze);
-      color: white;
+      .main-image-labels .label-items .label-item.img-#{$i} {
+        background: var(--color, defaults.$color-green-haze);
+        color: white;
 
-      &::before {
-        filter: colorize.colorize-white();
+        &::before {
+          filter: colorize.colorize-white();
+        }
       }
     }
   }
@@ -180,6 +158,37 @@
     }
   }
 
+  .caption {
+    padding-bottom: 0.25em;
+    
+    .caption-inner {
+      display: block;
+      text-align: center;
+
+      .caption-text {
+        font-size: defaults.$font-size-caption;
+        color: defaults.$color-gray-1;
+        position: relative;
+        padding-left: 1.25rem;
+
+        &::before {
+          filter: colorize.colorize-gray-1();
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: icons.icon-url('image') no-repeat;
+          background-position: 0 50%;
+          background-size: 1rem;
+          z-index: -1;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
   .row {
     td, th {
       font-size: defaults.$font-size-caption;
@@ -194,6 +203,18 @@
       text-align: left;
       padding-left: 0.25em;
       padding-right: 1.1em;
+      width: 40%;
+      white-space: nowrap;
+    }
+  }
+
+  // Use this class when you don't want the <th> cells to be minimal width.
+  &.regular-width {
+    .row {
+      th {
+        width: inherit;
+        white-space: inherit;
+      }
     }
   }
 
