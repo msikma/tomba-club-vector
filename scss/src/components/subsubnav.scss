@@ -30,7 +30,7 @@ body.has-subsubnav {
 
     .navbar-content {
       display: flex;
-      font-weight: 450;
+      font-weight: defaults.$font-subnav-weight;
       line-height: calc(2em - 1px);
       padding-top: 1px;
 

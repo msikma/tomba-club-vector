@@ -76,7 +76,7 @@ body.tombooru {
                 content: attr(data-count);
                 padding-right: 0.4em;
                 white-space: nowrap;
-                font-weight: 450;
+                font-weight: defaults.$font-subnav-weight;
               }
             }
           }
@@ -111,7 +111,7 @@ body.tombooru {
             a.tag-link {
               margin-left: 0.2em;
               flex-basis: 100%;
-              font-weight: 450;
+              font-weight: defaults.$font-subnav-weight;
               padding-left: 0.4em;
               color: var(--tag-color);
               z-index: 1;
@@ -142,7 +142,7 @@ body.tombooru {
                   font-size: 0.84em;
                   margin-left: 0.25em;
                   text-decoration: none;
-                  font-weight: 450;
+                  font-weight: defaults.$font-subnav-weight;
                   opacity: 0.85;
                 }
               }
@@ -364,7 +364,7 @@ body.tombooru {
           }
         }
         .value {
-          font-weight: 450;
+          font-weight: defaults.$font-subnav-weight;
         }
         .item {
           display: block;

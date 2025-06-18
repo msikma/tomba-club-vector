@@ -117,7 +117,7 @@
 
       .label-item {
         font-size: defaults.$font-size-caption;
-        font-weight: 450;
+        font-weight: defaults.$font-subnav-weight;
         background: rgba(defaults.$color-green-haze, 0.1);
         color: defaults.$color-green-haze;
         padding: 0.1em 0.8em;
@@ -197,7 +197,7 @@
       vertical-align: top;
     }
     td {
-      font-weight: 450;
+      font-weight: defaults.$font-subnav-weight;
     }
     th {
       text-align: left;

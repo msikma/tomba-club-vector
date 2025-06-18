@@ -112,7 +112,7 @@ body.tombooru {
           &:not(.is-upvoted):not(.is-downvoted) {
             .score {
               color: defaults.$color-black;
-              font-weight: 450 !important;
+              font-weight: defaults.$font-subnav-weight !important;
 
               &::after {
                 display: none;

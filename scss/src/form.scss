@@ -59,7 +59,7 @@ form {
     background-color: defaults.$color-cobalt;
     color: defaults.$color-white;
     padding: 0.4em 0.6em;
-    font-weight: 450;
+    font-weight: defaults.$font-subnav-weight;
     border-radius: defaults.$border-radius-xs;
     display: inline-block;
     border: none;

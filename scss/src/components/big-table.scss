@@ -74,7 +74,7 @@
       top: 0;
 
       > th {
-        font-weight: 450;
+        font-weight: defaults.$font-subnav-weight;
         text-align: left;
         border-right-width: 1px;
         position: relative;
@@ -290,7 +290,7 @@
           text-align: center;
           padding-top: 3em;
           padding-bottom: 3em;
-          font-weight: 450;
+          font-weight: defaults.$font-subnav-weight;
       }
     }
 

@@ -33,7 +33,7 @@ body.tombooru {
         font-weight: bold;
       }
       h4 {
-        font-weight: 450;
+        font-weight: defaults.$font-subnav-weight;
       }
 
       textarea {
@@ -186,7 +186,7 @@ body.tombooru {
               }
 
               h3 {
-                font-weight: 450;
+                font-weight: defaults.$font-subnav-weight;
               }
             }
             .group-input {
