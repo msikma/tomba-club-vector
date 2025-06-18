@@ -54,10 +54,10 @@
   // In case we don't want visited links; for tables where the content isn't wiki content.
   &.no-visited {
     a:visited {
-      color: defaults.$color-cobalt;
+      color: defaults.$color-link-primary;
     }
     a.new:visited {
-      color: defaults.$color-nonexistent;
+      color: defaults.$color-link-primary-new;
     }
   }
 

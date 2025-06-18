@@ -208,6 +208,15 @@
     }
   }
 
+  .row {
+    .flag {
+      filter: drop-shadow(0 1px 0 rgba(defaults.$color-black, 0.25))
+        drop-shadow(0.5px 0 0 rgba(defaults.$color-black, 0.1))
+        drop-shadow(-0.5px 0 0 rgba(defaults.$color-black, 0.1))
+        drop-shadow(0 -0.5px 0 rgba(defaults.$color-black, 0.1));
+    }
+  }
+
   // Use this class when you don't want the <th> cells to be minimal width.
   &.regular-width {
     .row {

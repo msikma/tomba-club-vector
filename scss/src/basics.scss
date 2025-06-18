@@ -130,38 +130,19 @@ table {
 body,
 .mw-parser-output {
   a {
-    color: defaults.$color-cobalt;
-  }
-  a.new {
-    color: defaults.$color-nonexistent;
-  }
-  a:visited {
-    color: defaults.$color-visited;
-  }
-  a.new:visited {
-    color: defaults.$color-visited-nonexistent;
-  }
-  a.external {
-    color: defaults.$color-green-haze;
-    padding-right: 0;
-    background: none;
-  }
-  a.external::after {
-    content: '\00a0';
-    width: calc(0.83333333333em + 1px);
-    display: inline-block;
-    background: transparent no-repeat;
-    background-position: center right;
-    background-size: 0.833333em 0.833333em;
-    background-image: icons.icon-url('external-link');
-    filter: colorize.colorize-green-haze();
-  }
-  a.external:visited {
-    color: defaults.$color-salem;
-  }
-  a.external:visited::after {
-    // This doesn't actually work, since visited links have limited styling available.
-    filter: colorize.colorize-salem();
+    &.external {
+      padding-right: 0;
+      background: none;
+      &::after {
+        content: '\00a0';
+        width: calc(0.83333333333em + 1px);
+        display: inline-block;
+        background: transparent no-repeat;
+        background-position: center right;
+        background-size: 0.833333em 0.833333em;
+        background-image: icons.icon-url('external-link');
+      }
+    }
   }
   a.image img {
     // Ensure inlined images don't exceed the page width.
@@ -171,4 +152,78 @@ body,
   a:hover {
     text-decoration: underline;
   }
+}
+
+// Link styling - we have two link colors: green and blue.
+// In principle, links are green unless they are inside of the main content body (which is most of the content).
+// So: green is used mainly in the sidebars, and blue is used everywhere where there's actual wiki content.
+// We will set up the links to be green, and then override them for the main wiki content to be blue.
+
+@mixin green-links {
+  a {
+    // Internal wiki links (and default links).
+    color: defaults.$color-link-secondary;
+    &:visited {
+      color: defaults.$color-link-secondary-visited;
+    }
+
+    // External links.
+    &.external {
+      color: defaults.$color-link-secondary-external;
+      &:visited {
+        color: defaults.$color-link-secondary-external-visited;
+      }
+      &::after {
+        filter: defaults.$color-link-secondary-external-filter;
+      }
+    }
+
+    // Internal links to pages that haven't been created yet.
+    &.new {
+      color: defaults.$color-link-secondary-new;
+      &:visited {
+        color: defaults.$color-link-secondary-new-visited;
+      }
+    }
+  }
+}
+
+@mixin blue-links {
+  a {
+    color: defaults.$color-link-primary;
+    &:visited {
+      color: defaults.$color-link-primary-visited;
+    }
+
+    &.external {
+      color: defaults.$color-link-primary-external;
+      &:visited {
+        color: defaults.$color-link-primary-external-visited;
+      }
+      &::after {
+        filter: defaults.$color-link-primary-external-filter;
+      }
+    }
+
+    &.new {
+      color: defaults.$color-link-primary-new;
+      &:visited {
+        color: defaults.$color-link-primary-new-visited;
+      }
+    }
+  }
+}
+
+// Links outside of the primary content.
+body,
+.mw-parser-output {
+  @include green-links;
+}
+
+// Links in the main wiki content.
+.mw-body-content,
+#contentSub,
+#contentSub2,
+.catlinks {
+  @include blue-links;
 }

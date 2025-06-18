@@ -3,6 +3,7 @@
 @use "sass:map";
 @use 'sass:math';
 @use "defaults";
+@use "basics";
 @use "functions";
 @use "icons";
 @use "colorize";
@@ -106,6 +107,10 @@ body {
 // side of the page get collected into a totally separate sidebar (purely by CSS).
 // FIXME: Currently this *requires* $wgParserEnableLegacyMediaDOM to be true.
 @mixin right-panel {
+  .tright {
+    @include basics.green-links;
+  }
+
   #firstHeading {
     width: calc(100% - (var(--tc-layout-width-right-panel) / defaults.$layout-font-size-page-heading-div));
   }
@@ -1096,11 +1101,11 @@ body.right-panel {
               filter: colorize.colorize-gray-1();
             }
             &:hover {
-              color: defaults.$color-cobalt;
+              color: defaults.$color-salem;
               text-decoration: underline;
             }
             &:hover::before {
-              filter: colorize.colorize-cobalt();
+              filter: colorize.colorize-salem();
             }
           }
 

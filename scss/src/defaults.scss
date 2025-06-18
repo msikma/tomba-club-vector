@@ -1,4 +1,5 @@
 @use "sass:color";
+@use "colorize";
 
 // Primary font used in copy
 $font-regular: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
@@ -30,15 +31,39 @@ $border-radius-xxl: 12px !default;
 $color-green-haze: #00a94b;
 $color-salem: #008634;
 $color-jewel: #097839;
+$color-tropical: #008655;
+$color-deep-sea: #09785b;
 $color-tomba-pink: #ef84b1;
 $color-tomba-pink-2: #e776a9;
 $color-deep-blush: #e453a7;
+$color-mariner: #3469cb;
+$color-cerulean: #3054d5;
 $color-cobalt: #0043c3;
+$color-daisy: #3800c3;
 $color-midnight-blue: #002162;
 $color-dandelion: #ffdb41;
 $color-corn: #dea701;
 $color-sahara: #a67000;
 $color-sand-wisp: #ffeda0;
+$color-tamarillo: #c30000;
+
+// Link colors.
+// The primary colors are for the main wiki content on the white background.
+// The secondary colors are for everything outside of that, on the gray background.
+$color-link-primary: $color-cobalt;
+$color-link-primary-visited: $color-daisy;
+$color-link-primary-new: $color-tamarillo;
+$color-link-primary-new-visited: $color-tamarillo;
+$color-link-primary-external: $color-mariner;
+$color-link-primary-external-filter: colorize.colorize-mariner();
+$color-link-primary-external-visited: $color-cerulean;
+$color-link-secondary: $color-salem;
+$color-link-secondary-visited: $color-salem;
+$color-link-secondary-new: $color-tamarillo;
+$color-link-secondary-new-visited: $color-tamarillo;
+$color-link-secondary-external: $color-salem;
+$color-link-secondary-external-filter: colorize.colorize-salem();
+$color-link-secondary-external-visited: $color-salem;
 
 // Additional colors for things such as tags.
 $color-aqua: #38a3ca;

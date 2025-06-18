@@ -11,7 +11,7 @@ $aliases: defaults.$favicon-aliases;
 
 // Base styles.
 .site-favicon {
-  --favicon-colorize: #{colorize.colorize-salem()};
+  --favicon-colorize: #{defaults.$color-link-primary-external-filter};
   --favicon-fallback: url('./assets/site-favicons/fallback.png');
   --favicon: url('./assets/site-favicons/fallback.png');
   position: relative;
