@@ -118,20 +118,21 @@ body.tombooru {
               }
             }
 
-            &.source-input {
-              // The source input group is quite different from the rest. It has connected input fields on both columns.
+            &.joined-input {
+              // The "joined" input group is quite different from the rest. It has connected input fields on both columns.
+              // It's used by the source input group.
 
               .actions {
                 margin-top: 0.5em;
               }
 
-              .source-input-field {
+              .joined-input-field {
                 display: flex;
                 flex-direction: column;
                 gap: 0.125rem;
               }
 
-              .group-input.source-url {
+              .group-input.start-field {
                 padding-right: 0;
 
                 input {
@@ -148,7 +149,7 @@ body.tombooru {
                   padding-right: 1em;
                 }
               }
-              .group-input.archive-url {
+              .group-input.end-field {
                 grid-column: 3;
                 padding-left: 0;
 
