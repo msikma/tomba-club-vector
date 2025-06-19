@@ -1,5 +1,19 @@
 @use "../../defaults";
 
+// Changing the size of the result thumbnails.
+body.tombooru {
+  .mw-body {
+    --tombooru-results-base-size: 12rem;
+
+    @media only screen and (min-width: 1400px) {
+      --tombooru-results-base-size: 14rem;
+    }
+    @media only screen and (min-width: 1706px) {
+      --tombooru-results-base-size: 16rem;
+    }
+  }
+}
+
 // Modifications to the edit form.
 body.tombooru #mw-content-text .edit-form-wrapper {
   .group .group-inner {

@@ -284,6 +284,7 @@
 
     tr.section {
       td {
+        font-variant-numeric: normal;
         border-right-color: transparent;
         background: defaults.$color-superlight-gray;
 
@@ -311,6 +312,10 @@
           font-weight: bold;
           line-height: 1.5;
         }
+      }
+
+      .icon-item {
+        filter: colorize.colorize-dark-gray();
       }
     }
 
