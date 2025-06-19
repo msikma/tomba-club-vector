@@ -183,6 +183,7 @@ function decorateBigTables() {
         else {
           if (linkData.text) {
             item.setAttribute('data-page-number', Number(linkData.text));
+            item.classList.toggle(`len-${Math.floor(Number(linkData.text) / 10) + 1}`, true);
           }
         }
         if (linkData.active) {
@@ -193,6 +194,7 @@ function decorateBigTables() {
         if (linkData.type === 'ellipsis') {
           item.innerText = '...';
           item.classList.toggle('active', false);
+          item.classList.toggle('ellipsis', true);
         }
         return item;
       }
