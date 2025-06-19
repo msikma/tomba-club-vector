@@ -122,6 +122,35 @@
           background: transparent;
           border: 1px solid transparent;
         }
+        &.tiny {
+          width: 1%;
+          white-space: nowrap;
+          min-width: 3.25rem;
+        }
+        &.icon {
+          padding-right: 0.5em;
+
+          > .icon::before {
+            filter: colorize.colorize-dark-gray();
+            border: 1px solid transparent;
+            position: absolute;
+            top: 0;
+            left: -1px;
+            right: -1px;
+            bottom: 0;
+            content: '';
+            background-image: var(--icon);
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            pointer-events: none;
+          }
+
+          &[data-active="true"] {
+            > .icon::before {
+              filter: colorize.colorize-white();
+            }
+          }
+        }
         > .sorter {
           filter: colorize.colorize-dark-gray();
           opacity: 0;
