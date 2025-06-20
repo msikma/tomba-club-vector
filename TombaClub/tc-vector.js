@@ -291,7 +291,7 @@ function decorateBigTables() {
         ]
         for (const row of allRows) {
           section.tbody.appendChild(row.el)
-          if (!row.isSeparator) {
+          if (!row.isSeparator && !row.el.classList.contains('notification')) {
             const allCells = [...row.el.querySelectorAll(`td:not(:nth-child(${n + 1}))`)]
             const highlightedCells = [...row.el.querySelectorAll(`td:nth-child(${n + 1})`)]
             allCells.forEach(cell => cell.classList.toggle('highlighted', false))
@@ -306,7 +306,7 @@ function decorateBigTables() {
       const header = table.querySelector('tr.header')
       const headerCols = [...header.querySelectorAll('th')]
       const headerColsWithData = headerCols.map((col, n) => {
-        const defaultDirection = 'asc'
+        const defaultDirection = col.getAttribute('data-direction') === 'desc' ? 'desc' : 'asc';
         const defaultActive = col.getAttribute('data-default-active') === 'true' ? true : false
         const text = col.innerText
         const slug = col.getAttribute('data-slug') ? col.getAttribute('data-slug') : text.toLowerCase().replaceAll(' ', '_')
