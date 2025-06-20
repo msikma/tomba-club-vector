@@ -356,6 +356,10 @@ function decorateBigTables() {
         if (header.dataType === 'number') {
           value = Number(rawValue)
         }
+        else if (header.dataType === 'timestamp') {
+          const timeEl = col.querySelector('time[datetime]')
+          value = timeEl.getAttribute('datetime').trim()
+        }
         else {
           value = rawValue
         }
@@ -428,8 +432,6 @@ function decorateBigTables() {
       tableData.apiEndpoint = apiEndpoint
       tableData.apiBaseURL = apiBaseURL
       tableData.isSortable = isSortable
-
-      console.log('i', tableData)
 
       const tablePagination = table.nextElementSibling && table.nextElementSibling.classList.contains('pagination')
         ? table.nextElementSibling
