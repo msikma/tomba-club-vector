@@ -35,5 +35,72 @@ body.tombooru {
         }
       }
     }
+
+    // The page content info section can include metadata about the current page.
+    // For example, on search pages this is used to describe what tags we searched for.
+    .page-content-meta {
+      margin-top: -0.4em;
+      padding-bottom: 0.4em;
+
+      &.no-filters {
+        display: none;
+      }
+
+      .content-meta {
+        margin-left: -1em;
+        margin-right: -1em;
+        padding: 0.5em;
+        position: relative;
+        margin-bottom: 0;
+        top: calc(-0.5em - 2px);
+        border-radius: 0;
+        border-bottom: 1px solid defaults.$color-light-gray-1;
+        justify-content: center;
+        display: flex;
+      }
+      .actions {
+        justify-content: center;
+
+        .item {
+          &.tag {
+            display: flex;
+            min-width: 0;
+
+            &.modifier-plus {
+              .tag-modifier {
+                display: none;
+              }
+            }
+            &.type-tag {
+              .tag-type {
+                display: none;
+              }
+            }
+          }
+          &.label {
+            font-weight: 400;
+            color: defaults.$color-dark-gray;
+          }
+        }
+      }
+      .search-actions {
+        position: absolute;
+
+        &.left {
+          left: 0.5em;
+        }
+
+        &.right {
+          right: 0.5em;
+        }
+
+        .clear-search {
+          margin-left: 0.125rem;
+        }
+      }
+      .search-feedback.narrow {
+        padding: 0.18em 0;
+      }
+    }
   }
 }

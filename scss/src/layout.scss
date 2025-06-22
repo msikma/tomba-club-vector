@@ -759,6 +759,14 @@ body.right-panel {
             }
           }
 
+          &.disabled {
+            pointer-events: none;
+          }
+
+          &.unselectable {
+            user-select: none;
+          }
+
           &.no-text {
             a {
               width: 2.6em;
@@ -805,7 +813,7 @@ body.right-panel {
 
           &.stick-right {
             a {
-              margin-right: -0.175em;
+              margin-right: -0.125em;
               &::after {
               }
             }
@@ -813,7 +821,7 @@ body.right-panel {
 
           &.stick-left {
             a {
-              margin-left: -0.175em;
+              margin-left: -0.125em;
               &::after {
               }
             }

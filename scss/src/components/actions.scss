@@ -18,6 +18,10 @@
     display: flex;
     gap: 0.25rem;
 
+    &.narrow-gap {
+      gap: 0.1875rem;
+    }
+
     // For grouping links together.
     .action-sets {
       display: flex;
@@ -26,6 +30,10 @@
       .action-set {
         display: flex;
         gap: 0.25rem;
+
+        &.narrow-gap {
+          gap: 0.1875rem;
+        }
       }
     }
 
@@ -333,8 +341,6 @@
     padding-bottom: 1em;
 
     .action-set {
-      gap: 0.125rem;
-
       &.page-numbers {
         .item {
           padding-left: 0;

@@ -38,6 +38,13 @@ body.tombooru {
           pointer-events: none;
           opacity: 0.2;
         }
+
+        &:last-child {
+          &::after {
+            border-bottom-right-radius: var(--portlet-border-rounding, #{defaults.$border-radius-xxs});
+            border-bottom-left-radius: var(--portlet-border-rounding, #{defaults.$border-radius-xxs});
+          }
+        }
       }
 
       .tag-category-group[data-has-group-header="0"]:has(+ .tag-category-group[data-has-group-header="0"]) {

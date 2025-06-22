@@ -9,49 +9,6 @@ body.tombooru {
   --tombooru-results-base-size: 12rem;
 
   #mw-content-text {
-    // The description of what we searched for and how many results we have.
-    .search-result-info {
-      margin-top: -0.4em;
-      padding-bottom: 0.4em;
-
-      &.no-filters {
-        display: none;
-      }
-
-      .actions {
-        margin-left: -1em;
-        margin-right: -1em;
-        padding: 0.5em 1.1em;
-        position: relative;
-        margin-bottom: 1em;
-        top: calc(-0.5em - 2px);
-        border-radius: 0;
-        border-bottom: 1px solid defaults.$color-light-gray-1;
-        justify-content: center;
-
-        .item {
-          &.tag {
-            display: flex;
-            min-width: 0;
-
-            &.modifier-plus {
-              .tag-modifier {
-                display: none;
-              }
-            }
-            &.type-tag {
-              .tag-type {
-                display: none;
-              }
-            }
-          }
-          &.label {
-            font-weight: 400;
-            color: defaults.$color-dark-gray;
-          }
-        }
-      }
-    }
     // A set of search results.
     .result-set {
       display: grid;

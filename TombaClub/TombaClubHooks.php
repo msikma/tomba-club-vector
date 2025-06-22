@@ -169,7 +169,6 @@ class TombaClubHooks {
     
     // Add our favicon images.
     $out->addLink(['href' => $extBaseDir.'/assets/favicon-512x512.png', 'rel' => 'icon', 'type' => 'image/png', 'sizes' => 'any']);
-    $out->addLink(['href' => $extBaseDir.'/assets/favicon-32x32.png', 'rel' => 'icon', 'type' => 'image/png', 'sizes' => '32x32']);
 
     // Add Roboto font from Google Fonts.
     $out->addLink(['href' => 'https://fonts.googleapis.com', 'rel' => 'preconnect']);
