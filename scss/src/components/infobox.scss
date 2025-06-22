@@ -10,6 +10,7 @@
   --color-heading-text: #{defaults.$color-white};
 
   float: right;
+  clear: right;
 
   th, td {
     padding: 0;
@@ -25,17 +26,19 @@
   max-width: 22em;
 
   @for $i from 1 through 3 {
-    &.viewing-image-#{$i} {
+    .viewing-image-#{$i} {
       .main-image .image-items {
         left: #{($i - 1) * 110}#{"%"};
       }
 
-      .main-image-labels .label-items .label-item.img-#{$i} {
-        background: var(--color, defaults.$color-green-haze);
-        color: white;
+      + .tc-infobox-labels {
+        .main-image-labels .label-items .label-item.img-#{$i} {
+          background: var(--color, defaults.$color-green-haze);
+          color: white;
 
-        &::before {
-          filter: colorize.colorize-white();
+          &::before {
+            filter: colorize.colorize-white();
+          }
         }
       }
     }
@@ -76,7 +79,7 @@
         left: -220%;
       }
 
-      &.disc {
+      &.frameless {
         .image::before {
           display: none;
         }
@@ -102,6 +105,10 @@
         width: 100%;
         height: auto;
         border-radius: defaults.$border-radius-xxs;
+      }
+
+      &:has(+ .image-caption) {
+        margin-bottom: 0.5em;
       }
     }
   }
@@ -146,7 +153,7 @@
           background-repeat: no-repeat;
         }
 
-        &.disc {
+        &.frameless {
           padding-left: calc(0.8em + 1rem);
 
           &::before {
@@ -158,33 +165,32 @@
     }
   }
 
-  .caption {
+  .image-caption {
+    display: block;
+    text-align: center;
     padding-bottom: 0.25em;
-    
-    .caption-inner {
-      display: block;
-      text-align: center;
 
-      .caption-text {
-        font-size: defaults.$font-size-caption;
-        color: defaults.$color-gray-1;
-        position: relative;
-        padding-left: 1.25rem;
+    .caption-text {
+      font-size: defaults.$font-size-caption;
+      color: defaults.$color-gray-1;
+      position: relative;
+      padding-left: 1.25rem;
+      display: inline-block;
+      font-weight: defaults.$font-subnav-weight;
 
-        &::before {
-          filter: colorize.colorize-gray-1();
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: icons.icon-url('image') no-repeat;
-          background-position: 0 50%;
-          background-size: 1rem;
-          z-index: -1;
-          pointer-events: none;
-        }
+      &::before {
+        filter: colorize.colorize-gray-1();
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: icons.icon-url('image') no-repeat;
+        background-position: 0 50%;
+        background-size: 1rem;
+        z-index: -1;
+        pointer-events: none;
       }
     }
   }

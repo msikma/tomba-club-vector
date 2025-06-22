@@ -480,14 +480,15 @@ function decorateHamburgerMenu() {
 function decorateInfoBoxes() {
   const infoboxes = [...document.querySelectorAll('.tc-infobox')]
   infoboxes.forEach(infobox => {
+    const header = infobox.querySelector('.main-image-header')
     const labels = [...infobox.querySelectorAll('.label-items .label-item')]
     labels.forEach((label, n) => {
       label.addEventListener('click', ev => {
         ev.preventDefault()
         for (let n = 0; n < labels.length; ++n) {
-          infobox.classList.remove(`viewing-image-${n + 1}`)
+          header.classList.remove(`viewing-image-${n + 1}`)
         }
-        infobox.classList.add(`viewing-image-${n + 1}`)
+        header.classList.add(`viewing-image-${n + 1}`)
       })
     })
   })
