@@ -67,21 +67,44 @@ function decorateBigTables() {
       tableState: {},
     }
 
-    function getSortedRows(header, rows) {
-      const direction = header.direction === 'asc' ? 1 : -1
-      return rows.sort((a, b) => {
-        const dataA = a.data[header.n].value
-        const dataB = b.data[header.n].value
-        const idxA = a.data[0].value
-        const idxB = b.data[0].value
-        if (dataA === dataB) {
-          if (idxA === idxB) {
-            return 0
-          }
-          return (idxA < idxB ? -1 : 1) * direction
-        }
-        return (dataA < dataB ? -1 : 1) * direction
+    const sortString = (header, direction) => (a, b) => {
+      const dataA = a.data[header.n].value
+      const dataB = b.data[header.n].value
+      const idxA = a.data[0].value
+      const idxB = b.data[0].value
+
+      const value = dataA.localeCompare(dataB, 'en', {
+        sensitivity: 'base',
+        ignorePunctuation: false,
+        numeric: false,
       })
+      if (value === 0) {
+        if (idxA === idxB) {
+          return 0
+        }
+        return (idxA < idxB ? -1 : 1) * direction
+      }
+      return value * direction
+    }
+
+    const sortGeneral = (header, direction) => (a, b) => {
+      const dataA = a.data[header.n].value
+      const dataB = b.data[header.n].value
+      const idxA = a.data[0].value
+      const idxB = b.data[0].value
+      if (dataA === dataB) {
+        if (idxA === idxB) {
+          return 0
+        }
+        return (idxA < idxB ? -1 : 1) * direction
+      }
+      return (dataA < dataB ? -1 : 1) * direction
+    }
+
+    function getSortedRows(header, rows) {
+      const comparison = header.dataType === 'string' ? sortString : sortGeneral;
+      const sortFunction = comparison(header, header.direction === 'asc' ? 1 : -1)
+      return rows.sort(sortFunction)
     }
 
     function flipDirection(direction) {
