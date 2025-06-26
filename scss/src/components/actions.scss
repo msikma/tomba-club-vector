@@ -46,6 +46,10 @@
     a {
       cursor: pointer;
 
+      > span {
+        cursor: pointer;
+      }
+
       &.here {
         text-decoration: underline;
       }

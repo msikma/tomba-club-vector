@@ -146,7 +146,7 @@ body.tombooru {
                 &.amount {
                   //color: defaults.$color-black;
                   filter: brightness(0.4) saturate(0.6);
-                  font-size: 0.84em;
+                  font-size: defaults.$font-tag-count-size;
                   margin-left: 0.25em;
                   text-decoration: none;
                   font-weight: defaults.$font-subnav-weight;
@@ -163,7 +163,7 @@ body.tombooru {
                 }
                 filter: brightness(0.4) saturate(0.6);
                 opacity: 0.85;
-                font-size: 0.84em;
+                font-size: defaults.$font-tag-count-size;
                 margin: 0 0.25em;
                 text-decoration: none !important;
               }
@@ -485,7 +485,7 @@ body.tombooru {
     // The search panel.
     .search-panel {
       .vector-menu-content-static {
-        form {
+        .search-bar {
           .search-input {
             position: relative;
 
@@ -535,145 +535,17 @@ body.tombooru {
               transition: filter;
               z-index: 60;
             }
-            .autocomplete-container {
-              position: relative;
-              z-index: 45;
-            }
+
             .autocomplete {
-              background: white;
               border: 1px solid defaults.$color-light-gray-8;
               border-top-color: transparent;
-              padding: 4px 0 3px;
-              transition: border-color 80ms, box-shadow 80ms, color 80ms;
-              position: absolute;
-              width: 100%;
-              z-index: 6;
-              box-sizing: border-box;
-              margin-top: -1px;
-              border-bottom-left-radius: defaults.$border-radius-s;
-              border-bottom-right-radius: defaults.$border-radius-s;
-
-              .entries {
-                width: 100%;
-                border-collapse: collapse;
-
-                tr {
-                  position: relative;
-
-                  td {
-                    line-height: 1.14;
-                    padding: 0.2em 0;
-
-                    > span,
-                    > a {
-                      position: static;
-                      z-index: 6;
-                    }
-                  }
-
-                  .term {
-                    display: block;
-                    &::before {
-                      position: absolute;
-                      content: '';
-                      top: 0;
-                      right: 0;
-                      left: 0;
-                      bottom: 0;
-                      background-color: var(--tag-color, defaults.$color-cobalt);
-                      opacity: 0.0;
-                      pointer-events: all;
-                      z-index: -1;
-                    }
-                    &:hover {
-                      &::before {
-                        opacity: 0.1;
-                      }
-                    }
-                  }
-
-                  td.moved {
-                    // This indicates that a tag has been renamed ("moved").
-                    .term {
-                      &.old {
-                        filter: saturate(0.6);
-                        opacity: 0.6;
-                        text-decoration: line-through;
-                      }
-                      &.new {
-                      }
-                    }
-                  }
-
-                  td:first-child {
-                    padding-left: 0.5em;
-                    white-space: wrap;
-
-                    a {
-                      color: var(--tag-color, defaults.$color-cobalt);
-
-                      > b {
-                        font-weight: normal;
-                        position: relative;
-
-                        &::after {
-                          content: '';
-                          position: absolute;
-                          top: 0;
-                          left: 0;
-                          right: 0;
-                          bottom: 0;
-                          opacity: 0.2;
-                          border-radius: defaults.$border-radius-xxs;
-                          background-color: var(--tag-color, defaults.$color-cobalt);
-                          z-index: -1;
-                        }
-                      }
-                    }
-
-                    .arrow {
-                      position: relative;
-                      text-indent: -9999px;
-                      display: inline-block;
-                      width: 1.25em;
-                    }
-                  }
-
-                  td:last-child {
-                    padding-left: 0.5em;
-                    padding-right: 0.5em;
-                    white-space: nowrap;
-                    width: 1px;
-                  }
-                }
-              }
             }
 
             &:hover {
               input {
                 color: defaults.$color-cobalt;
                 border-color: defaults.$color-cobalt;
-                //box-shadow: 0 0 0 2px defaults.$color-cobalt;
                 box-shadow: 0 0 0 1px defaults.$color-cobalt;
-
-                &:focus {
-                  outline: 1px solid transparent;
-                }
-
-                &::placeholder {
-                  color: defaults.$color-cobalt;
-                }
-
-                &:focus-visible {
-                  outline: 1px solid transparent;
-                  color: defaults.$color-cobalt;
-                  border-color: defaults.$color-cobalt;
-                  box-shadow: 0 0 0 2px rgba(defaults.$color-cobalt, 0.4);
-
-                  + button {
-                    filter: colorize.colorize-cobalt();
-                  }
-                }
               }
               button {
                 filter: colorize.colorize-cobalt();
@@ -681,16 +553,21 @@ body.tombooru {
               .autocomplete {
                 border-color: defaults.$color-cobalt;
                 border-top-color: transparent;
-                box-shadow: 0 0 0 1px defaults.$color-cobalt;
               }
-            }
-
-            &.has-autocomplete {
               input {
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
+                &:focus-visible {
+                  outline: 1px solid transparent;
+                  color: defaults.$color-cobalt;
+                  border-color: defaults.$color-cobalt;
+                  box-shadow: 0 0 0 2px rgba(defaults.$color-cobalt, 0.4);
+                  
+                  + button {
+                    filter: colorize.colorize-cobalt();
+                  }
+                }
               }
             }
+            
           }
           .search-filters {
             margin-top: 0.35em;

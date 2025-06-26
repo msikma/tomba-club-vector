@@ -16,11 +16,14 @@ body.tombooru {
       text-align: center;
 
       .panel {
-        .panel-inner {
+        .panel-primary {
           max-width: 40em;
           background: defaults.$color-white;
           width: 40em;
           display: flex;
+          flex-direction: column;
+          position: relative;
+          z-index: 5;
           place-content: center;
           border-radius: defaults.$border-radius-xxl;
           padding: 1em;
@@ -39,102 +42,59 @@ body.tombooru {
             .search-bar {
               position: relative;
 
-              .bar {
-                font-size: 1.4em;
-                width: 100%;
-                color: defaults.$color-gray-1;
-                padding: 0 0.75em;
-                border: 1px solid transparent;
-                border-radius: defaults.$border-radius-xl;
-                box-shadow: 0 0 0 2px rgba(defaults.$color-cobalt, 0.0);
-                transition: border-color 150ms, outline 150ms, box-shadow 150ms, color 150ms;
-                background-color: white;
-                height: 3.25rem;
-                padding: 1px calc(1px + 0.7em);
-                border: 2px solid defaults.$color-light-gray-2;
+              .search-input {
+                input {
+                  box-shadow: 0 0 0 1px rgba(defaults.$color-cobalt, 0.0);
+                  font-size: 1.4em;
+                  outline: 0px solid transparent;
 
-                &::placeholder {
-                  color: defaults.$color-light-gray-8;
-                  transition: color 150ms;
-                }
+                  &:focus {
+                    box-shadow: 0 0 0 4px rgba(defaults.$color-cobalt, 0.2);
+                  }
+                  &:focus-visible {
+                    box-shadow: 0 0 0 4px rgba(defaults.$color-cobalt, 0.2);
 
-                &:focus {
-                  box-shadow: 0 0 0 2px rgba(defaults.$color-cobalt, 0.2);
-                  border-color: defaults.$color-cobalt;
-                  color: defaults.$color-cobalt;
-                  outline: 0;
-
-                  &::placeholder {
-                    color: defaults.$color-cobalt;
+                    + .button-container button {
+                      filter: colorize.colorize-cobalt();
+                    }
                   }
                 }
-              }
-              .button-container {
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                border: 0;
-                padding: 0;
-                margin: 0;
-                width: 3.25rem;
-                cursor: pointer;
 
-                .button {
-                  filter: colorize.colorize-gray-1();
-                  text-indent: -9999px;
-                  width: 100%;
-                  height: 100%;
-                  background: transparent no-repeat 50% 50%;
-                  background-image: icons.icon-url('search');
-                  background-size: 1.5em;
-                  cursor: pointer;
-                  border: 0;
-                }
+                .autocomplete {
+                  border-top: 0;
+                  margin-top: 0;
+                  text-align: left;
 
-                &::before {
-                  content: '';
-                  background-color: defaults.$color-cobalt;
-                  position: absolute;
-                  top: calc(0.1em + 3px);
-                  right: calc(0.1em + 3px);
-                  bottom: calc(0.1em + 3px);
-                  left: calc(0.1em + 3px);
-                  display: block;
-                  opacity: 0;
-                  border-radius: defaults.$border-radius-xl - 3px;
+                  .entries tr td a {
+                    font-size: 1.1em;
+                    padding: 0.3em 0 0.3em 0.7em;
+                  }
                 }
 
                 &:hover {
-                  &::before {
-                    opacity: 0.2;
+                  .autocomplete {
+                    box-shadow: 0 0 0 0px transparent !important;
                   }
                 }
               }
-
-
-              &:hover {
-                .bar {
-                  color: defaults.$color-cobalt;
-                  border-color: defaults.$color-cobalt;
-                  &::placeholder {
-                    color: defaults.$color-cobalt;
-                  }
-                }
-                .button-container {
-                  .button {
-                    filter: colorize.colorize-cobalt();
-                  }
-                }
-              }
-            }
-            .quicklinks {
-              display: grid;
-              grid-template-columns: repeat(3, 1fr);
-              gap: 0.6em;
-              text-align: center;
             }
           }
+
+          .tag-suggestions {
+            .actions span.item.label {
+              color: defaults.$color-cobalt !important;
+            }
+            margin: 0 !important;
+            padding: 1em 0 0 0 !important;
+          }
+        }
+        .panel-secondary {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          padding-top: 4em;
+          margin-top: -3em;
+          z-index: 4;
+          background: defaults.$color-light-gray-1-5;
         }
         .panel-outer {
           padding-top: 1em;
@@ -146,6 +106,12 @@ body.tombooru {
           a {
             color: defaults.$color-dandelion;
           }
+        }
+        .quicklinks {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.6em;
+          text-align: center;
         }
       }
     }

@@ -98,8 +98,14 @@ body.tombooru {
           margin-left: 0.125rem;
         }
       }
-      .search-feedback.narrow {
-        padding: 0.18em 0;
+      .search-feedback {
+        padding-left: 10em;
+        padding-right: 10em;
+        
+        &.narrow {
+          padding-top: 0.18em;
+          padding-bottom: 0.18em;
+        }
       }
     }
   }
