@@ -27,7 +27,9 @@ body.tombooru {
           place-content: center;
           border-radius: defaults.$border-radius-xxl;
           padding: 1em;
-          box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 1px 0 rgba(0, 0, 0, 0.2);
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
 
           > h1 {
             display: none;
@@ -91,10 +93,13 @@ body.tombooru {
         .panel-secondary {
           border-top-left-radius: 0;
           border-top-right-radius: 0;
+          border-bottom-left-radius: defaults.$border-radius-xxl;
+          border-bottom-right-radius: defaults.$border-radius-xxl;
           padding-top: 4em;
           margin-top: -3em;
           z-index: 4;
           background: defaults.$color-light-gray-1-5;
+          box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2);
         }
         .panel-outer {
           padding-top: 1em;
