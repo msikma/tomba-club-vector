@@ -25,6 +25,10 @@
 // The notification area that appears underneath the page title.
 #mw-content-subtitle, #contentSub2 {
   margin: 0.5em 0;
+
+  &:empty {
+    margin: 0 !important;
+  }
 }
 
 // Some special tables used in specific places.

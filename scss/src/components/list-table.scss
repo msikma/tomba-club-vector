@@ -1,5 +1,8 @@
 @use "../defaults";
 
+// The list-table <table> element is used on the data page of Tombooru posts (for the "history" section).
+// It's used to create tables that look like lists.
+
 .list-table {
   text-align: left;
   margin-left: 1.6em;

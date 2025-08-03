@@ -1,0 +1,109 @@
+@use "sass:math";
+@use "sass:color";
+@use "../defaults";
+@use "../functions";
+@use "../layout";
+@use "../colorize";
+@use "../icons";
+
+#content {
+  .interview {
+    --avatar-size: 1.75rem;
+    --quote-color: #{defaults.$color-light-gray-1-5};
+    border-spacing: 0;
+
+    .interview-line {
+      td {
+        padding: 0 0 0.5rem 0;
+      }
+
+      .speaker {
+        font-weight: 500;
+        white-space: nowrap;
+        text-align: right;
+        padding-left: 1rem;
+        padding-right: 0;
+        color: var(--quote-color);
+        vertical-align: top;
+      }
+
+      .avatar {
+        display: inline;
+        a {
+          display: block;
+          position: relative;
+          overflow: hidden;
+          border-radius: 100em;
+          width: var(--avatar-size);
+          height: var(--avatar-size);
+          pointer-events: none;
+
+          &::before {
+            @include functions.inset();
+            @include functions.image-border-darker();
+            border-radius: 100em;
+          }
+          img {
+            width: var(--avatar-size);
+            height: var(--avatar-size);
+          }
+        }
+      }
+
+      .line {
+        padding-left: 1rem;
+
+        .interview-quote {
+          border: 0;
+          padding: 0;
+          margin: 0;
+        }
+      }
+
+      &.type-question {
+        .line {
+          .interview-quote {
+            font-weight: bold;
+          }
+        }
+      }
+      &.aside {
+        &.type-timestamp {
+          td {
+            padding-top: 1rem;
+            font-weight: bold;
+
+            &.line {
+              .inner {
+                &::before {
+                  @include functions.inset();
+                  filter: colorize.colorize-light-gray-9();
+                  background: icons.icon-url('calendar');
+                  background-position: 50% 50%;
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                  width: 1em;
+                  margin-top: -0.1875rem;
+                }
+                padding-left: calc(1em + 0.1em);
+                margin-left: calc(-1em - 0.1em);
+                position: relative;
+                color: defaults.$color-light-gray-9;
+                font-weight: 450;
+                display: inline-block;
+                font-family: defaults.$font-header;
+              }
+            }
+          }
+        }
+      }
+
+      &.color-pink {
+        --quote-color: #{defaults.$color-pink-700};
+      }
+      &.color-blue {
+        --quote-color: #{defaults.$color-cobalt};
+      }
+    }
+  }
+}

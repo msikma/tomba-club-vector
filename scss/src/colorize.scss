@@ -18,6 +18,10 @@
   // #c2bfbf
   @return brightness(0) saturate(100%) invert(92%) sepia(8%) saturate(52%) hue-rotate(314deg) brightness(81%) contrast(97%);
 }
+@function colorize-light-gray-9() {
+  // #616060
+  @return brightness(0) saturate(100%) invert(37%) sepia(6%) saturate(54%) hue-rotate(314deg) brightness(94%) contrast(82%);
+}
 @function colorize-dark-gray() {
   // #313030
   @return brightness(0) saturate(100%) invert(13%) sepia(10%) saturate(103%) hue-rotate(314deg) brightness(91%) contrast(82%);
@@ -83,6 +87,11 @@
   @return brightness(0) saturate(100%) invert(61%) sepia(39%) saturate(7055%) hue-rotate(103deg) brightness(98%) contrast(105%);
 }
 
+@function colorize-link-new() {
+  // #c30000
+  @return brightness(0) saturate(100%) invert(19%) sepia(100%) saturate(3409%) hue-rotate(351deg) brightness(71%) contrast(127%);
+}
+
 @function colorize-orange() {
   // #e25d38
   @return brightness(0) saturate(100%) invert(38%) sepia(98%) saturate(2448%) hue-rotate(347deg) brightness(105%) contrast(77%);
@@ -105,7 +114,41 @@
 }
 @function colorize-violet() {
   // #502ad0
-  @return brightness(0) saturate(100%) invert(19%) sepia(77%) saturate(4520%) hue-rotate(251deg) brightness(81%) contrast(103%);
+  @return brightness(0) saturate(100%) invert(14%) sepia(98%) saturate(6202%) hue-rotate(257deg) brightness(85%) contrast(91%);
+}
+
+@function colorize-portal-guidebook-dark() {
+  // #185dcb
+  @return brightness(0) saturate(100%) invert(25%) sepia(97%) saturate(1826%) hue-rotate(207deg) brightness(87%) contrast(91%);
+}
+@function colorize-portal-history-dark() {
+  // #e1144e
+  @return brightness(0) saturate(100%) invert(18%) sepia(99%) saturate(3680%) hue-rotate(334deg) brightness(89%) contrast(98%);
+}
+@function colorize-portal-media-dark() {
+  // #f37505
+  @return brightness(0) saturate(100%) invert(52%) sepia(49%) saturate(1881%) hue-rotate(355deg) brightness(94%) contrast(103%);
+}
+@function colorize-portal-cut-dark() {
+  // #e42b85
+  @return brightness(0) saturate(100%) invert(25%) sepia(84%) saturate(2342%) hue-rotate(312deg) brightness(93%) contrast(92%);
+}
+@function colorize-portal-technical-dark() {
+  // #2ba330
+  @return brightness(0) saturate(100%) invert(53%) sepia(14%) saturate(3971%) hue-rotate(82deg) brightness(90%) contrast(74%);
+}
+@function colorize-portal-community-dark() {
+  // #704df7
+  @return brightness(0) saturate(100%) invert(27%) sepia(100%) saturate(2631%) hue-rotate(242deg) brightness(99%) contrast(96%);
+}
+
+@function colorize-discord-blurple() {
+  // #4c55f2
+  @return brightness(0) saturate(100%) invert(29%) sepia(66%) saturate(2267%) hue-rotate(225deg) brightness(95%) contrast(100%);
+}
+@function colorize-discord-blurple-darker() {
+  // #3c41c9
+  @return brightness(0) saturate(100%) invert(21%) sepia(76%) saturate(2412%) hue-rotate(230deg) brightness(93%) contrast(97%);
 }
 
 // Darkens a color for use in solid portlets.

@@ -1,0 +1,8 @@
+@use "../defaults";
+@use "../functions";
+
+.category-list {
+  display: grid;
+  gap: 0.625rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}

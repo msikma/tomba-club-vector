@@ -1,0 +1,68 @@
+@use "sass:color";
+@use "sass:math";
+@use "../defaults";
+@use "../functions";
+@use "../colorize";
+@use "../icons";
+
+#mw-content-text {
+  span.portal-link {
+    --icon: #{icons.icon-url('file-directory-open')};
+    --color: #{defaults.$color-cobalt};
+    --icon-filter: #{colorize.colorize-cobalt()};
+
+    a {
+      white-space: nowrap;
+      position: relative;
+      color: var(--color);
+
+      &::before {
+        filter: var(--icon-filter);
+        content: '';
+        position: relative;
+        width: 0.92em;
+        height: 0.92em;
+        display: inline-block;
+        background: var(--icon);
+        vertical-align: text-bottom;
+        margin-right: 0.125rem;
+        top: -0.15em;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+
+    &:has(a[href*="Portal:Guidebook" i]),
+    &.portal-guidebook {
+      --icon: #{icons.icon-url(defaults.$icon-portal-guidebook)};
+    }
+    &:has(a[href*="Portal:Behind" i]),
+    &.portal-behind-the-scenes {
+      --icon: #{icons.icon-url(defaults.$icon-portal-history)};
+    }
+    &:has(a[href*="Portal:Promotion" i]),
+    &.portal-promotion-and-media {
+      --icon: #{icons.icon-url(defaults.$icon-portal-media)};
+    }
+    &:has(a[href*="Portal:Cut" i]),
+    &.portal-cut-content {
+      --icon: #{icons.icon-url(defaults.$icon-portal-cut)};
+    }
+    &:has(a[href*="Portal:Technical" i]),
+    &.portal-technical-info {
+      --icon: #{icons.icon-url(defaults.$icon-portal-technical)};
+    }
+    &:has(a[href*="Portal:Community" i]),
+    &.portal-community-and-fandom {
+      --icon: #{icons.icon-url(defaults.$icon-portal-community)};
+    }
+    
+    strong {
+      a {
+        --color: #{defaults.$color-black};
+        --icon-filter: #{colorize.colorize-black()};
+        pointer-events: none;
+      }
+    }
+  }
+}

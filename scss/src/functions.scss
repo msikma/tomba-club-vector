@@ -175,6 +175,16 @@
   box-shadow:  inset 0px 0px 0px 1px rgba(defaults.$color-light-gray-7, 0.10), inset 0px 0px 0px 1px rgba(defaults.$color-black, 0.2);
 }
 
+// Base for ::before and ::after type pseudoelements.
+@mixin inset {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+}
+
 // Replaces substrings.
 @function str-replace($string, $search, $replace: '') {
   $index: string.index($string, $search);
@@ -182,4 +192,19 @@
     @return string.slice($string, 1, $index - 1) + $replace + str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
   }
   @return $string;
+}
+
+@mixin add-icon($icon) {
+  --icon: #{url('./assets/icons/#{$icon}.svg')};
+  position: relative;
+  padding-left: 1em;
+  
+  &::before {
+    @include inset();
+    background-image: var(--icon);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 0.95em;
+  }
 }

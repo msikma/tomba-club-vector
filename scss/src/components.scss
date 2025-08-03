@@ -1,6 +1,8 @@
 @use "components/actions";
 @use "components/alt-content";
+@use "components/article-heading";
 @use "components/big-table";
+@use "components/category-list";
 @use "components/catlinks";
 @use "components/checkbox";
 @use "components/code";
@@ -9,19 +11,22 @@
 @use "components/icon-item";
 @use "components/indicators";
 @use "components/infobox";
+@use "components/interview";
 @use "components/japanese-name";
+@use "components/list-table";
 @use "components/messagebox";
 @use "components/notice";
 @use "components/notification-area";
 @use "components/page-metadata";
+@use "components/portal-link";
 @use "components/search";
 @use "components/site-favicon";
 @use "components/span-icon";
 @use "components/subsubnav";
 @use "components/text-table";
-@use "components/list-table";
 @use "components/thumb";
 @use "components/toc";
+@use "components/topic";
 @use "components/wikitable";
 
 @use "components/legacy";

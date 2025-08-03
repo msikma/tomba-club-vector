@@ -1,19 +1,26 @@
 {
   "name": "TombaClub",
+  "type": "parserhook",
   "version": "1.0",
   "author": "Dada78641",
   "description": "Extension for Tomba Club specific addons",
-  "type": "parserhook",
-  "Hooks": {
-    "SkinBuildSidebar": "TombaClubHooks::onSkinBuildSidebar",
-    "SkinAddFooterLinks": "TombaClubHooks::onSkinAddFooterLinks",
-    "BeforePageDisplay": "TombaClubHooks::onBeforePageDisplay",
-    "SetupAfterCache": "TombaClubHooks::onSetupAfterCache",
-    "OutputPageParserOutput": "TombaClubHooks::onOutputPageParserOutput",
-    "OutputPageAfterGetHeadLinksArray": "TombaClubHooks::onOutputPageAfterGetHeadLinksArray"
+  "requires": {
+    "MediaWiki": ">= 1.43.0"
   },
-  "AutoloadClasses": {
-    "TombaClubHooks": "TombaClubHooks.php"
+  "Hooks": {
+		"SkinTemplateNavigation::Universal": "TombaClub\\Hooks::onSkinTemplateNavigation",
+    "ArticleViewHeader": "TombaClub\\Hooks::onArticleViewHeader",
+    "BeforePageDisplay": "TombaClub\\Hooks::onBeforePageDisplay",
+    "OutputPageAfterGetHeadLinksArray": "TombaClub\\Hooks::onOutputPageAfterGetHeadLinksArray",
+    "OutputPageParserOutput": "TombaClub\\Hooks::onOutputPageParserOutput",
+    "ParserAfterTidy": "TombaClub\\Hooks::onParserAfterTidy",
+    "ParserFirstCallInit": "TombaClub\\Hooks::onParserFirstCallInit",
+    "SetupAfterCache": "TombaClub\\Hooks::onSetupAfterCache",
+    "SkinAddFooterLinks": "TombaClub\\Hooks::onSkinAddFooterLinks",
+    "SkinBuildSidebar": "TombaClub\\Hooks::onSkinBuildSidebar"
+  },
+  "AutoloadNamespaces": {
+    "TombaClub\\": "includes/"
   },
   "manifest_version": 2
 }

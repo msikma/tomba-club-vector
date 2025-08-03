@@ -11,6 +11,13 @@ $color-mw-indicators: defaults.$color-cobalt;
 // The indicators used on e.g. the "page information" page. Special:RecentChanges has an example.
 // These appear on the right side of the page title.
 .mw-indicators {
+  font-size: defaults.$font-size-caption;
+  line-height: defaults.$line-height-caption;
+  position: absolute;
+  top: 2rem;
+  right: 1.535rem;
+  float: none;
+
   #mw-indicator-mw-helplink a {
     background: none;
     display: inline-block;
@@ -61,5 +68,12 @@ $color-mw-indicators: defaults.$color-cobalt;
     &:hover::after {
       background: rgba($color-mw-indicators, 0.1);
     }
+  }
+}
+
+// We really don't need the help link indicator on category pages.
+body.ns-14 {
+  #mw-indicator-mw-helplink {
+    display: none !important;
   }
 }

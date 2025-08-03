@@ -184,6 +184,13 @@
         }
       }
 
+      &.portal-history {
+        --action-color: #{defaults.$color-portal-history-dark};
+        &::before {
+          filter: colorize.colorize-portal-history-dark();
+        }
+      }
+
       &.orange {
         --action-color: #{defaults.$color-orange};
         --bg-regular: 0.15;
