@@ -97,6 +97,30 @@
         color: defaults.$color-link-secondary-new-visited;
       }
     }
+
+    &.mw-selflink {
+      color: defaults.$color-black !important;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    &[title^="Category:"] {
+      &::before {
+        filter: colorize.colorize-salem();
+      }
+      &:visited {
+        color: defaults.$color-link-secondary;
+      }
+      &:visited::before {
+      }
+      &.new {
+        color: defaults.$color-link-primary-new;
+        &::before {
+          filter: colorize.colorize-link-new();
+        }
+      }
+    }
   }
 }
 
@@ -139,7 +163,6 @@
         color: defaults.$color-link-primary;
       }
       &:visited::before {
-        filter: colorize.colorize-portal-media-dark();
       }
       &.new {
         color: defaults.$color-link-primary-new;
