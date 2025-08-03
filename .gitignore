@@ -4,6 +4,8 @@ _test/
 _test*.*
 _todo.txt
 /.scratch
+/TombaClub/cache
+/TombaClub/env.php
 
 # SASS
 .sass-cache/
