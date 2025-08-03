@@ -17,6 +17,9 @@ class ArticleMeta {
     'media' => [
       'category' => 'Promotion_and_media'
     ],
+    'cut' => [
+      'category' => 'Cut_content',
+    ],
     'technical' => [
       'category' => 'Technical_information',
     ],
