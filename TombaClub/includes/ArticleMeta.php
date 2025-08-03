@@ -21,7 +21,7 @@ class ArticleMeta {
       'category' => 'Technical_information',
     ],
     'community' => [
-      'category' => 'Community',
+      'category' => 'Community_and_fandom',
     ],
   ];
 
