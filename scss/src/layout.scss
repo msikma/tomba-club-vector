@@ -237,6 +237,24 @@ body {
           bottom: 0;
           border-radius: defaults.$border-radius-xs;
         }
+
+        // Accept a class=frameless argument to the [[File: ..]] tag.
+        // This is used for images that have a transparent background.
+        &:has(.frameless) {
+          &::before {
+            box-shadow: none;
+          }
+
+          .thumbimage {
+            background-color: transparent;
+          }
+        }
+      }
+
+      &:has(.frameless) {
+        // Move images with a transparent background a bit further from the edge.
+        // This makes it even spacing on both sides, which looks a bit better.
+        padding-right: 0.75em;
       }
 
       .thumbimage {
