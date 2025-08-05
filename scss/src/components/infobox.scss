@@ -153,12 +153,17 @@
           background-repeat: no-repeat;
         }
 
-        &.frameless {
+        &.icon {
           padding-left: calc(0.8em + 1rem);
 
           &::before {
             content: '';
-            background-image: url('./assets/icons/cd.svg');
+          }
+
+          &.disc {
+            &::before {
+              background-image: url('./assets/icons/cd.svg');
+            }
           }
         }
       }
