@@ -57,12 +57,14 @@ $aliases: defaults.$favicon-aliases;
     // If a data-url attribute is added to the .site-favicon,
     // that takes precedence over whatever the <a href> has.
     @each $alias, $domain in $aliases {
+      &[data-url*="#{$alias}"],
       &:has([data-url*="#{$alias}"]) {
         --favicon: url('./assets/site-favicons/#{favicon-url($domain)}.png');
         --favicon-colorize: ;
       }
     }
     @each $domain in $sites {
+      &[data-url*="#{$domain}"],
       &:has([data-url*="#{$domain}"]) {
         --favicon: url('./assets/site-favicons/#{favicon-url($domain)}.png');
         --favicon-colorize: ;
