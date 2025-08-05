@@ -179,23 +179,26 @@
       font-size: defaults.$font-size-caption;
       color: defaults.$color-gray-1;
       position: relative;
-      padding-left: 1.25rem;
       display: inline-block;
       font-weight: defaults.$font-subnav-weight;
 
-      &::before {
-        filter: colorize.colorize-gray-1();
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: icons.icon-url('image') no-repeat;
-        background-position: 0 50%;
-        background-size: 1rem;
-        z-index: -1;
-        pointer-events: none;
+      &.icon {
+        padding-left: 1.25rem;
+
+        &::before {
+          filter: colorize.colorize-gray-1();
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: icons.icon-url('image') no-repeat;
+          background-position: 0 50%;
+          background-size: 1rem;
+          z-index: -1;
+          pointer-events: none;
+        }
       }
     }
   }
