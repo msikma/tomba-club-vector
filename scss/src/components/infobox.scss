@@ -270,6 +270,17 @@
         .icon-item {
           filter: colorize.colorize-white();
         }
+        
+        &.subheader {
+          padding: 2px 0 2px;
+          margin-bottom: 1px;
+          border-bottom: 0;
+          font-weight: defaults.$font-subnav-weight;
+          background: rgba(defaults.$color-green-haze, 0.15);
+          color: defaults.$color-green-haze;
+          border-radius: defaults.$border-radius-xs;
+          position: relative;
+        }
       }
     }
   }
