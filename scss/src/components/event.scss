@@ -1,0 +1,22 @@
+@use 'sass:math';
+@use "../defaults";
+
+span.event {
+  display: inline-flex;
+  position: relative;
+  
+  .event-icon {
+    position: absolute;
+    pointer-events: none;
+
+    img {
+      image-rendering: pixelated;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+  }
+  .event-icon + * {
+    padding-left: calc(1.5rem + #{math.div(3, 16)}rem);
+  }
+}

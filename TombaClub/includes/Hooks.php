@@ -117,6 +117,7 @@ class Hooks {
     $parser->setHook('LatestImageboardPosts', [\TombaClub\TagExtensions::class, 'renderLatestImageboardPosts']);
     $parser->setHook('LatestYoutubeVideos', [\TombaClub\TagExtensions::class, 'renderLatestYoutubeVideos']);
     $parser->setHook('LatestTwitterPosts', [\TombaClub\TagExtensions::class, 'renderLatestTwitterPosts']);
+    $parser->setHook('TombaEventName', [\TombaClub\TagExtensions::class, 'renderTombaEventName']);
     return true;
   }
 

@@ -227,6 +227,12 @@
     ul {
       margin: 0 0 0 1em;
     }
+
+    &.borderless {
+      th, td {
+        border-bottom: 0 !important;
+      }
+    }
   }
 
   .row {

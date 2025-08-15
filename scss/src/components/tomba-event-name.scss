@@ -1,0 +1,94 @@
+@use "sass:map";
+@use 'sass:math';
+@use 'sass:color';
+@use "../defaults";
+
+$animDistance: 10px;
+$animRotate: 8deg;
+$animDurationBob: 1.5s;
+$animDurationSway: 1s;
+
+@keyframes bob {
+  0%   { top: #{math.div($animDistance, -2)}; }
+  50%  { top: 0px; }
+  100% { top: #{math.div($animDistance, -2)}; }
+}
+
+@keyframes sway {
+  0%   { transform: rotate($animRotate); }
+  50%  { transform: rotate(-$animRotate); }
+  100% { transform: rotate($animRotate); }
+}
+
+.tomba-event-name {
+  $base-color: #ff7b00;
+  --color: #{$base-color};
+  --color-dark-1: #{color.adjust($base-color, $blackness: 20%)};
+  --color-dark-2: #{color.adjust($base-color, $blackness: 25%)};
+  --color-dark-3: #{color.adjust($base-color, $blackness: 44%)};
+
+  padding: 0 0 1em 0 !important;
+  
+  .__split-tomba-event-name {
+    font-family: 'Comic Sans', serif;
+    font-size: 1.4em;
+    justify-content: center;
+    display: flex;
+    gap: 0 #{math.div(7, 16)}rem;
+    flex-wrap: wrap;
+
+    $a: #{math.div(1, 16)}rem;
+    $b: #{math.div(-1, 16)}rem;
+
+    > .w {
+      display: flex;
+      gap: #{math.div(2.5, 16)}rem;
+
+      > span {
+        --delay: 0s;
+        position: relative;
+        color: white;
+        min-width: 0.92em;
+        text-align: center;
+        animation:
+          bob $animDurationBob cubic-bezier(0.4, 0, 0.6, 1) infinite,
+          sway $animDurationSway ease-in-out infinite;
+        animation-delay: var(--delay, 0s);
+        animation-fill-mode: backwards;
+        transform-origin: center center;
+
+        > span {
+          position: relative;
+          text-shadow: $a $a 0 black, $b $a 0 black, $a $b 0 black, $b $b 0 black;
+        }
+
+        &.descender {
+          > span {
+            top: -0.225em;
+          }
+        }
+
+        &::before {
+          $o1: var(--offset, 1px) 0.245px 0.0px;
+          $shadow1: #{drop-shadow($o1 var(--color-dark-1))};
+          $shadow2: #{drop-shadow($o1 var(--color-dark-2))};
+          $shadow3: #{drop-shadow($o1 var(--color-dark-3))};
+          content: '';
+          background: var(--color);
+          position: absolute;
+          top: 0.225em;
+          left: 0;
+          right: 0;
+          bottom: 0.225em;
+          filter: $shadow1 $shadow1 $shadow1 $shadow2 $shadow2 $shadow2 $shadow3;
+        }
+      }
+
+      @for $i from 1 through 30 { // adjust 30 to max letters you'd expect
+        > span[data-n="#{$i}"] {
+          animation-delay: #{($i - 1) * 0.1}s;
+        }
+      }
+    }
+  }
+}
