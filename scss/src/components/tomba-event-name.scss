@@ -3,15 +3,15 @@
 @use 'sass:color';
 @use "../defaults";
 
-$animDistance: 10px;
+$animDistance: 0.9em;
 $animRotate: 8deg;
 $animDurationBob: 1.5s;
 $animDurationSway: 1s;
 
 @keyframes bob {
-  0%   { top: #{math.div($animDistance, -2)}; }
-  50%  { top: 0px; }
-  100% { top: #{math.div($animDistance, -2)}; }
+  0%   { transform: translateY(#{math.div($animDistance, -2)}); }
+  50%  { transform: translateY(0); }
+  100% { transform: translateY(#{math.div($animDistance, -2)}); }
 }
 
 @keyframes sway {
@@ -20,70 +20,79 @@ $animDurationSway: 1s;
   100% { transform: rotate($animRotate); }
 }
 
+@mixin animate-bob {
+  animation: bob $animDurationBob cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: var(--delay, 0s);
+  animation-fill-mode: backwards;
+  transform-origin: center center;
+}
+
+@mixin animate-sway {
+  animation: sway $animDurationSway ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  animation-fill-mode: backwards;
+  transform-origin: center center;
+}
+
 .tomba-event-name {
   $base-color: #ff7b00;
-  --color: #{$base-color};
-  --color-dark-1: #{color.adjust($base-color, $blackness: 20%)};
-  --color-dark-2: #{color.adjust($base-color, $blackness: 25%)};
-  --color-dark-3: #{color.adjust($base-color, $blackness: 44%)};
+
+  --max-line-length: 15;
+  --offset: 1.75%;
+  --cube-width: calc((100% + (var(--max-line-length) * var(--offset))) / var(--max-line-length));
+  --space-width: calc(var(--cube-width) / 2 / (28 / 22));
+
+  --cube-face-0: #{$base-color};
+  --cube-face-1: #{color.adjust($base-color, $blackness: 20%)};
+  --cube-face-2: #{color.adjust($base-color, $blackness: 24%)};
+  --cube-face-3: #{color.adjust($base-color, $blackness: 28%)};
+  --cube-face-4: #{color.adjust($base-color, $blackness: 32%)};
+  --cube-face-5: #{color.adjust($base-color, $blackness: 45%)};
 
   padding: 0 0 1em 0 !important;
-  
+
   .__split-tomba-event-name {
-    font-family: 'Comic Sans', serif;
-    font-size: 1.4em;
     justify-content: center;
     display: flex;
-    gap: 0 #{math.div(7, 16)}rem;
-    flex-wrap: wrap;
 
-    $a: #{math.div(1, 16)}rem;
-    $b: #{math.div(-1, 16)}rem;
-
-    > .w {
+    .c, .l, .w {
       display: flex;
-      gap: #{math.div(2.5, 16)}rem;
+    }
 
-      > span {
-        --delay: 0s;
-        position: relative;
-        color: white;
-        min-width: 0.92em;
-        text-align: center;
-        animation:
-          bob $animDurationBob cubic-bezier(0.4, 0, 0.6, 1) infinite,
-          sway $animDurationSway ease-in-out infinite;
-        animation-delay: var(--delay, 0s);
-        animation-fill-mode: backwards;
-        transform-origin: center center;
+    .c {
+      width: 100%;
+      flex-direction: column;
 
-        > span {
-          position: relative;
-          text-shadow: $a $a 0 black, $b $a 0 black, $a $b 0 black, $b $b 0 black;
-        }
+      .l {
+        margin-left: var(--offset);
+        gap: 0;
+        justify-content: center;
 
-        &.descender {
+        > .w {
+          display: contents;
+
+          &:not(:last-child) > span:last-child {
+            margin-right: var(--space-width);
+          }
+
           > span {
-            top: -0.225em;
+            @include animate-bob;
+            display: flex;
+            width: var(--cube-width);
+            position: relative;
+            margin-left: calc(var(--offset) * -1);
+
+            > svg {
+              @include animate-sway;
+              width: 100%;
+              height: auto;
+            }
           }
         }
-
-        &::before {
-          $o1: var(--offset, 1px) 0.245px 0.0px;
-          $shadow1: #{drop-shadow($o1 var(--color-dark-1))};
-          $shadow2: #{drop-shadow($o1 var(--color-dark-2))};
-          $shadow3: #{drop-shadow($o1 var(--color-dark-3))};
-          content: '';
-          background: var(--color);
-          position: absolute;
-          top: 0.225em;
-          left: 0;
-          right: 0;
-          bottom: 0.225em;
-          filter: $shadow1 $shadow1 $shadow1 $shadow2 $shadow2 $shadow2 $shadow3;
-        }
       }
+    }
 
+    > .w {
       @for $i from 1 through 30 { // adjust 30 to max letters you'd expect
         > span[data-n="#{$i}"] {
           animation-delay: #{($i - 1) * 0.1}s;

@@ -37,31 +37,12 @@ class TagExtensions {
    */
   public static function renderTombaEventName($input, $args, $parser, $frame) {
     $content = $parser->recursiveTagParse($input, $frame);
-    $content = strip_tags($content);
+    $content = trim(strip_tags($content));
 
-    $words = preg_split('/\s+/', $content);
-    $buffer = [];
-    $count = 0;
-    $total = 0;
-    foreach ($words as $word) {
-      $total += strlen($word);
-    }
-    foreach ($words as $word) {
-      $wordBuffer = [];
-      $letters = preg_split('//u', $word, -1, PREG_SPLIT_NO_EMPTY);
-      foreach ($letters as $letter) {
-        $class = in_array($letter, ['g', 'j', 'p', 'q', 'y']) ? 'descender' : '';
-        $delay = $count / 10;
-        $progress = ((($total - 1) - ($count * 2)) / ($total - 1)) * 2.5;
-        $index = abs(abs((($total - 1) / 2) - $count) - (($total - 1) / 2));
-        $wordBuffer[] = '<span data-n="'.$count.'" class="'.$class.'" style="z-index: '.$index.'; --delay: '.number_format($delay, 1, '.', '').'s; --offset: '.number_format($progress / 4, 3, '.', '').'px;"><span>'.htmlspecialchars($letter).'</span></span>';
-        $count += 1;
-      }
-      $buffer[] = '<span class="w">'.implode('', $wordBuffer).'</span>';
-    }
+    $html = EventCubes::generateEventCubes($content);
 
     return trim('
-      <span class="__split-tomba-event-name">'.implode(' ', $buffer).'</span>
+      <span class="__split-tomba-event-name">'.$html.'</span>
     ');
   }
 
