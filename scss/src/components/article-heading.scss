@@ -33,6 +33,10 @@ body.has-tc-article-heading {
 .tc-article-heading {
   float: left;
   width: 100%;
+  
+  @media only screen and (max-width: 800px) {
+    float: none;
+  }
 
   + .tright {
     // The first infobox or thumb gets extra negative margin to move it to the top of the page.
