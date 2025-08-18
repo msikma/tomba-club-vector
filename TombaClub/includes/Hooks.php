@@ -172,6 +172,7 @@ class Hooks {
    */
   public static function onBeforePageDisplay(&$out, &$skin) {
     $extBaseDir = Settings::getExtensionBaseDir();
+    $baseURL = Settings::getBaseURL();
 
     // Sanity check: these custom styles only work with the Vector skin.
     if ($skin->getSkinName() !== 'vector') {
@@ -181,6 +182,8 @@ class Hooks {
     // Include the base skin assets.
     $out->addStyle($extBaseDir.'/tc-vector.css');
     $out->addScriptFile($extBaseDir.'/tc-vector.js');
+
+    $out->addLink(['href' => $extBaseDir.'/assets/manifest.json', 'rel' => 'manifest']);
     
     // Add our favicon images.
     $out->addLink(['href' => $extBaseDir.'/assets/favicon-512x512.png', 'rel' => 'icon', 'type' => 'image/png', 'sizes' => 'any']);
@@ -189,6 +192,35 @@ class Hooks {
     $out->addLink(['href' => 'https://fonts.googleapis.com', 'rel' => 'preconnect']);
     $out->addLink(['href' => 'https://fonts.gstatic.com', 'crossorigin' => 'anonymous']);
     $out->addLink(['href' => 'https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap', 'rel' => 'stylesheet']);
+
+    $linkedData = [
+      "@context" => "https://schema.org",
+      "@type" => "WebSite",
+      "url" => "{$baseURL}",
+      "name" => "Tomba Club Wiki",
+      "hasPart" => [
+        ["@type" => "WebPage", "url" => "{$baseURL}Portal:Guidebook", "name" => "Game Guide"],
+        ["@type" => "WebPage", "url" => "{$baseURL}Portal:Behind_the_scenes", "name" => "Behind the scenes"],
+        ["@type" => "WebPage", "url" => "{$baseURL}Portal:Promotion_and_media", "name" => "Promotion and media"],
+        ["@type" => "WebPage", "url" => "{$baseURL}Portal:Cut_content", "name" => "Cut content"],
+        ["@type" => "WebPage", "url" => "{$baseURL}Portal:Technical_info", "name" => "Technical info"],
+        ["@type" => "WebPage", "url" => "{$baseURL}Portal:Community_and_fandom", "name" => "Community and fandom"],
+      ],
+      "publisher" => [
+        "@type" => "Organization",
+        "name" => "Tomba Club",
+        "logo" => [
+          "@type" => "ImageObject",
+          "url" => $extBaseDir.'/assets/tomba-club.png',
+        ]
+      ]
+    ];
+    $out->addHeadItem(
+      'json-ld',
+      '<script type="application/ld+json">'.
+      json_encode($linkedData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE).
+      '</script>',
+    );
 
     return true;
   }

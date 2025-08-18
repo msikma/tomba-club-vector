@@ -21,6 +21,16 @@ class Settings {
   }
 
   /**
+   * Returns the base URL; we use the ArticlePath and strip out the $1.
+   */
+  public static function getBaseURL() {
+    $server = self::config()->get('Server');
+    $articlePath = self::config()->get('ArticlePath');
+    $baseURL = preg_replace('/\$1$/', '', $articlePath);
+    return $server.$baseURL;
+  }
+
+  /**
    * Returns the currently logged in user.
    */
   public static function getUser() {

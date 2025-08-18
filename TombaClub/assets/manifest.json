@@ -1,0 +1,17 @@
+{
+  "name": "Tomba Club Wiki",
+  "short_name": "Tomba Club",
+  "description": "We're a group of fans documenting everything about the Tomba! series, covering games, events, characters, technical info, and more.",
+  "start_url": "/wiki/Main_Page",
+  "scope": "/wiki/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff69b7",
+  "icons": [
+    {
+      "src": "./tomba-club.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
