@@ -148,6 +148,40 @@ class WikiManager {
   }
 
   /**
+   * Returns post IDs from a given imageboard set.
+   */
+  public static function getImageboardSetPostData($setID) {
+    $db = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+    
+    $query = $db->newSelectQueryBuilder()
+      ->select([
+        'p.id',
+        'p.page_id',
+        'p.created_at',
+        'pd.rating',
+        'pd.preview_filename',
+      ])
+      ->from('tombooru_post', 'p')
+      ->leftJoin('tombooru_post_data', 'pd', 'pd.id = p.id')
+      ->leftJoin('tombooru_post_set_post', 'psp', 'psp.post_id = p.id')
+      ->where(['psp.post_set_id' => $setID])
+      ->where(['pd.rating' => 'safe'])
+      ->where(['pd.status' => ['active', 'pending_approval']])
+      ->orderBy('psp.ordering', SelectQueryBuilder::SORT_ASC)
+      ->limit(16)
+      ->caller(__METHOD__);
+
+    $res = $query->fetchResultSet();
+    $posts = [];
+    foreach ($res as $row) {
+      $row = (array)$row;
+      $posts[] = $row;
+    }
+
+    return $posts;
+  }
+
+  /**
    * Returns the latest post IDs added to the imageboard.
    */
   public static function getLatestImageboardPostData() {
@@ -241,8 +275,16 @@ class WikiManager {
   /**
    * Returns the latest posts added to the imageboard.
    */
-  public static function getLatestImageboardPosts() {
-    $postData = self::getLatestImageboardPostData();
+  public static function getImageboardPosts($type, $id = null) {
+    if ($type === 'latest') {
+      $postData = self::getLatestImageboardPostData();
+    }
+    else if ($type === 'set') {
+      $postData = self::getImageboardSetPostData($id);
+    }
+    else {
+      return [];
+    }
     $posts = [];
     foreach ($postData as $post) {
       $files = self::getFileInstances($post['page_id'], $post['preview_filename']);

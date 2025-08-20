@@ -133,9 +133,9 @@ class TagExtensions {
    * Renders the <LatestImageboardPosts /> tag extension.
    */
   public static function renderLatestImageboardPosts($input, $args, $parser, $frame) {
-    $header = @$args['header'];
     $content = $parser->recursiveTagParse($input, $frame);
-    $posts = MainPage::getImageboardPosts();
+    $data = MainPage::getImageboardPosts();
+    $header = $data['type'] === 'latest' ? 'Latest imageboard posts' : 'Featured imageboard posts';
     return trim('
       <div class="topic topic-imageboard">
         <div class="topic-box enclosed">
@@ -143,7 +143,7 @@ class TagExtensions {
             <h3>'.htmlspecialchars($header).'</h3>
           </div>
           <div class="box-content imageboard-posts">
-            <div class="posts">'.$posts.'</div>
+            <div class="posts">'.$data['posts'].'</div>
             <div class="content">'.$content.'</div>
           </div>
         </div>

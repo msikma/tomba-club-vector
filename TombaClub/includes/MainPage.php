@@ -8,7 +8,16 @@ use \Title;
 class MainPage {
   public static function getImageboardPosts() {
     $buffer = [];
-    $posts = WikiManager::getLatestImageboardPosts();
+    $type = '';
+    try {
+      $featuredSetID = Settings::config()->get('TombaClubFeaturedImageboardSet');
+      $posts = WikiManager::getImageboardPosts('set', $featuredSetID);
+      $type = 'featured';
+    }
+    catch (\Throwable $e) {
+      $posts = WikiManager::getImageboardPosts('latest');
+      $type = 'latest';
+    }
     foreach ($posts as $post) {
       $pageID = intval($post['page_id']);
       $thumb = @$post['file']['media']['thumb'];
@@ -18,7 +27,7 @@ class MainPage {
       $link = $post['link'];
       $buffer[] = '<span><a href="'.htmlspecialchars($link).'"><img src="'.htmlspecialchars($thumbURL).'" width="'.intval($width).'" height="'.intval($height).'"></a></span>';
     }
-    return implode(" ", $buffer);
+    return ['type' => $type, 'posts' => implode(" ", $buffer)];
   }
   private static function getDuration($seconds) {
     $duration = gmdate($seconds >= 3600 ? 'G:i:s' : 'i:s', intval($seconds));
