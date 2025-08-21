@@ -221,6 +221,21 @@
         .inner {
           position: relative;
           z-index: 5;
+
+          // .prefix-image is used to display images before the text of a cell.
+          // This is used on the prototype list table to display disc images.
+          // The images inside should be 20px.
+          .prefix-image {
+            position: absolute;
+            left: -0.1em;
+            bottom: -0.4em;
+            top: -0.4em;
+            display: flex;
+            align-items: center;
+          }
+          .prefix-image + .content {
+            padding-left: calc(20px + 0.135em);
+          }
         }
       }
       td.tiny {
