@@ -309,6 +309,7 @@ body.tombooru {
           display: block;
           margin-bottom: 0.1em;
           line-height: defaults.$line-height-regular;
+          white-space: normal;
 
           &:hover {
             text-decoration: underline;
