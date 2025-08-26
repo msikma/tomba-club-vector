@@ -2,8 +2,8 @@
 
 namespace TombaClub;
 use \MediaWiki\MediaWikiServices;
+use \MediaWiki\Title\Title;
 use \RequestContext;
-use \Title;
 
 class ArticleMeta {
   // The main topics on Tomba Club Wiki and their internal names.

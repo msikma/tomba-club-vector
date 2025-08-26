@@ -3,7 +3,7 @@
 namespace TombaClub;
 use \MWTimestamp;
 use \MediaWiki\MediaWikiServices;
-use \Title;
+use \MediaWiki\Title\Title;
 
 class MainPage {
   public static function getImageboardPosts() {
@@ -180,7 +180,7 @@ class MainPage {
   }
   public static function getFeaturedArticle() {
     $article = WikiManager::getFeaturedArticle(date('Y-m-d'));
-    $title = \Title::newFromText($article['title']);
+    $title = Title::newFromText($article['title']);
     $heading = ArticleMeta::generateArticleHeading($title, [], true);
 
     if (empty($article)) {

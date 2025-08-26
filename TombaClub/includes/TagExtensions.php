@@ -2,8 +2,8 @@
 
 namespace TombaClub;
 use \MediaWiki\MediaWikiServices;
+use \MediaWiki\Title\Title;
 use \RequestContext;
-use \Title;
 
 class TagExtensions {
   /**

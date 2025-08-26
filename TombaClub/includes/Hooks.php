@@ -3,7 +3,8 @@
 namespace TombaClub;
 use \MediaWiki\MediaWikiServices;
 use \RequestContext;
-use \Title;
+use \MediaWiki\Title\Title;
+use \MediaWiki\Html\Html;
 use CategoryListTag;
 
 class Hooks {
@@ -54,10 +55,10 @@ class Hooks {
       return true;
     }
     $licenseImage = $extBaseDir.'/assets/cc-by-nc-sa.png';
-    $copyrightLink = \Title::newFromText('Tomba_Wiki:Copyright')->getLocalURL();
+    $copyrightLink = Title::newFromText('Tomba_Wiki:Copyright')->getLocalURL();
     
-    $footerlinks['tc_copyrightlink'] = \Html::rawElement('a', ['href' => $copyrightLink], 'Copyright');
-    $footerlinks['tc_version'] = \Html::rawElement('span', ['class' => 'tc-version'], 'MediaWiki '.MW_VERSION);
+    $footerlinks['tc_copyrightlink'] = Html::rawElement('a', ['href' => $copyrightLink], 'Copyright');
+    $footerlinks['tc_version'] = Html::rawElement('span', ['class' => 'tc-version'], 'MediaWiki '.MW_VERSION);
     $footerlinks['tc_copyright'] = '
       <div class="tc-copyright">
         <span class="license-text">Licensed under <a href="'.$copyrightLink.'">CC BY-NC-SA 4.0</a>.</span>
