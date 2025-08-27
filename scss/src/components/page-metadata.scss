@@ -4,9 +4,10 @@
 
 // Metadata for images and other uploads.
 .mw_metadata {
-  @include functions.table-universal();
+  $radius: defaults.$border-radius-table;
 
-  $amount: 'm';
+  @include functions.table-universal();
+  @include functions.table-rounded($radius);
   
   width: auto;
   margin: 0;
@@ -23,39 +24,23 @@
     border-color: defaults.$color-light-gray-5;
   }
 
+  tr:has(+ .mw-metadata-show-hide-extended) {
+    th:first-child, td:first-child {
+      border-bottom-left-radius: $radius;
+    }
+    th:last-child, td:last-child {
+      border-bottom-right-radius: $radius;
+    }
+    th, td {
+      border-bottom-width: 1px;
+    }
+  }
+
   // Normally this is collapsible, but we want it to always be expanded.
-  &.collapsed {
-    .mw-metadata-collapsible {
-      display: inherit !important;
-    }
-    .mw-metadata-show-hide-extended {
-      display: none !important;
-    }
-
-    // Compensate for the show-hide node.
-    &:has(.mw-metadata-show-hide-extended) tbody:last-child {
-      tr:nth-last-child(2) {
-        th, td {
-          border-bottom-width: 1px;
-        }
-      }
-    }
+  .mw-metadata-collapsible {
+    display: inherit !important;
   }
-
-  tr:first-child {
-    th:first-child, td:first-child {
-      @include functions.border-radius($amount, ('tl'));
-    }
-    th:last-child, td:last-child {
-      @include functions.border-radius($amount, ('tr'));
-    }
-  }
-  tr:nth-last-child(2) {
-    th:first-child, td:first-child {
-      @include functions.border-radius($amount, ('bl'));
-    }
-    th:last-child, td:last-child {
-      @include functions.border-radius($amount, ('br'));
-    }
+  .mw-metadata-show-hide-extended {
+    display: none !important;
   }
 }

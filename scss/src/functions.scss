@@ -3,53 +3,6 @@
 @use "sass:string";
 @use "defaults";
 
-// Mixin for border radiuses
-//
-// $amount can be 'xl', 'l', 'm', 's'.
-//
-// $corners needs to be a list with any of 'tl', 'tr', 'bl', 'br',
-// in any order. For example, ('tl', 'tr'), which would apply the
-// border radius only to the top left and top right corners.
-//
-@mixin border-radius($amount:'m', $corners:('tl', 'tr', 'bl', 'br')) {
-  // If the $amount variable is a string, check if we have a variable
-  // with a standardized radius size.
-  $radius: 0;
-  $radiuses: (
-    s: defaults.$border-radius-xxs,
-    m: defaults.$border-radius-xs,
-    l: defaults.$border-radius-l,
-    xl: defaults.$border-radius-xxl,
-  );
-  $amount-val: map.get($radiuses, $amount);
-
-  // Either take our standard value or use whatever was passed to $amount.
-  @if ($amount-val != null) {
-    $radius: $amount-val;
-  }
-  @else {
-    $radius: $amount;
-  }
-
-  // Reset the border radius first.
-  border-radius: 0;
-
-  // Loop through the $corners argument.
-  $i: list.length($corners);
-  $cmap: (
-    tl: border-top-left-radius,
-    tr: border-top-right-radius,
-    bl: border-bottom-left-radius,
-    br: border-bottom-right-radius,
-  );
-  @while $i > 0 {
-    $corner: list.nth($corners, $i);
-    $attr: map.get($cmap, $corner);
-    #{$attr}: $radius;
-    $i: $i - 1;
-  }
-}
-
 // Universal basic table styling
 @mixin table-universal() {
   border-collapse: separate;
@@ -60,7 +13,7 @@
     tr {
       th, td {
         line-height: 1.5;
-        padding: 0.45em 0.5em 0.35em;
+        padding: 0.35em 0.6em;
         border-style: solid;
         border-width: 0;
         border-left-width: 1px;
@@ -70,7 +23,7 @@
         font-weight: 700;
       }
       td {
-        background: #f8f9fa;
+        background: defaults.$color-superlight-gray;
       }
       th:last-child, td:last-child {
         border-right-width: 1px;
@@ -98,42 +51,38 @@
   }
 }
 
-// Add rounding to a table (regardless of its structure)
-@mixin table-rounded($amount:'m') {
-  // If the <thead> et al. elements are not the first
-  // then they must be followed by either a <caption> or a <colgroup>.
-  // Otherwise, the table is invalid HTML.
+@mixin table-rounded($amount: defaults.$border-radius-table) {
   thead:first-child, tbody:first-child, tfoot:first-child,
   caption + thead, caption + tbody, caption + tfoot,
   colgroup + thead, colgroup + tbody, colgroup + tfoot {
     tr:first-child {
       th:first-child, td:first-child {
-        @include border-radius($amount, ('tl'));
+        border-top-left-radius: $amount;
       }
       th:last-child, td:last-child {
-        @include border-radius($amount, ('tr'));
+        border-top-right-radius: $amount;
       }
     }
   }
   thead:last-child, tbody:last-child, tfoot:last-child {
     tr:last-child {
       th:first-child, td:first-child {
-        @include border-radius($amount, ('bl'));
+        border-bottom-left-radius: $amount;
       }
       th:last-child, td:last-child {
-        @include border-radius($amount, ('br'));
+        border-bottom-right-radius: $amount;
       }
     }
     @for $i from 2 through 5 {
       tr:nth-last-child(#{$i}) {
         th:first-child, td:first-child {
           &[rowspan="#{$i}"] {
-            @include border-radius($amount, ('bl'));
+            border-bottom-left-radius: $amount;
           }
         }
         th:last-child, td:last-child {
           &[rowspan="#{$i}"] {
-            @include border-radius($amount, ('br'));
+            border-bottom-right-radius: $amount;
           }
         }
       }

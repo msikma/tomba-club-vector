@@ -222,6 +222,12 @@
           position: relative;
           z-index: 5;
 
+          // For "none" type values.
+          .value-none {
+            font-style: italic;
+            color: defaults.$color-light-gray-9;
+          }
+
           // .prefix-image is used to display images before the text of a cell.
           // This is used on the prototype list table to display disc images.
           // The images inside should be 20px.
@@ -252,6 +258,9 @@
       td:has(+ td.control-panel) {
         // The .control-panel holds actions ("edit", etc) and only shows up on hover.
         // It's expected to be all the way on the right side of the table.
+        border-right: 0;
+      }
+      td.no-right-border {
         border-right: 0;
       }
       td.control-panel .inner {

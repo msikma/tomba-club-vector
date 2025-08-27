@@ -28,6 +28,8 @@ $border-radius-l: 6px !default;
 $border-radius-xl: 8px !default;
 $border-radius-xxl: 12px !default;
 
+$border-radius-table: 5px !default;
+
 // Swatches.
 $color-green-haze: #00a94b;
 $color-salem: #008634;
@@ -119,6 +121,7 @@ $color-white: #fff;
 $color-superlight-gray: #faf9f9;
 $color-light-gray-0: #f5f3f3;
 $color-light-gray-1: #f2efef;
+$color-light-gray-1-25: color.mix(#000, $color-light-gray-1, 2%);
 $color-light-gray-1-5: color.mix(#000, $color-light-gray-1, 4%);
 $color-light-gray-2: color.mix(#000, $color-light-gray-1, 10%);
 $color-light-gray-3: color.mix(#000, $color-light-gray-1, 15%);

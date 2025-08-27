@@ -6,20 +6,20 @@
 // Standard Wikitable with rounding.
 table.wikitable {
   @include functions.table-universal();
-  @include functions.table-rounded('m');
+  @include functions.table-rounded();
 
   border: none;
 
   tbody, thead, tfoot {
     tr {
       th, td {
-        border-color: defaults.$color-light-gray-5;
+        border-color: defaults.$color-light-gray-2;
       }
       th {
-        background-color: color.mix(#000, defaults.$color-light-gray-1, 2%);
+        background-color: defaults.$color-superlight-gray;
       }
       td {
-        background-color: color.mix(#fff, defaults.$color-light-gray-1, 80%);
+        background-color: white;
       }
     }
   }
@@ -27,6 +27,22 @@ table.wikitable {
   &.align-left {
     th {
       text-align: left;
+    }
+  }
+
+  &.dark {
+    tbody, thead, tfoot {
+      tr {
+        th, td {
+          border-color: defaults.$color-light-gray-5;
+        }
+        th {
+          background-color: defaults.$color-light-gray-1-25;
+        }
+        td {
+          background-color: defaults.$color-superlight-gray;
+        }
+      }
     }
   }
 

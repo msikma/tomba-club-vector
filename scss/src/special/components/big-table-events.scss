@@ -1,0 +1,60 @@
+@use "../../defaults";
+@use "../../colorize";
+
+// The BigTable template that is used to display an entire page's worth of sortable data.
+.tc-big-table.tomba-events {
+  td.event-title {
+    .event-name {
+    }
+    .event-description {
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 1500px) {
+    table {
+      white-space: inherit;
+    }
+    td, th {
+      white-space: nowrap;
+    }
+    tr td.event-description {
+      white-space: inherit;
+    }
+  }
+
+  @media only screen and (max-width: 1220px) {
+    tr.header th[data-slug="trigger-ap"],
+    tr.header th[data-slug="clear-ap"],
+    tr td.event-trigger-ap,
+    tr td.event-clear-ap {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 1012px) {
+    // On small sizes, hide some of the unnecessary table columns.
+    table, table td {
+      white-space: normal !important;
+    }
+    tr.header th {
+      white-space: nowrap !important;
+    }
+    tr.header th[data-slug="description"],
+    tr td.event-description {
+      display: none;
+    }
+    tr td.event-title {
+      .event-description {
+        display: block;
+        padding-left: calc(1.5rem + 0.1875rem);
+      }
+    }
+  }
+
+  @media only screen and (max-width: 540px) {
+    tr.header th[data-slug="main-location"],
+    tr td.event-location {
+      display: none;
+    }
+  }
+}

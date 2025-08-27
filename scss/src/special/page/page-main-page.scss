@@ -1,9 +1,9 @@
 @use "sass:color";
 @use "sass:math";
-@use "../defaults";
-@use "../functions";
-@use "../colorize";
-@use "../icons";
+@use "../../defaults";
+@use "../../functions";
+@use "../../colorize";
+@use "../../icons";
 
 body.page-Main_Page {
   #firstHeading,

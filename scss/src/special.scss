@@ -1,5 +1,6 @@
 @use "special/tombooru/main";
-@use "special/page-main-page";
+@use "special/page/page-main-page";
+@use "special/components/big-table-events";
 @use "defaults";
 
 body.no-mw-panel {
