@@ -136,7 +136,8 @@ body {
     background-color: transparent;
     border: 0;
     padding: 0;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     border-radius: defaults.$border-radius-m;
 
     .tc-infobox-header {
@@ -159,7 +160,7 @@ body {
     }
     .tc-infobox-separator {
       > th {
-        padding-top: 0.45em;
+        padding-top: calc(0.75em - 1px);
         padding-bottom: 0.125em;
       }
       &:first-child {
