@@ -21,7 +21,7 @@ class ArticleMeta {
       'category' => 'Cut_content',
     ],
     'technical' => [
-      'category' => 'Technical_information',
+      'category' => 'Technical_info',
     ],
     'community' => [
       'category' => 'Community_and_fandom',
