@@ -1,0 +1,177 @@
+@use "sass:color";
+@use "../defaults";
+@use "../icons";
+
+// Colors that can be set through escape sequences.
+$tt-textbox-color-1: #b00000;
+$tt-textbox-color-2: #4870f8;
+$tt-textbox-color-3: #b000b0;
+$tt-textbox-color-4: #00c000;
+$tt-textbox-color-5: #0000c0;
+$tt-textbox-color-6: #f86800;
+$tt-textbox-color-7: #f840a8;
+
+// Colors for the PSX buttons.
+$tt-psx-button-bg: defaults.$color-dark-gray;
+$tt-psx-button-shadow: defaults.$color-light-gray-6;
+$tt-psx-button-x: #5984e0;
+$tt-psx-button-o: #f9566a;
+$tt-psx-button-triangle: #00a585;
+$tt-psx-button-square: #f97edf;
+
+@keyframes blinker {
+  0% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 100;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+
+// Textboxes exported from UNGAM files.
+.tc-tomba-textbox {
+  margin: 1em 0 1em;
+  
+  &.lang-en {
+  }
+  &.lang-jp {
+  }
+  &.outer {
+  }
+  .header {
+    font-size: defaults.$font-size-caption;
+    font-weight: bold;
+  }
+  .inner {
+    padding: 0.5em;
+    border: 2px solid defaults.$color-light-gray-8;
+    border-radius: defaults.$border-radius-xl;
+  }
+
+  .tt-ctr {
+    // these are the control codes, such as "initialize text box".
+    color: defaults.$color-light-gray-8;
+    font-size: defaults.$font-size-micro;
+    text-transform: uppercase;
+    user-select: none;
+
+    &.tt-init-tail {}
+    &.tt-init-text-box {}
+    &.tt-f4 {
+      display: inline;
+      margin: 0 0.25em;
+    }
+    &.tt-f6 {}
+    &.tt-lf {
+      display: inline;
+      white-space: pre-wrap;
+
+      &::after {
+        content: '\A';
+      }
+    }
+    &.tt-end {}
+    &.tt-wait-for-input {
+      display: inline;
+      white-space: pre-wrap;
+      
+      &::after {
+        content: '\A';
+      }
+    }
+    &.tt-crlf {}
+    &.tt-stop {}
+    &.tt-pause-for {}
+  }
+  .tt-cursor {
+    &::before {
+      content: '▼';
+      animation: blinker 0.5s linear infinite;
+    }
+  }
+  .tt-button {
+    --size: 1em;
+
+    content: '';
+    width: var(--size);
+    position: relative;
+    display: inline-block;
+    top: 0.0625rem;
+    vertical-align: text-top;
+
+    &::before,
+    &::after {
+      content: '';
+      width: calc(var(--size));
+      height: calc(var(--size));
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    &::before {
+      display: block;
+      background: transparent;
+      background-size: 78%;
+      background-repeat: no-repeat;
+      background-position: center;
+      z-index: 2;
+    }
+    &::after {
+      background: $tt-psx-button-bg;
+      border-radius: 100em;
+      z-index: 1;
+      box-shadow: 0 0.0625rem $tt-psx-button-shadow;
+    }
+    &.type-cross::before {
+      background-image: icons.icon-url('psx-cross');
+    }
+    &.type-circle::before {
+      background-image: icons.icon-url('psx-circle');
+    }
+    &.type-triangle::before {
+      background-image: icons.icon-url('psx-triangle');
+      top: -0.05em;
+    }
+    &.type-square::before {
+      background-image: icons.icon-url('psx-square');
+    }
+  }
+
+  .tt-text-color {
+    // used to change text color.
+    // due to the way stuff is exported from the files, these include nested content.
+    &.c0 {
+      color: inherit;
+    }
+    &.c1 {
+      color: $tt-textbox-color-1;
+    }
+    &.c2 {
+      color: $tt-textbox-color-2;
+    }
+    &.c3 {
+      color: $tt-textbox-color-3;
+    }
+    &.c4 {
+      color: $tt-textbox-color-4;
+    }
+    &.c5 {
+      color: $tt-textbox-color-5;
+    }
+    &.c6 {
+      color: $tt-textbox-color-6;
+    }
+    &.c7 {
+      color: $tt-textbox-color-7;
+    }
+  }
+}
