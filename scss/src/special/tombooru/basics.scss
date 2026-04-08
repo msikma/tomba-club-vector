@@ -45,8 +45,8 @@ body.tombooru {
     // The page content info section can include metadata about the current page.
     // For example, on search pages this is used to describe what tags we searched for.
     .page-content-meta {
-      margin-top: -0.4em;
-      padding-bottom: 0.4em;
+      position: relative;
+      top: -0.4em;
 
       &.no-filters {
         display: none;
