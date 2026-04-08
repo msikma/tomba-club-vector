@@ -13,9 +13,15 @@ body.tombooru {
   #contentSub2 {
     margin: 0;
   }
-  // todo: mvoe this
+  // todo: move this
   #mw-content-text .mw-content-panel:not(.mw-content-navigation-panel).solid-panel .tag-category::after {
     background-color: #{defaults.$color-cobalt};
+  }
+
+  #mw-panel #p-logo {
+    .mw-wiki-logo {
+      background-image: url('./assets/logo-tombooru.png');
+    }
   }
 
   #mw-content-text .tombooru-nav-panel {
