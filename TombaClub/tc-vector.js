@@ -2,6 +2,31 @@
 // MIT License
 
 /**
+ * Waits for an element to appear and then runs a callback.
+ */
+function waitForElement(selector, callback) {
+  const observer = new MutationObserver((mutations, obs) => {
+    const element = document.querySelector(selector)
+    if (!element) {
+      return
+    }
+    obs.disconnect()
+    callback(element)
+  })
+  
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  })
+  
+  const existing = document.querySelector(selector)
+  if (existing) {
+    observer.disconnect()
+    callback(existing)
+  }
+}
+
+/**
  * Highlights the currently active sidebar link.
  */
 function highlightSidenavLink() {
@@ -518,6 +543,44 @@ function decorateInfoBoxes() {
 }
 
 /**
+ * Retrieves some site data provided by this extension.
+ * 
+ * If the data isn't found, an empty object is returned instead.
+ */
+function getTcSiteData() {
+  const scriptTag = document.getElementById('tc-site-data')
+  try {
+    const data = JSON.parse(scriptTag.textContent)
+    return data
+  }
+  catch {
+    return {}
+  }
+}
+
+/**
+ * Replaces the href value of the wiki logo, if Tombooru is active.
+ * 
+ * This keeps people inside of Tombooru until they intentionally go back.
+ */
+function replaceLogoHref() {
+  const body = document.querySelector('body')
+  if (!body || !body.classList.contains('tombooru')) {
+    return
+  }
+  const wikiLogo = document.querySelector('#p-logo .mw-wiki-logo')
+  if (!wikiLogo) {
+    return
+  }
+  // Grab our site data and use the base. If it hasn't been set, just leave it.
+  const tcSiteData = getTcSiteData()
+  if (!tcSiteData.tombooruBaseURL) {
+    return
+  }
+  wikiLogo.setAttribute('href', `${tcSiteData.tombooruBaseURL}posts`)
+}
+
+/**
  * Script for the Tomba Club Mediawiki skin.
  * 
  * This runs after the <footer> has been printed.
@@ -530,4 +593,8 @@ function main() {
   decorateInfoBoxes()
 }
 
-main()
+// Fast replacement of the logo href.
+waitForElement('#p-logo .mw-wiki-logo', replaceLogoHref)
+
+// Everything else.
+document.addEventListener('DOMContentLoaded', () => main())

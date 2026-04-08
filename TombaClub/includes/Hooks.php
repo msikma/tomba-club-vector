@@ -174,6 +174,7 @@ class Hooks {
   public static function onBeforePageDisplay(&$out, &$skin) {
     $extBaseDir = Settings::getExtensionBaseDir();
     $baseURL = Settings::getBaseURL();
+    $tombooruBaseURL = Settings::getTombooruBaseURL();
 
     // Sanity check: these custom styles only work with the Vector skin.
     if ($skin->getSkinName() !== 'vector') {
@@ -216,10 +217,22 @@ class Hooks {
         ]
       ]
     ];
+
+    $siteData = [
+      "baseURL" => "{$baseURL}",
+      "tombooruBaseURL" => "{$tombooruBaseURL}",
+    ];
+
     $out->addHeadItem(
       'json-ld',
       '<script type="application/ld+json">'.
       json_encode($linkedData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE).
+      '</script>',
+    );
+    $out->addHeadItem(
+      'site-data',
+      '<script type="application/json" id="tc-site-data">'.
+      json_encode($siteData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE).
       '</script>',
     );
 

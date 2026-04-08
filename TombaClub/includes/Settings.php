@@ -31,6 +31,17 @@ class Settings {
   }
 
   /**
+   * Returns the base URL for Tombooru.
+   * 
+   * This is /imageboard/ instead of /wiki/.
+   */
+  public static function getTombooruBaseURL() {
+    $baseURL = self::getBaseURL();
+    $baseURL = preg_replace('/\/wiki\/$/', '/imageboard/', $baseURL);
+    return $baseURL;
+  }
+
+  /**
    * Returns the currently logged in user.
    */
   public static function getUser() {
