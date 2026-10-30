@@ -296,7 +296,7 @@ class Hooks {
     $bar = ['Tomba Wiki' => [
       [
         'text' => 'Main page',
-        'href' => 'Main_Page',
+        'href' => Title::newMainPage()->getLocalURL(),
         'id' => 'tomba_sidebar_logo'
       ]
     ]] + $bar;
