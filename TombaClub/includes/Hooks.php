@@ -251,8 +251,7 @@ class Hooks {
     }
 
     if ($skinTemplate->getUser()->isAllowed('purge')) {
-      $skinTemplate->getOutput()->addModules('ext.cargo.purge');
-      $links['actions']['cargo-purge'] = [
+      $links['actions']['purge'] = [
         'class' => false,
         'text' => 'Purge',
         'href' => $title->getLocalUrl(['action' => 'purge']),
